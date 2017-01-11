@@ -5,11 +5,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     Transform tr_Player;
-    public float f_RotSpeed = 3.0f;
-    public float f_MoveSpeed = 3.0f;
+    [Range(0.1f, 100.0f)]
+    public float RotationSpeed = 3.0f;
+    [Range(0.1f, 100.0f)]
+    public float MoveSpeed = 3.0f;
     float distanceToPlayer;
-    public float attackRange = 2.0f;
-    public float viewRange = 15.0f;
+    [Range(0.1f, 100.0f)]
+    public float AttackRange = 2.0f;
+    [Range(0.1f, 100.0f)]
+    public float ViewRange = 15.0f;
+    private float elapsedAttackDelay = 0f;
+    [Range(0.1f, 60f)]
+    public float attackDelay = 1f;
+
 
     // Use this for initialization
     void Start()
@@ -25,11 +33,12 @@ public class Enemy : MonoBehaviour {
         //Look at Player
         transform.rotation = Quaternion.Slerp(transform.rotation
                                              , Quaternion.LookRotation(tr_Player.position - transform.position)
-                                             , f_RotSpeed * Time.deltaTime);
+                                             , RotationSpeed * Time.deltaTime);
         //Follow Player
-        if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
+        if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
         {
-            transform.position += transform.forward * f_MoveSpeed * Time.deltaTime;
+            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         }
     }
+
 }
