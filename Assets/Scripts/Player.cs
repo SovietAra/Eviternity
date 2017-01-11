@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Projectile")
+        if(collision.gameObject.CompareTag("Projectile"))
         {
             DoDamage(collision.gameObject);
         }
