@@ -5,18 +5,24 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     Transform tr_Player;
+    [SerializeField]
     [Range(0.1f, 100.0f)]
-    public float RotationSpeed = 3.0f;
+    float RotationSpeed = 3.0f;
+    [SerializeField]
     [Range(0.1f, 100.0f)]
-    public float MoveSpeed = 3.0f;
+    float MoveSpeed = 3.0f;
     float distanceToPlayer;
+    [SerializeField]
     [Range(0.1f, 100.0f)]
-    public float AttackRange = 2.0f;
+    float AttackRange = 2.0f;
+    [SerializeField]
     [Range(0.1f, 100.0f)]
-    public float ViewRange = 15.0f;
+    float ViewRange = 15.0f;
     private float elapsedAttackDelay = 0f;
+    [SerializeField]
     [Range(0.1f, 60f)]
-    public float attackDelay = 1f;
+    float attackDelay = 1f;
+    private bool AimsAtPlayer = false;
 
 
     // Use this for initialization
@@ -40,5 +46,14 @@ public class Enemy : MonoBehaviour {
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         }
     }
+
+    //Shoots raycast and checks if it collides. If yes and the colliding object is a player start shooting in tryshoot method
+    //public bool Aiming()
+    //{
+    //    Physics.Raycast(transform.position, transform.forward, 10000);
+
+
+    //    return AimsAtPlayer;
+    //}
 
 }
