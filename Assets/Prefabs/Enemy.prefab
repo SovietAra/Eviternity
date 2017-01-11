@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 23852266206716162}
   - component: {fileID: 114961128355749338}
   m_Layer: 0
-  m_Name: New Prefab
-  m_TagString: Untagged
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,5 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab303e0d60962b741a5a9fc13ffc3439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  f_RotSpeed: 3
-  f_MoveSpeed: 3
+  RotationSpeed: 3
+  MoveSpeed: 3
+  AttackRange: 2
+  ViewRange: 15
+  attackDelay: 1
