@@ -1,14 +1,26 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour
+{
+    
+    [SerializeField]
+    [Range(0f, 1000f)]
+    private float speed = 3f;
+
+    [SerializeField]
+    [Range(0f, 1000f)]
+    private float damage = 1f;
+
+    public bool DestroyOnCollision = true;
+    
+    public float Damage
+    {
+        get { return damage; }
+    }
+
 
     // Use this for initialization
-    public float Speed = 3f;
-
-	void Start ()
+    void Start ()
     {
 		
 	}
@@ -16,13 +28,12 @@ public class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position += transform.forward * Time.deltaTime * Speed;
+        transform.position += transform.forward * Time.deltaTime * speed;
 	}
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
-        Console.WriteLine("collision");
-        Debug.Log("Collision");
+        if(DestroyOnCollision)
+            Destroy(gameObject);
     }
 }
