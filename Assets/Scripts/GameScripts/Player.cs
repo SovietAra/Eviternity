@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private bool isDead;
     private float elapsedAttackDelay = 0f;
     private float angle;
+    private Quaternion targetRotation;
     private GamePadState prevState;
 
     [SerializeField]
@@ -68,6 +69,8 @@ public class Player : MonoBehaviour
                     TryMove(state);
                     TryShoot(state);
                     TryExit(state);
+
+                    UpdateRotation();
                 }
             }
             else
@@ -115,7 +118,12 @@ public class Player : MonoBehaviour
     private void DoRotation(float angle)
     {
         this.angle = angle;
-        transform.localRotation = Quaternion.Euler(0.0f, (angle), 0);
+        targetRotation = Quaternion.Euler(0, angle, 0);
+    }
+
+    private void UpdateRotation()
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
 
     private float CalculateAngle(Vector2 target, Vector2 source)
