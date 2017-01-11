@@ -28,9 +28,9 @@ namespace Assets
                              + transform.position;
 
             _xMax = _camera.position.x + HorizontalBounds.y;
-            _zMax = _camera.position.z + HorizontalBounds.y;
+            _zMax = _camera.position.z + VerticalBounds.y;
             _xMin = _camera.position.x - HorizontalBounds.x;
-            _zMin = _camera.position.z - HorizontalBounds.y;
+            _zMin = _camera.position.z - VerticallBounds.x;
 
             float clampedX = Mathf.Clamp(offset.x,_xMin,_xMax);
             float clampedZ = Mathf.Clamp(offset.z,_zMin,_zMax);
