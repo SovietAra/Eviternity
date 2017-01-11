@@ -108,7 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385f43149d85642439b0885170848b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  speed: 7
+  damage: 1
+  DestroyOnCollision: 1
 --- !u!135 &135747622634777900
 SphereCollider:
   m_ObjectHideFlags: 1

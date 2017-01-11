@@ -1,27 +1,29 @@
 ﻿using Assets.Scripts;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
+
 public class Player : MonoBehaviour
 {
     private PlayerIndex index;
     private bool hasPlayerIndex;
     private bool lostConnection;
     private bool isDead;
+    private float elapsedAttackDelay = 0f;
+    private float angle;
     private GamePadState prevState;
 
-    public int Health = 10;
+    [SerializeField]
+    [Range(1f, 10000f)]
+    private float health = 10;
+    [SerializeField]
+    [Range(0.1f, 60f)]
+    public float attackDelay = 1f;
+
     public bool Freeze = false;
     public bool TwoStickMovement = false;
-    public float AttackDelay = 1f;
     public GameObject Projectile;
-
-    private float elapsedAttackDelay = 0f;
-    private float lastAngle;
-
-
+    
 	// Use this for initialization
 	void Start ()
     {
@@ -74,17 +76,18 @@ public class Player : MonoBehaviour
                 transform.position += Vector3.forward * state.ThumbSticks.Left.Y * Time.deltaTime;
                 transform.position += Vector3.right * state.ThumbSticks.Left.X * Time.deltaTime;
 
-                float angle = FixAngle(CalculateAngle(new Vector2(state.ThumbSticks.Left.X * -1, state.ThumbSticks.Left.Y), Vector2.zero) - 90);
-
-                if (angle != lastAngle && state.ThumbSticks.Left.X != 0 && state.ThumbSticks.Left.Y != 0)
+                float leftAngle = FixAngle(CalculateAngle(new Vector2(state.ThumbSticks.Left.X * -1, state.ThumbSticks.Left.Y), Vector2.zero) - 90);              
+                if (state.ThumbSticks.Left.X != 0 || state.ThumbSticks.Left.Y != 0)
                 {
-                    DoRotation(angle);
+                    DoRotation(leftAngle);
                 }
                 else
                 {
                     float rightAngle = FixAngle(CalculateAngle(new Vector2(state.ThumbSticks.Right.X * -1, state.ThumbSticks.Right.Y), Vector2.zero) - 90);
-                    if (rightAngle != lastAngle && state.ThumbSticks.Right.X != 0 && state.ThumbSticks.Right.Y != 0)
+                    if (state.ThumbSticks.Right.X != 0 || state.ThumbSticks.Right.Y != 0)
+                    {
                         DoRotation(rightAngle);
+                    }
                 }
             }
         }
@@ -92,10 +95,8 @@ public class Player : MonoBehaviour
 
     private void DoRotation(float angle)
     {
-        transform.localRotation *= Quaternion.Euler(0.0f, (lastAngle) * -1, 0);
-        transform.localRotation *= Quaternion.Euler(0.0f, (angle), 0);
-
-        lastAngle = angle;
+        this.angle = angle;
+        transform.localRotation = Quaternion.Euler(0.0f, (angle), 0);
     }
 
     private float CalculateAngle(Vector2 target, Vector2 source)
@@ -111,10 +112,9 @@ public class Player : MonoBehaviour
         return value;
     }
 
-
     private void CheckHealth()
     {
-        if(Health <= 0)
+        if(health <= 0)
         {
             DestroyImmediate(this);
         }
@@ -123,12 +123,12 @@ public class Player : MonoBehaviour
     private void TryShoot(GamePadState state)
     {
         elapsedAttackDelay += Time.deltaTime;
-        if (elapsedAttackDelay > AttackDelay)
+        if (elapsedAttackDelay > attackDelay)
         {
             if (state.Triggers.Right > 0)
             {
                 elapsedAttackDelay = 0f;
-                GameObject.Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (lastAngle), 0));
+                Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
              }
         }
     }
@@ -143,8 +143,9 @@ public class Player : MonoBehaviour
 
     private void DoDamage(GameObject projectile)
     {
-        Health--;
-        if(Health <= 0)
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        health -= projectileScript.Damage;
+        if(health <= 0)
         {
             isDead = true;
             Destroy(gameObject);          
