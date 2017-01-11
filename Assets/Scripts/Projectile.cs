@@ -12,7 +12,10 @@ public class Projectile : MonoBehaviour
     private float damage = 1f;
 
     public bool DestroyOnCollision = true;
-    
+    public bool CollideWithOtherProjectiles = false;
+
+    private Collider projectileCollider;
+
     public float Damage
     {
         get { return damage; }
@@ -22,7 +25,7 @@ public class Projectile : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
+        projectileCollider = GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +36,14 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(DestroyOnCollision)
-            Destroy(gameObject);
+        if (!CollideWithOtherProjectiles && collision.gameObject.CompareTag("Projectile"))
+        {
+            Physics.IgnoreCollision(collision.collider, projectileCollider);
+        }
+        else
+        {
+            if (DestroyOnCollision)
+                Destroy(gameObject);
+        }
     }
 }

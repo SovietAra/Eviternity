@@ -111,6 +111,7 @@ MonoBehaviour:
   speed: 7
   damage: 1
   DestroyOnCollision: 1
+  CollideWithOtherProjectiles: 1
 --- !u!135 &135747622634777900
 SphereCollider:
   m_ObjectHideFlags: 1
