@@ -13,6 +13,7 @@ public class CameraFollowing : MonoBehaviour
 
     void Update ()
     {
+
         var maxX = ConvertX(Controllers).Max();
         var maxZ = ConvertZ(Controllers).Max();
         var minX = ConvertX(Controllers).Min();
