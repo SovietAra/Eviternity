@@ -28,22 +28,24 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
-        //Look at Player
-        transform.rotation = Quaternion.Slerp(transform.rotation
-                                             , Quaternion.LookRotation(tr_Player.position - transform.position)
-                                             , RotationSpeed * Time.deltaTime);
-        //Follow Player
-        if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
+        tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (tr_Player)
         {
-            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
+            //Look at Player
+            transform.rotation = Quaternion.Slerp(transform.rotation
+                                                 , Quaternion.LookRotation(tr_Player.position - transform.position)
+                                                 , RotationSpeed * Time.deltaTime);
+            //Follow Player
+            if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
+            {
+                transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            }
         }
     }
 
