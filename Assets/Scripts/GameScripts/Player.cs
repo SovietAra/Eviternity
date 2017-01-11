@@ -23,9 +23,27 @@ public class Player : MonoBehaviour
     public bool Freeze = false;
     public bool TwoStickMovement = false;
     public GameObject Projectile;
-    
-	// Use this for initialization
-	void Start ()
+
+    [HideInInspector]
+    public event EventHandler<PlayerEventArgs> OnPlayerExit;
+
+    [HideInInspector]
+    public PlayerIndex Index
+    {
+        get
+        {
+            return index;
+        }
+
+        set
+        {
+            index = value;
+            hasPlayerIndex = true;
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
@@ -33,27 +51,28 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (!hasPlayerIndex || lostConnection)
+        if (hasPlayerIndex)
         {
-            index = GamePadManager.GetPlayerIndex();
-            hasPlayerIndex = true;
-            lostConnection = false;
-        }
-        else
-        {
-            GamePadState state = GamePad.GetState(index);
+            GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
+                if(lostConnection)
+                {
+                    lostConnection = false;
+                    GamePadManager.Connect((int)index);
+                }
+
                 if (!isDead)
                 {
                     CheckHealth();
                     TryMove(state);
                     TryShoot(state);
+                    TryExit(state);
                 }
             }
             else
             {
-                GamePadManager.ConnectionLost(index);
+                GamePadManager.Disconnect(Index);
                 lostConnection = true;
                 //Pause
             }
@@ -130,6 +149,15 @@ public class Player : MonoBehaviour
                 elapsedAttackDelay = 0f;
                 Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
              }
+        }
+    }
+
+    private void TryExit(GamePadState state)
+    {
+        if(state.Buttons.Back == ButtonState.Pressed)
+        {
+            if(OnPlayerExit != null)
+                OnPlayerExit(this, new PlayerEventArgs(gameObject, this));
         }
     }
 
