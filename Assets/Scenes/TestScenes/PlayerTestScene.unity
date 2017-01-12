@@ -121,7 +121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 466118888}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &96678787
 MonoBehaviour:
@@ -134,7 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ff9b1e3a362954e8784994b1a3efac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 1.5
+  triggerByCollision: 1
+  triggerByRange: 1
+  range: 2
   damage: 1
 --- !u!23 &96678788
 MeshRenderer:
@@ -214,6 +216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1415457873}
+  - {fileID: 1846991615}
   - {fileID: 96678786}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -527,6 +530,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1148832535050476, guid: 8a619cb31fe2e9641bd84f2b792fe055,
         type: 2}
+    - target: {fileID: 1190806756317340, guid: f9a0365990765d849b19f4b3b09f2845, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9a0365990765d849b19f4b3b09f2845, type: 2}
   m_IsPrefabParent: 0

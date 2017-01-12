@@ -5,12 +5,13 @@ using UnityEngine;
 public class ExplosiveTrap : MonoBehaviour
 {
 
-    [Range(0.1f, 10)]
-    public float range;
     private float distanceToObject;
     private GameObject[] playerList;
     private GameObject[] enemyList;
-    private bool triggered;
+    private bool triggered, collided;
+    public bool triggerByCollision, triggerByRange;
+    [Range(0.1f, 10)]
+    public float range;
     [Range(1, 1000)]
     public int damage;
 
@@ -18,6 +19,7 @@ public class ExplosiveTrap : MonoBehaviour
     void Start()
     {
         triggered = false;
+        collided = false;
     }
 
     // Update is called once per frame
@@ -26,27 +28,71 @@ public class ExplosiveTrap : MonoBehaviour
         playerList = GameObject.FindGameObjectsWithTag("Player");
         enemyList = GameObject.FindGameObjectsWithTag("Enemy");
 
-        for (int i = 0; i < playerList.Length; i++)
+        if (triggerByRange)
         {
-            distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
-
-            if (distanceToObject < range)
+            for (int i = 0; i < playerList.Length; i++)
             {
-                triggered = true;
-            }
-        }
-
-        if (triggered)
-        {
-            for (int i = 0; i < enemyList.Length; i++)
-            {
+                distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
+                Player player = playerList[i].GetComponent<Player>();
                 if (distanceToObject < range)
                 {
-
+                    // damage
+                    player.DealDamage(damage);
+                    triggered = true;
                 }
             }
 
-            Destroy(this);
+            if (triggered)
+            {
+                for (int i = 0; i < enemyList.Length; i++)
+                {
+                    distanceToObject = Vector3.Distance(enemyList[i].transform.position, transform.position);
+
+                    if (distanceToObject < range)
+                    {
+                        // damage
+                    }
+                }
+
+                Destroy(gameObject);
+            }
+        }
+
+        if (triggerByCollision)
+        {
+            if (collided)
+            {
+                for (int i = 0; i < playerList.Length; i++)
+                {
+                    distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
+                    Player player = playerList[i].GetComponent<Player>();
+                    if (distanceToObject < range)
+                    {
+                        // damage
+                        player.DealDamage(damage);
+                    }
+                }
+
+                for (int i = 0; i < enemyList.Length; i++)
+                {
+                    distanceToObject = Vector3.Distance(enemyList[i].transform.position, transform.position);
+                    
+                    if (distanceToObject < range)
+                    {
+                        // damage
+                    }
+                }
+
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            collided = true;
         }
     }
 }
