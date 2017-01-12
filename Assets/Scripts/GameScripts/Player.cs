@@ -9,14 +9,46 @@ public class Player : MonoBehaviour
     private bool hasPlayerIndex;
     private bool lostConnection;
     private bool isDead;
+    private Vector3 moveVector;
+    private Vector3 velocity;
+
     private float elapsedAttackDelay = 0f;
+    private float elapsedDashTime = 0f;
+    
     private float angle;
     private Quaternion targetRotation;
     private GamePadState prevState;
 
+    [Range(1f, 10000f)]
+    public float TeamHealth = 10;
+    
+    [Range(1f, 10000f)]
+    public float maxTeamHealth = 10;
+
+    [SerializeField]
+    [Range(1f, 10000f)]
+    private float maxHealth = 10;
+
     [SerializeField]
     [Range(1f, 10000f)]
     private float health = 10;
+
+    [SerializeField]
+    [Range(1f, 100f)]
+    private float speed = 1f;
+
+    [SerializeField]
+    [Range(1f, 100f)]
+    private float dashSpeed = 5f;
+
+    [SerializeField]
+    [Range(0.1f, 10f)]
+    private float dashTime = 1.25f;
+
+    [SerializeField]
+    [Range(1, 100)]
+    private float regenerationPerSecond = 5f;
+
     [SerializeField]
     [Range(0.1f, 60f)]
     public float attackDelay = 1f;
@@ -24,6 +56,10 @@ public class Player : MonoBehaviour
     public bool Freeze = false;
     public bool TwoStickMovement = false;
     public GameObject Projectile;
+
+    private Camera _camera;
+    private float _xMin, _xMax, _zMin, _zMax, clampedX, clampedZ;
+    private Rigidbody _physics;
 
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
@@ -43,11 +79,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
+
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        _physics = GetComponent<Rigidbody>();
+        _camera = Camera.main;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -57,19 +99,18 @@ public class Player : MonoBehaviour
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
-                if(lostConnection)
+                /*if(lostConnection)
                 {
                     lostConnection = false;
                     GamePadManager.Connect((int)index);
-                }
+                }*/
 
                 if (!isDead)
                 {
+                    UpdateTimers();
                     CheckHealth();
-                    TryMove(state);
-                    TryShoot(state);
-                    TryExit(state);
-
+                    Input(state);
+                    UpdatePosition();
                     UpdateRotation();
                 }
             }
@@ -77,39 +118,86 @@ public class Player : MonoBehaviour
             {
                 GamePadManager.Disconnect(Index);
                 lostConnection = true;
-                //Pause
+                GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
         }
 	}
-    
-    private void TryMove(GamePadState state)
+    void FixedUpdate()
     {
-        if(!Freeze)
-        {
-            if (TwoStickMovement)
-            {
-                transform.position += transform.forward * state.ThumbSticks.Left.Y * Time.deltaTime;
-                transform.position += transform.right * state.ThumbSticks.Left.X * Time.deltaTime;
+        Borders();
+        _physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
+    }
+    private void UpdateTimers()
+    {
+        elapsedAttackDelay += Time.deltaTime;
+        elapsedDashTime += Time.deltaTime;
+    }
 
-                transform.localRotation *= Quaternion.Euler(0.0f, state.ThumbSticks.Right.X * 25.0f * Time.deltaTime, 0.0f);
+    private void Input(GamePadState state)
+    {
+        if(state.Buttons.Start == ButtonState.Pressed)
+        {
+            TryPause();
+        }
+
+        if(state.Buttons.Back == ButtonState.Pressed)
+        {
+            TryExit();
+        }
+
+        if(state.Buttons.A == ButtonState.Pressed)
+        {
+            TryDash();
+        }
+
+        if(state.Buttons.B == ButtonState.Pressed)
+        {
+            //unused
+        }
+
+        if(state.Buttons.X == ButtonState.Pressed)
+        {
+            TryHeal();
+        }
+
+        if(state.Buttons.Y == ButtonState.Pressed)
+        {
+            TryAbillity();
+        }
+
+        if(state.Triggers.Right > 0)
+        {
+            TryPrimaryAttack();
+        }
+
+        if(state.Triggers.Left > 0)
+        {
+            TrySecondaryAttack();
+        }
+
+        Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        TryMove(leftStick, rightStick);
+    }
+    
+    private void TryMove(Vector2 leftStick, Vector2 rightStick)
+    {
+        if (!Freeze)
+        {
+            moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
+            moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
+
+            float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
+            if (leftStick != Vector2.zero)
+            {
+                DoRotation(leftAngle);
             }
             else
             {
-                transform.position += Vector3.forward * state.ThumbSticks.Left.Y * Time.deltaTime;
-                transform.position += Vector3.right * state.ThumbSticks.Left.X * Time.deltaTime;
-
-                float leftAngle = FixAngle(CalculateAngle(new Vector2(state.ThumbSticks.Left.X * -1, state.ThumbSticks.Left.Y), Vector2.zero) - 90);              
-                if (state.ThumbSticks.Left.X != 0 || state.ThumbSticks.Left.Y != 0)
+                float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
+                if (rightStick != Vector2.zero)
                 {
-                    DoRotation(leftAngle);
-                }
-                else
-                {
-                    float rightAngle = FixAngle(CalculateAngle(new Vector2(state.ThumbSticks.Right.X * -1, state.ThumbSticks.Right.Y), Vector2.zero) - 90);
-                    if (state.ThumbSticks.Right.X != 0 || state.ThumbSticks.Right.Y != 0)
-                    {
-                        DoRotation(rightAngle);
-                    }
+                    DoRotation(rightAngle);
                 }
             }
         }
@@ -126,6 +214,12 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
 
+    private void UpdatePosition()
+    {
+        transform.position += moveVector + velocity;
+        velocity -= (velocity * 0.1f);
+    }
+
     private float CalculateAngle(Vector2 target, Vector2 source)
     {
         return ((float)Math.Atan2(target.y - source.y, target.x - source.x)) * (180f / (float)Math.PI);
@@ -139,33 +233,74 @@ public class Player : MonoBehaviour
         return value;
     }
 
-    private void CheckHealth()
+    private void TryHeal()
     {
-        if(health <= 0)
+        if (health < maxHealth)
         {
-            DestroyImmediate(this);
+            float addHealth = regenerationPerSecond * Time.deltaTime;
+            if (TeamHealth < addHealth)
+                addHealth = TeamHealth;
+
+            if (addHealth + health > maxHealth)
+            {
+                addHealth -= (addHealth + health) - maxHealth;
+            }
+            health += addHealth;
+            UpdateTeamHealth(-addHealth);
         }
     }
 
-    private void TryShoot(GamePadState state)
+    private void TryDash()
     {
-        elapsedAttackDelay += Time.deltaTime;
+        if (elapsedDashTime >= dashTime)
+        {
+            velocity = transform.forward * Time.deltaTime * dashSpeed;
+            elapsedDashTime = 0f;
+        }
+    }
+
+    private void TryAbillity()
+    {
+    }
+
+    private void TryPrimaryAttack()
+    {
         if (elapsedAttackDelay > attackDelay)
         {
-            if (state.Triggers.Right > 0)
-            {
-                elapsedAttackDelay = 0f;
-                Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
-             }
+            elapsedAttackDelay = 0f;
+            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
         }
     }
 
-    private void TryExit(GamePadState state)
+    private void TrySecondaryAttack()
     {
-        if(state.Buttons.Back == ButtonState.Pressed)
+        if (elapsedAttackDelay > attackDelay)
         {
-            if(OnPlayerExit != null)
-                OnPlayerExit(this, new PlayerEventArgs(gameObject, this));
+            elapsedAttackDelay = 0f;
+            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
+        }
+    }
+
+    private void TryExit()
+    {
+        if (OnPlayerExit != null)
+            OnPlayerExit(this, new PlayerEventArgs(gameObject, this));
+    }
+
+    private void TryPause()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
+    }
+
+    private void UpdateTeamHealth(float addHealth)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            Player playerScript = players[i].GetComponent<Player>();
+            playerScript.TeamHealth += addHealth;
+            if (playerScript.TeamHealth > playerScript.maxHealth)
+                playerScript.TeamHealth = playerScript.maxHealth;
         }
     }
 
@@ -186,5 +321,36 @@ public class Player : MonoBehaviour
             isDead = true;
             Destroy(gameObject); 
         }
+    }
+
+    private void CheckHealth()
+    {
+        if (health <= 0)
+        {
+            DestroyImmediate(this);
+        }
+    }
+    public void Borders()
+    {
+
+        _xMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
+        _zMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
+        _xMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
+        _zMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
+
+        clampedX = Mathf.Clamp(transform.position.x, _xMin, _xMax);
+        clampedZ = Mathf.Clamp(transform.position.z, _zMin, _zMax);
     }
 }
