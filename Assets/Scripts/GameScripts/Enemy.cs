@@ -4,33 +4,39 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
-    Transform tr_Player;
+    //TODO Change fields to private and check everything for styleguide(pascalCase)
     [SerializeField]
     [Range(0.1f, 100.0f)]
     float RotationSpeed = 3.0f;
+
     [SerializeField]
     [Range(0.1f, 100.0f)]
     float MoveSpeed = 3.0f;
-    float distanceToPlayer;
+
     [SerializeField]
     [Range(0.1f, 100.0f)]
-    float AttackRange = 2.0f;
+    float attackRange = 6.0f;
+
     [SerializeField]
     [Range(0.1f, 100.0f)]
     float ViewRange = 15.0f;
-    private float elapsedAttackDelay = 0f;
+
+    [SerializeField]
+    [Range(0.1f, 10000f)]
+    float EnemyHealth = 10.0f;
+
     [SerializeField]
     [Range(0.1f, 60f)]
     float attackDelay = 1f;
+    private float elapsedAttackDelay = 0f;
+
     float enemyfront;
-
-    public GameObject Projectile;
+    float distanceToPlayer;
     float AimDirection;
+    private GameObject TargetPlayer;
+    public GameObject Projectile;
 
-    private bool AimsAtPlayer = false;
-    RaycastHit hit;
-
+    private bool isValidTarget = false;
 
     // Use this for initialization
     void Start()
@@ -40,29 +46,34 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(tr_Player == null) //Search players
-            tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
+        CheckAlivePlayers();
 
-        if (tr_Player != null) //On player found
+        //TODO change tr_player to isValidTarget and maybe consider viewrange
+        if (isValidTarget) //On player found
         {
-            distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
+            distanceToPlayer = Vector3.Distance(TargetPlayer.transform.position, transform.position);
             //Look at Player
             transform.rotation = Quaternion.Slerp(transform.rotation
-                                                 , Quaternion.LookRotation(tr_Player.position - transform.position)
+                                                 , Quaternion.LookRotation(TargetPlayer.transform.position - transform.position)
                                                  , RotationSpeed * Time.deltaTime);
 
             //Follow Player
-            if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
+            if (attackRange < distanceToPlayer && distanceToPlayer < ViewRange)
             {
                 transform.position += transform.forward * MoveSpeed * Time.deltaTime;
             }
-            if (distanceToPlayer < AttackRange)
+            else if(distanceToPlayer < ViewRange)
+            {
+                TargetPlayer = null;
+                isValidTarget = false;
+            }
+
+            if (distanceToPlayer < attackRange)
             {
                 TryShoot();
             }
 
             enemyfront = transform.eulerAngles.y;
-            Debug.DrawLine(transform.position, hit.point);
         }
     }
 
@@ -71,10 +82,34 @@ public class Enemy : MonoBehaviour
         elapsedAttackDelay += Time.deltaTime;
         if (elapsedAttackDelay > attackDelay)
         {
-
             elapsedAttackDelay = 0f;
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
         }
     }
 
+
+    private void CheckAlivePlayers()
+    {
+        if (TargetPlayer != null) //TODO und in range
+            return;
+
+        GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
+        if (Players != null)
+        {
+            for (int i = 0; i < Players.Length; i++)
+            {
+                Player checkedPlayer = Players[i].GetComponent<Player>();
+                if (!checkedPlayer.IsDead)
+                {
+                    isValidTarget = true;
+                    TargetPlayer = Players[i];
+                    return;
+                }
+                else
+                {
+                    isValidTarget = false;
+                }
+            }
+        }
+    }
 }
