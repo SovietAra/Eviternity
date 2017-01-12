@@ -78,6 +78,6 @@ public class PlayerSelection : MonoBehaviour
     private void StartNewGame()
     {
         gameStarted = true;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("PlayerTestScene");
     }
 }
