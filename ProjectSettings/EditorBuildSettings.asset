@@ -7,5 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/main menu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlayerTestScene.unity
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/Testing.unity
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/PlayerTestScene.unity
