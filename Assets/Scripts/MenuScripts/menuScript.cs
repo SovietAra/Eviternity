@@ -104,11 +104,6 @@ public Button backText;
 		backText.enabled = false;
 	}
 
-	public void StartLevel()
-	{
-		Application.LoadLevel (1);
-	}
-
 	public void RestartGame()
 	{
 		Application.Quit ();

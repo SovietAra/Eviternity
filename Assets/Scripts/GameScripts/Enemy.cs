@@ -35,31 +35,35 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(tr_Player == null) //Search players
+            tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
-        //Look at Player
-        transform.rotation = Quaternion.Slerp(transform.rotation
-                                             , Quaternion.LookRotation(tr_Player.position - transform.position)
-                                             , RotationSpeed * Time.deltaTime);
-
-        //Follow Player
-        if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
+        if (tr_Player != null) //On player found
         {
-            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-        }
-        if (distanceToPlayer < AttackRange)
-        {
-            TryShoot();
-        }
+            distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
+            //Look at Player
+            transform.rotation = Quaternion.Slerp(transform.rotation
+                                                 , Quaternion.LookRotation(tr_Player.position - transform.position)
+                                                 , RotationSpeed * Time.deltaTime);
 
-        enemyfront = transform.eulerAngles.y;
-        Debug.DrawLine(transform.position, hit.point);
+            //Follow Player
+            if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
+            {
+                transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            }
+            if (distanceToPlayer < AttackRange)
+            {
+                TryShoot();
+            }
+
+            enemyfront = transform.eulerAngles.y;
+            Debug.DrawLine(transform.position, hit.point);
+        }
     }
 
     private void TryShoot()
