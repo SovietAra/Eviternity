@@ -19,6 +19,16 @@ public class Player : MonoBehaviour
     private Quaternion targetRotation;
     private GamePadState prevState;
 
+    [Range(1f, 10000f)]
+    public float TeamHealth = 10;
+    
+    [Range(1f, 10000f)]
+    public float maxTeamHealth = 10;
+
+    [SerializeField]
+    [Range(1f, 10000f)]
+    private float maxHealth = 10;
+
     [SerializeField]
     [Range(1f, 10000f)]
     private float health = 10;
@@ -40,24 +50,8 @@ public class Player : MonoBehaviour
     private float regenerationPerSecond = 5f;
 
     [SerializeField]
-    [Range(0.1f, 100)]
-    private float regenerationDuration = 5f;
-
-    [SerializeField]
-    [Range(0.1f, 100)]
-    private float maxRegenerationDuration = 5f;
-
-    [SerializeField]
-    [Range(0.001f, 5f)]
-    private float regenerationRefill = 0.01f;
-
-    [SerializeField]
     [Range(0.1f, 60f)]
     public float attackDelay = 1f;
-
-   
-
-
 
     public bool Freeze = false;
     public bool TwoStickMovement = false;
@@ -156,10 +150,6 @@ public class Player : MonoBehaviour
         {
             TryHeal();
         }
-        else
-        {
-            TryFillRegeneration();
-        }
 
         if(state.Buttons.Y == ButtonState.Pressed)
         {
@@ -236,18 +226,19 @@ public class Player : MonoBehaviour
 
     private void TryHeal()
     {
-        if (regenerationDuration > 0)
+        if (health < maxHealth)
         {
-            regenerationDuration -= Time.deltaTime;
-            health += regenerationPerSecond * Time.deltaTime;
-        }
-    }
+            float addHealth = regenerationPerSecond * Time.deltaTime;
+            if (TeamHealth < addHealth)
+                addHealth = TeamHealth;
 
-    private void TryFillRegeneration()
-    {
-        regenerationDuration += regenerationRefill * Time.deltaTime;
-        if (regenerationDuration > maxRegenerationDuration)
-            regenerationDuration = maxRegenerationDuration;
+            if (addHealth + health > maxHealth)
+            {
+                addHealth -= (addHealth + health) - maxHealth;
+            }
+            health += addHealth;
+            UpdateTeamHealth(-addHealth);
+        }
     }
 
     private void TryDash()
@@ -290,6 +281,18 @@ public class Player : MonoBehaviour
     private void TryPause()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
+    }
+
+    private void UpdateTeamHealth(float addHealth)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            Player playerScript = players[i].GetComponent<Player>();
+            playerScript.TeamHealth += addHealth;
+            if (playerScript.TeamHealth > playerScript.maxHealth)
+                playerScript.TeamHealth = playerScript.maxHealth;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
