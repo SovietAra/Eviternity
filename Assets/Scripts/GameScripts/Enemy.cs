@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     Transform tr_Player;
     [SerializeField]
@@ -22,40 +23,60 @@ public class Enemy : MonoBehaviour {
     [SerializeField]
     [Range(0.1f, 60f)]
     float attackDelay = 1f;
+    float enemyfront;
+
+    public GameObject Projectile;
+    float AimDirection;
+
     private bool AimsAtPlayer = false;
+    RaycastHit hit;
 
 
     // Use this for initialization
     void Start()
     {
+        tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        tr_Player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (tr_Player)
+
+        distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
+        //Look at Player
+        transform.rotation = Quaternion.Slerp(transform.rotation
+                                             , Quaternion.LookRotation(tr_Player.position - transform.position)
+                                             , RotationSpeed * Time.deltaTime);
+
+        //Follow Player
+        if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
         {
-            distanceToPlayer = Vector3.Distance(tr_Player.position, transform.position);
-            //Look at Player
-            transform.rotation = Quaternion.Slerp(transform.rotation
-                                                 , Quaternion.LookRotation(tr_Player.position - transform.position)
-                                                 , RotationSpeed * Time.deltaTime);
-            //Follow Player
-            if (AttackRange < distanceToPlayer && distanceToPlayer < ViewRange)
-            {
-                transform.position += transform.forward * MoveSpeed * Time.deltaTime;
-            }
+            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         }
+        if (distanceToPlayer < AttackRange)
+        {
+            TryShoot();
+        }
+
+        enemyfront = transform.eulerAngles.y;
+        Debug.DrawLine(transform.position, hit.point);
     }
 
-    //Shoots raycast and checks if it collides. If yes and the colliding object is a player start shooting in tryshoot method
-    //public bool Aiming()
+    //shoots raycast and checks if it collides.if yes and the colliding object is a player start shooting in tryshoot method
+    //public bool aiming()
     //{
-    //    Physics.Raycast(transform.position, transform.forward, 10000);
-
-
+    //    Physics.Raycast(transform.position, transform.forward, out hit);
     //    return AimsAtPlayer;
     //}
+    private void TryShoot()
+    {
+        elapsedAttackDelay += Time.deltaTime;
+        if (elapsedAttackDelay > attackDelay)
+        {
+
+            elapsedAttackDelay = 0f;
+            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+        }
+    }
 
 }
