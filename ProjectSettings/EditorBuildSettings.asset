@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/Testing.unity
   - enabled: 1
     path: Assets/Scenes/TestScenes/PlayerTestScene.unity
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/PrototypeScene.unity
