@@ -319,7 +319,7 @@ public class Player : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
-            Destroy(gameObject);          
+            Destroy(gameObject); 
         }
     }
 
