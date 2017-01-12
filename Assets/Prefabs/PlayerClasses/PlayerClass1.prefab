@@ -201,10 +201,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TeamHealth: 10
+  maxTeamHealth: 10
+  maxHealth: 10
   health: 10
   speed: 1
   dashSpeed: 9.7
   dashTime: 1.25
+  regenerationPerSecond: 17
   attackDelay: 1
   Freeze: 0
   TwoStickMovement: 0
