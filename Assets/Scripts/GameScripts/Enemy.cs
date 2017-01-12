@@ -62,12 +62,6 @@ public class Enemy : MonoBehaviour
         Debug.DrawLine(transform.position, hit.point);
     }
 
-    //shoots raycast and checks if it collides.if yes and the colliding object is a player start shooting in tryshoot method
-    //public bool aiming()
-    //{
-    //    Physics.Raycast(transform.position, transform.forward, out hit);
-    //    return AimsAtPlayer;
-    //}
     private void TryShoot()
     {
         elapsedAttackDelay += Time.deltaTime;
