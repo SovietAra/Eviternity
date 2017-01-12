@@ -308,18 +308,18 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Projectile"))
         {
-            DoDamage(collision.gameObject);
+            Projectile projectileScript = collision.gameObject.GetComponent<Projectile>();
+            DealDamage(projectileScript.Damage);
         }
     }
 
-    private void DoDamage(GameObject projectile)
+    public void DealDamage(float damage)
     {
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-        health -= projectileScript.Damage;
-        if(health <= 0)
+        health -= damage;
+        if (health <= 0)
         {
             isDead = true;
-            Destroy(gameObject);          
+            Destroy(gameObject);
         }
     }
 

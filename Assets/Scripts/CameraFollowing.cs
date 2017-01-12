@@ -22,7 +22,7 @@ public class CameraFollowing : MonoBehaviour
 
         var x = (maxX + minX) / 2;
         var z = (maxZ + minZ) / 2;
-        transform.position = new Vector3(x, 10, z);
+        transform.position = new Vector3(x, transform .position .y, z);
     }
 
     List<float> ConvertX(List<GameObject> controllers)
