@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
     public bool TwoStickMovement = false;
     public GameObject Projectile;
 
+    private Camera _camera;
+    private float _xMin, _xMax, _zMin, _zMax, clampedX, clampedZ;
+    private Rigidbody _physics;
+
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
 
@@ -89,8 +93,9 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        _physics = GetComponent<Rigidbody>();
+        _camera = Camera.main;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -123,7 +128,11 @@ public class Player : MonoBehaviour
             }
         }
 	}
-
+    void FixedUpdate()
+    {
+        Borders();
+        _physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
+    }
     private void UpdateTimers()
     {
         elapsedAttackDelay += Time.deltaTime;
@@ -317,5 +326,28 @@ public class Player : MonoBehaviour
         {
             DestroyImmediate(this);
         }
+    }
+    public void Borders()
+    {
+
+        _xMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
+        _zMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
+        _xMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
+        _zMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
+
+        clampedX = Mathf.Clamp(transform.position.x, _xMin, _xMax);
+        clampedZ = Mathf.Clamp(transform.position.z, _zMin, _zMax);
     }
 }
