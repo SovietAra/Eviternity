@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     [Range(1f, 10000f)]
-    private float health = 10;
+    public float health = 10;
 
     [SerializeField]
     [Range(1f, 100f)]
