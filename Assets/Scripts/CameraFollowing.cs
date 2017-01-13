@@ -15,14 +15,17 @@ public class CameraFollowing : MonoBehaviour
     void Update()
     {
         Controllers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
-        var maxX = ConvertX(Controllers).Max();
-        var maxZ = ConvertZ(Controllers).Max();
-        var minX = ConvertX(Controllers).Min();
-        var minZ = ConvertZ(Controllers).Min();
+        if (Controllers != null && Controllers.Count > 0)
+        {
+            var maxX = ConvertX(Controllers).Max();
+            var maxZ = ConvertZ(Controllers).Max();
+            var minX = ConvertX(Controllers).Min();
+            var minZ = ConvertZ(Controllers).Min();
 
-        var x = (maxX + minX) / 2;
-        var z = (maxZ + minZ) / 2;
-        transform.position = new Vector3(x, transform .position .y, z);
+            var x = (maxX + minX) / 2;
+            var z = (maxZ + minZ) / 2;
+            transform.position = new Vector3(x, transform.position.y, z);
+        }
     }
 
     List<float> ConvertX(List<GameObject> controllers)
