@@ -6,10 +6,16 @@ using UnityEngine;
 public class CameraFollowing : MonoBehaviour
 {
     public List<GameObject> Controllers;
+    public float _camMinHeight = 10;
+    public float _camMaxHeight =30;
+
+    private float aspectRatio;
+    private Vector3 middlePoint;
+    
 
     void Start()
     {
-
+        aspectRatio = Screen.width / Screen.height;
     }
 
     void Update()
@@ -22,9 +28,15 @@ public class CameraFollowing : MonoBehaviour
             var minX = ConvertX(Controllers).Min();
             var minZ = ConvertZ(Controllers).Min();
 
-            var x = (maxX + minX) / 2;
-            var z = (maxZ + minZ) / 2;
-            transform.position = new Vector3(x, transform.position.y, z);
+            var x = minX + (Mathf.Abs(maxX - minX) / 2F); // (maxX + minX) / 2;
+            var z = minZ + (Mathf.Abs(maxZ - minZ) / 2F); //(maxZ + minZ) / 2;
+
+            var y = Mathf.Clamp( (90F/ Camera.main.fieldOfView * maxZ - z), _camMinHeight,_camMaxHeight); 
+
+            // Position the camera in the center.
+            middlePoint = new Vector3(x, y, z);
+            transform.position = Vector3.Lerp(transform.position, middlePoint, Time.deltaTime);
+       
         }
     }
 
