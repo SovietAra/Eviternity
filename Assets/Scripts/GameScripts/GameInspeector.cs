@@ -7,6 +7,11 @@ public class GameInspeector : MonoBehaviour
 {
     public GameObject PlayerPrefab;
     private List<Player> spawnedPlayers;
+
+    
+
+    
+
 	// Use this for initialization
 	void Start ()
     {
@@ -17,6 +22,22 @@ public class GameInspeector : MonoBehaviour
 	void Update ()
     {
         CheckForNewPlayers();
+
+       List<GameObject> AvailablePlayer = new List<GameObject> (GameObject.FindGameObjectsWithTag("Player"));
+        if(AvailablePlayer != null)
+        {
+            bool AllPlayerDead = true;
+            for (int i = 0; i < AvailablePlayer.Count; i++)
+            {
+                Player player = AvailablePlayer[i].GetComponent<Player>();
+                if (player.IsDead == false)
+                    AllPlayerDead = false;         
+            }
+            if (AllPlayerDead)
+                SpawnPlayers();
+        }
+        
+
 	}
 
     private void SpawnPlayers()
