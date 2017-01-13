@@ -10,8 +10,10 @@ public class ExplosiveTrap : MonoBehaviour
     private GameObject[] enemyList;
     private bool triggered, collided;
     public bool triggerByCollision, triggerByRange;
+
     [Range(0.1f, 10)]
     public float range;
+
     [Range(1, 1000)]
     public int damage;
 
@@ -34,9 +36,9 @@ public class ExplosiveTrap : MonoBehaviour
             {
                 distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
                 Player player = playerList[i].GetComponent<Player>();
+
                 if (distanceToObject < range)
                 {
-                    // damage
                     player.DealDamage(damage);
                     triggered = true;
                 }
@@ -47,6 +49,7 @@ public class ExplosiveTrap : MonoBehaviour
                 for (int i = 0; i < enemyList.Length; i++)
                 {
                     distanceToObject = Vector3.Distance(enemyList[i].transform.position, transform.position);
+                    Enemy enemy = enemyList[i].GetComponent<Enemy>();
 
                     if (distanceToObject < range)
                     {
@@ -76,7 +79,8 @@ public class ExplosiveTrap : MonoBehaviour
                 for (int i = 0; i < enemyList.Length; i++)
                 {
                     distanceToObject = Vector3.Distance(enemyList[i].transform.position, transform.position);
-                    
+                    Enemy enemy = enemyList[i].GetComponent<Enemy>();
+
                     if (distanceToObject < range)
                     {
                         // damage

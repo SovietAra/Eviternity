@@ -134,10 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ff9b1e3a362954e8784994b1a3efac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerByCollision: 1
+  triggerByCollision: 0
   triggerByRange: 1
   range: 2
-  damage: 1
+  damage: 15
 --- !u!23 &96678788
 MeshRenderer:
   m_ObjectHideFlags: 0
