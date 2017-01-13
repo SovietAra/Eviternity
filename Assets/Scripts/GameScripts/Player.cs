@@ -11,8 +11,7 @@ public class Player : MonoBehaviour
     private bool isDead;
     private Vector3 moveVector;
     private Vector3 velocity;
-
-    private float elapsedAttackDelay = 0f;
+    
     private float elapsedDashTime = 0f;
     
     private float angle;
@@ -49,17 +48,17 @@ public class Player : MonoBehaviour
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
 
-    [SerializeField]
-    [Range(0.1f, 60f)]
-    public float attackDelay = 1f;
-
     public bool Freeze = false;
-    public bool TwoStickMovement = false;
-    public GameObject Projectile;
+    public bool RotateOnMove = false;
+    public GameObject PrimaryWeapon;
+    public GameObject SecondaryWeapon;
 
-    private Camera _camera;
-    private float _xMin, _xMax, _zMin, _zMax, clampedX, clampedZ;
-    private Rigidbody _physics;
+    private Weapon primaryWeapon;
+    private Weapon secondaryWeapon;
+
+    private Camera camera;
+    private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
+    private Rigidbody physics;
 
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
@@ -87,8 +86,12 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        _physics = GetComponent<Rigidbody>();
-        _camera = Camera.main;
+        elapsedDashTime = dashTime;  
+           
+        physics = GetComponent<Rigidbody>();
+        primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
+        secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
+        camera = Camera.main;
     }
 	
 	// Update is called once per frame
@@ -99,12 +102,6 @@ public class Player : MonoBehaviour
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
-                /*if(lostConnection)
-                {
-                    lostConnection = false;
-                    GamePadManager.Connect((int)index);
-                }*/
-
                 if (!isDead)
                 {
                     UpdateTimers();
@@ -122,20 +119,25 @@ public class Player : MonoBehaviour
             }
         }
 	}
+
     void FixedUpdate()
     {
         Borders();
-        _physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
+        physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
     }
+
     private void UpdateTimers()
     {
-        elapsedAttackDelay += Time.deltaTime;
         elapsedDashTime += Time.deltaTime;
     }
 
     private void Input(GamePadState state)
     {
-        if(state.Buttons.Start == ButtonState.Pressed)
+        Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        TryMove(leftStick, rightStick);
+
+        if (state.Buttons.Start == ButtonState.Pressed)
         {
             TryPause();
         }
@@ -145,39 +147,37 @@ public class Player : MonoBehaviour
             TryExit();
         }
 
-        if(state.Buttons.A == ButtonState.Pressed)
-        {
-            TryDash();
-        }
-
         if(state.Buttons.B == ButtonState.Pressed)
         {
             //unused
         }
 
-        if(state.Buttons.X == ButtonState.Pressed)
+        bool executed = false;
+        if (state.Buttons.X == ButtonState.Pressed)
         {
-            TryHeal();
+            executed = TryHeal();
         }
 
-        if(state.Buttons.Y == ButtonState.Pressed)
+        if (state.Buttons.Y == ButtonState.Pressed && !executed)
         {
-            TryAbillity();
+            executed = TryAbillity();
         }
 
-        if(state.Triggers.Right > 0)
+        if (state.Buttons.A == ButtonState.Pressed && !executed)
         {
-            TryPrimaryAttack();
+            executed = TryDash();
         }
 
-        if(state.Triggers.Left > 0)
+        if (state.Triggers.Right > 0 && !executed)
         {
-            TrySecondaryAttack();
+            executed = primaryWeapon.Fire(transform.position, transform.forward, angle);
         }
 
-        Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-        Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        TryMove(leftStick, rightStick);
+        if (state.Triggers.Left > 0 && !executed)
+        {
+            executed = secondaryWeapon.Fire(transform.position, transform.forward, angle);
+        }
+        
     }
     
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
@@ -187,19 +187,21 @@ public class Player : MonoBehaviour
             moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
             moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
 
-            float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
-            if (leftStick != Vector2.zero)
+            if (RotateOnMove)
             {
-                DoRotation(leftAngle);
-            }
-            else
-            {
-                float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
-                if (rightStick != Vector2.zero)
+                float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
+                if (leftStick != Vector2.zero)
                 {
-                    DoRotation(rightAngle);
+                    DoRotation(leftAngle);
                 }
             }
+
+            float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
+            if (rightStick != Vector2.zero)
+            {
+                DoRotation(rightAngle);
+            }
+
         }
     }
 
@@ -233,7 +235,7 @@ public class Player : MonoBehaviour
         return value;
     }
 
-    private void TryHeal()
+    private bool TryHeal()
     {
         if (health < maxHealth)
         {
@@ -245,42 +247,34 @@ public class Player : MonoBehaviour
             {
                 addHealth -= (addHealth + health) - maxHealth;
             }
-            health += addHealth;
-            UpdateTeamHealth(-addHealth);
+
+            if (addHealth != 0)
+            {
+                health += addHealth;
+                UpdateTeamHealth(-addHealth);
+                return true;
+            }
         }
+        return false;
     }
 
-    private void TryDash()
+    private bool TryDash()
     {
         if (elapsedDashTime >= dashTime)
         {
             velocity = transform.forward * Time.deltaTime * dashSpeed;
             elapsedDashTime = 0f;
+            return true;
         }
+
+        return false;
     }
 
-    private void TryAbillity()
+    private bool TryAbillity()
     {
+        return true;
     }
-
-    private void TryPrimaryAttack()
-    {
-        if (elapsedAttackDelay > attackDelay)
-        {
-            elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
-        }
-    }
-
-    private void TrySecondaryAttack()
-    {
-        if (elapsedAttackDelay > attackDelay)
-        {
-            elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
-        }
-    }
-
+    
     private void TryExit()
     {
         if (OnPlayerExit != null)
@@ -330,27 +324,27 @@ public class Player : MonoBehaviour
             DestroyImmediate(this);
         }
     }
+
     public void Borders()
     {
+        xMax = (camera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                camera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
+        zMax = (camera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                camera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
+        xMin = (camera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                camera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
+        zMin = (camera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                camera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
 
-        _xMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
-        _zMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
-        _xMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
-        _zMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
-
-        clampedX = Mathf.Clamp(transform.position.x, _xMin, _xMax);
-        clampedZ = Mathf.Clamp(transform.position.z, _zMin, _zMax);
+        clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
+        clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
     }
 }

@@ -96,7 +96,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &65015985344822880
 BoxCollider:
@@ -207,9 +207,11 @@ MonoBehaviour:
   health: 10
   speed: 1
   dashSpeed: 9.7
-  dashTime: 1.25
+  dashTime: 0.48
   regenerationPerSecond: 17
-  attackDelay: 1
   Freeze: 0
-  TwoStickMovement: 0
-  Projectile: {fileID: 1148832535050476, guid: 8a619cb31fe2e9641bd84f2b792fe055, type: 2}
+  RotateOnMove: 0
+  PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
+    type: 2}
+  SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
+    type: 2}
