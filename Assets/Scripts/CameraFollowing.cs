@@ -28,8 +28,8 @@ public class CameraFollowing : MonoBehaviour
             var minX = ConvertX(Controllers).Min();
             var minZ = ConvertZ(Controllers).Min();
 
-            var x = (maxX + minX) / 2;
-            var z = (maxZ + minZ) / 2;
+            var x = minX + (Mathf.Abs(maxX - minX) / 2F); // (maxX + minX) / 2;
+            var z = minZ + (Mathf.Abs(maxZ - minZ) / 2F); //(maxZ + minZ) / 2;
 
             var y = Mathf.Clamp( (90F/ Camera.main.fieldOfView * maxZ - z), _camMinHeight,_camMaxHeight); 
 
