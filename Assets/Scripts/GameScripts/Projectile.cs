@@ -23,25 +23,40 @@ public class Projectile : MonoBehaviour
     private float invertGravityFactor = 0.5f;
 
     public bool DestroyOnCollision = true;
-    public bool CollideWithPlayers = false;
-    public bool CollideWithEnemy = true;
     public bool CollideWithOtherProjectiles = false;
 
-    public bool DoAOEDamageOnPlayer = false;
-    public bool DoAOEDamageOnEnemy = false;
+    public bool DoTeamDamage = false;
+    public bool DoAOETeamDamage = false;
+
+    [SerializeField]
+    [Range(0.0f, 10f)]
+    public float TeamDamageMultiplicator = 0.75f;
 
     public bool InvertGravity;
     
     private Collider projectileCollider;
     private Rigidbody attachedBody;
     private float elapsedTime = 0f;
-    private float elapsedInvertGravityTime = 0f;
     
     private bool startTimer = false;
+    private string attackerTag;
 
     public float Damage
     {
         get { return damage; }
+    }
+
+    public string AttackerTag
+    {
+        get
+        {
+            return attackerTag;
+        }
+
+        set
+        {
+            attackerTag = value;
+        }
     }
 
     private void Start()
@@ -66,16 +81,16 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if ((!CollideWithOtherProjectiles && collision.gameObject.CompareTag("Projectile")) ||
-            (!CollideWithPlayers && collision.gameObject.CompareTag("Player")) ||
-            (!CollideWithEnemy && collision.gameObject.CompareTag("Enemy")))
+            (AttackerTag != null && !DoTeamDamage && collision.gameObject.CompareTag(AttackerTag)))
         {
             Physics.IgnoreCollision(collision.collider, projectileCollider);
         }
         else
         {
-            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+            DamageAbleObject damageObject = collision.gameObject.GetComponent<DamageAbleObject>();
+            if(damageObject != null)
             {
-                Detonate(collision.gameObject);
+                Detonate(damageObject);
             }
             else
             {
@@ -87,7 +102,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void Detonate(GameObject collisionObject)
+    private void Detonate(DamageAbleObject collisionObject)
     {
         if (DestroyOnCollision)
             Destroy(gameObject);
@@ -96,53 +111,38 @@ public class Projectile : MonoBehaviour
         {
             if (collisionObject != null)
             {
-                if (collisionObject.CompareTag("Enemy"))
-                {
-                    Enemy enemy = collisionObject.GetComponent<Enemy>();
-                    //TODO: damage
-                }
-                else if (collisionObject.CompareTag("Player"))
-                {
-                    Player player = collisionObject.GetComponent<Player>();
-                    //TODO: damage
-                }
+                bool isTeam = AttackerTag != null && collisionObject.transform.CompareTag(AttackerTag);
+                DoDamage(collisionObject, damage, isTeam);
             }
         }
         else
         {
-            if (DoAOEDamageOnEnemy)
+            DamageAbleObject[] damageAbleObjects = GameObject.FindObjectsOfType<DamageAbleObject>();
+            foreach (DamageAbleObject item in damageAbleObjects)
             {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                if (enemies != null)
+                float distance = Vector3.Distance(item.transform.position, transform.position);                
+                if (distance <= damageRange)
                 {
-                    for (int i = 0; i < enemies.Length; i++)
+                    bool isTeam = AttackerTag != null && item.transform.CompareTag(AttackerTag);
+                    //TODO: Damage reduction on per distance
+                    if (!isTeam || DoAOETeamDamage)
                     {
-                        Enemy enemy = enemies[i].GetComponent<Enemy>();
-                        float distance = Vector3.Distance(enemy.transform.position, transform.position);
-                        if (distance <= damageRange)
-                        {
-                            //TODO: damage
-                        }
+                        DoDamage(item, damage, isTeam);
                     }
                 }
             }
+        }
+    }
 
-            if (DoAOEDamageOnPlayer)
-            {
-                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                if (players != null)
-                {
-                    for (int i = 0; i < players.Length; i++)
-                    {
-                        Player player = players[i].GetComponent<Player>();
-                        float distance = Vector3.Distance(player.transform.position, transform.position);
-                        if (distance <= damageRange)
-                        {
-                            //TODO: damage
-                        }
-                    }
-                }
-            }
+    private void DoDamage(DamageAbleObject damageAbleObject, float damage, bool teamDamage)
+    {
+        if (teamDamage)
+        {
+            damageAbleObject.DoDamage(damage * TeamDamageMultiplicator);
+        }
+        else
+        {
+            damageAbleObject.DoDamage(damage);
         }
     }
 }

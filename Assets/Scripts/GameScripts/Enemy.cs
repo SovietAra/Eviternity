@@ -22,10 +22,6 @@ public class Enemy : MonoBehaviour
     float ViewRange = 15.0f;
 
     [SerializeField]
-    [Range(0.1f, 10000f)]
-    float EnemyHealth = 10.0f;
-
-    [SerializeField]
     [Range(0.1f, 60f)]
     float attackDelay = 1f;
     private float elapsedAttackDelay = 0f;
@@ -83,7 +79,9 @@ public class Enemy : MonoBehaviour
         if (elapsedAttackDelay > attackDelay)
         {
             elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+            GameObject gobj = Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+            Projectile projectile = gobj.GetComponent<Projectile>();
+            projectile.AttackerTag = transform.tag;
         }
     }
 

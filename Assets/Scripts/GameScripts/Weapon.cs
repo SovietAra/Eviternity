@@ -117,9 +117,12 @@ public class Weapon : MonoBehaviour
             {
                 reloading = false;
             }
-
-            //TODO: add sprayangle
+            
+            //TODO: smooth spray
             GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + Random.Range(-(sprayAngle / 2f), (sprayAngle / 2f))), 0));
+            Projectile projectile = gobj.GetComponent<Projectile>();
+            projectile.AttackerTag = transform.parent.tag;
+
             elapsedAttackDelay = 0f;
 
             if (UseAmmo)

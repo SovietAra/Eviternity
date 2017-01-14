@@ -40,35 +40,35 @@ public class UIScript : MonoBehaviour {
 
         foreach (GameObject player in CurrentPlayers)
         {
-            UpdateHealth(player.GetComponent<Player>());
+            UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
         }
 
         prevPlayerCount = playerCount;
     }
 
-    private void UpdateHealth(Player player)
+    private void UpdateHealth(Player player, DamageAbleObject damageAbleObject)
     {
         //player.Index == PlayerIndex.One;
         switch (player.Index)
         {
             case PlayerIndex.One:
                 {
-                    P1healthSlider.value = player.health;
+                    P1healthSlider.value = damageAbleObject.Health;
                 }
                 break;
             case PlayerIndex.Two:
                 {
-                    P2healthSlider.value = player.health;
+                    P2healthSlider.value = damageAbleObject.Health;
                 }
                 break;
             case PlayerIndex.Three:
                 {
-                    P3healthSlider.value = player.health;
+                    P3healthSlider.value = damageAbleObject.Health;
                 }
                 break;
             case PlayerIndex.Four:
                 {
-                    P4healthSlider.value = player.health;
+                    P4healthSlider.value = damageAbleObject.Health;
                 }
                 break;
 

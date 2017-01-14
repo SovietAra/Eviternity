@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     private PlayerIndex index;
     private bool hasPlayerIndex;
-    private bool lostConnection;
     private bool isDead;
     private Vector3 moveVector;
     private Vector3 velocity;
@@ -23,14 +22,6 @@ public class Player : MonoBehaviour
     
     [Range(1f, 10000f)]
     public float maxTeamHealth = 10;
-
-    [SerializeField]
-    [Range(1f, 10000f)]
-    private float maxHealth = 10;
-
-    [SerializeField]
-    [Range(1f, 10000f)]
-    public float health = 10;
 
     [SerializeField]
     [Range(1f, 100f)]
@@ -52,9 +43,12 @@ public class Player : MonoBehaviour
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
     public GameObject SecondaryWeapon;
+    public GameObject Ability;
 
     private Weapon primaryWeapon;
     private Weapon secondaryWeapon;
+    private Ability ability;
+    private DamageAbleObject healthContainer;
 
     private Camera camera;
     private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
@@ -91,11 +85,14 @@ public class Player : MonoBehaviour
         physics = GetComponent<Rigidbody>();
         primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
         secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
+        ability = Instantiate(Ability, transform).GetComponent<Ability>();
+        healthContainer = GetComponent<DamageAbleObject>();
+        healthContainer.OnDeath += HealthContainer_OnDeath;
         camera = Camera.main;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         if (hasPlayerIndex)
         {
@@ -105,7 +102,6 @@ public class Player : MonoBehaviour
                 if (!isDead)
                 {
                     UpdateTimers();
-                    CheckHealth();
                     Input(state);
                     UpdatePosition();
                     UpdateRotation();
@@ -114,7 +110,6 @@ public class Player : MonoBehaviour
             else
             {
                 GamePadManager.Disconnect(Index);
-                lostConnection = true;
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
         }
@@ -170,12 +165,14 @@ public class Player : MonoBehaviour
 
         if (state.Triggers.Right > 0 && !executed)
         {
-            executed = primaryWeapon.Fire(transform.position, transform.forward, angle);
+            if(primaryWeapon != null)
+                executed = primaryWeapon.Fire(transform.position, transform.forward, angle);
         }
 
         if (state.Triggers.Left > 0 && !executed)
         {
-            executed = secondaryWeapon.Fire(transform.position, transform.forward, angle);
+            if(secondaryWeapon != null)
+                executed = secondaryWeapon.Fire(transform.position, transform.forward, angle);
         }
         
     }
@@ -184,10 +181,14 @@ public class Player : MonoBehaviour
     {
         if (!Freeze)
         {
-            moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
-            moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
+            if(leftStick.y > 0.1f || leftStick.y < 0.1f)
+                moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
 
-            if (RotateOnMove)
+            if (leftStick.x > 0.1f || leftStick.x < 0.1f)
+                moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
+           
+
+            if (RotateOnMove && moveVector != Vector3.zero)
             {
                 float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
                 if (leftStick != Vector2.zero)
@@ -219,7 +220,10 @@ public class Player : MonoBehaviour
     private void UpdatePosition()
     {
         transform.position += moveVector + velocity;
-        velocity -= (velocity * 0.1f);
+        //velocity -= (velocity * 0.1f);
+        velocity *= 0.8f;
+        if (velocity.x < 0.1 && velocity.y > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
+            velocity = Vector3.zero;
     }
 
     private float CalculateAngle(Vector2 target, Vector2 source)
@@ -237,20 +241,20 @@ public class Player : MonoBehaviour
 
     private bool TryHeal()
     {
-        if (health < maxHealth)
+        if (healthContainer.Health < healthContainer.MaxHealth)
         {
             float addHealth = regenerationPerSecond * Time.deltaTime;
             if (TeamHealth < addHealth)
                 addHealth = TeamHealth;
 
-            if (addHealth + health > maxHealth)
+            if (addHealth + healthContainer.Health > healthContainer.MaxHealth)
             {
-                addHealth -= (addHealth + health) - maxHealth;
+                addHealth -= (addHealth + healthContainer.Health) - healthContainer.MaxHealth;
             }
 
             if (addHealth != 0)
             {
-                health += addHealth;
+                healthContainer.Heal(addHealth);
                 UpdateTeamHealth(-addHealth);
                 return true;
             }
@@ -262,7 +266,14 @@ public class Player : MonoBehaviour
     {
         if (elapsedDashTime >= dashTime)
         {
-            velocity = transform.forward * Time.deltaTime * dashSpeed;
+            if (moveVector == Vector3.zero)
+            {
+                velocity = transform.forward * Time.deltaTime * dashSpeed;
+            }
+            else
+            {
+                velocity = ScaleVactorUp(moveVector) * Time.deltaTime * dashSpeed;
+            }
             elapsedDashTime = 0f;
             return true;
         }
@@ -270,9 +281,35 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    private Vector3 ScaleVactorUp(Vector3 vec)
+    {
+        float x = Math.Abs(vec.x);
+        float y = Math.Abs(vec.y);
+        float z = Math.Abs(vec.z);
+        float diff = 0f;
+        if(x > y && x > z)
+            diff = 1 - x;
+        else if(y > z)
+            diff = 1 - y;
+        else
+            diff = 1 - z;
+        
+        if(x != 0)
+            x = vec.x + (vec.x > 0 ? diff : -diff);
+        if(y != 0)
+            y = vec.y + (vec.y > 0 ? diff : -diff);
+        if(z != 0)
+            z = vec.z + (vec.z > 0 ? diff : -diff);
+        return new Vector3(x, y, z);
+    }
+
     private bool TryAbillity()
     {
-        return true;
+        if(ability != null)
+        {
+            return ability.Use();
+        }
+        return false;
     }
     
     private void TryExit()
@@ -293,36 +330,15 @@ public class Player : MonoBehaviour
         {
             Player playerScript = players[i].GetComponent<Player>();
             playerScript.TeamHealth += addHealth;
-            if (playerScript.TeamHealth > playerScript.maxHealth)
-                playerScript.TeamHealth = playerScript.maxHealth;
+            if (playerScript.TeamHealth > playerScript.maxTeamHealth)
+                playerScript.TeamHealth = playerScript.maxTeamHealth;
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
-        if(collision.gameObject.CompareTag("Projectile"))
-        {
-            Projectile projectileScript = collision.gameObject.GetComponent<Projectile>();
-            DealDamage(projectileScript.Damage);
-        }
-    }
-
-    public void DealDamage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            isDead = true;
-            Destroy(gameObject);
-        }
-    }
-
-    private void CheckHealth()
-    {
-        if (health <= 0)
-        {
-            DestroyImmediate(this);
-        }
+        isDead = true;
+        Destroy(gameObject);
     }
 
     public void Borders()
