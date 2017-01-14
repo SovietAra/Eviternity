@@ -38,7 +38,7 @@ public class DamageAbleObject : MonoBehaviour
 		
 	}
 
-    public void DoDamage(float damage)
+    public virtual void DoDamage(float damage)
     {
         health -= damage;
         if(health <= 0)
@@ -48,7 +48,7 @@ public class DamageAbleObject : MonoBehaviour
         }
     }
 
-    public void Heal(float addHealth)
+    public virtual void Heal(float addHealth)
     {
         health += addHealth;
         if(health > maxHealth)

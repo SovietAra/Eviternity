@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     
     private float angle;
     private Quaternion targetRotation;
-    private GamePadState prevState;
 
     [Range(1f, 10000f)]
     public float TeamHealth = 10;
@@ -50,7 +49,7 @@ public class Player : MonoBehaviour
     private Ability ability;
     private DamageAbleObject healthContainer;
 
-    private Camera camera;
+    private Camera mainCamera;
     private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
     private Rigidbody physics;
 
@@ -88,7 +87,7 @@ public class Player : MonoBehaviour
         ability = Instantiate(Ability, transform).GetComponent<Ability>();
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
-        camera = Camera.main;
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -341,24 +340,24 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Borders()
+    private void Borders()
     {
-        xMax = (camera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                camera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
-        zMax = (camera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                camera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
-        xMin = (camera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                camera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
-        zMin = (camera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                camera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
+        xMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
+        zMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
+        xMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
+        zMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
 
         clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
         clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);

@@ -4,7 +4,7 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField]
     [Range(0.01f, 20f)]
-    private float fireRate;
+    private float fireRate = 1f;
 
     [SerializeField]
     [Range(0f, 45f)]

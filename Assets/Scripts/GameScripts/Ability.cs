@@ -6,59 +6,59 @@ using UnityEngine;
 public class Ability : MonoBehaviour
 {
     [SerializeField]
-    private bool activeOnKeyPressed;
+    private bool activeOnKeyPressed = false;
 
     [SerializeField]
-    private bool abortAble;
+    private bool abortAble = true;
     
     [SerializeField]
     [Range(1f, 1000f)]
-    private float maxEnergy;
+    private float maxEnergy = 100f;
 
     [SerializeField]
     [Range(1f, 1000f)]
-    private float energy;
+    private float energy = 100f;
 
     [SerializeField]
     [Range(0.0f, 1000f)]
-    private float energyRequiredPerSeconds;
+    private float energyRequiredPerSeconds = 10f;
 
     [SerializeField]
     [Range(0.0f, 1000f)]
-    private float energyRegenerationPerSecond;
+    private float energyRegenerationPerSecond = 10f;
 
     [SerializeField]
     [Range(0.1f, 10f)]
-    private float regnerationDelay;
+    private float regnerationDelay = 2f;
 
     [SerializeField]
-    private bool allowActivationWithPartialEnergy;
+    private bool allowActivationWithPartialEnergy = false;
 
     [SerializeField]
-    private bool spawnObjectOnActivation;
+    private bool spawnObjectOnActivation = true;
 
     [SerializeField]
-    private bool spawnOncePerActivation;
+    private bool spawnOncePerActivation = true;
 
     [SerializeField]
-    private bool destroyOnAbort;
+    private bool destroyOnAbort = true;
 
     [SerializeField]
-    private GameObject spawnObject;
+    private GameObject spawnObject = null;
 
     [SerializeField]
     [Range(0.0f, 1000f)]
-    private float spawnForwardDistance;
+    private float spawnForwardDistance = 1;
 
     [SerializeField]
-    private Vector3 spawnTranslation;
+    private Vector3 spawnTranslation = Vector3.zero;
 
     [SerializeField]
-    private bool allowMultiplyObjects;
+    private bool allowMultiplyObjects = false;
 
     [SerializeField]
     [Range(1, 100)]
-    private int ObjectsAtTheSameTime;
+    private int ObjectsAtTheSameTime = 1;
 
 
     private List<GameObject> spawnedObjects;
@@ -217,6 +217,9 @@ public class Ability : MonoBehaviour
     public virtual void Regenerate(float value)
     {
         energy += value;
+        if (OnRegenerating != null)
+            OnRegenerating(this, null);
+
         if (energy > maxEnergy)
         {
             energy = maxEnergy;
