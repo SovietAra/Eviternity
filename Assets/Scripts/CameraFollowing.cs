@@ -31,7 +31,7 @@ public class CameraFollowing : MonoBehaviour
             var x = minX + (Mathf.Abs(maxX - minX) / 2F); // (maxX + minX) / 2;
             var z = minZ + (Mathf.Abs(maxZ - minZ) / 2F); //(maxZ + minZ) / 2;
 
-            var y = Mathf.Clamp( (90F/ Camera.main.fieldOfView * maxZ - z), _camMinHeight,_camMaxHeight); 
+            var y = Mathf.Clamp( (90F/ Camera.main.fieldOfView * (maxZ - z)), _camMinHeight,_camMaxHeight); 
 
             // Position the camera in the center.
             middlePoint = new Vector3(x, y, z);
