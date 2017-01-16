@@ -2,22 +2,26 @@
 using UnityEngine;
 using Assets.Scripts;
 using XInputDotNetPure;
+using System;
 
 public class GameInspeector : MonoBehaviour
 {
     public GameObject PlayerPrefab;
     private List<Player> spawnedPlayers;
-
+    public delegate void UIEventHandler(object source, EventArgs e);
+    public event UIEventHandler UIEvent;
+    private UIScript uiScript;
 
     [SerializeField]
     [Range(0, 10000f)]
     private float maxTeamHealth = 10;
-    
 
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start ()
     {
         SpawnPlayers();
+        //UIEvent += uiScript.OnUIEvent;
 	}
 	
 	// Update is called once per frame
@@ -45,7 +49,7 @@ public class GameInspeector : MonoBehaviour
     private void SpawnPlayers()
     {
         spawnedPlayers = new List<Player>();
-        Player.TeamHealth = maxTeamHealth;
+
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
             SpawnPlayer(GlobalReferences.PlayerStates[i], new Vector3(i * 2, 1, 0));
@@ -102,6 +106,7 @@ public class GameInspeector : MonoBehaviour
         playerScript.Index = playerState.Index;
         playerScript.OnPlayerExit += PlayerScript_OnPlayerExit;
         spawnedPlayers.Add(playerScript);
+        //UIEvent(this, EventArgs.Empty);
     }
 
     private void RemovePlayerState(PlayerIndex index)
