@@ -56,6 +56,13 @@ public class Projectile : MonoBehaviour
         set
         {
             attackerTag = value;
+            if(!DoTeamDamage && attackerTag != null)
+            {
+                if (attackerTag == "Player")
+                    Physics.IgnoreLayerCollision(10, 8);
+                else if (attackerTag == "Enemy")
+                    Physics.IgnoreLayerCollision(10, 9);
+            }
         }
     }
 
@@ -64,6 +71,10 @@ public class Projectile : MonoBehaviour
         projectileCollider = GetComponent<Collider>();      
         attachedBody = GetComponent<Rigidbody>();
         attachedBody.velocity = (transform.forward * speed) + (InvertGravity ? new Vector3(0, invertGravityFactor, 0) : Vector3.zero);
+        if (CollideWithOtherProjectiles)
+        {
+            Physics.IgnoreLayerCollision(10, 10);
+        }
     }
 
     private void Update()
@@ -77,27 +88,19 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-        if ((!CollideWithOtherProjectiles && collision.gameObject.CompareTag("Projectile")) ||
-            (AttackerTag != null && !DoTeamDamage && collision.gameObject.CompareTag(AttackerTag)))
+        DamageAbleObject damageObject = collision.gameObject.GetComponent<DamageAbleObject>();
+        if (damageObject != null)
         {
-            Physics.IgnoreCollision(collision.collider, projectileCollider);
+            Detonate(damageObject);
         }
         else
         {
-            DamageAbleObject damageObject = collision.gameObject.GetComponent<DamageAbleObject>();
-            if(damageObject != null)
+            if (!startTimer)
             {
-                Detonate(damageObject);
-            }
-            else
-            {
-                if (!startTimer)
-                {
-                    startTimer = true;
-                }
+                startTimer = true;
             }
         }
     }
