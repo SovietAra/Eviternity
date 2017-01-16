@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
         physics.velocity = newForce;
         newForce = Vector3.zero;
         Borders();
-        physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
+        physics.MovePosition(new Vector3(clampedX, transform .position .y, clampedZ)); //<- Buggy: bei physik movement entfernen da man sich sonst nicht bewegen kann
     }
 
     private void UpdateTimers()
