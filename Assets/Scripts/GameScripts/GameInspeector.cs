@@ -18,7 +18,7 @@ public class GameInspeector : MonoBehaviour
 	void Start ()
     {
         SpawnPlayers();
-        UIEvent += uiScript.OnUIEvent;
+        //UIEvent += uiScript.OnUIEvent;
 	}
 	
 	// Update is called once per frame
@@ -103,7 +103,7 @@ public class GameInspeector : MonoBehaviour
         playerScript.Index = playerState.Index;
         playerScript.OnPlayerExit += PlayerScript_OnPlayerExit;
         spawnedPlayers.Add(playerScript);
-        UIEvent(this, EventArgs.Empty);
+        //UIEvent(this, EventArgs.Empty);
     }
 
     private void RemovePlayerState(PlayerIndex index)
