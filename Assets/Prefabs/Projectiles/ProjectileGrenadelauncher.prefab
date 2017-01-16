@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23737563634442602}
   - component: {fileID: 54331916548646030}
   - component: {fileID: 114119143911888264}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ProjectileGrenadelauncher
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -114,11 +114,10 @@ MonoBehaviour:
   detonationTimer: 2
   invertGravityFactor: 2.46
   DestroyOnCollision: 1
-  CollideWithPlayers: 0
-  CollideWithEnemy: 1
   CollideWithOtherProjectiles: 0
-  DoAOEDamageOnPlayer: 0
-  DoAOEDamageOnEnemy: 1
+  DoTeamDamage: 0
+  DoAOETeamDamage: 0
+  TeamDamageMultiplicator: 0.75
   InvertGravity: 1
 --- !u!136 &136957911204699186
 CapsuleCollider:
