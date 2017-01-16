@@ -726,6 +726,8 @@ MonoBehaviour:
   Controllers: []
   _camMinHeight: 10
   _camMaxHeight: 30
+  _cameraFollowSpeed: 3
+  _cameraRotationXAngle: 75
 --- !u!1001 &1863712113
 Prefab:
   m_ObjectHideFlags: 0
