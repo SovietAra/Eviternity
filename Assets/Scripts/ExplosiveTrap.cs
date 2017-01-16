@@ -6,7 +6,9 @@ public class ExplosiveTrap : MonoBehaviour
 {
 
     private float distanceToObject;
-    public bool triggerByCollision, triggerByRange;
+
+    [SerializeField]
+    private bool triggerByCollision, triggerByRange;
 
     [Range(0.1f, 10)]
     public float range;
@@ -23,17 +25,13 @@ public class ExplosiveTrap : MonoBehaviour
         dmgobjct.OnDeath += Dmgobjct_OnDeath;
     }
 
-    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
-    {
-        Detonate();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
         if (triggerByRange)
         {
+            GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+
             for (int i = 0; i < playerList.Length; i++)
             {
                 distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
@@ -46,9 +44,14 @@ public class ExplosiveTrap : MonoBehaviour
         }
     }
 
+    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
+    {
+        Detonate();
+    }
+
     private void Detonate()
     {
-        DamageAbleObject[] damageAbleObjects = GameObject.FindObjectsOfType<DamageAbleObject>();
+        DamageAbleObject[] damageAbleObjects = FindObjectsOfType<DamageAbleObject>();
         foreach (DamageAbleObject item in damageAbleObjects)
         {
             distanceToObject = Vector3.Distance(item.transform.position, transform.position);
@@ -58,5 +61,16 @@ public class ExplosiveTrap : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (triggerByCollision)
+        {
+            if (collision.gameObject.CompareTag("Projectile"))
+            {
+                Detonate();
+            }
+        }
     }
 }
