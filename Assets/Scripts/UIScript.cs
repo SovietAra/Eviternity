@@ -1,0 +1,121 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using XInputDotNetPure;
+
+public class UIScript : MonoBehaviour
+{
+    // GameInspeector: Calls function to Add or Remove the UI
+    //public GameObject UICanvas;
+
+    public GameObject Player1HealthUI;
+    public GameObject Player2HealthUI;
+    public GameObject Player3HealthUI;
+    public GameObject Player4HealthUI;
+    public int playerCount;
+    public int prevPlayerCount;
+   // private Canvas canvas;
+    private Slider P1healthSlider;
+    private Slider P2healthSlider;
+    private Slider P3healthSlider;
+    private Slider P4healthSlider;
+
+    // Use this for initialization
+    private void Start()
+    {
+        //GameObject UIparent = Resources.Load("Canvas") as GameObject;
+        //object1 = Instantiate(UIparent);
+       // GameObject newCanvas = Instantiate(UICanvas);
+       // canvas = UICanvas.GetComponent<Canvas>();
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        List<GameObject> CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+
+        playerCount = CurrentPlayers.Count;
+
+        if (CurrentPlayers != null && playerCount != prevPlayerCount)
+        {
+            CreateUI(playerCount);
+        }
+
+        foreach (GameObject player in CurrentPlayers)
+        {
+            UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
+        }
+
+        prevPlayerCount = playerCount;
+    }
+
+    private void UpdateHealth(Player player, DamageAbleObject damageAbleObject)
+    {
+        //player.Index == PlayerIndex.One;
+        switch (player.Index)
+        {
+            case PlayerIndex.One:
+                {
+                    P1healthSlider.value = damageAbleObject.Health;
+                }
+                break;
+
+            case PlayerIndex.Two:
+                {
+                    P2healthSlider.value = damageAbleObject.Health;
+                }
+                break;
+
+            case PlayerIndex.Three:
+                {
+                    P3healthSlider.value = damageAbleObject.Health;
+                }
+                break;
+
+            case PlayerIndex.Four:
+                {
+                    P4healthSlider.value = damageAbleObject.Health;
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void CreateUI(int playerCount)
+    {
+        switch (playerCount)
+        {
+            case 1:
+                {
+                    GameObject P1 = Instantiate(Player1HealthUI);
+                    P1healthSlider = P1.GetComponent<Slider>();
+                    P1healthSlider.transform.parent = GameObject.FindGameObjectWithTag("HUD").transform;
+                }
+                break;
+
+            case 2:
+                {
+                    GameObject P2 = Instantiate(Player2HealthUI);
+                }
+                break;
+
+            case 3:
+                {
+                    GameObject P3 = Instantiate(Player3HealthUI);
+                }
+                break;
+
+            case 4:
+                {
+                    GameObject P4 = Instantiate(Player4HealthUI);
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+}

@@ -7,31 +7,20 @@ public class Player : MonoBehaviour
 {
     private PlayerIndex index;
     private bool hasPlayerIndex;
-    private bool lostConnection;
     private bool isDead;
     private Vector3 moveVector;
     private Vector3 velocity;
-
-    private float elapsedAttackDelay = 0f;
+    
     private float elapsedDashTime = 0f;
     
     private float angle;
     private Quaternion targetRotation;
-    private GamePadState prevState;
 
     [Range(1f, 10000f)]
     public float TeamHealth = 10;
     
     [Range(1f, 10000f)]
     public float maxTeamHealth = 10;
-
-    [SerializeField]
-    [Range(1f, 10000f)]
-    private float maxHealth = 10;
-
-    [SerializeField]
-    [Range(1f, 10000f)]
-    private float health = 10;
 
     [SerializeField]
     [Range(1f, 100f)]
@@ -49,17 +38,20 @@ public class Player : MonoBehaviour
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
 
-    [SerializeField]
-    [Range(0.1f, 60f)]
-    public float attackDelay = 1f;
-
     public bool Freeze = false;
-    public bool TwoStickMovement = false;
-    public GameObject Projectile;
+    public bool RotateOnMove = false;
+    public GameObject PrimaryWeapon;
+    public GameObject SecondaryWeapon;
+    public GameObject Ability;
 
-    private Camera _camera;
-    private float _xMin, _xMax, _zMin, _zMax, clampedX, clampedZ;
-    private Rigidbody _physics;
+    private Weapon primaryWeapon;
+    private Weapon secondaryWeapon;
+    private Ability ability;
+    private DamageAbleObject healthContainer;
+
+    private Camera mainCamera;
+    private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
+    private Rigidbody physics;
 
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
@@ -87,28 +79,28 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        _physics = GetComponent<Rigidbody>();
-        _camera = Camera.main;
+        elapsedDashTime = dashTime;  
+           
+        physics = GetComponent<Rigidbody>();
+        primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
+        secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
+        ability = Instantiate(Ability, transform).GetComponent<Ability>();
+        healthContainer = GetComponent<DamageAbleObject>();
+        healthContainer.OnDeath += HealthContainer_OnDeath;
+        mainCamera = Camera.main;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         if (hasPlayerIndex)
         {
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
-                /*if(lostConnection)
-                {
-                    lostConnection = false;
-                    GamePadManager.Connect((int)index);
-                }*/
-
                 if (!isDead)
                 {
                     UpdateTimers();
-                    CheckHealth();
                     Input(state);
                     UpdatePosition();
                     UpdateRotation();
@@ -117,25 +109,29 @@ public class Player : MonoBehaviour
             else
             {
                 GamePadManager.Disconnect(Index);
-                lostConnection = true;
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
         }
 	}
+
     void FixedUpdate()
     {
         Borders();
-        _physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
+        physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
     }
+
     private void UpdateTimers()
     {
-        elapsedAttackDelay += Time.deltaTime;
         elapsedDashTime += Time.deltaTime;
     }
 
     private void Input(GamePadState state)
     {
-        if(state.Buttons.Start == ButtonState.Pressed)
+        Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        TryMove(leftStick, rightStick);
+
+        if (state.Buttons.Start == ButtonState.Pressed)
         {
             TryPause();
         }
@@ -145,61 +141,67 @@ public class Player : MonoBehaviour
             TryExit();
         }
 
-        if(state.Buttons.A == ButtonState.Pressed)
-        {
-            TryDash();
-        }
-
         if(state.Buttons.B == ButtonState.Pressed)
         {
             //unused
         }
 
-        if(state.Buttons.X == ButtonState.Pressed)
+        bool executed = false;
+        if (state.Buttons.X == ButtonState.Pressed)
         {
-            TryHeal();
+            executed = TryHeal();
         }
 
-        if(state.Buttons.Y == ButtonState.Pressed)
+        if (state.Buttons.Y == ButtonState.Pressed && !executed)
         {
-            TryAbillity();
+            executed = TryAbillity();
         }
 
-        if(state.Triggers.Right > 0)
+        if (state.Buttons.A == ButtonState.Pressed && !executed)
         {
-            TryPrimaryAttack();
+            executed = TryDash();
         }
 
-        if(state.Triggers.Left > 0)
+        if (state.Triggers.Right > 0 && !executed)
         {
-            TrySecondaryAttack();
+            if(primaryWeapon != null)
+                executed = primaryWeapon.Fire(transform.position, transform.forward, angle);
         }
 
-        Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-        Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        TryMove(leftStick, rightStick);
+        if (state.Triggers.Left > 0 && !executed)
+        {
+            if(secondaryWeapon != null)
+                executed = secondaryWeapon.Fire(transform.position, transform.forward, angle);
+        }
+        
     }
     
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
     {
         if (!Freeze)
         {
-            moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
-            moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
+            if(leftStick.y > 0.1f || leftStick.y < 0.1f)
+                moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
 
-            float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
-            if (leftStick != Vector2.zero)
+            if (leftStick.x > 0.1f || leftStick.x < 0.1f)
+                moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
+           
+
+            if (RotateOnMove && moveVector != Vector3.zero)
             {
-                DoRotation(leftAngle);
-            }
-            else
-            {
-                float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
-                if (rightStick != Vector2.zero)
+                float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
+                if (leftStick != Vector2.zero)
                 {
-                    DoRotation(rightAngle);
+                    DoRotation(leftAngle);
                 }
             }
+
+            float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
+            if (rightStick != Vector2.zero)
+            {
+                DoRotation(rightAngle);
+            }
+
         }
     }
 
@@ -217,7 +219,10 @@ public class Player : MonoBehaviour
     private void UpdatePosition()
     {
         transform.position += moveVector + velocity;
-        velocity -= (velocity * 0.1f);
+        //velocity -= (velocity * 0.1f);
+        velocity *= 0.8f;
+        if (velocity.x < 0.1 && velocity.y > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
+            velocity = Vector3.zero;
     }
 
     private float CalculateAngle(Vector2 target, Vector2 source)
@@ -233,54 +238,79 @@ public class Player : MonoBehaviour
         return value;
     }
 
-    private void TryHeal()
+    private bool TryHeal()
     {
-        if (health < maxHealth)
+        if (healthContainer.Health < healthContainer.MaxHealth)
         {
             float addHealth = regenerationPerSecond * Time.deltaTime;
             if (TeamHealth < addHealth)
                 addHealth = TeamHealth;
 
-            if (addHealth + health > maxHealth)
+            if (addHealth + healthContainer.Health > healthContainer.MaxHealth)
             {
-                addHealth -= (addHealth + health) - maxHealth;
+                addHealth -= (addHealth + healthContainer.Health) - healthContainer.MaxHealth;
             }
-            health += addHealth;
-            UpdateTeamHealth(-addHealth);
+
+            if (addHealth != 0)
+            {
+                healthContainer.Heal(addHealth);
+                UpdateTeamHealth(-addHealth);
+                return true;
+            }
         }
+        return false;
     }
 
-    private void TryDash()
+    private bool TryDash()
     {
         if (elapsedDashTime >= dashTime)
         {
-            velocity = transform.forward * Time.deltaTime * dashSpeed;
+            if (moveVector == Vector3.zero)
+            {
+                velocity = transform.forward * Time.deltaTime * dashSpeed;
+            }
+            else
+            {
+                velocity = ScaleVactorUp(moveVector) * Time.deltaTime * dashSpeed;
+            }
             elapsedDashTime = 0f;
+            return true;
         }
+
+        return false;
     }
 
-    private void TryAbillity()
+    private Vector3 ScaleVactorUp(Vector3 vec)
     {
+        float x = Math.Abs(vec.x);
+        float y = Math.Abs(vec.y);
+        float z = Math.Abs(vec.z);
+        float diff = 0f;
+        if(x > y && x > z)
+            diff = 1 - x;
+        else if(y > z)
+            diff = 1 - y;
+        else
+            diff = 1 - z;
+        
+        if(x != 0)
+            x = vec.x + (vec.x > 0 ? diff : -diff);
+        if(y != 0)
+            y = vec.y + (vec.y > 0 ? diff : -diff);
+        if(z != 0)
+            z = vec.z + (vec.z > 0 ? diff : -diff);
+        return new Vector3(x, y, z);
     }
 
-    private void TryPrimaryAttack()
+    private bool TryAbillity()
     {
-        if (elapsedAttackDelay > attackDelay)
+        if(ability != null)
         {
-            elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
+            return ability.Use();
         }
+        return false;
     }
-
-    private void TrySecondaryAttack()
-    {
-        if (elapsedAttackDelay > attackDelay)
-        {
-            elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0.0f, (angle), 0));
-        }
-    }
-
+    
     private void TryExit()
     {
         if (OnPlayerExit != null)
@@ -299,58 +329,37 @@ public class Player : MonoBehaviour
         {
             Player playerScript = players[i].GetComponent<Player>();
             playerScript.TeamHealth += addHealth;
-            if (playerScript.TeamHealth > playerScript.maxHealth)
-                playerScript.TeamHealth = playerScript.maxHealth;
+            if (playerScript.TeamHealth > playerScript.maxTeamHealth)
+                playerScript.TeamHealth = playerScript.maxTeamHealth;
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
-        if(collision.gameObject.CompareTag("Projectile"))
-        {
-            Projectile projectileScript = collision.gameObject.GetComponent<Projectile>();
-            DealDamage(projectileScript.Damage);
-        }
+        isDead = true;
+        Destroy(gameObject);
     }
 
-    public void DealDamage(float damage)
+    private void Borders()
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            isDead = true;
-            Destroy(gameObject);
-        }
-    }
+        xMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
+        zMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
+        xMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
+        zMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
 
-    private void CheckHealth()
-    {
-        if (health <= 0)
-        {
-            DestroyImmediate(this);
-        }
-    }
-    public void Borders()
-    {
-
-        _xMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
-        _zMax = (_camera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                _camera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
-        _xMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
-        _zMin = (_camera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                _camera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-_camera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 _camera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
-
-        clampedX = Mathf.Clamp(transform.position.x, _xMin, _xMax);
-        clampedZ = Mathf.Clamp(transform.position.z, _zMin, _zMax);
+        clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
+        clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
     }
 }

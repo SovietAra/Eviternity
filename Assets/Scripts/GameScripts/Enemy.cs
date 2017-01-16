@@ -109,6 +109,9 @@ public class Enemy : MonoBehaviour
         else if (elapsedAttackDelay > attackDelay && enemyType == 3)
         {
             elapsedAttackDelay = 0f;
+            GameObject gobj = Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+            Projectile projectile = gobj.GetComponent<Projectile>();
+            projectile.AttackerTag = transform.tag;
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront + 45, 0f));
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront - 45, 0f));
