@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 public class GUIManager : MonoBehaviour {
     public EventSystem ES;
+
     private GameObject StoreSelected;
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         StoreSelected = ES.firstSelectedGameObject;
     }
 	
