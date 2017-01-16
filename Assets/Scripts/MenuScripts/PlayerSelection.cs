@@ -19,17 +19,19 @@ public class PlayerSelection : MonoBehaviour
 	public Canvas Player2assigned;
 	public Canvas Player3assigned;
 	public Canvas Player4assigned;
-
+    public Canvas playerSelectScreen;
 	void Start ()
     {
+    playerSelectScreen = playerSelectScreen.GetComponent<Canvas>();
 	Player1assigned.enabled = false;
 	Player2assigned.enabled = false;
 	Player3assigned.enabled = false;
 	Player4assigned.enabled = false;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    
+    }
+
+        // Update is called once per frame
+        void Update ()
     {
         
         if (!gameStarted)
@@ -91,7 +93,8 @@ public class PlayerSelection : MonoBehaviour
             GamePadState state = GamePad.GetState(GlobalReferences.PlayerStates[i].Index);
             if (state.Buttons.Start == ButtonState.Pressed && GlobalReferences.PlayerStates[i].PrevState.Buttons.Start == ButtonState.Released)
             {
-                GlobalReferences.PlayerStates[i] = new PlayerState(GlobalReferences.PlayerStates[i], state, !GlobalReferences.PlayerStates[i].Ready, GlobalReferences.PlayerStates[i].ClassId);
+                if (playerSelectScreen.enabled == true)
+                    GlobalReferences.PlayerStates[i] = new PlayerState(GlobalReferences.PlayerStates[i], state, !GlobalReferences.PlayerStates[i].Ready, GlobalReferences.PlayerStates[i].ClassId);
                 //TODO: Change menu
 
             }
@@ -139,6 +142,7 @@ public class PlayerSelection : MonoBehaviour
     private void StartNewGame()
     {
         gameStarted = true;
+        
         SceneManager.LoadScene("PrototypeScene");
     }
 }

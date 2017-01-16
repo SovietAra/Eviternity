@@ -6,7 +6,9 @@ public class ExplosiveTrap : MonoBehaviour
 {
 
     private float distanceToObject;
-    public bool triggerByCollision, triggerByRange;
+
+    [SerializeField]
+    private bool triggerByCollision, triggerByRange;
 
     [Range(0.1f, 10)]
     public float range;
@@ -14,17 +16,22 @@ public class ExplosiveTrap : MonoBehaviour
     [Range(1, 1000)]
     public int damage;
 
+    private DamageAbleObject dmgobjct;
+
     // Use this for initialization
     void Start()
     {
+        dmgobjct = GetComponent<DamageAbleObject>();
+        dmgobjct.OnDeath += Dmgobjct_OnDeath;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
         if (triggerByRange)
         {
+            GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+
             for (int i = 0; i < playerList.Length; i++)
             {
                 distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
@@ -37,25 +44,33 @@ public class ExplosiveTrap : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            Detonate();
-        }
+        Detonate();
     }
 
     private void Detonate()
     {
-        DamageAbleObject[] damageAbleObjects = GameObject.FindObjectsOfType<DamageAbleObject>();
+        DamageAbleObject[] damageAbleObjects = FindObjectsOfType<DamageAbleObject>();
         foreach (DamageAbleObject item in damageAbleObjects)
         {
-            distanceToObject = Vector3.Distance(item.transform.parent.position, transform.position);
+            distanceToObject = Vector3.Distance(item.transform.position, transform.position);
             if (distanceToObject < range)
             {
                 item.DoDamage(damage);
             }
         }
         Destroy(gameObject);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (triggerByCollision)
+        {
+            if (collision.gameObject.CompareTag("Projectile"))
+            {
+                Detonate();
+            }
+        }
     }
 }

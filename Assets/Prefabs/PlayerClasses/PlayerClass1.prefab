@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33232968661534656}
   - component: {fileID: 65015985344822880}
   - component: {fileID: 23909736171866588}
+  - component: {fileID: 54817512915145154}
   - component: {fileID: 114548059586036888}
   - component: {fileID: 114584673856983150}
-  - component: {fileID: 54817512915145154}
   m_Layer: 8
   m_Name: PlayerClass1
   m_TagString: Player
@@ -96,7 +96,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65015985344822880
 BoxCollider:
@@ -136,9 +136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TeamHealth: 10
   maxTeamHealth: 10
-  speed: 1
+  speed: 5
   dashSpeed: 17.1
-  dashTime: 0.48
+  dashTime: 1.5
   regenerationPerSecond: 17
   Freeze: 0
   RotateOnMove: 0
