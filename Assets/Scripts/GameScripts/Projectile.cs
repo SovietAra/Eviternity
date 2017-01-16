@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour
 
     public bool DoTeamDamage = false;
     public bool DoAOETeamDamage = false;
+    public GameObject Explosion;
 
     [SerializeField]
     [Range(0.0f, 10f)]
@@ -59,9 +60,15 @@ public class Projectile : MonoBehaviour
             if(!DoTeamDamage && attackerTag != null)
             {
                 if (attackerTag == "Player")
-                    Physics.IgnoreLayerCollision(10, 8);
+                {
+                    gameObject.layer = 10;
+                    Physics.IgnoreLayerCollision(gameObject.layer, 8);
+                }
                 else if (attackerTag == "Enemy")
-                    Physics.IgnoreLayerCollision(10, 9);
+                {
+                    gameObject.layer = 11;
+                    Physics.IgnoreLayerCollision(gameObject.layer, 9);
+                }
             }
         }
     }
@@ -120,20 +127,10 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            DamageAbleObject[] damageAbleObjects = GameObject.FindObjectsOfType<DamageAbleObject>();
-            foreach (DamageAbleObject item in damageAbleObjects)
-            {
-                float distance = Vector3.Distance(item.transform.position, transform.position);                
-                if (distance <= damageRange)
-                {
-                    bool isTeam = AttackerTag != null && item.transform.CompareTag(AttackerTag);
-                    //TODO: Damage reduction on per distance
-                    if (!isTeam || DoAOETeamDamage)
-                    {
-                        DoDamage(item, damage, isTeam);
-                    }
-                }
-            }
+            GameObject explosionObj = Instantiate(Explosion, transform.position, transform.rotation);
+            Explosion explosionScript = explosionObj.GetComponent<Explosion>();
+
+            explosionScript.Init(damage, damageRange, attackerTag, 1.2f, DoAOETeamDamage ? TeamDamageMultiplicator : 0);
         }
     }
 
