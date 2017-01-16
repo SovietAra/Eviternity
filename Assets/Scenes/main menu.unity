@@ -710,7 +710,7 @@ MonoBehaviour:
   Player2assigned: {fileID: 132605413}
   Player3assigned: {fileID: 913920544}
   Player4assigned: {fileID: 1672389833}
-  playerSelectScreen: {fileID: 0}
+  playerSelectScreen: {fileID: 250539608}
 --- !u!1 &255161632
 GameObject:
   m_ObjectHideFlags: 0
