@@ -6,93 +6,57 @@ public class ExplosiveTrap : MonoBehaviour
 {
 
     private float distanceToObject;
-    private GameObject[] playerList;
-    private GameObject[] enemyList;
-    private bool triggered, collided;
     public bool triggerByCollision, triggerByRange;
+
     [Range(0.1f, 10)]
     public float range;
+
     [Range(1, 1000)]
     public int damage;
+
+    private DamageAbleObject dmgobjct;
 
     // Use this for initialization
     void Start()
     {
-        triggered = false;
-        collided = false;
+        dmgobjct = GetComponent<DamageAbleObject>();
+        dmgobjct.OnDeath += Dmgobjct_OnDeath;
+    }
+
+    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
+    {
+        Detonate();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerList = GameObject.FindGameObjectsWithTag("Player");
-        enemyList = GameObject.FindGameObjectsWithTag("Enemy");
-
+        GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
         if (triggerByRange)
         {
             for (int i = 0; i < playerList.Length; i++)
             {
                 distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
-                Player player = playerList[i].GetComponent<Player>();
                 if (distanceToObject < range)
                 {
-                    // damage
-                    player.DealDamage(damage);
-                    triggered = true;
+                    Detonate();
+                    break;
                 }
-            }
-
-            if (triggered)
-            {
-                for (int i = 0; i < enemyList.Length; i++)
-                {
-                    distanceToObject = Vector3.Distance(enemyList[i].transform.position, transform.position);
-
-                    if (distanceToObject < range)
-                    {
-                        // damage
-                    }
-                }
-
-                Destroy(gameObject);
-            }
-        }
-
-        if (triggerByCollision)
-        {
-            if (collided)
-            {
-                for (int i = 0; i < playerList.Length; i++)
-                {
-                    distanceToObject = Vector3.Distance(playerList[i].transform.position, transform.position);
-                    Player player = playerList[i].GetComponent<Player>();
-                    if (distanceToObject < range)
-                    {
-                        // damage
-                        player.DealDamage(damage);
-                    }
-                }
-
-                for (int i = 0; i < enemyList.Length; i++)
-                {
-                    distanceToObject = Vector3.Distance(enemyList[i].transform.position, transform.position);
-                    
-                    if (distanceToObject < range)
-                    {
-                        // damage
-                    }
-                }
-
-                Destroy(gameObject);
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Detonate()
     {
-        if (collision.gameObject.CompareTag("Projectile"))
+        DamageAbleObject[] damageAbleObjects = GameObject.FindObjectsOfType<DamageAbleObject>();
+        foreach (DamageAbleObject item in damageAbleObjects)
         {
-            collided = true;
+            distanceToObject = Vector3.Distance(item.transform.position, transform.position);
+            if (distanceToObject < range)
+            {
+                item.DoDamage(damage);
+            }
         }
+        Destroy(gameObject);
     }
 }
