@@ -14,9 +14,18 @@ public class ExplosiveTrap : MonoBehaviour
     [Range(1, 1000)]
     public int damage;
 
+    private DamageAbleObject dmgobjct;
+
     // Use this for initialization
     void Start()
     {
+        dmgobjct = GetComponent<DamageAbleObject>();
+        dmgobjct.OnDeath += Dmgobjct_OnDeath;
+    }
+
+    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
+    {
+        Detonate();
     }
 
     // Update is called once per frame
@@ -37,20 +46,12 @@ public class ExplosiveTrap : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            Detonate();
-        }
-    }
-
     private void Detonate()
     {
         DamageAbleObject[] damageAbleObjects = GameObject.FindObjectsOfType<DamageAbleObject>();
         foreach (DamageAbleObject item in damageAbleObjects)
         {
-            distanceToObject = Vector3.Distance(item.transform.parent.position, transform.position);
+            distanceToObject = Vector3.Distance(item.transform.position, transform.position);
             if (distanceToObject < range)
             {
                 item.DoDamage(damage);
