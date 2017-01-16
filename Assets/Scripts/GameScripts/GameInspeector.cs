@@ -43,7 +43,7 @@ public class GameInspeector : MonoBehaviour
             if (AllPlayerDead)
                 SpawnPlayers();
         }
-        
+
 
 	}
 
