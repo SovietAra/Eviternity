@@ -114,10 +114,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        //physics.velocity = newForce; //für physik movement einfügen!
-        //newForce = Vector3.zero; //für physik movement einfügen!
+       physics.velocity = newForce; //für physik movement einfügen!
+        newForce = Vector3.zero; //für physik movement einfügen!
         Borders();
-        physics.MovePosition(new Vector3(clampedX, 0, clampedZ)); //<- Buggy: bei physik movement entfernen da man sich sonst nicht bewegen kann
+        physics.MovePosition(new Vector3(clampedX, transform .position .y, clampedZ)); //<- Buggy: bei physik movement entfernen da man sich sonst nicht bewegen kann
     }
 
     private void UpdateTimers()
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
 
     private void UpdatePosition()
     {
-        transform.position += moveVector + velocity; //Für Phyisk movement entfernen
+       // transform.position += moveVector + velocity; //Für Phyisk movement entfernen
         //velocity -= (velocity * 0.1f);
         velocity *= 0.8f;
         if (velocity.x < 0.1 && velocity.y > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
