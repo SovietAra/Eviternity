@@ -15,38 +15,43 @@ public class UIScript : MonoBehaviour
     public GameObject Player3HealthUI;
     public GameObject Player4HealthUI;
     public int playerCount;
+
+    public void OnUIEvent(object source, EventArgs e)
+    {
+        CreateUI(playerCount, UICanvas.transform);
+
+    }
+
     public int prevPlayerCount;
 
+    private int activePlayers = 0;
     private Slider P1healthSlider;
     private Slider P2healthSlider;
     private Slider P3healthSlider;
     private Slider P4healthSlider;
     private int playerID;
     private bool[] ConnectedPlayers = new bool[4] { false, false, false, false };
+    private List<GameObject> CurrentPlayers;
 
     // Use this for initialization
     private void Start()
     {
-        // GameObject UIparent = Resources.Load("Canvas") as GameObject;
-        // object1 = Instantiate(UIparent);
-        // GameObject newCanvas = Instantiate(UICanvas);
-        // canvas = UICanvas.GetComponent<Canvas>();
+        CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
     }
 
     // Update is called once per frame
     private void Update()
     {
         // GameObject[] CurrentPlayers = new GameObject[4];
-        List<GameObject> CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
 
         playerCount = CurrentPlayers.Count;
 
         if (CurrentPlayers != null)
         {
-            if (playerCount > prevPlayerCount)
-            {
-                CreateUI(playerCount, UICanvas.transform);
-            }
+            //if (playerCount > prevPlayerCount)
+            //{
+            //    CreateUI(playerCount, UICanvas.transform);
+            //}
         }
 
         foreach (GameObject player in CurrentPlayers)
@@ -61,40 +66,6 @@ public class UIScript : MonoBehaviour
         //}
 
         prevPlayerCount = playerCount;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="playerID"></param>
-    private void AddUI(int playerID)
-    {
-        switch (playerID)
-        {
-            case 1:
-                {
-                    ConnectedPlayers[0] = true;
-                }
-                break;
-            case 2:
-                {
-                    ConnectedPlayers[1] = true;
-                }
-                break;
-            case 3:
-                {
-                    ConnectedPlayers[2] = true;
-                }
-                break;
-            case 4:
-                {
-                    ConnectedPlayers[3] = true;
-                }
-                break;
-
-            default:
-                break;
-        }
     }
 
     private void UpdateHealth(Player player, DamageAbleObject damageAbleObject)
@@ -131,53 +102,113 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    private void CreateUI(int playerCount, Transform UICanvas)
+    public void CreateUI(int playerCount, Transform UICanvas)
     {
-        switch (playerCount)
+        int activePlayers = GetActivePlayers();
+
+        switch (activePlayers)
         {
-            case 1:
+            case 0:
                 {
-                    playerID = 1;
-                    AddUI(playerCount);
                     GameObject P1 = Instantiate(Player1HealthUI);
                     P1healthSlider = P1.GetComponent<Slider>();
                     P1healthSlider.transform.SetParent(UICanvas, false);
+                    AddToActivePlayers();
                 }
                 break;
-
-            case 2:
+            case 1:
                 {
-                    playerID = 2;
-                    AddUI(playerCount);
                     GameObject P2 = Instantiate(Player2HealthUI);
                     P2healthSlider = P2.GetComponent<Slider>();
                     P2healthSlider.transform.SetParent(UICanvas, false);
+                    AddToActivePlayers();
                 }
                 break;
-
-            case 3:
+            case 2:
                 {
-                    playerID = 3;
-                    AddUI(playerCount);
                     GameObject P3 = Instantiate(Player3HealthUI);
                     P3healthSlider = P3.GetComponent<Slider>();
                     P3healthSlider.transform.SetParent(UICanvas, false);
+                    AddToActivePlayers();
                 }
                 break;
-
-            case 4:
+            case 3:
                 {
-                    playerID = 4;
-                    AddUI(playerCount);
                     GameObject P4 = Instantiate(Player4HealthUI);
                     P4healthSlider = P4.GetComponent<Slider>();
                     P4healthSlider.transform.SetParent(UICanvas, false);
+                    AddToActivePlayers(); 
                 }
                 break;
 
             default:
                 break;
         }
+        //switch (playerCount)
+        //{
+        //    case 1:
+        //        {
+        //            playerID = 1;
+        //            GameObject P1 = Instantiate(Player1HealthUI);
+        //            P1healthSlider = P1.GetComponent<Slider>();
+        //            P1healthSlider.transform.SetParent(UICanvas, false);
+        //        }
+        //        break;
+
+        //    case 2:
+        //        {
+        //            playerID = 2;
+        //            GameObject P2 = Instantiate(Player2HealthUI);
+        //            P2healthSlider = P2.GetComponent<Slider>();
+        //            P2healthSlider.transform.SetParent(UICanvas, false);
+        //        }
+        //        break;
+
+        //    case 3:
+        //        {
+        //            playerID = 3;
+        //            GameObject P3 = Instantiate(Player3HealthUI);
+        //            P3healthSlider = P3.GetComponent<Slider>();
+        //            P3healthSlider.transform.SetParent(UICanvas, false);
+        //        }
+        //        break;
+
+        //    case 4:
+        //        {
+        //            playerID = 4;
+        //            GameObject P4 = Instantiate(Player4HealthUI);
+        //            P4healthSlider = P4.GetComponent<Slider>();
+        //            P4healthSlider.transform.SetParent(UICanvas, false);
+        //        }
+        //        break;
+
+        //    default:
+        //        break;
+        //}
     }
 
+    private void AddToActivePlayers()
+    {
+        for (int j = 0; j < ConnectedPlayers.Length; j++)
+        {
+            if (ConnectedPlayers[j] == false)
+            {
+                ConnectedPlayers[j] = true;
+                break;
+            }
+        }
+    }
+
+    private int GetActivePlayers()
+    {
+        for (int i = 0; i < ConnectedPlayers.Length; i++)
+        {
+            if (ConnectedPlayers[i] == true)
+            {
+                activePlayers++;
+            }
+        }
+
+        return activePlayers;
+    }
 }

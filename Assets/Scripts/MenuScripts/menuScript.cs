@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class menuScript : MonoBehaviour {
-
 public Canvas restartMenu;
 public Canvas optionsMenu;
 public Canvas creditScreen;
@@ -29,7 +29,7 @@ public Button backText;
 		creditScreen.enabled = false;
 		playerSelectScreen.enabled = false;
 	}
-
+    
     public void ExitPress()
 	{
 		restartMenu.enabled = true;

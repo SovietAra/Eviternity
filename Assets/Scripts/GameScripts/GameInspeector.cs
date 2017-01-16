@@ -12,6 +12,7 @@ public class GameInspeector : MonoBehaviour
     public event UIEventHandler UIEvent;
     private UIScript uiScript;
 
+
     [SerializeField]
     [Range(0, 10000f)]
     private float maxTeamHealth = 10;
@@ -49,7 +50,7 @@ public class GameInspeector : MonoBehaviour
     private void SpawnPlayers()
     {
         spawnedPlayers = new List<Player>();
-
+        Player.TeamHealth = maxTeamHealth;
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
             SpawnPlayer(GlobalReferences.PlayerStates[i], new Vector3(i * 2, 1, 0));

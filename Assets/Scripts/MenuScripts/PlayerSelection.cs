@@ -9,7 +9,6 @@ using XInputDotNetPure;
 public class PlayerSelection : MonoBehaviour
 {
 	// Use this for initialization
-
     private bool gameStarted;
 	public Canvas Player1join;
 	public Canvas Player2join;
