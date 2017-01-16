@@ -134,9 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab303e0d60962b741a5a9fc13ffc3439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 3
-  MoveSpeed: 3
+  rotationSpeed: 3
+  moveSpeed: 3
   attackRange: 6
-  ViewRange: 15
+  viewRange: 15
+  health: 112
+  enemyType: 1
   attackDelay: 1
   Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}

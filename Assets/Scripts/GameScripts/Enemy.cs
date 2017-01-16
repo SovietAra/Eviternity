@@ -25,18 +25,18 @@ public class Enemy : MonoBehaviour
     [Range(0.1f, 100.0f)]
     private float viewRange = 15.0f;
 
-    
-    [SerializeField]
-    [Range(1f, 10000f)]
-    private float maxHealth = 10;
-
     [SerializeField]
     [Range(0.1f, 10000f)]
     private float health = 10.0f;
 
+    enum enemyTypes
+    {
+        Crawler = 1,
+        Mosquito = 2,
+        Mantis = 3
+    }
     [SerializeField]
-    [Range(1, 3)]
-    private int enemyType = 1;
+    enemyTypes enemyType;
 
     [SerializeField]
     [Range(0.1f, 60f)]
@@ -45,16 +45,22 @@ public class Enemy : MonoBehaviour
 
     private float enemyfront;
     private float distanceToPlayer;
-    private float aimDirection;
     private GameObject targetPlayer;
     public GameObject Projectile;
-    private float alivePlayers;
 
     private bool isValidTarget = false;
+    private DamageAbleObject dmgobjct;
 
     // Use this for initialization
     void Start()
     {
+        dmgobjct = GetComponent<DamageAbleObject>();
+        dmgobjct.OnDeath += Dmgobjct_OnDeath;
+    }
+
+    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -62,7 +68,6 @@ public class Enemy : MonoBehaviour
     {
         CheckAlivePlayers();
 
-        //TODO consider viewrange
         if (isValidTarget) //On player found
         {
             distanceToPlayer = Vector3.Distance(targetPlayer.transform.position, transform.position);
@@ -91,39 +96,38 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //TODO Fix Variable Attacks with new attack instantiation
     private void TryShoot()
     {
         elapsedAttackDelay += Time.deltaTime;
-        if (elapsedAttackDelay > attackDelay && enemyType == 1)
+        if (elapsedAttackDelay > attackDelay && enemyType == enemyTypes.Crawler)
         {
             elapsedAttackDelay = 0f;
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+            //print("I'm a Crawler");
         }
-        else if (elapsedAttackDelay > attackDelay && enemyType == 2)
+        else if (elapsedAttackDelay > attackDelay && enemyType == enemyTypes.Mosquito)
         {
             elapsedAttackDelay = 0f;
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront + 27.5f, 0f));
             Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront - 27.5f, 0f));
+            //print("I'm a Mosquito");
         }
-        else if (elapsedAttackDelay > attackDelay && enemyType == 3)
+        else if (elapsedAttackDelay > attackDelay && enemyType == enemyTypes.Mantis)
         {
             elapsedAttackDelay = 0f;
             GameObject gobj = Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
             Projectile projectile = gobj.GetComponent<Projectile>();
             projectile.AttackerTag = transform.tag;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront + 45, 0f));
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront - 45, 0f));
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront + 90, 0f));
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront - 90, 0f));
+            //print("I'm a Mantis");
         }
     }
 
 
     private void CheckAlivePlayers()
     {
-        if (targetPlayer != null && distanceToPlayer <= viewRange) //TODO und in range - sinn erfragen
+        if (targetPlayer != null && distanceToPlayer <= viewRange)
             return;
 
         GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
@@ -143,27 +147,6 @@ public class Enemy : MonoBehaviour
                     isValidTarget = false;
                 }
             }
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            Projectile projectileScript = collision.gameObject.GetComponent<Projectile>();
-            DealDamage(projectileScript.Damage);
-        }
-    }
-
-    public void DealDamage(float damage)
-    {
-        health -= damage;
-        //TODO Herrausfinden warum der Gegner sofort stirbt und Players.Length danach auf 0 gesetzt wird.
-        //health -= damage * (damage / alivePlayers);
-        //print(alivePlayers);
-        if (health <= 0)
-        {
-            Destroy(gameObject);
         }
     }
 }
