@@ -28,11 +28,9 @@ public Button backText;
 		optionsMenu.enabled = false;
 		creditScreen.enabled = false;
 		playerSelectScreen.enabled = false;
-		
 	}
-	
-	// Update is called once per frame
-	public void ExitPress()
+
+    public void ExitPress()
 	{
 		restartMenu.enabled = true;
 		optionsMenu.enabled = false;

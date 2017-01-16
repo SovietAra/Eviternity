@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    private Vector3 newForce;
+
     public bool IsDead
     {
         get { return isDead; }
@@ -116,6 +118,9 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        //physics.AddForce(newForce);
+        //newForce = Vector3.zero;
+
         Borders();
         physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
     }
@@ -130,7 +135,7 @@ public class Player : MonoBehaviour
         Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
-
+        newForce = (moveVector + velocity) * 1000;
         if (state.Buttons.Start == ButtonState.Pressed)
         {
             TryPause();
@@ -358,7 +363,7 @@ public class Player : MonoBehaviour
                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
                 (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
                  mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
-
+      
         clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
         clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
     }

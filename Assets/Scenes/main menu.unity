@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -710,6 +710,7 @@ MonoBehaviour:
   Player2assigned: {fileID: 132605413}
   Player3assigned: {fileID: 913920544}
   Player4assigned: {fileID: 1672389833}
+  playerSelectScreen: {fileID: 0}
 --- !u!1 &255161632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,6 +2279,7 @@ GameObject:
   - component: {fileID: 656351723}
   - component: {fileID: 656351722}
   - component: {fileID: 656351726}
+  - component: {fileID: 656351727}
   m_Layer: 5
   m_Name: StartMenu
   m_TagString: Untagged
@@ -2383,6 +2385,18 @@ MonoBehaviour:
   optionsText: {fileID: 1111079950}
   restartText: {fileID: 255161637}
   backText: {fileID: 653224905}
+--- !u!114 &656351727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 656351721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc03fe8f62cfaf04c99934e9f02e17f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ES: {fileID: 1916995360}
 --- !u!1 &673592683
 GameObject:
   m_ObjectHideFlags: 0
@@ -5081,7 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2043799990}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &1916995361
