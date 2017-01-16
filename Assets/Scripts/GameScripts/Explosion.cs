@@ -16,6 +16,9 @@ public class Explosion : MonoBehaviour
     private bool playOnce;
 
     private ParticleSystem effect;
+    private float removeDelay = 0.1f;
+    private float elapsedTime = 0f;
+
 
     public void Init(float damage, float radius, string ownerTag, float damageReduction, float teamDamageMultiplicator)
     {
@@ -69,6 +72,12 @@ public class Explosion : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+        }
+        else
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > removeDelay)
+                exploded = true;
         }
     }
 
