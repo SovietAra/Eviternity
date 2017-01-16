@@ -5,6 +5,8 @@ using XInputDotNetPure;
 
 public class Player : MonoBehaviour
 {
+    public static float TeamHealth = 10f;
+
     private PlayerIndex index;
     private bool hasPlayerIndex;
     private bool isDead;
@@ -15,13 +17,7 @@ public class Player : MonoBehaviour
     
     private float angle;
     private Quaternion targetRotation;
-
-    [Range(1f, 10000f)]
-    public float TeamHealth = 10;
     
-    [Range(1f, 10000f)]
-    public float maxTeamHealth = 10;
-
     [SerializeField]
     [Range(1f, 100f)]
     private float speed = 1f;
@@ -118,11 +114,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        //physics.AddForce(newForce);
-        //newForce = Vector3.zero;
-
+        //physics.velocity = newForce; //für physik movement einfügen!
+        //newForce = Vector3.zero; //für physik movement einfügen!
         Borders();
-        physics.MovePosition(new Vector3(clampedX, 0, clampedZ));
+        physics.MovePosition(new Vector3(clampedX, 0, clampedZ)); //<- Buggy: bei physik movement entfernen da man sich sonst nicht bewegen kann
     }
 
     private void UpdateTimers()
@@ -135,7 +130,7 @@ public class Player : MonoBehaviour
         Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
-        newForce = (moveVector + velocity) * 1000;
+        newForce = (moveVector + velocity) * 100;
         if (state.Buttons.Start == ButtonState.Pressed)
         {
             TryPause();
@@ -170,15 +165,26 @@ public class Player : MonoBehaviour
         if (state.Triggers.Right > 0 && !executed)
         {
             if(primaryWeapon != null)
-                executed = primaryWeapon.Fire(transform.position, transform.forward, angle);
+                executed = primaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
         }
 
         if (state.Triggers.Left > 0 && !executed)
         {
             if(secondaryWeapon != null)
-                executed = secondaryWeapon.Fire(transform.position, transform.forward, angle);
+                executed = secondaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
         }
-        
+
+        if(state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+        {
+            if (primaryWeapon != null)
+                executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+        }
+
+        if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+        {
+            if (primaryWeapon != null)
+                executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+        }
     }
     
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
@@ -223,7 +229,7 @@ public class Player : MonoBehaviour
 
     private void UpdatePosition()
     {
-        transform.position += moveVector + velocity;
+        transform.position += moveVector + velocity; //Für Phyisk movement entfernen
         //velocity -= (velocity * 0.1f);
         velocity *= 0.8f;
         if (velocity.x < 0.1 && velocity.y > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
@@ -329,20 +335,27 @@ public class Player : MonoBehaviour
 
     private void UpdateTeamHealth(float addHealth)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        for (int i = 0; i < players.Length; i++)
-        {
-            Player playerScript = players[i].GetComponent<Player>();
-            playerScript.TeamHealth += addHealth;
-            if (playerScript.TeamHealth > playerScript.maxTeamHealth)
-                playerScript.TeamHealth = playerScript.maxTeamHealth;
-        }
+        TeamHealth += addHealth;
     }
 
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
-        isDead = true;
-        Destroy(gameObject);
+        if (TeamHealth == 0)
+        {
+            isDead = true;
+            Destroy(gameObject);
+        }
+        else
+        {
+            float addHealth = healthContainer.MaxHealth * 2;
+            if(TeamHealth < addHealth)
+            {
+                addHealth = TeamHealth / 2;
+            }
+
+            UpdateTeamHealth(-addHealth);
+            healthContainer.Heal(addHealth);
+        }
     }
 
     private void Borders()

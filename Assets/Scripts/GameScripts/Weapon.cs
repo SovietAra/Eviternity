@@ -109,7 +109,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual bool Fire(Vector3 spawnPosition, Vector3 forward, float angle)
+    public virtual bool PrimaryAttack(Vector3 spawnPosition, Vector3 forward, float angle)
     {
         if (elapsedAttackDelay >= fireRate && ((UseAmmo && currentClipAmmo > 0) || (ProduceHeat && currentHeat < maxHeat) || (!UseAmmo && !ProduceHeat)) && (!reloading || AllowShellRelaod))
         {
@@ -117,7 +117,7 @@ public class Weapon : MonoBehaviour
             {
                 reloading = false;
             }
-            
+
             //TODO: smooth spray
             GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + Random.Range(-(sprayAngle / 2f), (sprayAngle / 2f))), 0));
             Projectile projectile = gobj.GetComponent<Projectile>();
@@ -137,13 +137,18 @@ public class Weapon : MonoBehaviour
 
             return true;
         }
-        else if(currentClipAmmo <= 0)
+        else if (currentClipAmmo <= 0)
         {
-            if(AutoReload)
+            if (AutoReload)
             {
                 Reload();
             }
         }
+        return false;
+    }
+
+    public virtual bool SecondaryAttack(Vector3 spawnPosition, Vector3 forward, float angle)
+    {
         return false;
     }
 

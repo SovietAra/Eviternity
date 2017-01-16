@@ -134,8 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamHealth: 10
-  maxTeamHealth: 10
   speed: 1
   dashSpeed: 17.1
   dashTime: 0.48

@@ -93,11 +93,14 @@ public class Enemy : MonoBehaviour
 
     private void TryShoot()
     {
+        //Todo: Ersetze code durch waffensystem und erstelle für alle gegnertypen Prefabs mit waffen, dann benötigst du keine unterscheidung mehr zwische klassen
         elapsedAttackDelay += Time.deltaTime;
         if (elapsedAttackDelay > attackDelay && enemyType == 1)
         {
             elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+            GameObject gobj = Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
+            Projectile projectile = gobj.GetComponent<Projectile>();
+            projectile.AttackerTag = tag;
         }
         else if (elapsedAttackDelay > attackDelay && enemyType == 2)
         {

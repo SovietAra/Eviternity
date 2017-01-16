@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4760633220336424}
   - component: {fileID: 114485782076988378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AbilityEnergyShield
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

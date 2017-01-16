@@ -8,8 +8,10 @@ public class GameInspeector : MonoBehaviour
     public GameObject PlayerPrefab;
     private List<Player> spawnedPlayers;
 
-    
 
+    [SerializeField]
+    [Range(0, 10000f)]
+    private float maxTeamHealth = 10;
     
 
 	// Use this for initialization
@@ -30,7 +32,7 @@ public class GameInspeector : MonoBehaviour
             for (int i = 0; i < AvailablePlayer.Count; i++)
             {
                 Player player = AvailablePlayer[i].GetComponent<Player>();
-                if (player.IsDead == false)
+                if (player != null && !player.IsDead)
                     AllPlayerDead = false;         
             }
             if (AllPlayerDead)
@@ -43,7 +45,7 @@ public class GameInspeector : MonoBehaviour
     private void SpawnPlayers()
     {
         spawnedPlayers = new List<Player>();
-
+        Player.TeamHealth = maxTeamHealth;
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
             SpawnPlayer(GlobalReferences.PlayerStates[i], new Vector3(i * 2, 1, 0));
