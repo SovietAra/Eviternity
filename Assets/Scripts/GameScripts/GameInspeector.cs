@@ -2,13 +2,15 @@
 using UnityEngine;
 using Assets.Scripts;
 using XInputDotNetPure;
+using System;
 
 public class GameInspeector : MonoBehaviour
 {
     public GameObject PlayerPrefab;
     private List<Player> spawnedPlayers;
-
-    
+    public delegate void UIEventHandler(object source, EventArgs e);
+    public event UIEventHandler UIEvent;
+    private UIScript uiScript;
 
     
 
@@ -16,6 +18,7 @@ public class GameInspeector : MonoBehaviour
 	void Start ()
     {
         SpawnPlayers();
+        UIEvent += uiScript.OnUIEvent;
 	}
 	
 	// Update is called once per frame
@@ -100,6 +103,7 @@ public class GameInspeector : MonoBehaviour
         playerScript.Index = playerState.Index;
         playerScript.OnPlayerExit += PlayerScript_OnPlayerExit;
         spawnedPlayers.Add(playerScript);
+        UIEvent(this, EventArgs.Empty);
     }
 
     private void RemovePlayerState(PlayerIndex index)
