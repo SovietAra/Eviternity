@@ -8,8 +8,6 @@ public class GameInspeector : MonoBehaviour
 {
     public GameObject PlayerPrefab;
     private List<Player> spawnedPlayers;
-    public delegate void UIEventHandler(object source, EventArgs e);
-    public event UIEventHandler UIEvent;
     private UIScript uiScript;
 
 
@@ -29,8 +27,8 @@ public class GameInspeector : MonoBehaviour
     void Start ()
     {
         SpawnPlayers();
-        //UIEvent += uiScript.OnUIEvent;
-	}
+        uiScript = GetComponent<UIScript>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -74,6 +72,7 @@ public class GameInspeector : MonoBehaviour
         GamePadManager.Disconnect(e.PlayerScript.Index);
         
         Destroy(e.PlayerObject);
+        uiScript.OnExit(e.PlayerScript.Index);
     }
 
     private void CheckForNewPlayers()
@@ -116,7 +115,7 @@ public class GameInspeector : MonoBehaviour
         playerScript.Index = playerState.Index;
         playerScript.OnPlayerExit += PlayerScript_OnPlayerExit;
         spawnedPlayers.Add(playerScript);
-        //UIEvent(this, EventArgs.Empty);
+        uiScript.OnSpawn(playerState.Index);
     }
 
     private void RemovePlayerState(PlayerIndex index)
