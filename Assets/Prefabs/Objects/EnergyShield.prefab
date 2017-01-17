@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114268600465101880}
   - component: {fileID: 114724332696635022}
   - component: {fileID: 54018299936364650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnergyShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}

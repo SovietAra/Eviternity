@@ -6,6 +6,8 @@ using XInputDotNetPure;
 public class Player : MonoBehaviour
 {
     public static float TeamHealth = 10f;
+    public static float HealthRegenerationMultiplicator = 1f;
+    public static float HealthRegenerationMulitplicatorOnDeath = 2f;
 
     private PlayerIndex index;
     private bool hasPlayerIndex;
@@ -39,10 +41,12 @@ public class Player : MonoBehaviour
     public GameObject PrimaryWeapon;
     public GameObject SecondaryWeapon;
     public GameObject Ability;
+    public GameObject SecondaryAbility;
 
     private Weapon primaryWeapon;
     private Weapon secondaryWeapon;
     private Ability ability;
+    private Ability secondaryAbility;
     private DamageAbleObject healthContainer;
 
     private Camera mainCamera;
@@ -67,7 +71,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private Vector3 newForce;
+    private Vector3 finalVelocity;
 
     public bool IsDead
     {
@@ -83,6 +87,7 @@ public class Player : MonoBehaviour
         primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
         secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
         ability = Instantiate(Ability, transform).GetComponent<Ability>();
+        secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
         mainCamera = Camera.main;
@@ -114,10 +119,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        physics.velocity = newForce;
-        newForce = Vector3.zero;
+        physics.velocity = finalVelocity;
+        finalVelocity = Vector3.zero;
+
         Borders();
-        physics.MovePosition(new Vector3(clampedX, transform .position .y, clampedZ)); //<- Buggy: bei physik movement entfernen da man sich sonst nicht bewegen kann
+        physics.MovePosition(new Vector3(clampedX, transform.position .y, clampedZ));
     }
 
     private void UpdateTimers()
@@ -130,7 +136,10 @@ public class Player : MonoBehaviour
         Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
-        newForce = (moveVector + velocity) * 100;
+        finalVelocity = (moveVector + velocity) * 100;
+
+        bool executed = false;
+
         if (state.Buttons.Start == ButtonState.Pressed)
         {
             TryPause();
@@ -143,10 +152,9 @@ public class Player : MonoBehaviour
 
         if(state.Buttons.B == ButtonState.Pressed)
         {
-            //unused
+            executed = TrySecondaryAbility();
         }
-
-        bool executed = false;
+        
         if (state.Buttons.X == ButtonState.Pressed)
         {
             executed = TryHeal();
@@ -251,21 +259,7 @@ public class Player : MonoBehaviour
     {
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
-            float addHealth = regenerationPerSecond * Time.deltaTime;
-            if (TeamHealth < addHealth)
-                addHealth = TeamHealth;
-
-            if (addHealth + healthContainer.Health > healthContainer.MaxHealth)
-            {
-                addHealth -= (addHealth + healthContainer.Health) - healthContainer.MaxHealth;
-            }
-
-            if (addHealth != 0)
-            {
-                healthContainer.Heal(addHealth);
-                UpdateTeamHealth(-addHealth);
-                return true;
-            }
+            return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
         }
         return false;
     }
@@ -320,6 +314,15 @@ public class Player : MonoBehaviour
         return false;
     }
     
+    private bool TrySecondaryAbility()
+    {
+        if (secondaryAbility != null)
+        {
+            return secondaryAbility.Use();
+        }
+        return false;
+    }
+
     private void TryExit()
     {
         if (OnPlayerExit != null)
@@ -330,10 +333,28 @@ public class Player : MonoBehaviour
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
     }
-
-    private void UpdateTeamHealth(float addHealth)
+    
+    private bool TakeTeamHealth(float addHealth, float teamHealthMultiplicator)
     {
-        TeamHealth += addHealth;
+        if(healthContainer.Health + addHealth > healthContainer.MaxHealth)
+        {
+            addHealth = healthContainer.MaxHealth - healthContainer.Health;
+        }
+
+        float subHealth = addHealth * teamHealthMultiplicator;
+        if (TeamHealth < subHealth)
+        {
+            addHealth = TeamHealth / teamHealthMultiplicator;
+            subHealth = addHealth * teamHealthMultiplicator;
+        }
+
+        if (addHealth > 0)
+        {
+            TeamHealth -= subHealth;
+            healthContainer.Heal(addHealth);
+            return true;
+        }
+        return false;
     }
 
     private void HealthContainer_OnDeath(object sender, EventArgs e)
@@ -345,14 +366,11 @@ public class Player : MonoBehaviour
         }
         else
         {
-            float addHealth = healthContainer.MaxHealth * 2;
-            if(TeamHealth < addHealth)
+            if(!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
             {
-                addHealth = TeamHealth / 2;
+                isDead = true;
+                Destroy(gameObject);
             }
-
-            UpdateTeamHealth(-addHealth);
-            healthContainer.Heal(addHealth);
         }
     }
 
