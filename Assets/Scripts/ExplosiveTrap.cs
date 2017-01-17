@@ -6,6 +6,7 @@ public class ExplosiveTrap : MonoBehaviour
 {
 
     private float distanceToObject;
+    private DamageAbleObject dmgobjct;
 
     [SerializeField]
     private bool triggerByCollision, triggerByRange;
@@ -16,7 +17,8 @@ public class ExplosiveTrap : MonoBehaviour
     [Range(1, 1000)]
     public int damage;
 
-    private DamageAbleObject dmgobjct;
+    [SerializeField]
+    private GameObject plane;
 
     // Use this for initialization
     void Start()
@@ -60,6 +62,8 @@ public class ExplosiveTrap : MonoBehaviour
                 item.DoDamage(damage);
             }
         }
+
+        Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y, transform.position.z), Quaternion.identity);
         Destroy(gameObject);
     }
 
