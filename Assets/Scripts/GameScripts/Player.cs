@@ -81,16 +81,21 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        mainCamera = Camera.main;
         elapsedDashTime = dashTime;  
            
         physics = GetComponent<Rigidbody>();
-        primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
-        secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
-        ability = Instantiate(Ability, transform).GetComponent<Ability>();
-        secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
+        if(PrimaryWeapon != null)
+            primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
+        if(SecondaryWeapon != null)
+            secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
+        if(Ability != null)
+            ability = Instantiate(Ability, transform).GetComponent<Ability>();
+        if(SecondaryWeapon != null)
+            secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
+
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
-        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
