@@ -2159,7 +2159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.4852941, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2198,7 +2198,6 @@ GameObject:
   - component: {fileID: 656351723}
   - component: {fileID: 656351722}
   - component: {fileID: 656351726}
-  - component: {fileID: 656351727}
   m_Layer: 5
   m_Name: StartMenu
   m_TagString: Untagged
@@ -2300,22 +2299,14 @@ MonoBehaviour:
   optionsMenu: {fileID: 270671991}
   creditScreen: {fileID: 20824722}
   playerSelectScreen: {fileID: 250539608}
-  startText: {fileID: 2043799992}
-  optionsText: {fileID: 1111079950}
-  restartText: {fileID: 255161637}
-  backText: {fileID: 653224905}
---- !u!114 &656351727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 656351721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc03fe8f62cfaf04c99934e9f02e17f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  startText: {fileID: 2043799990}
+  optionsText: {fileID: 1111079945}
+  restartText: {fileID: 255161632}
+  backText: {fileID: 1557135413}
   ES: {fileID: 1916995360}
+  backButtonCredits: {fileID: 653224903}
+  backButtonOptions: {fileID: 1557135411}
+  backButtonPlayerSelect: {fileID: 1307536289}
 --- !u!1 &673592683
 GameObject:
   m_ObjectHideFlags: 0
@@ -4186,7 +4177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.47794116, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
