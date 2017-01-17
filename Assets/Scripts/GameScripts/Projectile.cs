@@ -22,6 +22,10 @@ public class Projectile : MonoBehaviour
     [Range(0.01f, 5f)]
     private float invertGravityFactor = 0.5f;
 
+    [SerializeField]
+    [Range(0, 60)]
+    private float lifeTime = 10f;
+
     public bool DestroyOnCollision = true;
     public bool CollideWithOtherProjectiles = false;
 
@@ -38,7 +42,8 @@ public class Projectile : MonoBehaviour
     private Collider projectileCollider;
     private Rigidbody attachedBody;
     private float elapsedTime = 0f;
-    
+    private float elapsedLifeTime;
+
     private bool startTimer = false;
     private string attackerTag;
 
@@ -86,6 +91,12 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        elapsedLifeTime += Time.deltaTime;
+        if (elapsedLifeTime > lifeTime)
+        {
+            Destroy(gameObject);
+        }
+
         if (startTimer)
         {
             elapsedTime += Time.deltaTime;
