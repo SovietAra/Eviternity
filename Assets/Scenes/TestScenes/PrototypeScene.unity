@@ -257,6 +257,7 @@ MonoBehaviour:
   triggerByRange: 0
   range: 2.2
   damage: 1
+  plane: {fileID: 0}
 --- !u!23 &1161600548
 MeshRenderer:
   m_ObjectHideFlags: 0

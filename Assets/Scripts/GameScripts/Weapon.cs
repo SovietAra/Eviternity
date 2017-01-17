@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
     {
         elapsedAttackDelay += Time.deltaTime;
         elapsedHeatReductionDelay += Time.deltaTime;
-
+        
         UpdateReload();
         UpdateHeat();
     }

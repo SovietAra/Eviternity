@@ -17,6 +17,13 @@ public class GameInspeector : MonoBehaviour
     [Range(0, 10000f)]
     private float maxTeamHealth = 10;
 
+    [SerializeField]
+    [Range(0, 10)]
+    private float healthRegenerationMultiplicator = 1f;
+
+    [SerializeField]
+    [Range(0, 10)]
+    private float healthRegenerationMulitplicatorOnDeath = 2f;
 
     // Use this for initialization
     void Start ()
@@ -51,6 +58,8 @@ public class GameInspeector : MonoBehaviour
     {
         spawnedPlayers = new List<Player>();
         Player.TeamHealth = maxTeamHealth;
+        Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
+        Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
             SpawnPlayer(GlobalReferences.PlayerStates[i], new Vector3(i * 2, 1, 0));
