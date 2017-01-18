@@ -36,10 +36,15 @@ public class CameraFollowing : MonoBehaviour
             var y = Mathf.Clamp( (_cameraRotationXAngle / Camera.main.fieldOfView * (maxZ - z)), _camMinHeight,_camMaxHeight);
 
             // Position the camera in the center minus offset that is calculated using dirty tricks
+            var a = y/Mathf.Tan(_cameraRotationXAngle + Camera.main.fieldOfView/2);
+            var b = y/Mathf.Tan(_cameraRotationXAngle - Camera.main.fieldOfView/2);
+            var c = (a + b)/2;
 
-        //    middlePoint = new Vector3(x, y, z - (y / Mathf.Tan(_cameraRotationXAngle + Camera.main.fieldOfView / 2) + y / Mathf.Tan(_cameraRotationXAngle - Camera.main.fieldOfView / 2)) / 2);
+            Debug.Log(_cameraRotationXAngle);
 
-            middlePoint = new Vector3(x, y, z);
+            //middlePoint = new Vector3(x, y, z - c);
+
+            //middlePoint = new Vector3(x, y, z);
 
             transform.position = Vector3.Lerp(transform.position, middlePoint, Time.deltaTime*_cameraFollowSpeed);
          
