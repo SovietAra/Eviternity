@@ -195,9 +195,9 @@ public class Player : MonoBehaviour
                 executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
         }
 
-        if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+        if (state.Buttons.LeftShoulder == ButtonState.Pressed && !executed)
         {
-            if (primaryWeapon != null)
+            if (secondaryWeapon != null)
                 executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
         }
     }
