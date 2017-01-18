@@ -16,6 +16,7 @@ public class UIScript : MonoBehaviour
     public GameObject Player2HealthUI;
     public GameObject Player3HealthUI;
     public GameObject Player4HealthUI;
+    public Slider TeamHealthSlider;
     
     private int activePlayers = 0;
     private Slider P1healthSlider;
@@ -40,6 +41,7 @@ public class UIScript : MonoBehaviour
             {
                 UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
+            TeamHealthSlider.value = Player.TeamHealth;
         }
     }
 

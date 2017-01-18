@@ -3,9 +3,11 @@
  * Author: Fabian Subat
  * Date: 10.01.2016 - TBA
  */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour
     private float attackDelay = 1f;
     private float elapsedAttackDelay = 0f;
 
+    public Slider HealthSlider;
     private float enemyfront;
     private float distanceToPlayer;
     private GameObject targetPlayer;
@@ -56,6 +59,7 @@ public class Enemy : MonoBehaviour
     {
         dmgobjct = GetComponent<DamageAbleObject>();
         dmgobjct.OnDeath += Dmgobjct_OnDeath;
+        SetUI();
     }
 
     private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
@@ -67,6 +71,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CheckAlivePlayers();
+        SetUI();
 
         if (isValidTarget) //On player found
         {
@@ -94,6 +99,11 @@ public class Enemy : MonoBehaviour
 
             enemyfront = transform.eulerAngles.y;
         }
+    }
+
+    private void SetUI()
+    {
+        HealthSlider.value = dmgobjct.Health;
     }
 
     //TODO Fix Variable Attacks with new attack instantiation
