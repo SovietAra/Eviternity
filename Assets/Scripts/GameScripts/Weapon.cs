@@ -44,6 +44,9 @@ public class Weapon : MonoBehaviour
     [Range(0, 10)]
     private float heatReductionDelay = 2f;
 
+    [Range(0, 10)]
+    public float AnimationDuration = 0;
+
     public bool AllowShellRelaod = false;
     public bool UseAmmo = true;
     public bool AutoReload = true;
@@ -152,7 +155,7 @@ public class Weapon : MonoBehaviour
             projectile.AttackerTag = transform.parent.tag;
 
             if(OnPrimaryAttack != null)
-                OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile));
+                OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile, AnimationDuration));
 
             elapsedAttackDelay = 0f;
 

@@ -7,11 +7,13 @@ namespace Assets.Scripts
     {
         public GameObject ProjectileObject;
         public Projectile ProjectileScript;
+        public float AnimationDuration;
 
-        public WeaponEventArgs(GameObject projectileObject, Projectile projectileScript)
+        public WeaponEventArgs(GameObject projectileObject, Projectile projectileScript, float animationDuration)
         {
             ProjectileObject = projectileObject;
             ProjectileScript = projectileScript;
+            AnimationDuration = animationDuration;
         }
     }
 }
