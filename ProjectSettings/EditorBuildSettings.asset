@@ -17,3 +17,13 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/PlayerTestScene.unity
   - enabled: 1
     path: Assets/Scenes/TestScenes/PrototypeScene.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/MainMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/OptionsMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/RestartMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/PlayerAssignment.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/CharacterSelection.unity

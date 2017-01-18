@@ -64,8 +64,6 @@ using UnityEngine.EventSystems;
             ES.SetSelectedGameObject(backButtonOptions);
         }
 
-       // if (backText.enabled == false)            geht nicht da von anfang an backText.enabled == false
-         //   ES.SetSelectedGameObject(startText);
     }
 
     public void ExitPress()
