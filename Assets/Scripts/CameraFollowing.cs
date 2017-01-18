@@ -9,7 +9,7 @@ public class CameraFollowing : MonoBehaviour
     public float _camMinHeight = 10f;
     public float _camMaxHeight =30f;
     public float _cameraFollowSpeed = 3f;
-    public float _cameraRotationXAngle = 75f;
+    public float _cameraRotationXAngle = 55f;
     private float aspectRatio;
     private Vector3 middlePoint;
     
