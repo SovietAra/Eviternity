@@ -57,11 +57,14 @@ MonoBehaviour:
   reloadTimePerShell: 1
   reloadTimePerClip: 1
   maxHeat: 0
+  heat: 0
   heatPerShot: 0.1
   heatReductionPerSecond: 0.1
   heatReductionDelay: 0
-  AllowShellRelaod: 1
-  UseAmmo: 1
+  AnimationDuration: 3
+  AllowShellRelaod: 0
+  UseAmmo: 0
   AutoReload: 1
   ProduceHeat: 0
+  SecondaryWeapon: {fileID: 0}
   Projectile: {fileID: 1184549161438930, guid: f9bab6dad78bf7f41ac51c09e4b2f7d8, type: 2}
