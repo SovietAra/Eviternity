@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ExplosiveTrap : MonoBehaviour
 {
-
     private float distanceToObject;
     private DamageAbleObject dmgobjct;
 
@@ -66,7 +63,9 @@ public class ExplosiveTrap : MonoBehaviour
             explosionScript.Init(damage, damageRange, null, true);
         }
 
-        Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y + 0.01f, transform.position.z), Quaternion.identity);
+        if(plane != null)
+            Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y + 0.01f, transform.position.z), Quaternion.identity);
+
         Destroy(gameObject);
     }
 

@@ -503,8 +503,8 @@ GameObject:
   - component: {fileID: 1161600550}
   - component: {fileID: 1161600549}
   - component: {fileID: 1161600548}
-  - component: {fileID: 1161600547}
   - component: {fileID: 1161600552}
+  - component: {fileID: 1161600547}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged

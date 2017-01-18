@@ -97,7 +97,9 @@ MonoBehaviour:
   triggerByRange: 0
   range: 2.2
   damage: 1
-  plane: {fileID: 1120163616719624, guid: b8f9f2df118b9ec4ebc1f3e9b0d08cf7, type: 2}
+  damageRange: 5
+  plane: {fileID: 1157527102328806, guid: 6edcab201dfa45247bea9417c1d4abf4, type: 2}
+  explosion: {fileID: 1318014844589646, guid: fbb85103f81d24d43936e47bf760f26e, type: 2}
 --- !u!114 &114863037847780946
 MonoBehaviour:
   m_ObjectHideFlags: 1
