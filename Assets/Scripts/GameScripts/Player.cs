@@ -163,12 +163,12 @@ public class Player : MonoBehaviour
         
         if (state.Buttons.X == ButtonState.Pressed)
         {
-            executed = TryHeal();
+            executed = TryAbillity();
         }
 
         if (state.Buttons.Y == ButtonState.Pressed && !executed)
         {
-            executed = TryAbillity();
+            executed = TryHeal();
         }
 
         if (state.Buttons.A == ButtonState.Pressed && !executed)

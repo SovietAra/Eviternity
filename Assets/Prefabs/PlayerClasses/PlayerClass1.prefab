@@ -145,3 +145,5 @@ MonoBehaviour:
   SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
     type: 2}
   Ability: {fileID: 1106245875336466, guid: 3892a081e8b0cec4fa829c6f24345625, type: 2}
+  SecondaryAbility: {fileID: 1657859246270480, guid: ce02c73a09e0aff4db5afc1921376a5e,
+    type: 2}

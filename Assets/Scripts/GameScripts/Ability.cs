@@ -28,6 +28,10 @@ public class Ability : MonoBehaviour
     private float energyRegenerationPerSecond = 10f;
 
     [SerializeField]
+    [Range(0.0f, 1000f)]
+    private float energyRequiredOnce = 0;
+
+    [SerializeField]
     [Range(0.1f, 10f)]
     private float regnerationDelay = 2f;
 
@@ -47,7 +51,7 @@ public class Ability : MonoBehaviour
     private GameObject spawnObject = null;
 
     [SerializeField]
-    [Range(0.0f, 1000f)]
+    [Range(-100.0f, 100f)]
     private float spawnForwardDistance = 1;
 
     [SerializeField]
@@ -58,8 +62,10 @@ public class Ability : MonoBehaviour
 
     [SerializeField]
     [Range(1, 100)]
-    private int ObjectsAtTheSameTime = 1;
+    private int objectsAtTheSameTime = 1;
 
+    [SerializeField]
+    private bool parentObject = false;
 
     private List<GameObject> spawnedObjects;
     private bool active;
@@ -85,18 +91,24 @@ public class Ability : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     { 
-        if (active && (!activeOnKeyPressed || (activeOnKeyPressed && keyPressed)))
+        if (active && !activeOnKeyPressed)
+        {
+            keyPressed = false;
+            energy -= energyRequiredOnce;
+            Deactivate();
+        }
+        else if(active && activeOnKeyPressed && keyPressed)
         {
             keyPressed = false;
             energy -= energyRequiredPerSeconds * Time.deltaTime;
-            if (energy <= 0)
+            if(energy <= 0)
             {
-                Abort();
+                Deactivate();
             }
         }
         else if(active && activeOnKeyPressed && !keyPressed)
         {
-            Abort();
+            Deactivate();
         }
         else if(!active)
         {
@@ -132,6 +144,15 @@ public class Ability : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < spawnedObjects.Count; i++)
+        {
+            if (spawnedObjects[i] != null)
+            {
+                spawnedObjects.RemoveAt(i);
+                i--;
+            }
+        }
+
         if (OnActivated != null)
             OnActivated(this, null);
     }
@@ -154,12 +175,13 @@ public class Ability : MonoBehaviour
 
     private bool Spawn()
     {
-        if (spawnedObjects.Count == 0 || (allowMultiplyObjects && ObjectsAtTheSameTime < spawnedObjects.Count))
+        if (spawnedObjects.Count == 0 || (allowMultiplyObjects && objectsAtTheSameTime < spawnedObjects.Count))
         {
             GameObject gobj = Instantiate(spawnObject);
             gobj.transform.position = transform.parent.position + (transform.parent.forward * spawnForwardDistance) + spawnTranslation;
             gobj.transform.localRotation *= transform.parent.rotation;
-            gobj.transform.parent = transform;
+            if(parentObject)
+                gobj.transform.parent = transform;
             
             spawnedObjects.Add(gobj);
             if (OnObjectSpawned != null)
