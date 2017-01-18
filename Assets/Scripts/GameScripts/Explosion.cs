@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,8 @@ public class Explosion : MonoBehaviour
     private float removeDelay = 0.1f;
     private float elapsedTime = 0f;
     private bool overrideValues = true;
+
+    public event EventHandler<HitEventArgs> OnHit;
 
     public void Init(float damage, float radius, string ownerTag, float damageReduction, float teamDamageMultiplicator)
     {
@@ -116,7 +119,11 @@ public class Explosion : MonoBehaviour
             if (isTeam)
                 rangeDamage *= teamDamageMultiplicator;
 
-            if (rangeDamage > 0)
+            HitEventArgs hitArgs = new HitEventArgs(rangeDamage, ownerTag, other.gameObject, isTeam, true);
+            if (OnHit != null)
+                OnHit(this, hitArgs);
+
+            if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
                 healthContainer.DoDamage(rangeDamage);
 
             exploded = true;

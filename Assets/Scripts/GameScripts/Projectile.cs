@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using System;
+using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -46,6 +48,8 @@ public class Projectile : MonoBehaviour
 
     private bool startTimer = false;
     private string attackerTag;
+
+    public event EventHandler<HitEventArgs> OnHit;
 
     public float Damage
     {
@@ -135,7 +139,7 @@ public class Projectile : MonoBehaviour
             if (collisionObject != null)
             {
                 bool isTeam = AttackerTag != null && collisionObject.transform.CompareTag(AttackerTag);
-                DoDamage(collisionObject, damage, isTeam);
+                DoDamage(collisionObject.gameObject, collisionObject, damage, isTeam);
             }
         }
         else
@@ -147,15 +151,15 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void DoDamage(DamageAbleObject damageAbleObject, float damage, bool teamDamage)
+    private void DoDamage(GameObject victim, DamageAbleObject damageAbleObject, float damage, bool teamDamage)
     {
-        if (teamDamage)
+        HitEventArgs hitArgs = new HitEventArgs(damage * (DoTeamDamage ? TeamDamageMultiplicator : 1), attackerTag, victim, teamDamage, false);
+        if (OnHit != null)
+            OnHit(this, hitArgs);
+
+        if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
         {
-            damageAbleObject.DoDamage(damage * TeamDamageMultiplicator);
-        }
-        else
-        {
-            damageAbleObject.DoDamage(damage);
+            damageAbleObject.DoDamage(hitArgs.FinalDamage);
         }
     }
 }

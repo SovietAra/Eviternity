@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using System;
+using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
@@ -57,12 +59,21 @@ public class Weapon : MonoBehaviour
     private float elapsedHeatReductionDelay;
     private bool reloading;
 
+    public event EventHandler<WeaponEventArgs> OnPrimaryAttack;
+    public event EventHandler<WeaponEventArgs> OnSecondaryAttack;
+    public event EventHandler OnReloadBegin;
+    public event EventHandler OnReloadEnd;
+    public event EventHandler OnReloadAbort;
+
     private void Start()
     {
         elapsedAttackDelay = fireRate;
         currentClipAmmo = maxAmmoPerClip;
-        if(SecondaryWeapon != null)
+        if (SecondaryWeapon != null)
+        {
             secondaryWeapon = Instantiate(SecondaryWeapon, transform.parent).GetComponent<Weapon>();
+            secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
+        }
     }
 
     private void Update()
@@ -90,6 +101,8 @@ public class Weapon : MonoBehaviour
                         if (currentClipAmmo == maxAmmoPerClip)
                         {
                             reloading = false;
+                            if (OnReloadEnd != null)
+                                OnReloadEnd(this, EventArgs.Empty);
                         }
                     }
                 }
@@ -99,6 +112,9 @@ public class Weapon : MonoBehaviour
                     {
                         currentClipAmmo = maxAmmoPerClip;
                         reloading = false;
+
+                        if (OnReloadEnd != null)
+                            OnReloadEnd(this, EventArgs.Empty);
                     }
                 }
             }
@@ -125,12 +141,18 @@ public class Weapon : MonoBehaviour
             if (AllowShellRelaod && reloading)
             {
                 reloading = false;
+
+                if (OnReloadEnd != null)
+                    OnReloadEnd(this, EventArgs.Empty);
             }
 
             //TODO: smooth spray
-            GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + Random.Range(-(sprayAngle / 2f), (sprayAngle / 2f))), 0));
+            GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + UnityEngine.Random.Range(-(sprayAngle / 2f), (sprayAngle / 2f))), 0));
             Projectile projectile = gobj.GetComponent<Projectile>();
             projectile.AttackerTag = transform.parent.tag;
+
+            if(OnPrimaryAttack != null)
+                OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile));
 
             elapsedAttackDelay = 0f;
 
@@ -164,6 +186,11 @@ public class Weapon : MonoBehaviour
         }
         return false;
     }
+    private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        if (OnSecondaryAttack != null)
+            OnSecondaryAttack(sender, e);
+    }
 
     public void Reload()
     {
@@ -171,6 +198,8 @@ public class Weapon : MonoBehaviour
         {
             elapsedReloadTime = 0f;
             reloading = true;
+            if (OnReloadBegin != null)
+                OnReloadBegin(this, EventArgs.Empty);
         }
     }
 
@@ -180,6 +209,9 @@ public class Weapon : MonoBehaviour
         {
             elapsedReloadTime = 0f;
             reloading = false;
+
+            if (OnReloadAbort != null)
+                OnReloadAbort(this, EventArgs.Empty);
         }
     }
 }
