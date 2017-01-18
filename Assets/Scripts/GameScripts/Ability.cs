@@ -90,29 +90,40 @@ public class Ability : MonoBehaviour
 	
 	// Update is called once per frame
 	private void Update ()
-    { 
+    {
         if (active && !activeOnKeyPressed)
         {
             keyPressed = false;
-            energy -= energyRequiredOnce;
-            Deactivate();
+            if (energyRequiredOnce > 0)
+            {
+                energy -= energyRequiredOnce;
+                Deactivate();
+            }
+            else
+            {
+                energy -= energyRegenerationPerSecond * Time.deltaTime;
+                if (energy <= 0)
+                {
+                    Deactivate();
+                }
+            }
         }
-        else if(active && activeOnKeyPressed && keyPressed)
+        else if (active && activeOnKeyPressed && keyPressed)
         {
             keyPressed = false;
             energy -= energyRequiredPerSeconds * Time.deltaTime;
-            if(energy <= 0)
+            if (energy <= 0)
             {
                 Deactivate();
             }
         }
-        else if(active && activeOnKeyPressed && !keyPressed)
+        else if (active && activeOnKeyPressed && !keyPressed)
         {
             Deactivate();
         }
-        else if(!active)
+        else if (!active)
         {
-            if(regenerating)
+            if (regenerating)
             {
                 elapsedRegenerationDelay += Time.deltaTime;
                 if (elapsedRegenerationDelay > regnerationDelay)
@@ -129,7 +140,16 @@ public class Ability : MonoBehaviour
         keyPressed = true;
         AbortRegeneration();
 
-        if(spawnObjectOnActivation && spawnObject != null)
+        for (int i = 0; i < spawnedObjects.Count; i++)
+        {
+            if (spawnedObjects[i] != null)
+            {
+                spawnedObjects.RemoveAt(i);
+                i--;
+            }
+        }
+
+        if (spawnObjectOnActivation && spawnObject != null)
         {
             if(spawnOncePerActivation)
             {
@@ -141,15 +161,6 @@ public class Ability : MonoBehaviour
             else
             {
                 Spawn();
-            }
-        }
-
-        for (int i = 0; i < spawnedObjects.Count; i++)
-        {
-            if (spawnedObjects[i] != null)
-            {
-                spawnedObjects.RemoveAt(i);
-                i--;
             }
         }
 
