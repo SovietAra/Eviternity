@@ -39,7 +39,8 @@ public class UIScript : MonoBehaviour
         {
             foreach (GameObject player in CurrentPlayers)
             {
-                UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
+                if(player != null)
+                    UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
             TeamHealthSlider.value = Player.TeamHealth;
         }
