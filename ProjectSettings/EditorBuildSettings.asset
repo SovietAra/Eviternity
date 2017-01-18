@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/PlayerTestScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/main menu.unity
   - enabled: 0
     path: Assets/Scenes/PlayerTestScene.unity
@@ -17,3 +17,15 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/PlayerTestScene.unity
   - enabled: 1
     path: Assets/Scenes/TestScenes/PrototypeScene.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/MainMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/OptionsMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/RestartMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/PlayerAssignment.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/CharacterSelection.unity
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/Credits.unity
