@@ -82,7 +82,9 @@ public class Projectile : MonoBehaviour
     {
         projectileCollider = GetComponent<Collider>();      
         attachedBody = GetComponent<Rigidbody>();
-        attachedBody.velocity = (transform.forward * speed) + (InvertGravity ? new Vector3(0, invertGravityFactor, 0) : Vector3.zero);
+        if(attachedBody != null)
+            attachedBody.velocity = (transform.forward * speed) + (InvertGravity ? new Vector3(0, invertGravityFactor, 0) : Vector3.zero);
+
         if (CollideWithOtherProjectiles)
         {
             Physics.IgnoreLayerCollision(10, 10);
