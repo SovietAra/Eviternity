@@ -63,7 +63,7 @@ public class ExplosiveTrap : MonoBehaviour
             }
         }
 
-        Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y, transform.position.z), Quaternion.identity);
+        Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y + 0.01f, transform.position.z), Quaternion.identity);
         Destroy(gameObject);
     }
 
