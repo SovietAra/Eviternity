@@ -21,7 +21,7 @@ public class Collapse : MonoBehaviour {
     {
         elapsedGameTime += Time.deltaTime;
 
-        if (elapsedGameTime < timeToCollapse)
+        if (elapsedGameTime > timeToCollapse)
         {
             Destroy(gameObject);
         }

@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     
     private float elapsedDashTime = 0f;
+    private float elapsedReviveDelay = 0f;
+    private float attackInProgressTimer = 0f;
     
     private float angle;
     private Quaternion targetRotation;
@@ -35,6 +37,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
+
+    [SerializeField]
+    [Range(0.1f, 30f)]
+    private float reviveDelay = 2f;
 
     public bool Freeze = false;
     public bool RotateOnMove = false;
@@ -85,10 +91,19 @@ public class Player : MonoBehaviour
         elapsedDashTime = dashTime;  
            
         physics = GetComponent<Rigidbody>();
-        if(PrimaryWeapon != null)
+        if (PrimaryWeapon != null)
+        {
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
-        if(SecondaryWeapon != null)
+            primaryWeapon.OnPrimaryAttack += PrimaryWeapon_OnPrimaryAttack;
+            primaryWeapon.OnSecondaryAttack += PrimaryWeapon_OnSecondaryAttack;
+        }
+        if (SecondaryWeapon != null)
+        {
             secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
+            secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
+            secondaryWeapon.OnSecondaryAttack += SecondaryWeapon_OnSecondaryAttack;
+        }
+
         if(Ability != null)
             ability = Instantiate(Ability, transform).GetComponent<Ability>();
         if (SecondaryAbility != null)
@@ -96,7 +111,26 @@ public class Player : MonoBehaviour
 
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
+    }
 
+    private void SecondaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+    }
+
+    private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+    }
+
+    private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+    }
+
+    private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
     }
 
     // Update is called once per frame
@@ -107,9 +141,13 @@ public class Player : MonoBehaviour
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
-                if (!isDead)
+                UpdateTimers();
+                if (isDead)
                 {
-                    UpdateTimers();
+                    RevivePlayer();
+                }
+                else
+                {
                     Input(state);
                     UpdateVelocity();
                     UpdateRotation();
@@ -135,6 +173,12 @@ public class Player : MonoBehaviour
     private void UpdateTimers()
     {
         elapsedDashTime += Time.deltaTime;
+        if(isDead)
+            elapsedReviveDelay += Time.deltaTime;
+
+        if (attackInProgressTimer > 0)
+            attackInProgressTimer -= Time.deltaTime;
+
     }
 
     private void Input(GamePadState state)
@@ -157,48 +201,51 @@ public class Player : MonoBehaviour
             TryExit();
         }
 
-        if(state.Buttons.B == ButtonState.Pressed)
-        {
-            executed = TrySecondaryAbility();
-        }
-        
-        if (state.Buttons.X == ButtonState.Pressed)
-        {
-            executed = TryAbillity();
-        }
-
-        if (state.Buttons.Y == ButtonState.Pressed && !executed)
+        if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
         }
 
+        if (state.Buttons.B == ButtonState.Pressed && !executed)
+        {
+            executed = TrySecondaryAbility();
+        }
+        
+        if (state.Buttons.X == ButtonState.Pressed && !executed)
+        {
+            executed = TryAbillity();
+        }
+        
         if (state.Buttons.A == ButtonState.Pressed && !executed)
         {
             executed = TryDash();
         }
 
-        if (state.Triggers.Right > 0 && !executed)
+        if (attackInProgressTimer <= 0)
         {
-            if(primaryWeapon != null)
-                executed = primaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
-        }
+            if (state.Triggers.Right > 0 && !executed)
+            {
+                if (primaryWeapon != null)
+                    executed = primaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+            }
 
-        if (state.Triggers.Left > 0 && !executed)
-        {
-            if(secondaryWeapon != null)
-                executed = secondaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
-        }
+            if (state.Triggers.Left > 0 && !executed)
+            {
+                if (secondaryWeapon != null)
+                    executed = secondaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+            }
 
-        if(state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
-        {
-            if (primaryWeapon != null)
-                executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
-        }
+            if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+            {
+                if (primaryWeapon != null)
+                    executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            }
 
-        if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
-        {
-            if (primaryWeapon != null)
-                executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            if (state.Buttons.LeftShoulder == ButtonState.Pressed && !executed)
+            {
+                if (secondaryWeapon != null)
+                    executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            }
         }
     }
     
@@ -366,17 +413,25 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
+        isDead = true;
         if (TeamHealth == 0)
         {
-            isDead = true;
             Destroy(gameObject);
         }
-        else
+    }
+
+    private void RevivePlayer()
+    {
+        if (elapsedReviveDelay >= reviveDelay)
         {
-            if(!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
+            if (!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
             {
-                isDead = true;
                 Destroy(gameObject);
+            }
+            else
+            {
+                elapsedReviveDelay = 0f;
+                isDead = false;
             }
         }
     }
