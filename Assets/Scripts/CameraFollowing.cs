@@ -44,7 +44,7 @@ public class CameraFollowing : MonoBehaviour
 
             //middlePoint = new Vector3(x, y, z - c);
 
-            middlePoint = new Vector3(x, y, z-(_cameraRotationXAngle) *0.15f); //stupid magic numbers
+            middlePoint = new Vector3(x, y, z-(90F-_cameraRotationXAngle) *0.15f); //stupid magic numbers
             //middlePoint = new Vector3(x, y, z);
 
             transform.position = Vector3.Lerp(transform.position, middlePoint, Time.deltaTime*_cameraFollowSpeed);
