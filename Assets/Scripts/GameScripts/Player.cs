@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
                 {
                     UpdateTimers();
                     Input(state);
-                    UpdatePosition();
+                    UpdateVelocity();
                     UpdateRotation();
                 }
             }
@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
         Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
+
         finalVelocity = (moveVector + velocity) * 100;
 
         bool executed = false;
@@ -241,10 +242,10 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
 
-    private void UpdatePosition()
+    private void UpdateVelocity()
     {
         velocity *= 0.8f;
-        if (velocity.x < 0.1 && velocity.y > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
+        if (velocity.x < 0.1 && velocity.x > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
             velocity = Vector3.zero;
     }
 
