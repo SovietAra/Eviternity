@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 1566638101}
   - component: {fileID: 1566638100}
   - component: {fileID: 1566638104}
+  - component: {fileID: 1566638105}
   m_Layer: 5
   m_Name: CharacterSelection
   m_TagString: Untagged
@@ -684,6 +685,18 @@ MonoBehaviour:
   playerThreeAssigned: {fileID: 0}
   playerFourJoin: {fileID: 0}
   playerFourAssigned: {fileID: 0}
+--- !u!114 &1566638105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1566638099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c96a7f7f40e21d49977c23a54810a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ES: {fileID: 952343352}
 --- !u!1 &1587647984
 GameObject:
   m_ObjectHideFlags: 0
