@@ -27,6 +27,10 @@ public class Weapon : MonoBehaviour
     private float maxHeat = 50;
 
     [SerializeField]
+    [Range(0, 1000)]
+    private float heat = 0;
+
+    [SerializeField]
     [Range(0.1f, 1000)]
     private float heatPerShot = 1f;
 
@@ -42,11 +46,12 @@ public class Weapon : MonoBehaviour
     public bool UseAmmo = true;
     public bool AutoReload = true;
     public bool ProduceHeat = false;
-
+    public GameObject SecondaryWeapon;
     public GameObject Projectile;
+    private Weapon secondaryWeapon;
 
     private int currentClipAmmo;
-    private float currentHeat;
+    
     private float elapsedAttackDelay;
     private float elapsedReloadTime;
     private float elapsedHeatReductionDelay;
@@ -56,6 +61,8 @@ public class Weapon : MonoBehaviour
     {
         elapsedAttackDelay = fireRate;
         currentClipAmmo = maxAmmoPerClip;
+        if(SecondaryWeapon != null)
+            secondaryWeapon = Instantiate(SecondaryWeapon, transform.parent).GetComponent<Weapon>();
     }
 
     private void Update()
@@ -104,14 +111,16 @@ public class Weapon : MonoBehaviour
         {
             if (elapsedHeatReductionDelay >= heatReductionDelay)
             {
-                currentHeat -= heatReductionPerSecond * Time.deltaTime;
+                heat -= heatReductionPerSecond * Time.deltaTime;
+                if (heat < 0)
+                    heat = 0;
             }
         }
     }
 
     public virtual bool PrimaryAttack(Vector3 spawnPosition, Vector3 forward, float angle)
     {
-        if (elapsedAttackDelay >= fireRate && ((UseAmmo && currentClipAmmo > 0) || (ProduceHeat && currentHeat < maxHeat) || (!UseAmmo && !ProduceHeat)) && (!reloading || AllowShellRelaod))
+        if (elapsedAttackDelay >= fireRate && ((UseAmmo && currentClipAmmo > 0) || (ProduceHeat && heat < maxHeat) || (!UseAmmo && !ProduceHeat)) && (!reloading || AllowShellRelaod))
         {
             if (AllowShellRelaod && reloading)
             {
@@ -132,7 +141,7 @@ public class Weapon : MonoBehaviour
             else if (ProduceHeat)
             {
                 elapsedHeatReductionDelay = 0f;
-                currentHeat += heatPerShot;
+                heat += heatPerShot;
             }
 
             return true;
@@ -149,6 +158,10 @@ public class Weapon : MonoBehaviour
 
     public virtual bool SecondaryAttack(Vector3 spawnPosition, Vector3 forward, float angle)
     {
+        if (secondaryWeapon != null)
+        {
+            return secondaryWeapon.PrimaryAttack(spawnPosition, forward, angle);
+        }
         return false;
     }
 

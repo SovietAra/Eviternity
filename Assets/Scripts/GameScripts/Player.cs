@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     
     private float elapsedDashTime = 0f;
+    private float elapsedReviveDelay = 0f;
     
     private float angle;
     private Quaternion targetRotation;
@@ -35,6 +36,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
+
+    [SerializeField]
+    [Range(0.1f, 30f)]
+    private float reviveDelay = 2f;
 
     public bool Freeze = false;
     public bool RotateOnMove = false;
@@ -107,9 +112,13 @@ public class Player : MonoBehaviour
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
-                if (!isDead)
+                UpdateTimers();
+                if (isDead)
                 {
-                    UpdateTimers();
+                    RevivePlayer();
+                }
+                else
+                {
                     Input(state);
                     UpdateVelocity();
                     UpdateRotation();
@@ -135,6 +144,8 @@ public class Player : MonoBehaviour
     private void UpdateTimers()
     {
         elapsedDashTime += Time.deltaTime;
+        if(isDead)
+            elapsedReviveDelay += Time.deltaTime;
     }
 
     private void Input(GamePadState state)
@@ -195,9 +206,9 @@ public class Player : MonoBehaviour
                 executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
         }
 
-        if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+        if (state.Buttons.LeftShoulder == ButtonState.Pressed && !executed)
         {
-            if (primaryWeapon != null)
+            if (secondaryWeapon != null)
                 executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
         }
     }
@@ -366,17 +377,25 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
+        isDead = true;
         if (TeamHealth == 0)
         {
-            isDead = true;
             Destroy(gameObject);
         }
-        else
+    }
+
+    private void RevivePlayer()
+    {
+        if (elapsedReviveDelay >= reviveDelay)
         {
-            if(!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
+            if (!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
             {
-                isDead = true;
                 Destroy(gameObject);
+            }
+            else
+            {
+                elapsedReviveDelay = 0f;
+                isDead = false;
             }
         }
     }

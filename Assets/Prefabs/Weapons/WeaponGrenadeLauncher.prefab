@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4947996819483166}
   - component: {fileID: 114208867656121146}
   m_Layer: 0
-  m_Name: GrenadeLauncher
+  m_Name: WeaponGrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,4 +64,5 @@ MonoBehaviour:
   UseAmmo: 1
   AutoReload: 1
   ProduceHeat: 0
+  SecondaryWeapon: {fileID: 0}
   Projectile: {fileID: 1016596340005750, guid: fe64f63cb72f5f64485b1bfcc72af58f, type: 2}
