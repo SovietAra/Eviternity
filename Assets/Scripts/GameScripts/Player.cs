@@ -91,11 +91,13 @@ public class Player : MonoBehaviour
             secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
         if(Ability != null)
             ability = Instantiate(Ability, transform).GetComponent<Ability>();
-        if(SecondaryWeapon != null)
+        if (SecondaryAbility != null)
             secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
+
 
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
+
     }
 
     // Update is called once per frame
@@ -262,8 +264,10 @@ public class Player : MonoBehaviour
 
     private bool TryHeal()
     {
+        Debug.Log(healthContainer.Health);
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
+
             return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
         }
         return false;
@@ -357,6 +361,8 @@ public class Player : MonoBehaviour
         {
             TeamHealth -= subHealth;
             healthContainer.Heal(addHealth);
+            Debug.Log(TeamHealth);
+            Debug.Log(healthContainer.Health);
             return true;
         }
         return false;
