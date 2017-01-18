@@ -63,6 +63,9 @@ public class Ability : MonoBehaviour
     [SerializeField]
     [Range(1, 100)]
     private int objectsAtTheSameTime = 1;
+    
+    [Range(-10000f, 10000f)]
+    public float abilityValue = 0;
 
     [SerializeField]
     private bool parentObject = false;
@@ -80,6 +83,11 @@ public class Ability : MonoBehaviour
     public event EventHandler OnAbortRegeneration;
     public event EventHandler OnReachedMaxEnergy;
     public event EventHandler OnObjectSpawned;
+
+    public bool IsActive
+    {
+        get { return active; }
+    }
 
 	// Use this for initialization
 	private void Start ()
