@@ -87,7 +87,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4408113230437370}
   - component: {fileID: 33598412558969856}
-  - component: {fileID: 65168212884674602}
   - component: {fileID: 136684653366523224}
   - component: {fileID: 23878656344077102}
   - component: {fileID: 54364464727567890}
@@ -182,20 +181,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65168212884674602
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865923694238466}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114065369564636312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 3
-  moveSpeed: 3
+  moveSpeed: 7.7
   attackRange: 6
   viewRange: 15
   health: 110
