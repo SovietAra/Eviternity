@@ -13,19 +13,9 @@ public class IceZoneColor : MonoBehaviour {
     }
     void Update()
     {
-       
-        
-            //helps stop memory leaks
-            //if (materialColored != null)
-            //    UnityEditor.AssetDatabase.DeleteAsset(UnityEditor.AssetDatabase.GetAssetPath(materialColored));
-
-            //create a new material
             materialColored = new Material(Shader.Find("Transparent/Diffuse"));
             materialColored.color = ObjectColor;
             GetComponent<Renderer>().material = materialColored;
-
-        
-
     }
    
 }
