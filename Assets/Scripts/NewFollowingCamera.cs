@@ -53,7 +53,7 @@ public class NewFollowingCamera : MonoBehaviour
         float correctedZoomInBorders = zoomInBorders / 2f;
         float correctedZoomOutBorders = zoomOutBorders / 2f;
         for (int i = 0; i < followedObjects.Count; i++)
-        {
+        {if(followedObjects[i] != null) { 
             Vector3 viewPoint = camera.WorldToViewportPoint(followedObjects[i].position);
 
             Rect innerRect = new Rect(correctedZoomInBorders, correctedZoomInBorders, 1 - zoomInBorders, 1 - zoomInBorders);
@@ -62,10 +62,11 @@ public class NewFollowingCamera : MonoBehaviour
             if (!innerRect.Contains(viewPoint))
                 state = ZoomState.Stay;
 
-            if (!outerRect.Contains(viewPoint))
-            {
-                state = ZoomState.ZoomOut;
-                return state;
+                if (!outerRect.Contains(viewPoint))
+                {
+                    state = ZoomState.ZoomOut;
+                    return state;
+                }
             }
         }
 
@@ -80,7 +81,7 @@ public class NewFollowingCamera : MonoBehaviour
 
     private Vector3 FindCenterPoint()
     {
-        if (followedObjects.Count == 0)
+        if (followedObjects.Count == 0 || followedObjects[0] == null) 
             return camera.transform.forward;
 
         Vector3 bottommost = followedObjects[0].position, leftmost = followedObjects[0].position, upmost = followedObjects[0].position, rightmost = followedObjects[0].position;

@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     public GameObject SecondaryAbility;
 
     public bool OnIce;
+    public static Vector3 Checkpos;
     #endregion
 
     #region EventHandlers
