@@ -63,7 +63,8 @@ public class Enemy : MonoBehaviour
     {
         dmgobjct = GetComponent<DamageAbleObject>();
         dmgobjct.OnDeath += Dmgobjct_OnDeath;
-        primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
+        if(PrimaryWeapon != null)
+            primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
         SetUI();
     }
 
@@ -106,8 +107,9 @@ public class Enemy : MonoBehaviour
             }
             if (distanceToPlayer < attackRange)
             {
-                TryShoot();
-                primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
+                //TryShoot();
+                if(primaryWeapon != null)
+                    primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
             }
 
             enemyfront = transform.eulerAngles.y;
