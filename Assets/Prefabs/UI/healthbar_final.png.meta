@@ -1,12 +1,14 @@
 fileFormatVersion: 2
-guid: 77181f906cf4c19459cb80912f023e3c
-timeCreated: 1484753674
+guid: 037eb8ae19fcdf74695238cdd28e2ebd
+timeCreated: 1484827318
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: HealthbarFront
-    21300002: HealthbarFill
-    21300004: HealthbarBackground
+    21300000: healthbar_active
+    21300002: healthbar_inactive
+    21300004: healthbar_final_2
+    21300006: healthbar_fill
+    21300008: healthbar_background
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -73,24 +75,50 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthbarFront
+      name: healthbar_active
       rect:
         serializedVersion: 2
-        x: 26
-        y: 349
-        width: 957
-        height: 122
+        x: 15
+        y: 516
+        width: 979
+        height: 145
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: HealthbarFill
+      name: healthbar_inactive
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 347
+        width: 961
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: healthbar_final_2
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 415
+        width: 371
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: healthbar_fill
       rect:
         serializedVersion: 2
         x: 42
-        y: 216
+        y: 235
         width: 911
         height: 83
       alignment: 0
@@ -99,11 +127,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: HealthbarBackground
+      name: healthbar_background
       rect:
         serializedVersion: 2
         x: 26
-        y: 40
+        y: 53
         width: 957
         height: 122
       alignment: 0

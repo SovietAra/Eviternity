@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class RotationScript : MonoBehaviour
 {
-    public Camera Camera;
+    private Camera Camera;
     private Quaternion cameraRotation;
 
 	// Use this for initialization
 	void Start ()
     {
+        Camera = Camera.main;
         cameraRotation = Camera.transform.rotation;
 	}
 	

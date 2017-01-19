@@ -24,11 +24,13 @@ public class UIScript : MonoBehaviour
     private Image player2HealthBar;
     private Image player3HealthBar;
     private Image player4HealthBar;
-    //private Slider P1healthSlider;
-    //private Slider P2healthSlider;
-    //private Slider P3healthSlider;
-    //private Slider P4healthSlider;
     private int playerID;
+    private bool teamHealing = false;
+    public bool TeamHealing
+    {
+        get { return teamHealing; }
+        set { teamHealing = value; }
+    }
     private List<GameObject> CurrentPlayers;
 
     // Use this for initialization
@@ -47,8 +49,13 @@ public class UIScript : MonoBehaviour
                 if(player != null)
                     UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
-            teamhealthAmount = Player.TeamHealth / 30;
-            TeamHealthBar.fillAmount = teamhealthAmount;
+
+            if(teamHealing)
+            {
+                teamhealthAmount = Player.TeamHealth / 30;
+                TeamHealthBar.fillAmount = teamhealthAmount;
+                // Change image of teamhealthbar_decor
+            }
         }
     }
 
