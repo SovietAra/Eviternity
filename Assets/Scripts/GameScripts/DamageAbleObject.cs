@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Assets.Scripts;
 public class DamageAbleObject : MonoBehaviour
 {
     [SerializeField]
@@ -14,6 +14,8 @@ public class DamageAbleObject : MonoBehaviour
     private float maxHealth = 10;
 
     public event EventHandler OnDeath;
+    public event EventHandler<OnHealthChangedArgs> OnReceiveDamage;
+    public event EventHandler<OnHealthChangedArgs> OnReceiveHealth;
 
     public float Health
     {
@@ -38,22 +40,46 @@ public class DamageAbleObject : MonoBehaviour
 		
 	}
 
+    public virtual void DoDamage(float damage, GameObject statusEffect)
+    {
+        OnHealthChangedArgs args = new OnHealthChangedArgs(damage, statusEffect);
+        if (OnReceiveDamage != null)
+            OnReceiveDamage(this, args);
+
+        if (!args.Cancel)
+        {
+            health -= args.ChangeValue;
+            if (health <= 0)
+            {
+                if (OnDeath != null)
+                    OnDeath(this, EventArgs.Empty);
+            }
+        }
+    }
+
     public virtual void DoDamage(float damage)
     {
-        health -= damage;
-        if(health <= 0)
+        DoDamage(damage, null);
+    }
+
+    public virtual void Heal(float addHealth, GameObject statusEffect)
+    {
+        OnHealthChangedArgs args = new OnHealthChangedArgs(addHealth, statusEffect);
+        if (OnReceiveHealth != null)
+            OnReceiveHealth(this, args);
+
+        if (!args.Cancel)
         {
-            if (OnDeath != null)
-                OnDeath(this, EventArgs.Empty);
+            health += args.ChangeValue;
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
     }
 
     public virtual void Heal(float addHealth)
     {
-        health += addHealth;
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
+        Heal(addHealth, null);
     }
 }

@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
     private void Start ()
     {
         mainCamera = Camera.main;
+        mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
         elapsedDashTime = dashTime;  
            
         physics = GetComponent<Rigidbody>();
@@ -129,6 +130,8 @@ public class Player : MonoBehaviour
         }
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
+        healthContainer.OnReceiveDamage += HealthContainer_OnReceiveDamage;
+        healthContainer.OnReceiveHealth += HealthContainer_OnReceiveHealth;
     }
 
     // Update is called once per frame
@@ -164,8 +167,8 @@ public class Player : MonoBehaviour
         physics.velocity = finalVelocity + Physics.gravity;
         finalVelocity = Vector3.zero;
 
-        Borders();
-        physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
+        //Borders();
+       // physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
         CheckOverlappingObjects();
     }
     #endregion
@@ -564,6 +567,16 @@ public class Player : MonoBehaviour
                 isDead = false;
             }
         }
+    }
+    
+    private void HealthContainer_OnReceiveHealth(object sender, OnHealthChangedArgs e)
+    {
+        //Stun, slow, gift
+    }
+
+    private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
+    {
+
     }
     #endregion
 }
