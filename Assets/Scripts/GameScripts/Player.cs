@@ -65,6 +65,8 @@ public class Player : MonoBehaviour
     public GameObject SecondaryWeapon;
     public GameObject Ability;
     public GameObject SecondaryAbility;
+
+    public bool OnIce;
     #endregion
 
     #region EventHandlers
@@ -160,10 +162,15 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        physics.velocity = finalVelocity + Physics.gravity;
-        finalVelocity = Vector3.zero;
-
+    {if (!OnIce)
+        {
+            physics.velocity = finalVelocity + Physics.gravity;
+            finalVelocity = Vector3.zero;
+        }
+    else
+        {
+            InputOnIce();
+        }
         Borders();
         physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
         CheckOverlappingObjects();
@@ -566,4 +573,18 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+
+    public void InputOnIce()
+    {
+        physics.AddForce(finalVelocity);
+    }
+
+    public void PutOnIce()
+    {
+        OnIce = true;
+    }
+    public void PutOffIce()
+    {
+        OnIce = false;
+    }
 }
