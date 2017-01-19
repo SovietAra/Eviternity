@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     public GameObject SecondaryWeapon;
     public GameObject Ability;
     public GameObject SecondaryAbility;
+    public bool OnIce;
     #endregion
 
     #region EventHandlers
@@ -160,10 +161,18 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        physics.velocity = finalVelocity;
+        if (!OnIce)
+        {
+            physics.velocity = finalVelocity;
+            finalVelocity = Vector3.zero;
+        }
+        else
+        {
+            InputOnIce();
+        }
         finalVelocity = Vector3.zero;
-
         Borders();
+       
         physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
     }
     #endregion
@@ -331,6 +340,11 @@ public class Player : MonoBehaviour
             return 360 + value;
 
         return value;
+    }
+
+    private void InputOnIce()
+    {
+        physics.AddForce(finalVelocity);
     }
     #endregion
     #endregion
@@ -518,4 +532,13 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+
+    public void PutOnIce()
+    {
+        OnIce = true;
+    }
+    public void PutOffIce()
+    {
+        OnIce = false;
+    }
 }
