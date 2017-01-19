@@ -11,7 +11,6 @@ public class MenuScript : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        Debug.Log(ES);
         StoreSelected = ES.firstSelectedGameObject;
     }
 	

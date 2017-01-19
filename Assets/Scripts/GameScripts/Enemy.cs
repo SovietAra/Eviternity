@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -49,22 +50,32 @@ public class Enemy : MonoBehaviour
     private float enemyfront;
     private float distanceToPlayer;
     private GameObject targetPlayer;
-    public GameObject Projectile;
 
     private bool isValidTarget = false;
     private DamageAbleObject dmgobjct;
+    public GameObject PrimaryWeapon;
+    private Weapon primaryWeapon;
+
+    public UnityEvent onEnemyDeath;
 
     // Use this for initialization
     void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
         dmgobjct.OnDeath += Dmgobjct_OnDeath;
+        primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
         SetUI();
     }
 
+    /// <summary>
+    /// Called as the Entity gets destroyed
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
     {
         Destroy(gameObject);
+        onEnemyDeath.Invoke();
     }
 
     // Update is called once per frame
@@ -75,7 +86,9 @@ public class Enemy : MonoBehaviour
 
         if (isValidTarget) //On player found
         {
+            //Calculate Distance between Enemyinstance and Player
             distanceToPlayer = Vector3.Distance(targetPlayer.transform.position, transform.position);
+
             //Look at Player
             transform.rotation = Quaternion.Slerp(transform.rotation
                                                  , Quaternion.LookRotation(targetPlayer.transform.position - transform.position)
@@ -86,15 +99,15 @@ public class Enemy : MonoBehaviour
             {
                 transform.position += transform.forward * moveSpeed * Time.deltaTime;
             }
-            else if(distanceToPlayer < viewRange)
+            else if (distanceToPlayer < viewRange)
             {
                 targetPlayer = null;
                 isValidTarget = false;
             }
-
             if (distanceToPlayer < attackRange)
             {
                 TryShoot();
+                primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
             }
 
             enemyfront = transform.eulerAngles.y;
@@ -106,33 +119,17 @@ public class Enemy : MonoBehaviour
         HealthSlider.value = dmgobjct.Health;
     }
 
-    //TODO Fix Variable Attacks with new attack instantiation
+    /// <summary>
+    /// Called as soon as the targetplayer is in attack range.
+    /// </summary>
     private void TryShoot()
     {
-        //Todo: Ersetze code durch waffensystem und erstelle für alle gegnertypen Prefabs mit waffen, dann benötigst du keine unterscheidung mehr zwische klassen
+        //Maybe TODO : Create Specific Enemy Weapon Prefab
         elapsedAttackDelay += Time.deltaTime;
-        if (elapsedAttackDelay > attackDelay && enemyType == enemyTypes.Crawler)
+        if (elapsedAttackDelay > attackDelay)
         {
             elapsedAttackDelay = 0f;
-            GameObject gobj = Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
-            Projectile projectile = gobj.GetComponent<Projectile>();
-            projectile.AttackerTag = tag;
-        }
-        else if (elapsedAttackDelay > attackDelay && enemyType == enemyTypes.Mosquito)
-        {
-            elapsedAttackDelay = 0f;
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront + 27.5f, 0f));
-            Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront - 27.5f, 0f));
-            //print("I'm a Mosquito");
-        }
-        else if (elapsedAttackDelay > attackDelay && enemyType == enemyTypes.Mantis)
-        {
-            elapsedAttackDelay = 0f;
-            GameObject gobj = Instantiate(Projectile, transform.position + (transform.forward), Quaternion.Euler(0f, enemyfront, 0f));
-            Projectile projectile = gobj.GetComponent<Projectile>();
-            projectile.AttackerTag = transform.tag;
-            //print("I'm a Mantis");
+            primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
         }
     }
 

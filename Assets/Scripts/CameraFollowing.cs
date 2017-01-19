@@ -1,75 +1,65 @@
-﻿using System.Collections.Generic;
+﻿/* 
+ * Purpose: A camera that follows players
+ * Author: Daniel Masly & Maksym Hlaholiev
+ * Date: 18.01.2016 
+ */
+using System.Collections.Generic;
 using System.Linq;
-using Assets;
 using UnityEngine;
 
 public class CameraFollowing : MonoBehaviour
 {
     public List<GameObject> Controllers;
-    public float _camMinHeight = 10f;
-    public float _camMaxHeight =30f;
-    public float _cameraFollowSpeed = 3f;
-    public float _cameraRotationXAngle = 55f;
-    private float aspectRatio;
-    private Vector3 middlePoint;
-    
+    public float CamMinHeight = 10f;
+    public float CamMaxHeight = 30f;
+    public float CameraFollowSpeed = 3f;
+    public float CameraRotationXAngle = 55f;
 
-    void Start()
-    {        
-        aspectRatio = Screen.width / Screen.height;
-        Camera.main.transform.rotation = Quaternion.Euler(_cameraRotationXAngle, transform.rotation.y, transform.rotation.z);
+    // private float aspectRatio;
+    private Vector3 _middlePoint;
+
+    private void Start()
+    {
+        // aspectRatio = Screen.width / Screen.height;
+       transform.rotation = Quaternion.Euler(CameraRotationXAngle, transform.rotation.y, transform.rotation.z);
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         Controllers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
-        if (Controllers != null && Controllers.Count > 0)
-        {
-            var maxX = ConvertX(Controllers).Max();
-            var maxZ = ConvertZ(Controllers).Max();
-            var minX = ConvertX(Controllers).Min();
-            var minZ = ConvertZ(Controllers).Min();
+        if (Controllers == null || Controllers.Count <= 0) return;
+        var maxX = ConvertX(Controllers).Max();
+        var maxZ = ConvertZ(Controllers).Max();
+        var minX = ConvertX(Controllers).Min();
+        var minZ = ConvertZ(Controllers).Min();
 
-            var x = minX + (Mathf.Abs(maxX - minX) / 2F); // (maxX + minX) / 2;
-            var z = minZ + (Mathf.Abs(maxZ - minZ) / 2F); //(maxZ + minZ) / 2;
+        var x = minX + (Mathf.Abs(maxX - minX) / 2F); 
+        var z = minZ + (Mathf.Abs(maxZ - minZ) / 2F); 
 
-            var y = Mathf.Clamp( (_cameraRotationXAngle / Camera.main.fieldOfView * (maxZ - z)), _camMinHeight,_camMaxHeight);
+        var y = Mathf.Clamp((CameraRotationXAngle / Camera.main.fieldOfView * (maxZ - z)), CamMinHeight, CamMaxHeight);
 
-            // Position the camera in the center minus offset that is calculated using dirty tricks
-            var a = y/Mathf.Tan(_cameraRotationXAngle + Camera.main.fieldOfView/2);
-            var b = y/Mathf.Tan(_cameraRotationXAngle - Camera.main.fieldOfView/2);
-            var c = (a + b)/2;
+        // Position the camera in the center minus offset that is calculated using dirty tricks
 
-            Debug.Log(_cameraRotationXAngle);
-
-            //middlePoint = new Vector3(x, y, z - c);
-
-            middlePoint = new Vector3(x, y, z-(90F-_cameraRotationXAngle) *0.15f); //stupid magic numbers
-            //middlePoint = new Vector3(x, y, z);
-
-            transform.position = Vector3.Lerp(transform.position, middlePoint, Time.deltaTime*_cameraFollowSpeed);
+        //var a = y / Mathf.Tan(CameraRotationXAngle + Camera.main.fieldOfView / 2);
+        //var b = y / Mathf.Tan(CameraRotationXAngle - Camera.main.fieldOfView / 2);
+        //var c = (b + a) / 2;
 
 
-        }
+        // _middlePoint = new Vector3(x, y, z - c);
+
+          _middlePoint = new Vector3(x, y, z - (90F - CameraRotationXAngle) * 0.15f); //stupid magic numbers
+      //  _middlePoint = new Vector3(x, y, z);
+
+        transform.position = Vector3.Lerp(transform.position, _middlePoint, Time.deltaTime * CameraFollowSpeed);
     }
 
-    List<float> ConvertX(List<GameObject> controllers)
+    private static IEnumerable<float> ConvertX(IEnumerable<GameObject> controllers)
     {
-        var xs = new List<float>();
-        foreach (var playerController in controllers)
-        {
-            xs.Add(playerController.transform.position.x);
-        }
-        return xs;
+        return controllers.Select(playerController => playerController.transform.position.x).ToList();
     }
 
-    List<float> ConvertZ(List<GameObject> controllers)
+    private static IEnumerable<float> ConvertZ(IEnumerable<GameObject> controllers)
     {
-        var ys = new List<float>();
-        foreach (var playerController in controllers)
-        {
-            ys.Add(playerController.transform.position.z);
-        }
-        return ys;
+        return controllers.Select(playerController => playerController.transform.position.z).ToList();
     }
 }
