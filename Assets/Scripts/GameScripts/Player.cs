@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
     private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
     private Rigidbody physics;
     private GameObject transparentObject;
+
+    private GamePadState prevState;
     #endregion
 
     #region InspectorFields
@@ -155,6 +157,7 @@ public class Player : MonoBehaviour
                     UpdateVelocity();
                     UpdateRotation();
                 }
+                prevState = state;
             }
             else
             {
@@ -200,7 +203,7 @@ public class Player : MonoBehaviour
 
         bool executed = false;
 
-        if (state.Buttons.Start == ButtonState.Pressed)
+        if (state.Buttons.Start == ButtonState.Pressed && prevState.Buttons.Start == ButtonState.Released)
         {
             GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
         }
@@ -372,7 +375,7 @@ public class Player : MonoBehaviour
 
     private void UpdateVelocity()
     {
-        velocity *= 0.8f;
+        velocity = velocity * 0.8f;
         if (velocity.x < 0.1 && velocity.x > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
             velocity = Vector3.zero;
     }

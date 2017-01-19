@@ -33,6 +33,17 @@ public class GameInspeector : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(GlobalReferences.CurrentGameState == GlobalReferences.GameState.Play)
+        {
+            Time.timeScale = 1;
+            //Canvas deaktivieren
+        }
+        else if(GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
+        {
+            Time.timeScale = 0;
+            //Canvas aufrufen
+        }
+
         CheckForNewPlayers();
 
        List<GameObject> AvailablePlayer = new List<GameObject> (GameObject.FindGameObjectsWithTag("Player"));
