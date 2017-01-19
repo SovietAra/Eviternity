@@ -51,6 +51,7 @@ public class Weapon : MonoBehaviour
     public bool UseAmmo = true;
     public bool AutoReload = true;
     public bool ProduceHeat = false;
+    public bool HeatCooldown = false;
     public GameObject SecondaryWeapon;
     public GameObject Projectile;
     private Weapon secondaryWeapon;
@@ -61,6 +62,7 @@ public class Weapon : MonoBehaviour
     private float elapsedReloadTime;
     private float elapsedHeatReductionDelay;
     private bool reloading;
+    private bool overheat = false;
 
     public event EventHandler<WeaponEventArgs> OnPrimaryAttack;
     public event EventHandler<WeaponEventArgs> OnSecondaryAttack;
@@ -131,15 +133,18 @@ public class Weapon : MonoBehaviour
             if (elapsedHeatReductionDelay >= heatReductionDelay)
             {
                 heat -= heatReductionPerSecond * Time.deltaTime;
-                if (heat < 0)
+                if (heat <= 0)
+                {
                     heat = 0;
+                    overheat = false;
+                }
             }
         }
     }
 
     public virtual bool PrimaryAttack(Vector3 spawnPosition, Vector3 forward, float angle)
     {
-        if (elapsedAttackDelay >= fireRate && ((UseAmmo && currentClipAmmo > 0) || (ProduceHeat && heat < maxHeat) || (!UseAmmo && !ProduceHeat)) && (!reloading || AllowShellRelaod))
+        if (elapsedAttackDelay >= fireRate && ((UseAmmo && currentClipAmmo > 0) || (ProduceHeat && ((HeatCooldown && !overheat) || !HeatCooldown) && heat < maxHeat) || (!UseAmmo && !ProduceHeat)) && (!reloading || AllowShellRelaod))
         {
             if (AllowShellRelaod && reloading)
             {
@@ -167,6 +172,7 @@ public class Weapon : MonoBehaviour
             {
                 elapsedHeatReductionDelay = 0f;
                 heat += heatPerShot;
+                overheat = heat >= maxHeat;
             }
 
             return true;
@@ -189,6 +195,7 @@ public class Weapon : MonoBehaviour
         }
         return false;
     }
+
     private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         if (OnSecondaryAttack != null)
