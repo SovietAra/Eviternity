@@ -15,7 +15,7 @@ public class CameraFollowing : MonoBehaviour
     
 
     void Start()
-    {
+    {        
         aspectRatio = Screen.width / Screen.height;
         Camera.main.transform.rotation = Quaternion.Euler(_cameraRotationXAngle, transform.rotation.y, transform.rotation.z);
     }
@@ -48,7 +48,7 @@ public class CameraFollowing : MonoBehaviour
             //middlePoint = new Vector3(x, y, z);
 
             transform.position = Vector3.Lerp(transform.position, middlePoint, Time.deltaTime*_cameraFollowSpeed);
-         
+
 
         }
     }

@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
     private Rigidbody physics;
+    private GameObject transparentObject;
     #endregion
 
     #region InspectorFields
@@ -165,6 +166,7 @@ public class Player : MonoBehaviour
 
         Borders();
         physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
+        CheckOverlappingObjects();
     }
     #endregion
     
@@ -270,6 +272,53 @@ public class Player : MonoBehaviour
 
         clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
         clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
+    }
+
+    private void CheckOverlappingObjects()
+    {
+        Vector3 direction = mainCamera.transform.position - transform.position;
+        direction.Normalize();
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, direction, out hit))
+        {
+            if (hit.transform.gameObject.CompareTag("Untagged"))
+            {
+                if (ChangeColor(hit.transform.gameObject, 0.1f))
+                {
+                    if (transparentObject != null && transparentObject != hit.transform.gameObject)
+                        ChangeColor(transparentObject, 1);
+
+                    transparentObject = hit.transform.gameObject;
+                }
+                else
+                {
+                    if (transparentObject != null)
+                        ChangeColor(transparentObject, 1f);
+                }
+            }
+            else
+            {
+                if (transparentObject != null)
+                    ChangeColor(transparentObject, 1f);
+            }
+        }
+        else
+        {
+            if (transparentObject != null)
+                ChangeColor(transparentObject, 1f);
+        }
+    }
+
+    private bool ChangeColor(GameObject gameObject, float alpha)
+    {
+        Renderer prevRenderer = gameObject.GetComponent<Renderer>();
+        if (prevRenderer != null)
+        {
+            prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
+            return true;
+        }
+
+        return false;
     }
 
     #region Movement
