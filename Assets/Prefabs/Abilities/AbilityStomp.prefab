@@ -69,4 +69,5 @@ MonoBehaviour:
   spawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
+  abilityValue: 0
   parentObject: 0

@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        physics.velocity = finalVelocity;
+        physics.velocity = finalVelocity + Physics.gravity;
         finalVelocity = Vector3.zero;
 
         Borders();
@@ -461,7 +461,6 @@ public class Player : MonoBehaviour
         return false;
     }
     #endregion
-
 
     #region AbilityEvents
     private void SecondaryAbility_OnAbort(object sender, EventArgs e)
