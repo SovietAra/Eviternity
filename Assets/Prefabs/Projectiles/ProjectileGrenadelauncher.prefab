@@ -117,7 +117,7 @@ MonoBehaviour:
   DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
-  DoAOETeamDamage: 1
+  DoAOETeamDamage: 0
   Explosion: {fileID: 1318014844589646, guid: fbb85103f81d24d43936e47bf760f26e, type: 2}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 1

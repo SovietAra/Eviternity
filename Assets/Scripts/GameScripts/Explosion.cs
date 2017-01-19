@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,22 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {  
-    private float radius;   
-    private float damageReduction;
-    private float teamDamageMultiplicator;
-    private float damage;
+    [SerializeField]
+    [Range(0, 1000)]
+    private float radius = 5;
+       
+    [SerializeField]
+    [Range(0, 10)]
+    private float damageReduction = 1;
+
+    [SerializeField]
+    [Range(0, 2)]
+    private float teamDamageMultiplicator = 1;
+
+    [SerializeField]
+    [Range(-1000, 1000)]
+    private float damage = 1;
+
     private string ownerTag;
     private SphereCollider sphereExplosion;
     private bool exploded;
@@ -18,7 +31,9 @@ public class Explosion : MonoBehaviour
     private ParticleSystem effect;
     private float removeDelay = 0.1f;
     private float elapsedTime = 0f;
+    private bool overrideValues = true;
 
+    public event EventHandler<HitEventArgs> OnHit;
 
     public void Init(float damage, float radius, string ownerTag, float damageReduction, float teamDamageMultiplicator)
     {
@@ -31,6 +46,7 @@ public class Explosion : MonoBehaviour
             sphereExplosion = GetComponent<SphereCollider>();
 
         sphereExplosion.radius = radius;
+        overrideValues = false;
     }
 
     public void Init(float damage, float radius, string ownerTag, float teamDamageMultiplicator)
@@ -45,6 +61,14 @@ public class Explosion : MonoBehaviour
 
     private void Start()
     {
+        if (overrideValues)
+        {
+            if (gameObject.tag != null)
+            {
+                ownerTag = gameObject.tag;
+            }
+        }
+
         exploded = false;
         playOnce = false;
         if(sphereExplosion == null)
@@ -95,10 +119,14 @@ public class Explosion : MonoBehaviour
             if (isTeam)
                 rangeDamage *= teamDamageMultiplicator;
 
-            if (rangeDamage > 0)
+            HitEventArgs hitArgs = new HitEventArgs(rangeDamage, ownerTag, other.gameObject, isTeam, true);
+            if (OnHit != null)
+                OnHit(this, hitArgs);
+
+            if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
                 healthContainer.DoDamage(rangeDamage);
 
-            exploded = true; ;
+            exploded = true;
         }
 
     }

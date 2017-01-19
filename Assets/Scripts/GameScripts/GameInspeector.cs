@@ -42,14 +42,12 @@ public class GameInspeector : MonoBehaviour
             for (int i = 0; i < AvailablePlayer.Count; i++)
             {
                 Player player = AvailablePlayer[i].GetComponent<Player>();
-                if (player != null && !player.IsDead)
+                if (player != null)
                     AllPlayerDead = false;         
             }
             if (AllPlayerDead)
                 SpawnPlayers();
         }
-
-
 	}
 
     private void SpawnPlayers()

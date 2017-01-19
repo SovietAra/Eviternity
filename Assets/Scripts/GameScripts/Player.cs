@@ -5,21 +5,39 @@ using XInputDotNetPure;
 
 public class Player : MonoBehaviour
 {
+    #region statics
     public static float TeamHealth = 10f;
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
+    #endregion
 
+    #region privats
     private PlayerIndex index;
     private bool hasPlayerIndex;
     private bool isDead;
     private Vector3 moveVector;
     private Vector3 velocity;
-    
+    private Vector3 finalVelocity;
+
     private float elapsedDashTime = 0f;
-    
+    private float elapsedReviveDelay = 0f;
+    private float attackInProgressTimer = 0f;
+
     private float angle;
     private Quaternion targetRotation;
-    
+
+    private Weapon primaryWeapon;
+    private Weapon secondaryWeapon;
+    private Ability ability;
+    private Ability secondaryAbility;
+    private DamageAbleObject healthContainer;
+
+    private Camera mainCamera;
+    private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
+    private Rigidbody physics;
+    #endregion
+
+    #region InspectorFields
     [SerializeField]
     [Range(1f, 100f)]
     private float speed = 1f;
@@ -36,26 +54,24 @@ public class Player : MonoBehaviour
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
 
+    [SerializeField]
+    [Range(0.1f, 30f)]
+    private float reviveDelay = 2f;
+
     public bool Freeze = false;
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
     public GameObject SecondaryWeapon;
     public GameObject Ability;
     public GameObject SecondaryAbility;
+    #endregion
 
-    private Weapon primaryWeapon;
-    private Weapon secondaryWeapon;
-    private Ability ability;
-    private Ability secondaryAbility;
-    private DamageAbleObject healthContainer;
-
-    private Camera mainCamera;
-    private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
-    private Rigidbody physics;
-
+    #region EventHandlers
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
+    #endregion
 
+    #region Properties
     [HideInInspector]
     public PlayerIndex Index
     {
@@ -71,47 +87,66 @@ public class Player : MonoBehaviour
         }
     }
 
-    private Vector3 finalVelocity;
-
     public bool IsDead
     {
         get { return isDead; }
     }
+    #endregion
 
+    #region UnityMethodes
     // Use this for initialization
-    void Start ()
+    private void Start ()
     {
         mainCamera = Camera.main;
         elapsedDashTime = dashTime;  
            
         physics = GetComponent<Rigidbody>();
-        if(PrimaryWeapon != null)
+        if (PrimaryWeapon != null)
+        {
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
-        if(SecondaryWeapon != null)
+            primaryWeapon.OnPrimaryAttack += PrimaryWeapon_OnPrimaryAttack;
+            primaryWeapon.OnSecondaryAttack += PrimaryWeapon_OnSecondaryAttack;
+        }
+        if (SecondaryWeapon != null)
+        {
             secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
-        if(Ability != null)
-            ability = Instantiate(Ability, transform).GetComponent<Ability>();
-        if (SecondaryAbility != null)
-            secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
+            secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
+            secondaryWeapon.OnSecondaryAttack += SecondaryWeapon_OnSecondaryAttack;
+        }
 
+        if (Ability != null)
+        {
+            ability = Instantiate(Ability, transform).GetComponent<Ability>();
+            ability.OnActivated += Ability_OnActivated;
+            ability.OnAbort += Ability_OnAbort;
+        }
+        if (SecondaryAbility != null)
+        {
+            secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
+            secondaryAbility.OnActivated += SecondaryAbility_OnActivated;
+            secondaryAbility.OnAbort += SecondaryAbility_OnAbort;
+        }
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
-
     }
 
     // Update is called once per frame
-    void Update ()
+    private void Update()
     {
         if (hasPlayerIndex)
         {
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
-                if (!isDead)
+                UpdateTimers();
+                if (isDead)
                 {
-                    UpdateTimers();
+                    RevivePlayer();
+                }
+                else
+                {
                     Input(state);
-                    UpdatePosition();
+                    UpdateVelocity();
                     UpdateRotation();
                 }
             }
@@ -121,20 +156,28 @@ public class Player : MonoBehaviour
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
         }
-	}
+    }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         physics.velocity = finalVelocity;
         finalVelocity = Vector3.zero;
 
         Borders();
-        physics.MovePosition(new Vector3(clampedX, transform.position .y, clampedZ));
+        physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
     }
-
+    #endregion
+    
+    #region UpdateMethodes
     private void UpdateTimers()
     {
         elapsedDashTime += Time.deltaTime;
+        if(isDead)
+            elapsedReviveDelay += Time.deltaTime;
+
+        if (attackInProgressTimer > 0)
+            attackInProgressTimer -= Time.deltaTime;
+
     }
 
     private void Input(GamePadState state)
@@ -142,65 +185,94 @@ public class Player : MonoBehaviour
         Vector2 leftStick = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
+
         finalVelocity = (moveVector + velocity) * 100;
 
         bool executed = false;
 
         if (state.Buttons.Start == ButtonState.Pressed)
         {
-            TryPause();
+            GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
         }
 
         if(state.Buttons.Back == ButtonState.Pressed)
         {
-            TryExit();
+            if (OnPlayerExit != null)
+                OnPlayerExit(this, new PlayerEventArgs(gameObject, this));
         }
 
-        if(state.Buttons.B == ButtonState.Pressed)
-        {
-            executed = TrySecondaryAbility();
-        }
-        
-        if (state.Buttons.X == ButtonState.Pressed)
+        if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
         }
 
-        if (state.Buttons.Y == ButtonState.Pressed && !executed)
+        if (state.Buttons.B == ButtonState.Pressed && !executed)
+        {
+            executed = TrySecondaryAbility();
+        }
+        
+        if (state.Buttons.X == ButtonState.Pressed && !executed)
         {
             executed = TryAbillity();
         }
-
+        
         if (state.Buttons.A == ButtonState.Pressed && !executed)
         {
             executed = TryDash();
         }
 
-        if (state.Triggers.Right > 0 && !executed)
+        if (attackInProgressTimer <= 0)
         {
-            if(primaryWeapon != null)
-                executed = primaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
-        }
+            if (state.Triggers.Right > 0 && !executed)
+            {
+                if (primaryWeapon != null)
+                    executed = primaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+            }
 
-        if (state.Triggers.Left > 0 && !executed)
-        {
-            if(secondaryWeapon != null)
-                executed = secondaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
-        }
+            if (state.Triggers.Left > 0 && !executed)
+            {
+                if (secondaryWeapon != null)
+                    executed = secondaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+            }
 
-        if(state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
-        {
-            if (primaryWeapon != null)
-                executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
-        }
+            if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+            {
+                if (primaryWeapon != null)
+                    executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            }
 
-        if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
-        {
-            if (primaryWeapon != null)
-                executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            if (state.Buttons.LeftShoulder == ButtonState.Pressed && !executed)
+            {
+                if (secondaryWeapon != null)
+                    executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            }
         }
     }
-    
+
+    private void Borders()
+    {
+        xMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
+        zMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
+        xMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
+        zMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
+                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
+                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
+                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
+
+        clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
+        clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
+    }
+
+    #region Movement
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
     {
         if (!Freeze)
@@ -241,10 +313,10 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
 
-    private void UpdatePosition()
+    private void UpdateVelocity()
     {
         velocity *= 0.8f;
-        if (velocity.x < 0.1 && velocity.y > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
+        if (velocity.x < 0.1 && velocity.x > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
             velocity = Vector3.zero;
     }
 
@@ -260,7 +332,10 @@ public class Player : MonoBehaviour
 
         return value;
     }
+    #endregion
+    #endregion
 
+    #region Abilities
     private bool TryHeal()
     {
         if (healthContainer.Health < healthContainer.MaxHealth)
@@ -289,24 +364,32 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    private void CheckLifeSteal(Ability ability, float damage)
+    {
+        if (ability.IsActive && ability.name.Contains("LifeSteal"))
+        {
+            healthContainer.Heal(damage * ability.abilityValue);
+        }
+    }
+
     private Vector3 ScaleVactorUp(Vector3 vec)
     {
         float x = Math.Abs(vec.x);
         float y = Math.Abs(vec.y);
         float z = Math.Abs(vec.z);
         float diff = 0f;
-        if(x > y && x > z)
+        if (x > y && x > z)
             diff = 1 - x;
-        else if(y > z)
+        else if (y > z)
             diff = 1 - y;
         else
             diff = 1 - z;
-        
-        if(x != 0)
+
+        if (x != 0)
             x = vec.x + (vec.x > 0 ? diff : -diff);
-        if(y != 0)
+        if (y != 0)
             y = vec.y + (vec.y > 0 ? diff : -diff);
-        if(z != 0)
+        if (z != 0)
             z = vec.z + (vec.z > 0 ? diff : -diff);
         return new Vector3(x, y, z);
     }
@@ -328,18 +411,65 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+    #endregion
 
-    private void TryExit()
+
+    #region AbilityEvents
+    private void SecondaryAbility_OnAbort(object sender, EventArgs e)
     {
-        if (OnPlayerExit != null)
-            OnPlayerExit(this, new PlayerEventArgs(gameObject, this));
+        Ability ability = (Ability)sender;
     }
 
-    private void TryPause()
+    private void SecondaryAbility_OnActivated(object sender, EventArgs e)
     {
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
+        Ability ability = (Ability)sender;
     }
-    
+
+    private void Ability_OnAbort(object sender, EventArgs e)
+    {
+        Ability ability = (Ability)sender;
+    }
+
+    private void Ability_OnActivated(object sender, EventArgs e)
+    {
+        Ability ability = (Ability)sender;
+
+    }
+    #endregion
+
+    #region WeaponEvents
+    private void SecondaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+    }
+
+    private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+    }
+
+    private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+    }
+
+    private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+    }
+
+    private void ProjectileScript_OnHit(object sender, HitEventArgs e)
+    {
+        CheckLifeSteal(ability, e.FinalDamage);
+        CheckLifeSteal(secondaryAbility, e.FinalDamage);
+    }
+    #endregion
+
+    #region PlayerHealth
     private bool TakeTeamHealth(float addHealth, float teamHealthMultiplicator)
     {
         if(healthContainer.Health + addHealth > healthContainer.MaxHealth)
@@ -365,41 +495,27 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
+        isDead = true;
         if (TeamHealth == 0)
         {
-            isDead = true;
             Destroy(gameObject);
-        }
-        else
-        {
-            if(!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
-            {
-                isDead = true;
-                Destroy(gameObject);
-            }
         }
     }
 
-    private void Borders()
+    private void RevivePlayer()
     {
-        xMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).x;
-        zMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +
-                mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction *
-                (-mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin.y /
-                 mainCamera.ViewportPointToRay(new Vector3(1, 1)).direction.y)).z;
-        xMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).x;
-        zMin = (mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin +
-                mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction *
-                (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
-                 mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
-      
-        clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
-        clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
+        if (elapsedReviveDelay >= reviveDelay)
+        {
+            if (!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                elapsedReviveDelay = 0f;
+                isDead = false;
+            }
+        }
     }
+    #endregion
 }

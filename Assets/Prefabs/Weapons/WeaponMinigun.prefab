@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4926958602366876}
   - component: {fileID: 114506238796585466}
   m_Layer: 0
-  m_Name: Minigun
+  m_Name: WeaponMinigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,11 +57,15 @@ MonoBehaviour:
   reloadTimePerShell: 0.75
   reloadTimePerClip: 2
   maxHeat: 50
+  heat: 0
   heatPerShot: 1
-  heatReductionPerSecond: 0.5
+  heatReductionPerSecond: 10
   heatReductionDelay: 2
+  AnimationDuration: 0
   AllowShellRelaod: 0
-  UseAmmo: 1
+  UseAmmo: 0
   AutoReload: 1
-  ProduceHeat: 0
+  ProduceHeat: 1
+  SecondaryWeapon: {fileID: 1761816047511776, guid: 0e1bfa490b38c74499f9f6795992f005,
+    type: 2}
   Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}

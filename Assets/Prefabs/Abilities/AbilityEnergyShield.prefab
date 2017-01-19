@@ -57,6 +57,7 @@ MonoBehaviour:
   energy: 100
   energyRequiredPerSeconds: 5
   energyRegenerationPerSecond: 20
+  energyRequiredOnce: 0
   regnerationDelay: 1.38
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 1
@@ -67,4 +68,5 @@ MonoBehaviour:
   spawnForwardDistance: 3
   spawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
-  ObjectsAtTheSameTime: 1
+  objectsAtTheSameTime: 1
+  parentObject: 1

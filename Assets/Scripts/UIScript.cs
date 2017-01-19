@@ -16,12 +16,18 @@ public class UIScript : MonoBehaviour
     public GameObject Player2HealthUI;
     public GameObject Player3HealthUI;
     public GameObject Player4HealthUI;
-    
+    public Image TeamHealthBar;
+
+    private float teamhealthAmount;
     private int activePlayers = 0;
-    private Slider P1healthSlider;
-    private Slider P2healthSlider;
-    private Slider P3healthSlider;
-    private Slider P4healthSlider;
+    private Image player1HealthBar;
+    private Image player2HealthBar;
+    private Image player3HealthBar;
+    private Image player4HealthBar;
+    //private Slider P1healthSlider;
+    //private Slider P2healthSlider;
+    //private Slider P3healthSlider;
+    //private Slider P4healthSlider;
     private int playerID;
     private List<GameObject> CurrentPlayers;
 
@@ -38,8 +44,11 @@ public class UIScript : MonoBehaviour
         {
             foreach (GameObject player in CurrentPlayers)
             {
-                UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
+                if(player != null)
+                    UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
+            teamhealthAmount = Player.TeamHealth / 30;
+            TeamHealthBar.fillAmount = teamhealthAmount;
         }
     }
 
@@ -61,25 +70,25 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    P1healthSlider.value = damageAbleObject.Health;
+                    player1HealthBar.fillAmount = damageAbleObject.Health / 10;
                 }
                 break;
 
             case PlayerIndex.Two:
                 {
-                    P2healthSlider.value = damageAbleObject.Health;
+                    player2HealthBar.fillAmount = damageAbleObject.Health / 10;
                 }
                 break;
 
             case PlayerIndex.Three:
                 {
-                    P3healthSlider.value = damageAbleObject.Health;
+                    player3HealthBar.fillAmount = damageAbleObject.Health / 10;
                 }
                 break;
 
             case PlayerIndex.Four:
                 {
-                    P4healthSlider.value = damageAbleObject.Health;
+                    player4HealthBar.fillAmount = damageAbleObject.Health / 10;
                 }
                 break;
 
@@ -94,22 +103,22 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    Destroy(P1healthSlider.gameObject);
+                    Destroy(player1HealthBar.gameObject);
                 }
                 break;
             case PlayerIndex.Two:
                 {
-                    Destroy(P2healthSlider.gameObject);
+                    Destroy(player2HealthBar.gameObject);
                 }
                 break;
             case PlayerIndex.Three:
                 {
-                    Destroy(P3healthSlider.gameObject);
+                    Destroy(player3HealthBar.gameObject);
                 }
                 break;
             case PlayerIndex.Four:
                 {
-                    Destroy(P4healthSlider.gameObject);
+                    Destroy(player4HealthBar.gameObject);
                 }
                 break;
 
@@ -126,29 +135,29 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.One:
                 {
                     GameObject P1 = Instantiate(Player1HealthUI);
-                    P1healthSlider = P1.GetComponent<Slider>();
-                    P1healthSlider.transform.SetParent(UICanvas, false);
+                    player1HealthBar = P1.GetComponent<Image>();
+                    player1HealthBar.transform.SetParent(UICanvas, false);
                 }
                 break;
             case PlayerIndex.Two:
                 {
                     GameObject P2 = Instantiate(Player2HealthUI);
-                    P2healthSlider = P2.GetComponent<Slider>();
-                    P2healthSlider.transform.SetParent(UICanvas, false);
+                    player2HealthBar = P2.GetComponent<Image>();
+                    player2HealthBar.transform.SetParent(UICanvas, false);
                 }
                 break;
             case PlayerIndex.Three:
                 {
                     GameObject P3 = Instantiate(Player3HealthUI);
-                    P3healthSlider = P3.GetComponent<Slider>();
-                    P3healthSlider.transform.SetParent(UICanvas, false);
+                    player3HealthBar = P3.GetComponent<Image>();
+                    player3HealthBar.transform.SetParent(UICanvas, false);
                 }
                 break;
             case PlayerIndex.Four:
                 {
                     GameObject P4 = Instantiate(Player4HealthUI);
-                    P4healthSlider = P4.GetComponent<Slider>();
-                    P4healthSlider.transform.SetParent(UICanvas, false);
+                    player4HealthBar = P4.GetComponent<Image>();
+                    player4HealthBar.transform.SetParent(UICanvas, false);
                 }
                 break;
 

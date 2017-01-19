@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ExplosiveTrap : MonoBehaviour
 {
-
     private float distanceToObject;
     private DamageAbleObject dmgobjct;
 
@@ -18,7 +15,14 @@ public class ExplosiveTrap : MonoBehaviour
     public int damage;
 
     [SerializeField]
+    [Range(0, 100f)]
+    private float damageRange = 5;
+
+    [SerializeField]
     private GameObject plane;
+
+    [SerializeField]
+    private GameObject explosion;
 
     // Use this for initialization
     void Start()
@@ -53,17 +57,15 @@ public class ExplosiveTrap : MonoBehaviour
 
     private void Detonate()
     {
-        DamageAbleObject[] damageAbleObjects = FindObjectsOfType<DamageAbleObject>();
-        foreach (DamageAbleObject item in damageAbleObjects)
+        if (explosion != null)
         {
-            distanceToObject = Vector3.Distance(item.transform.position, transform.position);
-            if (distanceToObject < range)
-            {
-                item.DoDamage(damage);
-            }
+            Explosion explosionScript = Instantiate(explosion, transform.position, transform.rotation).GetComponent<Explosion>();
+            explosionScript.Init(damage, damageRange, null, true);
         }
 
-        Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y + 0.01f, transform.position.z), Quaternion.identity);
+        if(plane != null)
+            Instantiate(plane, new Vector3(transform.position.x, transform.position.y - transform.localScale.y + 0.01f, transform.position.z), Quaternion.identity);
+
         Destroy(gameObject);
     }
 
