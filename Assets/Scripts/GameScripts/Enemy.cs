@@ -57,7 +57,8 @@ public class Enemy : MonoBehaviour
     private Weapon primaryWeapon;
 
     public UnityEvent onEnemyDeath;
-
+    private Rigidbody physics;
+    private Vector3 movement;
     // Use this for initialization
     void Start()
     {
@@ -65,6 +66,9 @@ public class Enemy : MonoBehaviour
         dmgobjct.OnDeath += Dmgobjct_OnDeath;
         if(PrimaryWeapon != null)
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
+
+        physics = GetComponent<Rigidbody>();
+
         SetUI();
     }
 
@@ -98,7 +102,7 @@ public class Enemy : MonoBehaviour
             //Follow Player
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                transform.position += transform.forward * moveSpeed * Time.deltaTime;
+                movement = transform.forward * moveSpeed * Time.deltaTime * 100;
             }
             else if (distanceToPlayer < viewRange)
             {
@@ -114,6 +118,12 @@ public class Enemy : MonoBehaviour
 
             enemyfront = transform.eulerAngles.y;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        physics.velocity = movement + Physics.gravity;
+        movement = Vector3.zero;
     }
 
     private void SetUI()
