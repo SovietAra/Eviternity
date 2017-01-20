@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     private GameObject transparentObject;
 
     private GamePadState prevState;
+
+    private GameObject mainGameObject;
+    private UIScript uiScript;
     #endregion
 
     #region InspectorFields
@@ -106,8 +109,10 @@ public class Player : MonoBehaviour
     {
         mainCamera = Camera.main;
         mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
-        elapsedDashTime = dashTime;  
-           
+        elapsedDashTime = dashTime;
+        mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
+        uiScript = mainGameObject.GetComponent<UIScript>();
+
         physics = GetComponent<Rigidbody>();
         if (PrimaryWeapon != null)
         {
@@ -408,6 +413,7 @@ public class Player : MonoBehaviour
     {
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
+            uiScript.ActivateTeamBar();
             return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
         }
         return false;
