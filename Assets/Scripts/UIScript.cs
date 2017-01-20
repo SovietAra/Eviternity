@@ -17,20 +17,16 @@ public class UIScript : MonoBehaviour
     public GameObject Player3HealthUI;
     public GameObject Player4HealthUI;
     public Image TeamHealthBar;
+    public Image TeamHealthBar_Border;
+    public Sprite TeamHealthActive;
+    public Sprite TeamHealthInactive;
 
     private float teamhealthAmount;
-    private int activePlayers = 0;
     private Image player1HealthBar;
     private Image player2HealthBar;
     private Image player3HealthBar;
     private Image player4HealthBar;
-    private int playerID;
-    //private bool teamHealing = false;
-    //public bool TeamHealing
-    //{
-    //    get { return teamHealing; }
-    //    set { teamHealing = value; }
-    //}
+    private bool isHealing = false;
     private List<GameObject> CurrentPlayers;
 
     // Use this for initialization
@@ -41,17 +37,39 @@ public class UIScript : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {       
+    {
+        Debug.Log(CurrentPlayers.Count);
         if (CurrentPlayers != null)
         {
             foreach (GameObject player in CurrentPlayers)
             {
-                if(player != null)
+                if (player != null)
                     UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
 
-            teamhealthAmount = Player.TeamHealth / 30;
-            TeamHealthBar.fillAmount = teamhealthAmount;
+            if (CurrentPlayers.Count == 0)
+            {
+                UICanvas.SetActive(false);
+            }
+            else if (CurrentPlayers.Count >= 1)
+            {
+                if(UICanvas.activeInHierarchy == false)
+                {
+                    UICanvas.SetActive(true);
+                }
+
+                if (isHealing)
+                {
+                    teamhealthAmount = Player.TeamHealth / 30;
+                    TeamHealthBar.fillAmount = teamhealthAmount;
+                    TeamHealthBar_Border.GetComponent<Image>().sprite = TeamHealthActive;
+                }
+                else
+                {
+                    TeamHealthBar_Border.GetComponent<Image>().sprite = TeamHealthInactive;
+                }
+                isHealing = false;
+            }
         }
     }
 
@@ -65,6 +83,11 @@ public class UIScript : MonoBehaviour
     {
         CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         RemoveUI(index);
+    }
+
+    internal void ActivateTeamBar()
+    {
+        isHealing = true;
     }
 
     private void UpdateHealth(Player player, DamageAbleObject damageAbleObject)
