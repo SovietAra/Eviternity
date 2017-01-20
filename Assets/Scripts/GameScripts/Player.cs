@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
     private Rigidbody physics;
+    private GameObject transparentObject;
+
+    private GamePadState prevState;
     #endregion
 
     #region InspectorFields
@@ -64,6 +67,9 @@ public class Player : MonoBehaviour
     public GameObject SecondaryWeapon;
     public GameObject Ability;
     public GameObject SecondaryAbility;
+
+    public bool OnIce;
+    public static Vector3 Checkpos;
     #endregion
 
     #region EventHandlers
@@ -98,6 +104,7 @@ public class Player : MonoBehaviour
     private void Start ()
     {
         mainCamera = Camera.main;
+        mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
         elapsedDashTime = dashTime;  
            
         physics = GetComponent<Rigidbody>();
@@ -128,6 +135,8 @@ public class Player : MonoBehaviour
         }
         healthContainer = GetComponent<DamageAbleObject>();
         healthContainer.OnDeath += HealthContainer_OnDeath;
+        healthContainer.OnReceiveDamage += HealthContainer_OnReceiveDamage;
+        healthContainer.OnReceiveHealth += HealthContainer_OnReceiveHealth;
     }
 
     // Update is called once per frame
@@ -149,6 +158,7 @@ public class Player : MonoBehaviour
                     UpdateVelocity();
                     UpdateRotation();
                 }
+                prevState = state;
             }
             else
             {
@@ -159,12 +169,16 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
-        physics.velocity = finalVelocity;
-        finalVelocity = Vector3.zero;
-
-        Borders();
-        physics.MovePosition(new Vector3(clampedX, transform.position.y, clampedZ));
+    {if (!OnIce)
+        {
+            physics.velocity = finalVelocity + Physics.gravity;
+            finalVelocity = Vector3.zero;
+        }
+    else
+        {
+            InputOnIce();
+        }
+        CheckOverlappingObjects();
     }
     #endregion
     
@@ -190,7 +204,7 @@ public class Player : MonoBehaviour
 
         bool executed = false;
 
-        if (state.Buttons.Start == ButtonState.Pressed)
+        if (state.Buttons.Start == ButtonState.Pressed && prevState.Buttons.Start == ButtonState.Released)
         {
             GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
         }
@@ -272,6 +286,53 @@ public class Player : MonoBehaviour
         clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
     }
 
+    private void CheckOverlappingObjects()
+    {
+        Vector3 direction = mainCamera.transform.position - transform.position;
+        direction.Normalize();
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, direction, out hit))
+        {
+            if (hit.transform.gameObject.CompareTag("Untagged"))
+            {
+                if (ChangeColor(hit.transform.gameObject, 0.1f))
+                {
+                    if (transparentObject != null && transparentObject != hit.transform.gameObject)
+                        ChangeColor(transparentObject, 1);
+
+                    transparentObject = hit.transform.gameObject;
+                }
+                else
+                {
+                    if (transparentObject != null)
+                        ChangeColor(transparentObject, 1f);
+                }
+            }
+            else
+            {
+                if (transparentObject != null)
+                    ChangeColor(transparentObject, 1f);
+            }
+        }
+        else
+        {
+            if (transparentObject != null)
+                ChangeColor(transparentObject, 1f);
+        }
+    }
+
+    private bool ChangeColor(GameObject gameObject, float alpha)
+    {
+        Renderer prevRenderer = gameObject.GetComponent<Renderer>();
+        if (prevRenderer != null)
+        {
+            prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
+            return true;
+        }
+
+        return false;
+    }
+
     #region Movement
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
     {
@@ -315,7 +376,7 @@ public class Player : MonoBehaviour
 
     private void UpdateVelocity()
     {
-        velocity *= 0.8f;
+        velocity = velocity * 0.8f;
         if (velocity.x < 0.1 && velocity.x > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
             velocity = Vector3.zero;
     }
@@ -412,7 +473,6 @@ public class Player : MonoBehaviour
         return false;
     }
     #endregion
-
 
     #region AbilityEvents
     private void SecondaryAbility_OnAbort(object sender, EventArgs e)
@@ -517,5 +577,29 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
+    private void HealthContainer_OnReceiveHealth(object sender, OnHealthChangedArgs e)
+    {
+        //Stun, slow, gift
+    }
+
+    private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
+    {
+
+    }
     #endregion
+
+    public void InputOnIce()
+    {
+        physics.AddForce(finalVelocity);
+    }
+
+    public void PutOnIce()
+    {
+        OnIce = true;
+    }
+    public void PutOffIce()
+    {
+        OnIce = false;
+    }
 }

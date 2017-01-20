@@ -87,11 +87,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4408113230437370}
   - component: {fileID: 33598412558969856}
-  - component: {fileID: 65168212884674602}
+  - component: {fileID: 136684653366523224}
   - component: {fileID: 23878656344077102}
+  - component: {fileID: 54364464727567890}
   - component: {fileID: 114773656206042616}
   - component: {fileID: 114206361289056408}
-  - component: {fileID: 54364464727567890}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -181,20 +181,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65168212884674602
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865923694238466}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114065369564636312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,14 +264,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 3
-  moveSpeed: 3
+  moveSpeed: 7.7
   attackRange: 6
   viewRange: 15
   health: 110
   enemyType: 1
   attackDelay: 1
   HealthSlider: {fileID: 114205726039098528}
-  Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}
+  PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
+    type: 2}
+  onEnemyDeath:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114237613828453458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +373,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!136 &136684653366523224
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1865923694238466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &222614408661622910
 CanvasRenderer:
   m_ObjectHideFlags: 1

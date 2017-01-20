@@ -150,7 +150,7 @@ public class Ability : MonoBehaviour
 
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
-            if (spawnedObjects[i] != null)
+            if (spawnedObjects[i] == null)
             {
                 spawnedObjects.RemoveAt(i);
                 i--;

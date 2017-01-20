@@ -11,5 +11,5 @@ public static class GlobalReferences
 
     public static List<PlayerState> PlayerStates = new List<PlayerState>();
 
-    public static GameState CurrentGameState;
+    public static GameState CurrentGameState = GameState.Play;
 }

@@ -10,6 +10,8 @@ public class GameInspeector : MonoBehaviour
     private List<Player> spawnedPlayers;
     private UIScript uiScript;
 
+    public GameObject PauseMenuCanvas;
+
 
     [SerializeField]
     [Range(0, 10000f)]
@@ -33,22 +35,47 @@ public class GameInspeector : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        Pause();
+
         CheckForNewPlayers();
 
-       List<GameObject> AvailablePlayer = new List<GameObject> (GameObject.FindGameObjectsWithTag("Player"));
-        if(AvailablePlayer != null)
+        List<GameObject> AvailablePlayer = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+        if (AvailablePlayer != null)
         {
             bool AllPlayerDead = true;
             for (int i = 0; i < AvailablePlayer.Count; i++)
             {
                 Player player = AvailablePlayer[i].GetComponent<Player>();
                 if (player != null)
-                    AllPlayerDead = false;         
+                    AllPlayerDead = false;
             }
             if (AllPlayerDead)
                 SpawnPlayers();
         }
-	}
+    }
+
+    private void Pause()
+    {
+        if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Play)
+        {
+            Time.timeScale = 1;
+            PauseMenuCanvas.SetActive(false);
+            Debug.Log(GlobalReferences.CurrentGameState);
+        }
+        else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
+        {
+            Time.timeScale = 0;
+            if (PauseMenuCanvas.activeInHierarchy == false)
+            {
+                PauseMenuCanvas.SetActive(true);
+            }            
+        }
+    }
+
+    public void ResumeGame()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+    }
 
     private void SpawnPlayers()
     {
@@ -56,9 +83,10 @@ public class GameInspeector : MonoBehaviour
         Player.TeamHealth = maxTeamHealth;
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
+        
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
-            SpawnPlayer(GlobalReferences.PlayerStates[i], new Vector3(i * 2, 1, 0));
+            SpawnPlayer(GlobalReferences.PlayerStates[i], Player.Checkpos + new Vector3(i * 2, 1, 0));
         }
     }
 
