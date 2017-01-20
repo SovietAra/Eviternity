@@ -113,10 +113,13 @@ MonoBehaviour:
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
+  lifeTime: 10
   DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
+  Explosion: {fileID: 0}
+  StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0
 --- !u!135 &135289528192169384

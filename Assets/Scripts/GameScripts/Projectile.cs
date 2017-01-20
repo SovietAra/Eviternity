@@ -34,6 +34,7 @@ public class Projectile : MonoBehaviour
     public bool DoTeamDamage = false;
     public bool DoAOETeamDamage = false;
     public GameObject Explosion;
+    public GameObject StatusEffect;
 
     [SerializeField]
     [Range(0.0f, 10f)]
@@ -159,6 +160,18 @@ public class Projectile : MonoBehaviour
 
         if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
         {
+            if (StatusEffect != null && victim != null)
+            {
+                GameObject tempStatusEffect = Instantiate(StatusEffect, victim.transform);
+                if (tempStatusEffect != null)
+                {
+                    StatusEffect statusScript = tempStatusEffect.GetComponent<StatusEffect>();
+                    if (statusScript != null)
+                    {
+                        statusScript.Activate(victim);
+                    }
+                }
+            }
             damageAbleObject.DoDamage(hitArgs.FinalDamage);
         }
     }
