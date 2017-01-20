@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
     private DamageAbleObject dmgobjct;
     public GameObject PrimaryWeapon;
     private Weapon primaryWeapon;
+    private MoveScript moveScript;
 
     public UnityEvent onEnemyDeath;
     private Rigidbody physics;
@@ -68,7 +69,8 @@ public class Enemy : MonoBehaviour
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
 
         physics = GetComponent<Rigidbody>();
-
+        moveScript = GetComponent<MoveScript>();
+        moveScript.AddGravity = false;
         SetUI();
     }
 
@@ -103,6 +105,7 @@ public class Enemy : MonoBehaviour
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
                 movement = transform.forward * moveSpeed * Time.deltaTime * 100;
+                moveScript.Move(movement);
             }
             else if (distanceToPlayer < viewRange)
             {
@@ -122,8 +125,8 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        physics.velocity = movement + Physics.gravity;
-        movement = Vector3.zero;
+        //physics.velocity = movement + Physics.gravity;
+        //movement = Vector3.zero;
     }
 
     private void SetUI()
