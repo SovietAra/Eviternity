@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 61c8d5d01bd6d014387949d60bb32b2d
-timeCreated: 1484155526
+timeCreated: 1484904874
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PlayerPrefab: {fileID: 1209385188523736, guid: 26083c228818c144fa5b742f0898eeaa,
+      type: 2}
+  - PauseMenuCanvas: {fileID: 1156955797206502, guid: aa16f49f04a36bc478b01022ac72be85,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

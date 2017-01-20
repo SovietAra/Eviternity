@@ -10,6 +10,8 @@ public class GameInspeector : MonoBehaviour
     private List<Player> spawnedPlayers;
     private UIScript uiScript;
 
+    public GameObject PauseMenuCanvas;
+
 
     [SerializeField]
     [Range(0, 10000f)]
@@ -33,33 +35,47 @@ public class GameInspeector : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(GlobalReferences.CurrentGameState == GlobalReferences.GameState.Play)
-        {
-            Time.timeScale = 1;
-            //Canvas deaktivieren
-        }
-        else if(GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
-        {
-            Time.timeScale = 0;
-            //Canvas aufrufen
-        }
+        Pause();
 
         CheckForNewPlayers();
 
-       List<GameObject> AvailablePlayer = new List<GameObject> (GameObject.FindGameObjectsWithTag("Player"));
-        if(AvailablePlayer != null)
+        List<GameObject> AvailablePlayer = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+        if (AvailablePlayer != null)
         {
             bool AllPlayerDead = true;
             for (int i = 0; i < AvailablePlayer.Count; i++)
             {
                 Player player = AvailablePlayer[i].GetComponent<Player>();
                 if (player != null)
-                    AllPlayerDead = false;         
+                    AllPlayerDead = false;
             }
             if (AllPlayerDead)
                 SpawnPlayers();
         }
-	}
+    }
+
+    private void Pause()
+    {
+        if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Play)
+        {
+            Time.timeScale = 1;
+            PauseMenuCanvas.SetActive(false);
+            Debug.Log(GlobalReferences.CurrentGameState);
+        }
+        else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
+        {
+            Time.timeScale = 0;
+            if (PauseMenuCanvas.activeInHierarchy == false)
+            {
+                PauseMenuCanvas.SetActive(true);
+            }            
+        }
+    }
+
+    public void ResumeGame()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+    }
 
     private void SpawnPlayers()
     {
