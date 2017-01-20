@@ -344,12 +344,12 @@ Prefab:
     - target: {fileID: 224119760588777826, guid: f9a0365990765d849b19f4b3b09f2845,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224119760588777826, guid: f9a0365990765d849b19f4b3b09f2845,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114206361289056408, guid: f9a0365990765d849b19f4b3b09f2845,
         type: 2}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 571651934}
   m_Layer: 0
   m_Name: Game
-  m_TagString: Untagged
+  m_TagString: GameObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -405,6 +405,9 @@ MonoBehaviour:
   Player4HealthUI: {fileID: 1724048753529974, guid: 8a67de499bcd0ca4cb947cfaa6692156,
     type: 2}
   TeamHealthBar: {fileID: 1962527765}
+  TeamHealthBar_Border: {fileID: 2042752891}
+  TeamHealthActive: {fileID: 21300000, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
+  TeamHealthInactive: {fileID: 21300002, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
 --- !u!114 &571651935
 MonoBehaviour:
   m_ObjectHideFlags: 0

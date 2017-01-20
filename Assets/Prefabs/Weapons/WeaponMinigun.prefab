@@ -66,6 +66,7 @@ MonoBehaviour:
   UseAmmo: 0
   AutoReload: 1
   ProduceHeat: 1
+  HeatCooldown: 1
   SecondaryWeapon: {fileID: 1761816047511776, guid: 0e1bfa490b38c74499f9f6795992f005,
     type: 2}
   Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}

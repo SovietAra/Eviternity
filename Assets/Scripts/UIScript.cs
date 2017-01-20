@@ -58,15 +58,24 @@ public class UIScript : MonoBehaviour
                     UICanvas.SetActive(true);
                 }
 
+                teamhealthAmount = Player.TeamHealth / 30;
+                TeamHealthBar.fillAmount = teamhealthAmount;
+
                 if (isHealing)
                 {
-                    teamhealthAmount = Player.TeamHealth / 30;
-                    TeamHealthBar.fillAmount = teamhealthAmount;
-                    TeamHealthBar_Border.GetComponent<Image>().sprite = TeamHealthActive;
+                    if (TeamHealthBar != null && TeamHealthActive != null)
+                    {
+                        Image image = TeamHealthBar_Border.GetComponent<Image>();
+                        image.sprite = TeamHealthActive;
+                    }
                 }
                 else
                 {
-                    TeamHealthBar_Border.GetComponent<Image>().sprite = TeamHealthInactive;
+                    if (TeamHealthBar != null && TeamHealthInactive != null)
+                    {
+                        Image image = TeamHealthBar_Border.GetComponent<Image>();
+                        image.sprite = TeamHealthInactive;
+                    }
                 }
                 isHealing = false;
             }
