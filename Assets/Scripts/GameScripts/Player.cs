@@ -149,6 +149,13 @@ public class Player : MonoBehaviour
         }
 
         moveScript = GetComponent<MoveScript>();
+        if(moveScript != null)
+            moveScript.OnMoving += MoveScript_OnMoving;
+    }
+
+    private void MoveScript_OnMoving(object sender, OnMovingArgs e)
+    {
+        e.Cancel = OnIce;
     }
 
     // Update is called once per frame
@@ -209,7 +216,7 @@ public class Player : MonoBehaviour
         TryMove(leftStick, rightStick);
 
         finalVelocity = (moveVector + velocity) * 100;
-        if(moveScript !=null)
+        if(moveScript !=null && !OnIce)
         {
             moveScript.Move(finalVelocity);
         }
