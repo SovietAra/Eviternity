@@ -54,7 +54,7 @@ public class UIScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(CurrentPlayers.Count);
+
         if (CurrentPlayers != null)
         {
             foreach (GameObject player in CurrentPlayers)
