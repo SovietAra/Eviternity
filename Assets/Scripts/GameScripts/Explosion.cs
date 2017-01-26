@@ -23,6 +23,8 @@ public class Explosion : MonoBehaviour
     [Range(-1000, 1000)]
     private float damage = 1;
 
+    public GameObject StatusEffect;
+
     private string ownerTag;
     private SphereCollider sphereExplosion;
     private bool exploded;
@@ -123,8 +125,22 @@ public class Explosion : MonoBehaviour
             if (OnHit != null)
                 OnHit(this, hitArgs);
 
-            if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
+            if (!hitArgs.Cancel && hitArgs.FinalDamage > 0)
+            {
+                if (StatusEffect != null)
+                {
+                    GameObject tempStatusEffect = Instantiate(StatusEffect, other.transform);
+                    if (tempStatusEffect != null)
+                    {
+                        StatusEffect statusScript = tempStatusEffect.GetComponent<StatusEffect>();
+                        if(statusScript != null)
+                        {
+                            statusScript.Activate(other.gameObject);
+                        }
+                    }
+                }
                 healthContainer.DoDamage(rangeDamage);
+            }
 
             exploded = true;
         }

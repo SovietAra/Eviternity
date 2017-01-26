@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private Ability ability;
     private Ability secondaryAbility;
     private DamageAbleObject healthContainer;
+    private MoveScript moveScript;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
@@ -38,6 +39,9 @@ public class Player : MonoBehaviour
     private GameObject transparentObject;
 
     private GamePadState prevState;
+
+    private GameObject mainGameObject;
+    private UIScript uiScript;
     #endregion
 
     #region InspectorFields
@@ -105,8 +109,10 @@ public class Player : MonoBehaviour
     {
         mainCamera = Camera.main;
         mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
-        elapsedDashTime = dashTime;  
-           
+        elapsedDashTime = dashTime;
+        mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
+        uiScript = mainGameObject.GetComponent<UIScript>();
+
         physics = GetComponent<Rigidbody>();
         if (PrimaryWeapon != null)
         {
@@ -133,10 +139,23 @@ public class Player : MonoBehaviour
             secondaryAbility.OnActivated += SecondaryAbility_OnActivated;
             secondaryAbility.OnAbort += SecondaryAbility_OnAbort;
         }
+
         healthContainer = GetComponent<DamageAbleObject>();
-        healthContainer.OnDeath += HealthContainer_OnDeath;
-        healthContainer.OnReceiveDamage += HealthContainer_OnReceiveDamage;
-        healthContainer.OnReceiveHealth += HealthContainer_OnReceiveHealth;
+        if (healthContainer != null)
+        {
+            healthContainer.OnDeath += HealthContainer_OnDeath;
+            healthContainer.OnReceiveDamage += HealthContainer_OnReceiveDamage;
+            healthContainer.OnReceiveHealth += HealthContainer_OnReceiveHealth;
+        }
+
+        moveScript = GetComponent<MoveScript>();
+        if(moveScript != null)
+            moveScript.OnMoving += MoveScript_OnMoving;
+    }
+
+    private void MoveScript_OnMoving(object sender, OnMovingArgs e)
+    {
+        e.Cancel = OnIce;
     }
 
     // Update is called once per frame
@@ -169,12 +188,8 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {if (!OnIce)
-        {
-            physics.velocity = finalVelocity + Physics.gravity;
-            finalVelocity = Vector3.zero;
-        }
-    else
+    {
+        if(OnIce)
         {
             InputOnIce();
         }
@@ -201,6 +216,10 @@ public class Player : MonoBehaviour
         TryMove(leftStick, rightStick);
 
         finalVelocity = (moveVector + velocity) * 100;
+        if(moveScript !=null && !OnIce)
+        {
+            moveScript.Move(finalVelocity);
+        }
 
         bool executed = false;
 
@@ -401,6 +420,7 @@ public class Player : MonoBehaviour
     {
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
+            uiScript.ActivateTeamBar();
             return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
         }
         return false;
@@ -597,9 +617,11 @@ public class Player : MonoBehaviour
     public void PutOnIce()
     {
         OnIce = true;
+        moveScript.MovementMultiplicator = 0f;
     }
     public void PutOffIce()
     {
         OnIce = false;
+        moveScript.ResetMultiplicator();
     }
 }

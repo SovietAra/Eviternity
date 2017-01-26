@@ -147,6 +147,15 @@ public class NewFollowingCamera : MonoBehaviour
 
     private void Update()
     {
+        for (int i = 0; i < followedObjects.Count; i++)
+        {
+            if (followedObjects[i] == null)
+            {
+                followedObjects.RemoveAt(i);
+                i--;
+            }
+        }
+
         Move();
         Zoom();
     }

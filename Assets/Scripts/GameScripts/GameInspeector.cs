@@ -60,7 +60,7 @@ public class GameInspeector : MonoBehaviour
         {
             Time.timeScale = 1;
             PauseMenuCanvas.SetActive(false);
-            Debug.Log(GlobalReferences.CurrentGameState);
+
         }
         else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
         {

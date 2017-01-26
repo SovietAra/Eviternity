@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1302081713190986}
+  m_RootGameObject: {fileID: 1086101472029054}
   m_IsPrefabParent: 1
---- !u!1 &1302081713190986
+--- !u!1 &1086101472029054
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4926958602366876}
-  - component: {fileID: 114506238796585466}
+  - component: {fileID: 4369648361613372}
+  - component: {fileID: 114878454849311706}
   m_Layer: 0
-  m_Name: WeaponMinigun
+  m_Name: StatusStun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4926958602366876
+--- !u!4 &4369648361613372
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1302081713190986}
+  m_GameObject: {fileID: 1086101472029054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,33 +40,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114506238796585466
+--- !u!114 &114878454849311706
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1302081713190986}
+  m_GameObject: {fileID: 1086101472029054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e433b3e64c77734469234be49f6da008, type: 3}
+  m_Script: {fileID: 11500000, guid: 24b1e359c8ec6ad4eb454e6d4151a666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.1
-  sprayAngle: 43.5
-  maxAmmoPerClip: 100
-  reloadTimePerShell: 0.75
-  reloadTimePerClip: 2
-  maxHeat: 50
-  heat: 0
-  heatPerShot: 1
-  heatReductionPerSecond: 10
-  heatReductionDelay: 2
-  AnimationDuration: 0
-  AllowShellRelaod: 0
-  UseAmmo: 0
-  AutoReload: 1
-  ProduceHeat: 1
-  HeatCooldown: 1
-  SecondaryWeapon: {fileID: 1761816047511776, guid: 0e1bfa490b38c74499f9f6795992f005,
-    type: 2}
-  Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}
+  Duration: 2
+  DestroyOnDeactivation: 1
+  ResetSameStatus: 1
+  StackAble: 0
+  slowDownPercentage: 0.2

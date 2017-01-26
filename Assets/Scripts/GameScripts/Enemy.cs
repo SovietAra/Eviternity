@@ -46,15 +46,24 @@ public class Enemy : MonoBehaviour
     private float attackDelay = 1f;
     private float elapsedAttackDelay = 0f;
 
-    public Slider HealthSlider;
-    private float enemyfront;
+    [SerializeField]
+    [Range(0.1f, 100f)]
+    private float switchDelay = 3f;
+    private float elapsedSwitchDelay = 0f;
+
+    private GameObject currentTarget;
+    private GameObject possibleTarget;
     private float distanceToPlayer;
     private GameObject targetPlayer;
+
+    public Slider HealthSlider;
+    private float enemyfront;
 
     private bool isValidTarget = false;
     private DamageAbleObject dmgobjct;
     public GameObject PrimaryWeapon;
     private Weapon primaryWeapon;
+    private MoveScript moveScript;
 
     public UnityEvent onEnemyDeath;
     private Rigidbody physics;
@@ -68,7 +77,8 @@ public class Enemy : MonoBehaviour
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
 
         physics = GetComponent<Rigidbody>();
-
+        moveScript = GetComponent<MoveScript>();
+        moveScript.AddGravity = false;
         SetUI();
     }
 
@@ -91,18 +101,38 @@ public class Enemy : MonoBehaviour
 
         if (isValidTarget) //On player found
         {
-            //Calculate Distance between Enemyinstance and Player
-            distanceToPlayer = Vector3.Distance(targetPlayer.transform.position, transform.position);
+            //Calculate Distance between Enemyinstance and Player and switch target if delay allows
+            GameObject nearestTarget = FindClosestPlayer();
+            if (currentTarget == null)
+            {
+                currentTarget = nearestTarget;
+            }
+            else if (currentTarget != nearestTarget && possibleTarget != nearestTarget)
+            {
+                possibleTarget = nearestTarget;
+                elapsedSwitchDelay = 0f;
+            }
+            else if(nearestTarget == possibleTarget)
+            {
+                elapsedSwitchDelay += Time.deltaTime;
+                if(elapsedSwitchDelay >= switchDelay)
+                {
+                    currentTarget = possibleTarget;
+                }
+            }
+
+            distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
 
             //Look at Player
             transform.rotation = Quaternion.Slerp(transform.rotation
-                                                 , Quaternion.LookRotation(targetPlayer.transform.position - transform.position)
+                                                 , Quaternion.LookRotation(currentTarget.transform.position - transform.position)
                                                  , rotationSpeed * Time.deltaTime);
 
             //Follow Player
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
                 movement = transform.forward * moveSpeed * Time.deltaTime * 100;
+                moveScript.Move(movement);
             }
             else if (distanceToPlayer < viewRange)
             {
@@ -122,8 +152,8 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        physics.velocity = movement + Physics.gravity;
-        movement = Vector3.zero;
+        //physics.velocity = movement + Physics.gravity;
+        //movement = Vector3.zero;
     }
 
     private void SetUI()
@@ -146,9 +176,27 @@ public class Enemy : MonoBehaviour
     }
 
 
+    private GameObject FindClosestPlayer()
+    {
+        GameObject[] availablePlayers;
+        availablePlayers = GameObject.FindGameObjectsWithTag("Player");
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject checkedTargetPlayer in availablePlayers)
+        {
+            Vector3 diff = checkedTargetPlayer.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                targetPlayer = checkedTargetPlayer;
+                distance = curDistance;
+            }
+        }
+        return targetPlayer;
+    }
     private void CheckAlivePlayers()
     {
-        if (targetPlayer != null && distanceToPlayer <= viewRange)
+        if (targetPlayer != null)
             return;
 
         GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
@@ -156,17 +204,18 @@ public class Enemy : MonoBehaviour
         {
             for (int i = 0; i < Players.Length; i++)
             {
-                Player checkedPlayer = Players[i].GetComponent<Player>();
-                if (!checkedPlayer.IsDead)
+                Player checkedAlivePlayer = Players[i].GetComponent<Player>();
+                if (!checkedAlivePlayer.IsDead)
                 {
                     isValidTarget = true;
-                    targetPlayer = Players[i];
-                    return; ;
+                    //targetPlayer = Players[i];
+                    return;
                 }
                 else
                 {
                     isValidTarget = false;
                 }
+
             }
         }
     }

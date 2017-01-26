@@ -1,47 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using Assets.Scripts;
+using System.Threading;
+
 public class MoveScript : MonoBehaviour
 {
     private Rigidbody physics;
     private Vector3 movement;
-    private GameObject statusEffect;
+    private float defaultMovementMultiplicator;
+    
+    [Range(0, 2)]
+    public float MovementMultiplicator = 1f;
+    public bool AddGravity = true;
 
     public event EventHandler<OnMovingArgs> OnMoving;
-
-    private float movementMultiplicator;
+ 
+    public float DefaultMovementMultiplicator
+    {
+        get
+        {
+            return defaultMovementMultiplicator;
+        }
+    }
 
     private void Start()
     {
+        defaultMovementMultiplicator = MovementMultiplicator;
         physics = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        //movementMultiplicator = 
     }
 
     private void FixedUpdate()
     {
-        OnMovingArgs args = new OnMovingArgs(movement);
-
+        OnMovingArgs args = new OnMovingArgs(movement + (AddGravity ? Physics.gravity : Vector3.zero));
+        
         if (OnMoving != null)
-            OnMoving(this, args);
+            OnMoving.Invoke(this, args);
 
         if (!args.Cancel)
         {
-            physics.velocity = args.Velocity;
+            physics.velocity = (args.Velocity * MovementMultiplicator);
             movement = Vector3.zero;
         }
     }
 
-    public void Move(Vector3 movement, GameObject statusEffect)
+    public void Move(Vector3 movement)
     {
         this.movement = movement;
-        this.statusEffect = statusEffect;
+    }
+
+    public void ResetMultiplicator()
+    {
+        MovementMultiplicator = defaultMovementMultiplicator;
     }
 }
 

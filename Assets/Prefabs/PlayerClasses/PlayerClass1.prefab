@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136804792390595418}
   - component: {fileID: 54817512915145154}
   - component: {fileID: 114548059586036888}
+  - component: {fileID: 114445025244611432}
   - component: {fileID: 114584673856983150}
   - component: {fileID: 114246596331284418}
   m_Layer: 8
@@ -282,6 +283,19 @@ MonoBehaviour:
   Weapon2: {fileID: 1364485491345302}
   showWeapon1: 0
   showWeapon2: 0
+--- !u!114 &114445025244611432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1209385188523736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7431dacddd22d42bc65a1f79c4be6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementMultiplicator: 1
+  AddGravity: 1
 --- !u!114 &114548059586036888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +334,7 @@ MonoBehaviour:
   Ability: {fileID: 1106245875336466, guid: 3892a081e8b0cec4fa829c6f24345625, type: 2}
   SecondaryAbility: {fileID: 1657859246270480, guid: ce02c73a09e0aff4db5afc1921376a5e,
     type: 2}
+  OnIce: 0
 --- !u!136 &136804792390595418
 CapsuleCollider:
   m_ObjectHideFlags: 1
