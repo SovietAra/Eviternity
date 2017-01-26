@@ -46,6 +46,15 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
     int[] index = new int[4] { 0, 0, 0, 0 };
     int[] prevIndex = new int[4] { 0, 0, 0, 0 };
+
+    public Image player1_weapon1_left;
+    public Image player1_weapon2_left;
+    public Image player1_weapon3_left;
+
+    int[] weaponIndex = new int[4] { 0, 0, 0, 0};
+    int[] weaponPrevIndex = new int[4] { 0, 0, 0, 0};
+
+    public Dictionary<int, List<Image>> WeaponList = new Dictionary<int, List<Image>>();
     // Use this for initialization
     void Start ()
     {
@@ -116,6 +125,19 @@ public class PlayerAssignmentScript : MonoBehaviour {
         TempImageList.Add(playerFourAegis);
         TempImageList.Add(playerFourStalker);
         ImageList.Add(3, TempImageList);
+
+        player1_weapon1_left = player1_weapon1_left.GetComponent<Image>();
+        player1_weapon2_left = player1_weapon2_left.GetComponent<Image>();
+        player1_weapon3_left = player1_weapon3_left.GetComponent<Image>();
+        player1_weapon1_left.enabled = true;
+        player1_weapon2_left.enabled = false;
+        player1_weapon3_left.enabled = false;
+
+        List<Image> TempWeaponList = new List<Image>();
+        TempWeaponList.Add(player1_weapon1_left);
+        TempWeaponList.Add(player1_weapon2_left);
+        TempWeaponList.Add(player1_weapon3_left);
+        WeaponList.Add(0, TempWeaponList);
     }
 	
 	// Update is called once per frame
@@ -212,7 +234,29 @@ public class PlayerAssignmentScript : MonoBehaviour {
                     }
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
-            
+
+            if (state.Buttons.Y == ButtonState.Pressed && prevState[playerIndex].Buttons.Y == ButtonState.Released)
+            {
+                weaponPrevIndex[playerIndex] = weaponIndex[playerIndex];
+                weaponIndex[playerIndex]++;
+                if (weaponIndex[playerIndex] >= WeaponList.Count)
+                {
+                    weaponIndex[playerIndex] = 0;
+                }
+                ChangeWeapon(playerIndex, weaponIndex[playerIndex], weaponPrevIndex[playerIndex]);
+            }
+
+            if (state.Buttons.X == ButtonState.Pressed && prevState[playerIndex].Buttons.X == ButtonState.Released)
+            {
+                weaponPrevIndex[playerIndex] = weaponIndex[playerIndex];
+                weaponIndex[playerIndex]--;
+                if (weaponIndex[playerIndex] < 0)
+                {
+                    weaponIndex[playerIndex] = WeaponList.Count - 1;
+                }
+                ChangeWeapon(playerIndex, weaponIndex[playerIndex], weaponPrevIndex[playerIndex]);
+            }
+
             if (state.Buttons.B == ButtonState.Pressed)
             {
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.One)
@@ -278,5 +322,11 @@ public class PlayerAssignmentScript : MonoBehaviour {
     {
         ImageList[playerIndex][index].enabled = true;
         ImageList[playerIndex][prevIndex].enabled = false;
+    }
+
+    public void ChangeWeapon(int playerIndex, int weaponIndex, int weaponPrevIndex)
+    {
+        WeaponList[playerIndex][weaponIndex].enabled = true;
+        WeaponList[playerIndex][weaponPrevIndex].enabled = false;
     }
 }
