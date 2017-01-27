@@ -6,12 +6,17 @@ using XInputDotNetPure;
 public class Player : MonoBehaviour
 {
     #region statics
+
     public static float TeamHealth = 10f;
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
-    #endregion
+    public AudioClip[] Clips = new AudioClip[2];
+
+    #endregion statics
 
     #region privats
+
+    private AudioSource[] audioSources;
     private PlayerIndex index;
     private bool hasPlayerIndex;
     private bool isDead;
@@ -44,9 +49,11 @@ public class Player : MonoBehaviour
     private UIScript uiScript;
 
     private Vector3 meshBounds;
-    #endregion
+
+    #endregion privats
 
     #region InspectorFields
+
     [SerializeField]
     [Range(1f, 100f)]
     private float speed = 1f;
@@ -76,14 +83,18 @@ public class Player : MonoBehaviour
 
     public bool OnIce;
     public static Vector3 Checkpos;
-    #endregion
+
+    #endregion InspectorFields
 
     #region EventHandlers
+
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
-    #endregion
+
+    #endregion EventHandlers
 
     #region Properties
+
     [HideInInspector]
     public PlayerIndex Index
     {
@@ -103,12 +114,33 @@ public class Player : MonoBehaviour
     {
         get { return isDead; }
     }
-    #endregion
+
+    #endregion Properties
 
     #region UnityMethodes
+
     // Use this for initialization
-    private void Start ()
+    private void Start()
     {
+        //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
+        for (var tmp = 0; tmp < Clips.Length; tmp++)
+        {
+            gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSources = GetComponents<AudioSource>();
+
+        for (var tmp = 0; tmp < Clips.Length; tmp++)
+        {
+            audioSources[tmp].clip = Clips[tmp];
+        }
+
+        //define names for sounds
+        var DashSound = audioSources[0];
+        var SpawnSound = audioSources[1];
+
+        //play sound by its name defined above
+        SpawnSound.Play();
         mainCamera = Camera.main;
         mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
         elapsedDashTime = dashTime;
@@ -151,7 +183,7 @@ public class Player : MonoBehaviour
         }
 
         moveScript = GetComponent<MoveScript>();
-        if(moveScript != null)
+        if (moveScript != null)
             moveScript.OnMoving += MoveScript_OnMoving;
 
         MeshFilter meshFilter = GetComponent<MeshFilter>();
@@ -201,24 +233,25 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(OnIce)
+        if (OnIce)
         {
             InputOnIce();
         }
         CheckOverlappingObjects();
     }
-    #endregion
-    
+
+    #endregion UnityMethodes
+
     #region UpdateMethodes
+
     private void UpdateTimers()
     {
         elapsedDashTime += Time.deltaTime;
-        if(isDead)
+        if (isDead)
             elapsedReviveDelay += Time.deltaTime;
 
         if (attackInProgressTimer > 0)
             attackInProgressTimer -= Time.deltaTime;
-
     }
 
     private void Input(GamePadState state)
@@ -228,7 +261,7 @@ public class Player : MonoBehaviour
         TryMove(leftStick, rightStick);
 
         finalVelocity = (moveVector + velocity) * 100;
-        if(moveScript !=null && !OnIce)
+        if (moveScript != null && !OnIce)
         {
             Borders();
             moveScript.Move(finalVelocity);
@@ -241,7 +274,7 @@ public class Player : MonoBehaviour
             GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
         }
 
-        if(state.Buttons.Back == ButtonState.Pressed)
+        if (state.Buttons.Back == ButtonState.Pressed)
         {
             if (OnPlayerExit != null)
                 OnPlayerExit(this, new PlayerEventArgs(gameObject, this));
@@ -256,12 +289,12 @@ public class Player : MonoBehaviour
         {
             executed = TrySecondaryAbility();
         }
-        
+
         if (state.Buttons.X == ButtonState.Pressed && !executed)
         {
             executed = TryAbillity();
         }
-        
+
         if (state.Buttons.A == ButtonState.Pressed && !executed)
         {
             executed = TryDash();
@@ -375,16 +408,16 @@ public class Player : MonoBehaviour
     }
 
     #region Movement
+
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
     {
         if (!Freeze)
         {
-            if(leftStick.y > 0.1f || leftStick.y < 0.1f)
+            if (leftStick.y > 0.1f || leftStick.y < 0.1f)
                 moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
 
             if (leftStick.x > 0.1f || leftStick.x < 0.1f)
                 moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
-           
 
             if (RotateOnMove && moveVector != Vector3.zero)
             {
@@ -400,7 +433,6 @@ public class Player : MonoBehaviour
             {
                 DoRotation(rightAngle);
             }
-
         }
     }
 
@@ -434,10 +466,13 @@ public class Player : MonoBehaviour
 
         return value;
     }
-    #endregion
-    #endregion
+
+    #endregion Movement
+
+    #endregion UpdateMethodes
 
     #region Abilities
+
     private bool TryHeal()
     {
         if (healthContainer.Health < healthContainer.MaxHealth)
@@ -499,13 +534,13 @@ public class Player : MonoBehaviour
 
     private bool TryAbillity()
     {
-        if(ability != null)
+        if (ability != null)
         {
             return ability.Use();
         }
         return false;
     }
-    
+
     private bool TrySecondaryAbility()
     {
         if (secondaryAbility != null)
@@ -514,32 +549,31 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-    #endregion
+
+    #endregion Abilities
 
     #region AbilityEvents
+
     private void SecondaryAbility_OnAbort(object sender, EventArgs e)
     {
-   
     }
 
     private void SecondaryAbility_OnActivated(object sender, EventArgs e)
     {
-
     }
 
     private void Ability_OnAbort(object sender, EventArgs e)
     {
-     
     }
 
     private void Ability_OnActivated(object sender, EventArgs e)
     {
-        
-
     }
-    #endregion
+
+    #endregion AbilityEvents
 
     #region WeaponEvents
+
     private void SecondaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
     {
         attackInProgressTimer += e.AnimationDuration;
@@ -569,12 +603,14 @@ public class Player : MonoBehaviour
         CheckLifeSteal(ability, e.FinalDamage);
         CheckLifeSteal(secondaryAbility, e.FinalDamage);
     }
-    #endregion
+
+    #endregion WeaponEvents
 
     #region PlayerHealth
+
     private bool TakeTeamHealth(float addHealth, float teamHealthMultiplicator)
     {
-        if(healthContainer.Health + addHealth > healthContainer.MaxHealth)
+        if (healthContainer.Health + addHealth > healthContainer.MaxHealth)
         {
             addHealth = healthContainer.MaxHealth - healthContainer.Health;
         }
@@ -619,7 +655,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
     private void HealthContainer_OnReceiveHealth(object sender, OnHealthChangedArgs e)
     {
         //Stun, slow, gift
@@ -627,9 +663,9 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
     {
-
     }
-    #endregion
+
+    #endregion PlayerHealth
 
     public void InputOnIce()
     {
@@ -641,6 +677,7 @@ public class Player : MonoBehaviour
         OnIce = true;
         moveScript.MovementMultiplicator = 0f;
     }
+
     public void PutOffIce()
     {
         OnIce = false;
