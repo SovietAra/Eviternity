@@ -15,7 +15,7 @@ public class GameInspeector : MonoBehaviour
 
     [SerializeField]
     [Range(0, 10000f)]
-    private float maxTeamHealth = 10;
+    public float maxTeamHealth = 10;    
 
     [SerializeField]
     [Range(0, 10)]
