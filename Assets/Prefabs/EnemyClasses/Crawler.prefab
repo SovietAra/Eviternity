@@ -29,6 +29,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1129371339678838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4699498531737326}
+  - component: {fileID: 33837097083281060}
+  - component: {fileID: 23274395130909358}
+  m_Layer: 0
+  m_Name: Mesh&Texture
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1647695923058790
 GameObject:
   m_ObjectHideFlags: 1
@@ -86,16 +103,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4408113230437370}
-  - component: {fileID: 33598412558969856}
   - component: {fileID: 136684653366523224}
-  - component: {fileID: 23878656344077102}
   - component: {fileID: 54364464727567890}
   - component: {fileID: 114773656206042616}
   - component: {fileID: 114283962368493810}
   - component: {fileID: 114206361289056408}
   - component: {fileID: 195762902547207450}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: Crawler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,20 +139,34 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865923694238466}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23, y: -1.619, z: -16}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20.37, y: 0.49999905, z: -6.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4699498531737326}
   - {fileID: 224500381575896340}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23878656344077102
+--- !u!4 &4699498531737326
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129371339678838}
+  m_LocalRotation: {x: -0.70275897, y: 0.07829337, z: 0.078293376, w: 0.70275897}
+  m_LocalPosition: {x: -0.5091, y: -0.193, z: 0.093}
+  m_LocalScale: {x: 21.721327, y: 21.72133, z: 21.721329}
+  m_Children: []
+  m_Father: {fileID: 4408113230437370}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23274395130909358
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865923694238466}
+  m_GameObject: {fileID: 1129371339678838}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -145,7 +174,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a54d1913e1f45f54f85a5236b25dabc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,7 +182,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_SelectedEditorRenderState: 3
@@ -163,13 +192,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33598412558969856
+--- !u!33 &33837097083281060
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865923694238466}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_GameObject: {fileID: 1129371339678838}
+  m_Mesh: {fileID: 4300000, guid: f089005439dcc0940b133d45667fcf45, type: 3}
 --- !u!54 &54364464727567890
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -266,13 +295,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 3
-  moveSpeed: 7.7
-  attackRange: 6
+  moveSpeed: 7.5
+  attackRange: 1.5
   viewRange: 15
   enemyType: 1
   switchDelay: 3
   HealthSlider: {fileID: 114205726039098528}
-  PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
+  PrimaryWeapon: {fileID: 1761816047511776, guid: 0e1bfa490b38c74499f9f6795992f005,
     type: 2}
   onEnemyDeath:
     m_PersistentCalls:
@@ -519,7 +548,7 @@ RectTransform:
   m_Children:
   - {fileID: 224115326607771226}
   m_Father: {fileID: 4408113230437370}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
