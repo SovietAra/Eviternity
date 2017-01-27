@@ -65,7 +65,7 @@ MonoBehaviour:
   destroyOnAbort: 1
   spawnObject: {fileID: 1747795901446828, guid: 0d20e7316dd2aef49a2df52a2cdd03b5,
     type: 2}
-  spawnForwardDistance: 3
+  spawnForwardDistance: 1.3
   spawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
