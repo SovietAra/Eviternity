@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -27,24 +28,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 100.0f)]
     private float viewRange = 15.0f;
-
-    [SerializeField]
-    [Range(0.1f, 10000f)]
-    private float health = 10.0f;
-
+    
     enum enemyTypes
     {
         Crawler = 1,
         Mosquito = 2,
         Mantis = 3
     }
-    [SerializeField]
-    enemyTypes enemyType;
 
     [SerializeField]
-    [Range(0.1f, 60f)]
-    private float attackDelay = 1f;
-    private float elapsedAttackDelay = 0f;
+    enemyTypes enemyType;
 
     [SerializeField]
     [Range(0.1f, 100f)]
@@ -66,19 +59,25 @@ public class Enemy : MonoBehaviour
     private MoveScript moveScript;
 
     public UnityEvent onEnemyDeath;
-    private Rigidbody physics;
     private Vector3 movement;
+
+    NavMeshAgent navAgent;
+
     // Use this for initialization
     void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
-        dmgobjct.OnDeath += Dmgobjct_OnDeath;
+        if(dmgobjct != null)
+            dmgobjct.OnDeath += Dmgobjct_OnDeath;
+
         if(PrimaryWeapon != null)
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
-
-        physics = GetComponent<Rigidbody>();
+        
         moveScript = GetComponent<MoveScript>();
-        moveScript.AddGravity = false;
+        if(moveScript != null)
+            moveScript.AddGravity = false;
+
+        navAgent = GetComponent<NavMeshAgent>();
         SetUI();
     }
 
@@ -122,6 +121,7 @@ public class Enemy : MonoBehaviour
             }
 
             distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
+            
 
             //Look at Player
             transform.rotation = Quaternion.Slerp(transform.rotation
@@ -131,8 +131,9 @@ public class Enemy : MonoBehaviour
             //Follow Player
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                movement = transform.forward * moveSpeed * Time.deltaTime * 100;
-                moveScript.Move(movement);
+                //movement = transform.forward * moveSpeed * Time.deltaTime * 100;
+                //moveScript.Move(movement);
+                navAgent.SetDestination(currentTarget.transform.position);
             }
             else if (distanceToPlayer < viewRange)
             {
@@ -167,10 +168,8 @@ public class Enemy : MonoBehaviour
     private void TryShoot()
     {
         //Maybe TODO : Create Specific Enemy Weapon Prefab
-        elapsedAttackDelay += Time.deltaTime;
-        if (elapsedAttackDelay > attackDelay)
+        if (primaryWeapon != null)
         {
-            elapsedAttackDelay = 0f;
             primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
         }
     }
@@ -194,6 +193,7 @@ public class Enemy : MonoBehaviour
         }
         return targetPlayer;
     }
+
     private void CheckAlivePlayers()
     {
         if (targetPlayer != null)

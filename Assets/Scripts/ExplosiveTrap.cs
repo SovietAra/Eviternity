@@ -6,7 +6,10 @@ public class ExplosiveTrap : MonoBehaviour
     private DamageAbleObject dmgobjct;
 
     [SerializeField]
-    private bool triggerByCollision, triggerByRange;
+    private bool triggerByCollision = true;
+
+    [SerializeField]
+    private bool triggerByRange = true;
 
     [Range(0.1f, 10)]
     public float range;
