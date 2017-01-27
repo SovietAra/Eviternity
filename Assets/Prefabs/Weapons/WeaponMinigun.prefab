@@ -59,8 +59,8 @@ MonoBehaviour:
   maxHeat: 50
   heat: 0
   heatPerShot: 1
-  heatReductionPerSecond: 10
-  heatReductionDelay: 2
+  heatReductionPerSecond: 25
+  heatReductionDelay: 1
   AnimationDuration: 0
   AllowShellRelaod: 0
   UseAmmo: 0

@@ -111,7 +111,7 @@ MonoBehaviour:
   speed: 10.7
   damage: 10
   damageRange: 5
-  detonationTimer: 2
+  detonationTimer: 0.6
   invertGravityFactor: 2.46
   lifeTime: 10
   DestroyOnCollision: 1
@@ -119,6 +119,7 @@ MonoBehaviour:
   DoTeamDamage: 0
   DoAOETeamDamage: 0
   Explosion: {fileID: 1318014844589646, guid: fbb85103f81d24d43936e47bf760f26e, type: 2}
+  StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 1
 --- !u!136 &136957911204699186
