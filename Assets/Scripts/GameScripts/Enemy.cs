@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -60,6 +61,8 @@ public class Enemy : MonoBehaviour
     public UnityEvent onEnemyDeath;
     private Vector3 movement;
 
+    NavMeshAgent navAgent;
+
     // Use this for initialization
     void Start()
     {
@@ -74,6 +77,7 @@ public class Enemy : MonoBehaviour
         if(moveScript != null)
             moveScript.AddGravity = false;
 
+        navAgent = GetComponent<NavMeshAgent>();
         SetUI();
     }
 
@@ -117,6 +121,7 @@ public class Enemy : MonoBehaviour
             }
 
             distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
+            
 
             //Look at Player
             transform.rotation = Quaternion.Slerp(transform.rotation
@@ -126,8 +131,9 @@ public class Enemy : MonoBehaviour
             //Follow Player
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                movement = transform.forward * moveSpeed * Time.deltaTime * 100;
-                moveScript.Move(movement);
+                //movement = transform.forward * moveSpeed * Time.deltaTime * 100;
+                //moveScript.Move(movement);
+                navAgent.SetDestination(currentTarget.transform.position);
             }
             else if (distanceToPlayer < viewRange)
             {
