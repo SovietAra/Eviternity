@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  sprayAngle: 43.5
+  sprayAngle: 11.1
   maxAmmoPerClip: 100
   reloadTimePerShell: 0.75
   reloadTimePerClip: 2
