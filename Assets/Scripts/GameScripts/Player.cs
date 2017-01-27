@@ -141,6 +141,7 @@ public class Player : MonoBehaviour
 
         //play sound by its name defined above
         SpawnSound.Play();
+     
         mainCamera = Camera.main;
         mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
         elapsedDashTime = dashTime;
