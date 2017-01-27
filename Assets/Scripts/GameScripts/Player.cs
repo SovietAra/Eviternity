@@ -236,6 +236,8 @@ public class Player : MonoBehaviour
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
         e.Cancel = OnIce;
+        if(!OnIce && !audioSources[5].isPlaying && e.Velocity != Physics.gravity)
+            audioSources[5].Play();
     }
 
     // Update is called once per frame
@@ -300,10 +302,6 @@ public class Player : MonoBehaviour
         if(moveScript !=null && !OnIce)
         {
             Borders();
-            if (finalVelocity != Vector3.zero)
-            {
-                audioSources[5].Play();
-            }
             moveScript.Move(finalVelocity);          
         }
 
@@ -487,13 +485,6 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
 
-    private void UpdateVelocity()
-    {
-        velocity = velocity * 0.8f;
-        if (velocity.x < 0.1 && velocity.x > -0.1f && velocity.y < 0.1 && velocity.y > -0.1f && velocity.z < 0.1 && velocity.z > -0.1f)
-            velocity = Vector3.zero;
-    }
-
     private float CalculateAngle(Vector2 target, Vector2 source)
     {
         return ((float)Math.Atan2(target.y - source.y, target.x - source.x)) * (180f / (float)Math.PI);
@@ -518,10 +509,11 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
-            audioSources[6].Play();
+            
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                audioSources[6].Play();
+                if(!audioSources[6].isPlaying)
+                    audioSources[6].Play();
                 return true;
             }
         }
@@ -534,7 +526,8 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
-                audioSources[2].Play();
+                if (!audioSources[2].isPlaying)
+                    audioSources[2].Play();
                 return true;
             }
         }
@@ -668,7 +661,8 @@ public class Player : MonoBehaviour
         isDead = true;
         if (TeamHealth == 0)
         {
-            audioSources[1].Play();
+            if (!audioSources[1].isPlaying)
+                audioSources[1].Play();
             Destroy(gameObject);
         }
     }
@@ -696,7 +690,8 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
     {
-        audioSources[7].Play();
+        //if (!audioSources[7].isPlaying)
+            audioSources[7].Play();
     }
 
     #endregion PlayerHealth
