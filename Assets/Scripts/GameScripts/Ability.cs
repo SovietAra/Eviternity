@@ -65,10 +65,13 @@ public class Ability : MonoBehaviour
     private int objectsAtTheSameTime = 1;
     
     [Range(-10000f, 10000f)]
-    public float abilityValue = 0;
+    public float AbilityValue = 0;
 
     [SerializeField]
     private bool parentObject = false;
+
+    [SerializeField]
+    private bool MultiplyRotation = true;
 
     private List<GameObject> spawnedObjects;
     private bool active;
@@ -83,6 +86,17 @@ public class Ability : MonoBehaviour
     public event EventHandler OnAbortRegeneration;
     public event EventHandler OnReachedMaxEnergy;
     public event EventHandler OnObjectSpawned;
+    public event EventHandler OnUsing;
+
+    public float MaxEnergy
+    {
+        get { return maxEnergy; }
+    }
+
+    public float Energy
+    {
+        get { return energy; }
+    }
 
     public bool IsActive
     {
@@ -109,12 +123,15 @@ public class Ability : MonoBehaviour
             }
             else
             {
-                energy -= energyRegenerationPerSecond * Time.deltaTime;
+                energy -= energyRequiredPerSeconds * Time.deltaTime;
                 if (energy <= 0)
                 {
                     Deactivate();
                 }
             }
+
+            if (OnUsing != null)
+                OnUsing(this, EventArgs.Empty);
         }
         else if (active && activeOnKeyPressed && keyPressed)
         {
@@ -124,6 +141,9 @@ public class Ability : MonoBehaviour
             {
                 Deactivate();
             }
+
+            if (OnUsing != null)
+                OnUsing(this, EventArgs.Empty);
         }
         else if (active && activeOnKeyPressed && !keyPressed)
         {
@@ -198,7 +218,9 @@ public class Ability : MonoBehaviour
         {
             GameObject gobj = Instantiate(spawnObject);
             gobj.transform.position = transform.parent.position + (transform.parent.forward * spawnForwardDistance) + spawnTranslation;
-            gobj.transform.localRotation *= transform.parent.rotation;
+            if(MultiplyRotation)
+                gobj.transform.localRotation *= transform.parent.rotation;
+
             if(parentObject)
                 gobj.transform.parent = transform;
             
