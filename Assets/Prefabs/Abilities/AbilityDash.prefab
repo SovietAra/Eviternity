@@ -55,8 +55,8 @@ MonoBehaviour:
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 10
-  energyRegenerationPerSecond: 10
+  energyRequiredPerSeconds: 300
+  energyRegenerationPerSecond: 67
   energyRequiredOnce: 0
   regnerationDelay: 2
   allowActivationWithPartialEnergy: 0
@@ -68,5 +68,6 @@ MonoBehaviour:
   spawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
-  abilityValue: 5
+  AbilityValue: 20
   parentObject: 1
+  MultiplyRotation: 0

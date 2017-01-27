@@ -389,6 +389,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8.4
+  dashSpeed: 17.1
+  dashTime: 1.5
+  regenerationPerSecond: 17
+  reviveDelay: 2
+  Freeze: 0
+  RotateOnMove: 0
+  PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
+    type: 2}
+  SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
+    type: 2}
+  Ability: {fileID: 1106245875336466, guid: 3892a081e8b0cec4fa829c6f24345625, type: 2}
+  SecondaryAbility: {fileID: 1657859246270480, guid: ce02c73a09e0aff4db5afc1921376a5e,
+    type: 2}
+  DashAbility: {fileID: 1397790803564228, guid: d497b7f07f642344e9ef8a90c5ccb4f1,
+    type: 2}
+  OnIce: 0
   AudioClips:
   - {fileID: 8300000, guid: ddd0c7d916af8f44b9f501b3159ca57e, type: 3}
   - {fileID: 8300000, guid: dd22f5ed30a97ab478ec4f74caea7fe8, type: 3}
@@ -410,21 +427,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 8.4
-  dashSpeed: 17.1
-  dashTime: 1.5
-  regenerationPerSecond: 17
-  reviveDelay: 2
-  Freeze: 0
-  RotateOnMove: 0
-  PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
-    type: 2}
-  SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
-    type: 2}
-  Ability: {fileID: 1106245875336466, guid: 3892a081e8b0cec4fa829c6f24345625, type: 2}
-  SecondaryAbility: {fileID: 1657859246270480, guid: ce02c73a09e0aff4db5afc1921376a5e,
-    type: 2}
-  OnIce: 0
 --- !u!136 &136804792390595418
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -80,8 +80,11 @@ public class Player : MonoBehaviour
     public GameObject Ability;
     public GameObject SecondaryAbility;
     public GameObject DashAbility;
+
+    [HideInInspector]
     public bool OnIce;
-    public AudioClip[] Clips = new AudioClip[2];
+
+    public AudioClip[] AudioClips = new AudioClip[20];
     #endregion
 
     #region EventHandlers
@@ -297,7 +300,11 @@ public class Player : MonoBehaviour
         if(moveScript !=null && !OnIce)
         {
             Borders();
-            moveScript.Move(finalVelocity);
+            if (finalVelocity != Vector3.zero)
+            {
+                audioSources[5].Play();
+            }
+            moveScript.Move(finalVelocity);          
         }
 
         bool executed = false;
@@ -511,8 +518,12 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
-           // audioSources[6].Play();
-            return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
+            audioSources[6].Play();
+            if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
+            {
+                audioSources[6].Play();
+                return true;
+            }
         }
         return false;
     }
@@ -521,7 +532,11 @@ public class Player : MonoBehaviour
     {
         if (dashAbility != null)
         {
-            return dashAbility.Use();
+            if(dashAbility.Use())
+            {
+                audioSources[2].Play();
+                return true;
+            }
         }
         return false;
     }
@@ -653,6 +668,7 @@ public class Player : MonoBehaviour
         isDead = true;
         if (TeamHealth == 0)
         {
+            audioSources[1].Play();
             Destroy(gameObject);
         }
     }
@@ -680,6 +696,7 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
     {
+        audioSources[7].Play();
     }
 
     #endregion PlayerHealth
