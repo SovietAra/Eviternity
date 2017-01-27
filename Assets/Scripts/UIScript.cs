@@ -74,7 +74,7 @@ public class UIScript : MonoBehaviour
                     UICanvas.SetActive(true);
                 }
 
-                teamhealthAmount = Player.TeamHealth / 30;
+                teamhealthAmount = Player.TeamHealth / 200;
                 TeamHealthBar.fillAmount = teamhealthAmount;
 
                 if (isHealing)
@@ -121,25 +121,25 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    player1HealthBar_2.fillAmount = damageAbleObject.Health / 10;
+                    player1HealthBar_2.fillAmount = damageAbleObject.Health / 20;
                 }
                 break;
 
             case PlayerIndex.Two:
                 {
-                    player2HealthBar_2.fillAmount = damageAbleObject.Health / 10;
+                    player2HealthBar_2.fillAmount = damageAbleObject.Health / 20;
                 }
                 break;
 
             case PlayerIndex.Three:
                 {
-                    player3HealthBar_2.fillAmount = damageAbleObject.Health / 10;
+                    player3HealthBar_2.fillAmount = damageAbleObject.Health / 20;
                 }
                 break;
 
             case PlayerIndex.Four:
                 {
-                    player4HealthBar_2.fillAmount = damageAbleObject.Health / 10;
+                    player4HealthBar_2.fillAmount = damageAbleObject.Health / 20;
                 }
                 break;
 
