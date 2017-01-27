@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public static float TeamHealth = 10f;
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
-    public AudioClip[] Clips = new AudioClip[2];
+    public AudioClip[] AudioClips = new AudioClip[20];
 
     #endregion statics
 
@@ -123,25 +123,37 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
-        for (var tmp = 0; tmp < Clips.Length; tmp++)
+        for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
             gameObject.AddComponent<AudioSource>();
         }
 
         audioSources = GetComponents<AudioSource>();
 
-        for (var tmp = 0; tmp < Clips.Length; tmp++)
+        for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
-            audioSources[tmp].clip = Clips[tmp];
+            audioSources[tmp].clip = AudioClips[tmp];
         }
 
         //define names for sounds
-        var DashSound = audioSources[0];
-        var SpawnSound = audioSources[1];
+        var Spawn_Sound = audioSources[0];
+        var Despawn_Sound = audioSources[1];
+        var Dash_Sound = audioSources[2];
+        var Walk_Ice_1_Sound = audioSources[3];
+        var Walk_Metal_1_Sound = audioSources[4];
+        var Walk_Snow_1_Sound = audioSources[5];
+        var Healing_Sound = audioSources[6];
+        var Hit1_Sound = audioSources[7];
+        var ShieldActivated_Sound = audioSources[8];
+        var Shielddestroyed_Sound = audioSources[9];
+        var LaserShot1_Sound = audioSources[10];
+        
+
+        //TODO call sounds in correct places/functions
 
         //play sound by its name defined above
-        SpawnSound.Play();
-     
+        Spawn_Sound.Play();
+
         mainCamera = Camera.main;
         mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
         elapsedDashTime = dashTime;
@@ -479,6 +491,7 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
+           // audioSources[6].Play();
             return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
         }
         return false;
@@ -496,7 +509,8 @@ public class Player : MonoBehaviour
             {
                 velocity = ScaleVactorUp(moveVector) * Time.deltaTime * dashSpeed;
             }
-            elapsedDashTime = 0f;
+            elapsedDashTime = 0f; 
+            audioSources[2].Play();//play dash sound
             return true;
         }
 
@@ -595,6 +609,7 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
+        audioSources[10].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
     }
