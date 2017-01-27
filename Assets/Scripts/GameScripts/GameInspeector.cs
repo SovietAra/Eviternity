@@ -86,7 +86,7 @@ public class GameInspeector : MonoBehaviour
         
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
-            SpawnPlayer(GlobalReferences.PlayerStates[i], Player.Checkpos + new Vector3(i * 2, 1, 0));
+            SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
         }
     }
 
