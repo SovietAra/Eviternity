@@ -11,7 +11,7 @@ public class ColorSwitch_check : MonoBehaviour {
 
     private void Start()
     {
-        ObjectColor.a = 0.7f;
+        ObjectColor.a = 0.3f;
     }
     void Update()
     {
@@ -32,6 +32,6 @@ public class ColorSwitch_check : MonoBehaviour {
     public void ChangeColor()
     {
         ObjectColor = Color.green;
-        ObjectColor.a = 0.7f;
+        ObjectColor.a = 0.3f;
     }
 }
