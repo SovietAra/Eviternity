@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     public GameObject SecondaryAbility;
     public GameObject DashAbility;
     public bool OnIce;
+    public AudioClip[] Clips = new AudioClip[2];
     #endregion
 
     #region EventHandlers
