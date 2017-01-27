@@ -389,6 +389,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Clips:
+  - {fileID: 8300000, guid: c8f9092dbf3e77e459b1d88b287ef65d, type: 3}
+  - {fileID: 8300000, guid: ddd0c7d916af8f44b9f501b3159ca57e, type: 3}
   speed: 8.4
   dashSpeed: 17.1
   dashTime: 1.5
