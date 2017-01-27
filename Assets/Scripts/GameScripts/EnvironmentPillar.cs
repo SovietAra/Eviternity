@@ -7,16 +7,17 @@ using UnityEngine;
 public class EnvironmentPillar : MonoBehaviour {
 
     private BoxCollider spawnarea;
+
+    [SerializeField]
+    [Range(1, 5)]
+    private int healthPoints;
+
     [SerializeField]
     [Range(1, 10)]
     private int debrisCount;
 
     [SerializeField]
     private GameObject[] debris;
-
-    [SerializeField]
-    [Range(1, 5)]
-    private int healthPoints;
 
     // Use this for initialization
     void Start ()

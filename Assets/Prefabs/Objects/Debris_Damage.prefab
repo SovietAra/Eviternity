@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1413828968760472}
+  m_RootGameObject: {fileID: 1976762661447116}
   m_IsPrefabParent: 1
---- !u!1 &1413828968760472
+--- !u!1 &1976762661447116
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4961648869199288}
-  - component: {fileID: 33681529915851724}
-  - component: {fileID: 65218104397987922}
-  - component: {fileID: 23513929250804788}
-  - component: {fileID: 54230523314641244}
-  - component: {fileID: 114592287326995078}
+  - component: {fileID: 4022123593338480}
+  - component: {fileID: 33779969712482284}
+  - component: {fileID: 65606308055884514}
+  - component: {fileID: 23737473340421884}
+  - component: {fileID: 54850115481798510}
+  - component: {fileID: 114377522814764178}
   m_Layer: 0
-  m_Name: Debris_collapse
+  m_Name: Debris_Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4961648869199288
+--- !u!4 &4022123593338480
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413828968760472}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.056887, y: -1.9847584, z: -15.074913}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_GameObject: {fileID: 1976762661447116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.21, y: 8, z: -19.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23513929250804788
+--- !u!23 &23737473340421884
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413828968760472}
+  m_GameObject: {fileID: 1976762661447116}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,19 +75,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33681529915851724
+--- !u!33 &33779969712482284
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413828968760472}
+  m_GameObject: {fileID: 1976762661447116}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54230523314641244
+--- !u!54 &54850115481798510
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413828968760472}
+  m_GameObject: {fileID: 1976762661447116}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -97,27 +97,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65218104397987922
+--- !u!65 &65606308055884514
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413828968760472}
+  m_GameObject: {fileID: 1976762661447116}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114592287326995078
+--- !u!114 &114377522814764178
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1413828968760472}
+  m_GameObject: {fileID: 1976762661447116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329c31755f931df4caf05af8c5b80227, type: 3}
+  m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCollapse: 4
+  speed: 1
+  damage: 8
+  damageRange: 0
+  detonationTimer: 2
+  invertGravityFactor: 0.5
+  lifeTime: 10
+  DestroyOnCollision: 1
+  CollideWithOtherProjectiles: 0
+  DoTeamDamage: 0
+  DoAOETeamDamage: 0
+  Explosion: {fileID: 0}
+  StatusEffect: {fileID: 0}
+  TeamDamageMultiplicator: 0.75
+  InvertGravity: 0
