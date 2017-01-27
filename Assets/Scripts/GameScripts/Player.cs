@@ -519,22 +519,22 @@ public class Player : MonoBehaviour
     #region AbilityEvents
     private void SecondaryAbility_OnAbort(object sender, EventArgs e)
     {
-        Ability ability = (Ability)sender;
+   
     }
 
     private void SecondaryAbility_OnActivated(object sender, EventArgs e)
     {
-        Ability ability = (Ability)sender;
+
     }
 
     private void Ability_OnAbort(object sender, EventArgs e)
     {
-        Ability ability = (Ability)sender;
+     
     }
 
     private void Ability_OnActivated(object sender, EventArgs e)
     {
-        Ability ability = (Ability)sender;
+        
 
     }
     #endregion

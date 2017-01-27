@@ -27,24 +27,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 100.0f)]
     private float viewRange = 15.0f;
-
-    [SerializeField]
-    [Range(0.1f, 10000f)]
-    private float health = 10.0f;
-
+    
     enum enemyTypes
     {
         Crawler = 1,
         Mosquito = 2,
         Mantis = 3
     }
-    [SerializeField]
-    enemyTypes enemyType;
 
     [SerializeField]
-    [Range(0.1f, 60f)]
-    private float attackDelay = 1f;
-    private float elapsedAttackDelay = 0f;
+    enemyTypes enemyType;
 
     [SerializeField]
     [Range(0.1f, 100f)]
@@ -66,19 +58,22 @@ public class Enemy : MonoBehaviour
     private MoveScript moveScript;
 
     public UnityEvent onEnemyDeath;
-    private Rigidbody physics;
     private Vector3 movement;
+
     // Use this for initialization
     void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
-        dmgobjct.OnDeath += Dmgobjct_OnDeath;
+        if(dmgobjct != null)
+            dmgobjct.OnDeath += Dmgobjct_OnDeath;
+
         if(PrimaryWeapon != null)
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
-
-        physics = GetComponent<Rigidbody>();
+        
         moveScript = GetComponent<MoveScript>();
-        moveScript.AddGravity = false;
+        if(moveScript != null)
+            moveScript.AddGravity = false;
+
         SetUI();
     }
 
@@ -167,10 +162,8 @@ public class Enemy : MonoBehaviour
     private void TryShoot()
     {
         //Maybe TODO : Create Specific Enemy Weapon Prefab
-        elapsedAttackDelay += Time.deltaTime;
-        if (elapsedAttackDelay > attackDelay)
+        if (primaryWeapon != null)
         {
-            elapsedAttackDelay = 0f;
             primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
         }
     }
@@ -194,6 +187,7 @@ public class Enemy : MonoBehaviour
         }
         return targetPlayer;
     }
+
     private void CheckAlivePlayers()
     {
         if (targetPlayer != null)

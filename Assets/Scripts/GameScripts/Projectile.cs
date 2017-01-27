@@ -42,7 +42,6 @@ public class Projectile : MonoBehaviour
 
     public bool InvertGravity;
     
-    private Collider projectileCollider;
     private Rigidbody attachedBody;
     private float elapsedTime = 0f;
     private float elapsedLifeTime;
@@ -84,8 +83,7 @@ public class Projectile : MonoBehaviour
     }
 
     private void Start()
-    {
-        projectileCollider = GetComponent<Collider>();      
+    {  
         attachedBody = GetComponent<Rigidbody>();
         if(attachedBody != null)
             attachedBody.velocity = (transform.forward * speed) + (InvertGravity ? new Vector3(0, invertGravityFactor, 0) : Vector3.zero);
