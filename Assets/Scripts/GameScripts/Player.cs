@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     private MoveScript moveScript;
 
     private Camera mainCamera;
-    private float xMin, xMax, zMin, zMax, clampedX, clampedZ;
+    private float xMin, xMax, zMin, zMax;
     private Rigidbody physics;
     private GameObject transparentObject;
 
@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     private GameObject mainGameObject;
     private UIScript uiScript;
+
+    private Vector3 meshBounds;
     #endregion
 
     #region InspectorFields
@@ -151,6 +153,16 @@ public class Player : MonoBehaviour
         moveScript = GetComponent<MoveScript>();
         if(moveScript != null)
             moveScript.OnMoving += MoveScript_OnMoving;
+
+        MeshFilter meshFilter = GetComponent<MeshFilter>();
+        if (meshFilter != null)
+        {
+            Mesh mesh = meshFilter.mesh;
+            if (mesh != null)
+            {
+                meshBounds = mesh.bounds.size;
+            }
+        }
     }
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
@@ -218,6 +230,7 @@ public class Player : MonoBehaviour
         finalVelocity = (moveVector + velocity) * 100;
         if(moveScript !=null && !OnIce)
         {
+            Borders();
             moveScript.Move(finalVelocity);
         }
 
@@ -301,8 +314,17 @@ public class Player : MonoBehaviour
                 (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
                  mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
 
-        clampedX = Mathf.Clamp(transform.position.x, xMin, xMax);
-        clampedZ = Mathf.Clamp(transform.position.z, zMin, zMax);
+        if (transform.position.x < xMin + meshBounds.x && finalVelocity.x < 0)
+            finalVelocity.x = 0;
+
+        if (transform.position.x > xMax - meshBounds.x && finalVelocity.x > 0)
+            finalVelocity.x = 0;
+
+        if (transform.position.z < zMin + meshBounds.z && finalVelocity.z < 0)
+            finalVelocity.z = 0;
+
+        if (transform.position.z > zMax - meshBounds.z && finalVelocity.z > 0)
+            finalVelocity.z = 0;
     }
 
     private void CheckOverlappingObjects()

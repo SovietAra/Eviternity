@@ -464,23 +464,37 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4990059755942468, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0.60876137
       objectReference: {fileID: 0}
     - target: {fileID: 4990059755942468, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4990059755942468, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4990059755942468, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.7933534
       objectReference: {fileID: 0}
     - target: {fileID: 4990059755942468, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183835014481944, guid: 8fed05a3f5375e24f9d4095093c17cc5,
+        type: 2}
+      propertyPath: visualizeArea
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183835014481944, guid: 8fed05a3f5375e24f9d4095093c17cc5,
+        type: 2}
+      propertyPath: zoomOutBorders
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990059755942468, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fed05a3f5375e24f9d4095093c17cc5, type: 2}
