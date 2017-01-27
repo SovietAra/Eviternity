@@ -1,4 +1,11 @@
-﻿using Assets.Scripts;
+﻿/* 
+ * Purpose: Händelt die Character- und Waffenzuweisung
+ * Author: Gregor von Frankenberg
+ * Date: 27.01.2017
+ */
+
+
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,17 +51,55 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
     GamePadState[] prevState = new GamePadState[4];
 
-    int[] index = new int[4] { 0, 0, 0, 0 };
-    int[] prevIndex = new int[4] { 0, 0, 0, 0 };
+    int[] index = new int[2] { 0, 0 };
+    int[] prevIndex = new int[2] { 0, 0 };
 
+    int charSelected;
+
+    public Canvas weaponSelectionPlayerOne;
     public Image player1_weapon1_left;
     public Image player1_weapon2_left;
     public Image player1_weapon3_left;
 
-    int[] weaponIndex = new int[4] { 0, 0, 0, 0};
-    int[] weaponPrevIndex = new int[4] { 0, 0, 0, 0};
+    public Image player1_weapon1_right;
+    public Image player1_weapon2_right;
+    public Image player1_weapon3_right;
 
-    public Dictionary<int, List<Image>> WeaponList = new Dictionary<int, List<Image>>();
+    public Canvas weaponSelectionPlayerTwo;
+    public Image player2_weapon1_left;
+    public Image player2_weapon2_left;
+    public Image player2_weapon3_left;
+
+    public Image player2_weapon1_right;
+    public Image player2_weapon2_right;
+    public Image player2_weapon3_right;
+
+    public Canvas weaponSelectionPlayerThree;
+    public Image player3_weapon1_left;
+    public Image player3_weapon2_left;
+    public Image player3_weapon3_left;
+
+    public Image player3_weapon1_right;
+    public Image player3_weapon2_right;
+    public Image player3_weapon3_right;
+
+    public Canvas weaponSelectionPlayerFour;
+    public Image player4_weapon1_left;
+    public Image player4_weapon2_left;
+    public Image player4_weapon3_left;
+
+    public Image player4_weapon1_right;
+    public Image player4_weapon2_right;
+    public Image player4_weapon3_right;
+
+    public Dictionary<int, List<Image>> WeaponListLeft = new Dictionary<int, List<Image>>();
+    public Dictionary<int, List<Image>> WeaponListRight = new Dictionary<int, List<Image>>();
+
+    int[] leftWeaponIndex = new int[3] { 0, 0, 0 };
+    int[] leftWeaponPrevIndex = new int[3] { 0, 0, 0 };
+
+    int[] rightWeaponIndex = new int[3] { 0, 0, 0 };
+    int[] rightWeaponPrevIndex = new int[3] { 0, 0, 0 };
     // Use this for initialization
     void Start ()
     {
@@ -126,18 +171,93 @@ public class PlayerAssignmentScript : MonoBehaviour {
         TempImageList.Add(playerFourStalker);
         ImageList.Add(3, TempImageList);
 
+        weaponSelectionPlayerOne = weaponSelectionPlayerOne.GetComponent<Canvas>();
         player1_weapon1_left = player1_weapon1_left.GetComponent<Image>();
         player1_weapon2_left = player1_weapon2_left.GetComponent<Image>();
         player1_weapon3_left = player1_weapon3_left.GetComponent<Image>();
-        player1_weapon1_left.enabled = true;
-        player1_weapon2_left.enabled = false;
-        player1_weapon3_left.enabled = false;
 
-        List<Image> TempWeaponList = new List<Image>();
-        TempWeaponList.Add(player1_weapon1_left);
-        TempWeaponList.Add(player1_weapon2_left);
-        TempWeaponList.Add(player1_weapon3_left);
-        WeaponList.Add(0, TempWeaponList);
+        player1_weapon1_right = player1_weapon1_right.GetComponent<Image>();
+        player1_weapon2_right = player1_weapon2_right.GetComponent<Image>();
+        player1_weapon3_right = player1_weapon3_right.GetComponent<Image>();
+        weaponSelectionPlayerOne.enabled = true;
+
+        weaponSelectionPlayerTwo = weaponSelectionPlayerTwo.GetComponent<Canvas>();
+        player2_weapon1_left = player2_weapon1_left.GetComponent<Image>();
+        player2_weapon2_left = player2_weapon2_left.GetComponent<Image>();
+        player2_weapon3_left = player2_weapon3_left.GetComponent<Image>();
+
+        player2_weapon1_right = player2_weapon1_right.GetComponent<Image>();
+        player2_weapon2_right = player2_weapon2_right.GetComponent<Image>();
+        player2_weapon3_right = player2_weapon3_right.GetComponent<Image>();
+        weaponSelectionPlayerTwo.enabled = true;
+
+        weaponSelectionPlayerThree = weaponSelectionPlayerThree.GetComponent<Canvas>();
+        player3_weapon1_left = player3_weapon1_left.GetComponent<Image>();
+        player3_weapon2_left = player3_weapon2_left.GetComponent<Image>();
+        player3_weapon3_left = player3_weapon3_left.GetComponent<Image>();
+
+        player3_weapon1_right = player3_weapon1_right.GetComponent<Image>();
+        player3_weapon2_right = player3_weapon2_right.GetComponent<Image>();
+        player3_weapon3_right = player3_weapon3_right.GetComponent<Image>();
+        weaponSelectionPlayerThree.enabled = true;
+
+        weaponSelectionPlayerFour = weaponSelectionPlayerFour.GetComponent<Canvas>();
+        player4_weapon1_left = player4_weapon1_left.GetComponent<Image>();
+        player4_weapon2_left = player4_weapon2_left.GetComponent<Image>();
+        player4_weapon3_left = player4_weapon3_left.GetComponent<Image>();
+
+        player4_weapon1_right = player4_weapon1_right.GetComponent<Image>();
+        player4_weapon2_right = player4_weapon2_right.GetComponent<Image>();
+        player4_weapon3_right = player4_weapon3_right.GetComponent<Image>();
+        weaponSelectionPlayerFour.enabled = true;
+
+        List<Image> TempWeaponListLeft = new List<Image>();
+        TempWeaponListLeft.Add(player1_weapon1_left);
+        TempWeaponListLeft.Add(player1_weapon2_left);
+        TempWeaponListLeft.Add(player1_weapon3_left);
+        WeaponListLeft.Add(0, TempWeaponListLeft);
+
+        List<Image> TempWeaponListRight = new List<Image>();
+        TempWeaponListRight.Add(player1_weapon1_right);
+        TempWeaponListRight.Add(player1_weapon2_right);
+        TempWeaponListRight.Add(player1_weapon3_right);
+        WeaponListRight.Add(0, TempWeaponListRight);
+        ////////////////////////////////////////////
+        TempWeaponListLeft = new List<Image>();
+        TempWeaponListLeft.Add(player2_weapon1_left);
+        TempWeaponListLeft.Add(player2_weapon2_left);
+        TempWeaponListLeft.Add(player2_weapon3_left);
+        WeaponListLeft.Add(1, TempWeaponListLeft);
+
+        TempWeaponListRight = new List<Image>();
+        TempWeaponListRight.Add(player2_weapon1_right);
+        TempWeaponListRight.Add(player2_weapon2_right);
+        TempWeaponListRight.Add(player2_weapon3_right);
+        WeaponListRight.Add(1, TempWeaponListRight);
+
+        TempWeaponListLeft = new List<Image>();
+        TempWeaponListLeft.Add(player3_weapon1_left);
+        TempWeaponListLeft.Add(player3_weapon2_left);
+        TempWeaponListLeft.Add(player3_weapon3_left);
+        WeaponListLeft.Add(2, TempWeaponListLeft);
+
+        TempWeaponListRight = new List<Image>();
+        TempWeaponListRight.Add(player3_weapon1_right);
+        TempWeaponListRight.Add(player3_weapon2_right);
+        TempWeaponListRight.Add(player3_weapon3_right);
+        WeaponListRight.Add(2, TempWeaponListRight);
+
+        TempWeaponListLeft = new List<Image>();
+        TempWeaponListLeft.Add(player4_weapon1_left);
+        TempWeaponListLeft.Add(player4_weapon2_left);
+        TempWeaponListLeft.Add(player4_weapon3_left);
+        WeaponListLeft.Add(3, TempWeaponListLeft);
+
+        TempWeaponListRight = new List<Image>();
+        TempWeaponListRight.Add(player4_weapon1_right);
+        TempWeaponListRight.Add(player4_weapon2_right);
+        TempWeaponListRight.Add(player4_weapon3_right);
+        WeaponListRight.Add(3, TempWeaponListRight);
     }
 	
 	// Update is called once per frame
@@ -172,6 +292,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
                     playerOneJoin.enabled = false;
                     playerOneAssigned.enabled = true;
                     charSelectPlayerOne.enabled = true;
+                    //weaponSelectionPlayerOne.enabled = true;
                 }
 
                 if (index == PlayerIndex.Two)
@@ -214,11 +335,13 @@ public class PlayerAssignmentScript : MonoBehaviour {
             }
             if(state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
             {
-                    prevIndex[playerIndex] = index[playerIndex];
-                    index[playerIndex]++;
-                    if(index[playerIndex] >= ImageList.Count)
+                prevIndex[playerIndex] = index[playerIndex];
+                index[playerIndex] -= 1;
+                Debug.Log("index:" + index[playerIndex]);
+                if (index[playerIndex] < 0 )
                     {
-                        index[playerIndex] = 0;
+                        Debug.Log("Sprung auf Ende der List");
+                        index[playerIndex] = 1;
                     }
 
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
@@ -226,35 +349,41 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
             if (state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released)
             {
-                    prevIndex[playerIndex] = index[playerIndex];
-                    index[playerIndex]--;
-                    if (index[playerIndex] < 0)
-                    {
-                    index[playerIndex] = ImageList.Count - 1;
-                    }
+                prevIndex[playerIndex] = index[playerIndex];
+                index[playerIndex] += 1;
+                Debug.Log("index:" + index[playerIndex]);
+                if (index[playerIndex] > 1)
+                {
+                    Debug.Log("Sprung auf Anfang der Liste");
+                    index[playerIndex] = 0;
+                }
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
+            }
+            
+            if (state.Buttons.X == ButtonState.Pressed && prevState[playerIndex].Buttons.X == ButtonState.Released)
+            {
+                leftWeaponPrevIndex[playerIndex] = leftWeaponIndex[playerIndex];
+                leftWeaponIndex[playerIndex] += 1;
+                Debug.Log("index:" + leftWeaponIndex[playerIndex]);
+                if (leftWeaponIndex[playerIndex] > 2)
+                {
+                    Debug.Log("Links\nSprung auf Anfang der Liste");
+                    leftWeaponIndex[playerIndex] = 0;
+                }
+                ChangeLeftWeapon(playerIndex, leftWeaponIndex[playerIndex], leftWeaponPrevIndex[playerIndex]);
             }
 
             if (state.Buttons.Y == ButtonState.Pressed && prevState[playerIndex].Buttons.Y == ButtonState.Released)
             {
-                weaponPrevIndex[playerIndex] = weaponIndex[playerIndex];
-                weaponIndex[playerIndex]++;
-                if (weaponIndex[playerIndex] >= WeaponList.Count)
+                prevIndex[playerIndex] = index[playerIndex];
+                index[playerIndex] += 1;
+                Debug.Log("index:" + index[playerIndex]);
+                if (index[playerIndex] > 2)
                 {
-                    weaponIndex[playerIndex] = 0;
+                    Debug.Log("Rechts\nSprung auf Anfang der Liste");
+                    index[playerIndex] = 0;
                 }
-                ChangeWeapon(playerIndex, weaponIndex[playerIndex], weaponPrevIndex[playerIndex]);
-            }
-
-            if (state.Buttons.X == ButtonState.Pressed && prevState[playerIndex].Buttons.X == ButtonState.Released)
-            {
-                weaponPrevIndex[playerIndex] = weaponIndex[playerIndex];
-                weaponIndex[playerIndex]--;
-                if (weaponIndex[playerIndex] < 0)
-                {
-                    weaponIndex[playerIndex] = WeaponList.Count - 1;
-                }
-                ChangeWeapon(playerIndex, weaponIndex[playerIndex], weaponPrevIndex[playerIndex]);
+                ChangeRightWeapon(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
             if (state.Buttons.B == ButtonState.Pressed)
@@ -324,9 +453,15 @@ public class PlayerAssignmentScript : MonoBehaviour {
         ImageList[playerIndex][prevIndex].enabled = false;
     }
 
-    public void ChangeWeapon(int playerIndex, int weaponIndex, int weaponPrevIndex)
+    public void ChangeLeftWeapon(int playerIndex, int index, int prevIndex)
     {
-        WeaponList[playerIndex][weaponIndex].enabled = true;
-        WeaponList[playerIndex][weaponPrevIndex].enabled = false;
+        WeaponListLeft[playerIndex][index].enabled = true;
+        WeaponListLeft[playerIndex][prevIndex].enabled = false;
+    }
+
+    public void ChangeRightWeapon(int playerIndex, int index, int prevIndex)
+    {
+        WeaponListRight[playerIndex][index].enabled = true;
+        WeaponListRight[playerIndex][prevIndex].enabled = false;
     }
 }

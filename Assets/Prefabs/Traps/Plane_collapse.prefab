@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33513730157383160}
   - component: {fileID: 23702401704467216}
   - component: {fileID: 114863321705256342}
+  - component: {fileID: 65738586117894272}
+  - component: {fileID: 114320804875513102}
   m_Layer: 0
   m_Name: Plane_collapse
   m_TagString: Untagged
@@ -36,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157527102328806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9630089, y: 1.110223e-16, z: -5.7889404}
+  m_LocalPosition: {x: -18.623772, y: 0.66, z: -12.730255}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,6 +82,44 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157527102328806}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65738586117894272
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157527102328806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.01, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114320804875513102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157527102328806}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  damage: 0.1
+  damageRange: 0
+  detonationTimer: 2
+  invertGravityFactor: 0.5
+  lifeTime: 10
+  DestroyOnCollision: 0
+  CollideWithOtherProjectiles: 0
+  DoTeamDamage: 0
+  DoAOETeamDamage: 0
+  Explosion: {fileID: 0}
+  StatusEffect: {fileID: 1678993688747060, guid: 51dca84659034c046a5c27789ddf14ae,
+    type: 2}
+  TeamDamageMultiplicator: 0.75
+  InvertGravity: 0
 --- !u!114 &114863321705256342
 MonoBehaviour:
   m_ObjectHideFlags: 1

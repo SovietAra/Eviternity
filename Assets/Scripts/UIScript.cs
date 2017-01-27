@@ -30,6 +30,8 @@ public class UIScript : MonoBehaviour
     public Sprite TeamHealthInactive;
 
     private float teamhealthAmount;
+    private float maxTeamHealth;
+    private float maxPlayerHealth;
     private Image player1HealthBar_1;
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
@@ -48,7 +50,12 @@ public class UIScript : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        CurrentPlayers = new List<GameObject>();
+        GameObject game = GameObject.Find("Game");
+        GameInspeector gameInspector = game.GetComponent<GameInspeector>();
+        maxTeamHealth = gameInspector.maxTeamHealth;
+        GameObject playerPrefab = GameObject.Find("Player");
+        DamageAbleObject playerDamageable = gameInspector.PlayerPrefab.GetComponent<DamageAbleObject>();
+        maxPlayerHealth = playerDamageable.MaxHealth;
     }
 
     // Update is called once per frame
@@ -74,7 +81,7 @@ public class UIScript : MonoBehaviour
                     UICanvas.SetActive(true);
                 }
 
-                teamhealthAmount = Player.TeamHealth / 200;
+                teamhealthAmount = Player.TeamHealth / maxTeamHealth;
                 TeamHealthBar.fillAmount = teamhealthAmount;
 
                 if (isHealing)
@@ -121,25 +128,25 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    player1HealthBar_2.fillAmount = damageAbleObject.Health / 20;
+                    player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                 }
                 break;
 
             case PlayerIndex.Two:
                 {
-                    player2HealthBar_2.fillAmount = damageAbleObject.Health / 20;
+                    player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                 }
                 break;
 
             case PlayerIndex.Three:
                 {
-                    player3HealthBar_2.fillAmount = damageAbleObject.Health / 20;
+                    player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                 }
                 break;
 
             case PlayerIndex.Four:
                 {
-                    player4HealthBar_2.fillAmount = damageAbleObject.Health / 20;
+                    player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                 }
                 break;
 
