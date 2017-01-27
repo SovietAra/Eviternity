@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]
     [Range(0f, 45f)]
-    private float sprayAngle = 20f;
+    private float maxSprayAngle = 20f;
     
     [SerializeField]
     [Range(0, 1000)]
@@ -47,6 +47,14 @@ public class Weapon : MonoBehaviour
     [Range(0, 10)]
     public float AnimationDuration = 0;
 
+    [SerializeField]
+    private bool smoothSpray = false;
+
+    [SerializeField]
+    private float sprayValueSpeed = 2f;
+
+    private float sprayAngle = 0f;
+    
     public bool AllowShellRelaod = false;
     public bool UseAmmo = true;
     public bool AutoReload = true;
@@ -132,6 +140,7 @@ public class Weapon : MonoBehaviour
         {
             if (elapsedHeatReductionDelay >= heatReductionDelay)
             {
+                sprayAngle = 0f;
                 heat -= heatReductionPerSecond * Time.deltaTime;
                 if (heat <= 0)
                 {
@@ -153,9 +162,28 @@ public class Weapon : MonoBehaviour
                 if (OnReloadEnd != null)
                     OnReloadEnd(this, EventArgs.Empty);
             }
+            
+            if(smoothSpray)
+            {
+                sprayAngle += sprayValueSpeed;
+                if(sprayAngle > maxSprayAngle / 2f)
+                {
+                    sprayAngle = maxSprayAngle / 2f;
+                    sprayValueSpeed *= -1f;
+                }
+                else if(sprayAngle < maxSprayAngle / -2f)
+                {
+                    sprayAngle = maxSprayAngle / -2f;
+                    sprayValueSpeed *= -1f;
+                }
+            }
+            else
+            {
+                sprayAngle = UnityEngine.Random.Range(-(maxSprayAngle / 2f), (maxSprayAngle / 2f));
+            }
 
             //TODO: smooth spray
-            GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + UnityEngine.Random.Range(-(sprayAngle / 2f), (sprayAngle / 2f))), 0));
+            GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + sprayAngle), 0));
             Projectile projectile = gobj.GetComponent<Projectile>();
             projectile.AttackerTag = transform.parent.tag;
 

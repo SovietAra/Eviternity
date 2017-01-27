@@ -10,9 +10,8 @@ public class Player : MonoBehaviour
     public static float TeamHealth = 10f;
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
-    public AudioClip[] Clips = new AudioClip[2];
-
-    #endregion statics
+    public static Vector3 LastCheckpointPosition;
+    #endregion
 
     #region privats
 
@@ -24,7 +23,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private Vector3 finalVelocity;
 
-    private float elapsedDashTime = 0f;
+    private float elapsedDashRegenerationTime = 0f;
     private float elapsedReviveDelay = 0f;
     private float attackInProgressTimer = 0f;
 
@@ -35,6 +34,7 @@ public class Player : MonoBehaviour
     private Weapon secondaryWeapon;
     private Ability ability;
     private Ability secondaryAbility;
+    private Ability dashAbility;
     private DamageAbleObject healthContainer;
     private MoveScript moveScript;
 
@@ -49,15 +49,14 @@ public class Player : MonoBehaviour
     private UIScript uiScript;
 
     private Vector3 meshBounds;
-
-    #endregion privats
+    #endregion
 
     #region InspectorFields
 
     [SerializeField]
     [Range(1f, 100f)]
     private float speed = 1f;
-
+    
     [SerializeField]
     [Range(1f, 100f)]
     private float dashSpeed = 5f;
@@ -73,25 +72,23 @@ public class Player : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 30f)]
     private float reviveDelay = 2f;
-
+    
     public bool Freeze = false;
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
     public GameObject SecondaryWeapon;
     public GameObject Ability;
     public GameObject SecondaryAbility;
-
+    public GameObject DashAbility;
     public bool OnIce;
-    public static Vector3 Checkpos;
-
-    #endregion InspectorFields
+    public AudioClip[] Clips = new AudioClip[2];
+    #endregion
 
     #region EventHandlers
 
     [HideInInspector]
     public event EventHandler<PlayerEventArgs> OnPlayerExit;
-
-    #endregion EventHandlers
+    #endregion
 
     #region Properties
 
@@ -114,8 +111,7 @@ public class Player : MonoBehaviour
     {
         get { return isDead; }
     }
-
-    #endregion Properties
+    #endregion
 
     #region UnityMethodes
 
@@ -123,30 +119,54 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
-        for (var tmp = 0; tmp < Clips.Length; tmp++)
+        for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
             gameObject.AddComponent<AudioSource>();
         }
 
         audioSources = GetComponents<AudioSource>();
 
-        for (var tmp = 0; tmp < Clips.Length; tmp++)
+        for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
-            audioSources[tmp].clip = Clips[tmp];
+            audioSources[tmp].clip = AudioClips[tmp];
         }
 
         //define names for sounds
-        var DashSound = audioSources[0];
-        var SpawnSound = audioSources[1];
+        var Spawn_Sound = audioSources[0];
+        var Despawn_Sound = audioSources[1];
+        var Dash_Sound = audioSources[2];
+        var Walk_Ice_1_Sound = audioSources[3];
+        var Walk_Metal_1_Sound = audioSources[4];
+        var Walk_Snow_1_Sound = audioSources[5];
+        var Healing_Sound = audioSources[6];
+        var Hit1_Sound = audioSources[7];
+        var ShieldActivated_Sound = audioSources[8];
+        var Shielddestroyed_Sound = audioSources[9];
+        var LaserShot1_Sound = audioSources[10];
+        
+
+        //TODO call sounds in correct places/functions
 
         //play sound by its name defined above
-        SpawnSound.Play();
-     
+        Spawn_Sound.Play();
+
         mainCamera = Camera.main;
         mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
-        elapsedDashTime = dashTime;
+        
         mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
         uiScript = mainGameObject.GetComponent<UIScript>();
+
+        if (DashAbility != null)
+        {
+            GameObject dash = Instantiate(DashAbility, gameObject.transform);
+            if (dash != null)
+            {
+                dashAbility = dash.GetComponent<Ability>();
+                dashAbility.OnActivated += DashAbility_OnActivated;
+                dashAbility.OnAbort += DashAbility_OnAbort;
+                dashAbility.OnUsing += DashAbility_OnUsing;
+            }
+        }          
 
         physics = GetComponent<Rigidbody>();
         if (PrimaryWeapon != null)
@@ -167,12 +187,24 @@ public class Player : MonoBehaviour
             ability = Instantiate(Ability, transform).GetComponent<Ability>();
             ability.OnActivated += Ability_OnActivated;
             ability.OnAbort += Ability_OnAbort;
+            if(ability.name == "DashAbility")
+            {
+                ability.OnActivated += DashAbility_OnActivated;
+                ability.OnAbort += DashAbility_OnAbort;
+                ability.OnUsing += DashAbility_OnUsing;
+            }
         }
         if (SecondaryAbility != null)
         {
             secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
             secondaryAbility.OnActivated += SecondaryAbility_OnActivated;
             secondaryAbility.OnAbort += SecondaryAbility_OnAbort;
+            if (ability.name == "DashAbility")
+            {
+                secondaryAbility.OnActivated += DashAbility_OnActivated;
+                secondaryAbility.OnAbort += DashAbility_OnAbort;
+                secondaryAbility.OnUsing += DashAbility_OnUsing;
+            }
         }
 
         healthContainer = GetComponent<DamageAbleObject>();
@@ -219,7 +251,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     Input(state);
-                    UpdateVelocity();
+                   // UpdateVelocity();
                     UpdateRotation();
                 }
                 prevState = state;
@@ -240,19 +272,19 @@ public class Player : MonoBehaviour
         }
         CheckOverlappingObjects();
     }
-
-    #endregion UnityMethodes
-
+    #endregion
+    
     #region UpdateMethodes
 
     private void UpdateTimers()
     {
-        elapsedDashTime += Time.deltaTime;
-        if (isDead)
+        elapsedDashRegenerationTime += Time.deltaTime;
+        if(isDead)
             elapsedReviveDelay += Time.deltaTime;
 
         if (attackInProgressTimer > 0)
             attackInProgressTimer -= Time.deltaTime;
+
     }
 
     private void Input(GamePadState state)
@@ -261,8 +293,8 @@ public class Player : MonoBehaviour
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
 
-        finalVelocity = (moveVector + velocity) * 100;
-        if (moveScript != null && !OnIce)
+        finalVelocity = (moveVector * 100) + velocity;
+        if(moveScript !=null && !OnIce)
         {
             Borders();
             moveScript.Move(finalVelocity);
@@ -479,6 +511,7 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
+           // audioSources[6].Play();
             return TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator);
         }
         return false;
@@ -486,20 +519,10 @@ public class Player : MonoBehaviour
 
     private bool TryDash()
     {
-        if (elapsedDashTime >= dashTime)
+        if (dashAbility != null)
         {
-            if (moveVector == Vector3.zero)
-            {
-                velocity = transform.forward * Time.deltaTime * dashSpeed;
-            }
-            else
-            {
-                velocity = ScaleVactorUp(moveVector) * Time.deltaTime * dashSpeed;
-            }
-            elapsedDashTime = 0f;
-            return true;
+            return dashAbility.Use();
         }
-
         return false;
     }
 
@@ -507,32 +530,10 @@ public class Player : MonoBehaviour
     {
         if (ability.IsActive && ability.name.Contains("LifeSteal"))
         {
-            healthContainer.Heal(damage * ability.abilityValue);
+            healthContainer.Heal(damage * ability.AbilityValue);
         }
     }
-
-    private Vector3 ScaleVactorUp(Vector3 vec)
-    {
-        float x = Math.Abs(vec.x);
-        float y = Math.Abs(vec.y);
-        float z = Math.Abs(vec.z);
-        float diff = 0f;
-        if (x > y && x > z)
-            diff = 1 - x;
-        else if (y > z)
-            diff = 1 - y;
-        else
-            diff = 1 - z;
-
-        if (x != 0)
-            x = vec.x + (vec.x > 0 ? diff : -diff);
-        if (y != 0)
-            y = vec.y + (vec.y > 0 ? diff : -diff);
-        if (z != 0)
-            z = vec.z + (vec.z > 0 ? diff : -diff);
-        return new Vector3(x, y, z);
-    }
-
+    
     private bool TryAbillity()
     {
         if (ability != null)
@@ -571,7 +572,21 @@ public class Player : MonoBehaviour
     {
     }
 
-    #endregion AbilityEvents
+    private void DashAbility_OnAbort(object sender, EventArgs e)
+    {
+        velocity = Vector3.zero;
+    }
+
+    private void DashAbility_OnActivated(object sender, EventArgs e)
+    {
+        velocity = transform.forward * dashAbility.AbilityValue;
+    }
+
+    private void DashAbility_OnUsing(object sender, EventArgs e)
+    {
+        velocity -= velocity * (Time.deltaTime * 0.1f);
+    }
+    #endregion
 
     #region WeaponEvents
 
@@ -595,6 +610,7 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
+        audioSources[10].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
     }

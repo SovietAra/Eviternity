@@ -389,9 +389,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips:
-  - {fileID: 8300000, guid: c8f9092dbf3e77e459b1d88b287ef65d, type: 3}
+  AudioClips:
   - {fileID: 8300000, guid: ddd0c7d916af8f44b9f501b3159ca57e, type: 3}
+  - {fileID: 8300000, guid: dd22f5ed30a97ab478ec4f74caea7fe8, type: 3}
+  - {fileID: 8300000, guid: c8f9092dbf3e77e459b1d88b287ef65d, type: 3}
+  - {fileID: 8300000, guid: 48f75b593209466449234349eb5e3350, type: 3}
+  - {fileID: 8300000, guid: cc39c67005ab2f346bd94be84c84e625, type: 3}
+  - {fileID: 8300000, guid: 472cc7007277d7f4ebcd94c75cc80fc4, type: 3}
+  - {fileID: 8300000, guid: 1c4449b5ae7de084ab14bb4ba5e8063a, type: 3}
+  - {fileID: 8300000, guid: 4b37d67245dc1ab438de1d7fa49fab5d, type: 3}
+  - {fileID: 8300000, guid: 0b18fb32f7ce5c04eb1e198ceebb9f75, type: 3}
+  - {fileID: 8300000, guid: c99890907c00e454886af0e635c2f0d4, type: 3}
+  - {fileID: 8300000, guid: 2031660c60bc6a74c946e5e19923aa10, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   speed: 8.4
   dashSpeed: 17.1
   dashTime: 1.5

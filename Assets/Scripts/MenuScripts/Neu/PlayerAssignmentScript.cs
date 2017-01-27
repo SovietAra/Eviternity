@@ -54,8 +54,6 @@ public class PlayerAssignmentScript : MonoBehaviour {
     int[] index = new int[2] { 0, 0 };
     int[] prevIndex = new int[2] { 0, 0 };
 
-    int charSelected;
-
     public Canvas weaponSelectionPlayerOne;
     public Image player1_weapon1_left;
     public Image player1_weapon2_left;
@@ -360,7 +358,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
             
-            if (state.Buttons.X == ButtonState.Pressed && prevState[playerIndex].Buttons.X == ButtonState.Released)
+            if (state.Buttons.LeftShoulder == ButtonState.Pressed && prevState[playerIndex].Buttons.LeftShoulder == ButtonState.Released)
             {
                 leftWeaponPrevIndex[playerIndex] = leftWeaponIndex[playerIndex];
                 leftWeaponIndex[playerIndex] += 1;
@@ -373,17 +371,43 @@ public class PlayerAssignmentScript : MonoBehaviour {
                 ChangeLeftWeapon(playerIndex, leftWeaponIndex[playerIndex], leftWeaponPrevIndex[playerIndex]);
             }
 
-            if (state.Buttons.Y == ButtonState.Pressed && prevState[playerIndex].Buttons.Y == ButtonState.Released)
+            if (state.Triggers.Left > 0.8 && prevState[playerIndex].Triggers.Left < 0.8)
             {
-                prevIndex[playerIndex] = index[playerIndex];
-                index[playerIndex] += 1;
-                Debug.Log("index:" + index[playerIndex]);
-                if (index[playerIndex] > 2)
+                leftWeaponPrevIndex[playerIndex] = leftWeaponIndex[playerIndex];
+                leftWeaponIndex[playerIndex] -= 1;
+                Debug.Log("index:" + leftWeaponIndex[playerIndex]);
+                if (leftWeaponIndex[playerIndex] < 0)
+                {
+                    Debug.Log("Links\nSprung auf Anfang der Liste");
+                    leftWeaponIndex[playerIndex] = 2;
+                }
+                ChangeLeftWeapon(playerIndex, leftWeaponIndex[playerIndex], leftWeaponPrevIndex[playerIndex]);
+            }
+
+            if (state.Buttons.RightShoulder == ButtonState.Pressed && prevState[playerIndex].Buttons.RightShoulder == ButtonState.Released)
+            {
+                rightWeaponPrevIndex[playerIndex] = rightWeaponIndex[playerIndex];
+                rightWeaponIndex[playerIndex] += 1;
+                Debug.Log("index:" + rightWeaponIndex[playerIndex]);
+                if (rightWeaponIndex[playerIndex] > 2)
                 {
                     Debug.Log("Rechts\nSprung auf Anfang der Liste");
-                    index[playerIndex] = 0;
+                    rightWeaponIndex[playerIndex] = 0;
                 }
-                ChangeRightWeapon(playerIndex, index[playerIndex], prevIndex[playerIndex]);
+                ChangeRightWeapon(playerIndex, rightWeaponIndex[playerIndex], rightWeaponPrevIndex[playerIndex]);
+            }
+
+            if (state.Triggers.Right > 0.8 && prevState[playerIndex].Triggers.Right < 0.8)
+            {
+                rightWeaponPrevIndex[playerIndex] = rightWeaponIndex[playerIndex];
+                rightWeaponIndex[playerIndex] -= 1;
+                Debug.Log("index:" + rightWeaponIndex[playerIndex]);
+                if (rightWeaponIndex[playerIndex] < 0)
+                {
+                    Debug.Log("Rechts\nSprung auf Anfang der Liste");
+                    rightWeaponIndex[playerIndex] = 2;
+                }
+                ChangeRightWeapon(playerIndex, rightWeaponIndex[playerIndex], rightWeaponPrevIndex[playerIndex]);
             }
 
             if (state.Buttons.B == ButtonState.Pressed)

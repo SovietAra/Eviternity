@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour {
     {
         colorSwitch.ChangeColor();
         Debug.Log("It might have worked");
-        Player.Checkpos = transform.position;
+        Player.LastCheckpointPosition = transform.position;
        // Debug.Log(GetComponent<Player>().checkpos);
     }
 }
