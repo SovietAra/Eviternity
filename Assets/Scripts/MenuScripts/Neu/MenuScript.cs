@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public EventSystem ES;
-    private GameObject StoreSelected;
     // Use this for initialization
     void Start ()
     {
-        StoreSelected = ES.firstSelectedGameObject;
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (ES.currentSelectedGameObject != StoreSelected)
-        {
-            if (ES.currentSelectedGameObject == null)
-            {
-                ES.SetSelectedGameObject(StoreSelected);
-            }
-            else
-            {
-                StoreSelected = ES.currentSelectedGameObject;
-            }
-        }
+        
     }
 
     public void PressBackToMain()
@@ -37,6 +27,7 @@ public class MenuScript : MonoBehaviour
 
     public void PressPlay()
     {
+        EditorSceneManager.LoadScene("PlayerAssignment");
         SceneManager.LoadScene("PlayerAssignment");
     }
 
