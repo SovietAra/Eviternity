@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4740667519010010}
   - component: {fileID: 33468800103275156}
   - component: {fileID: 136957911204699186}
+  - component: {fileID: 136766326841591406}
   - component: {fileID: 23737563634442602}
   - component: {fileID: 54331916548646030}
   - component: {fileID: 114119143911888264}
@@ -227,6 +228,19 @@ MonoBehaviour:
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 1
+--- !u!136 &136766326841591406
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016596340005750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136957911204699186
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -326,6 +326,12 @@ public class Player : MonoBehaviour
             executed = TryHeal();
         }
 
+        if (state.Buttons.Y == ButtonState.Released)
+        {
+            if (audioSources[6].isPlaying)
+                audioSources[6].Stop(); //stop healing sound
+        }
+
         if (state.Buttons.B == ButtonState.Pressed && !executed)
         {
             executed = TrySecondaryAbility();
