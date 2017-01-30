@@ -23,6 +23,7 @@ public class GameInspeector : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
         SpawnPlayers();
     }
