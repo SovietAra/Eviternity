@@ -13,6 +13,8 @@ public class DamageAbleObject : MonoBehaviour
     [Range(0.1f, 100000f)]
     private float maxHealth = 10;
 
+    public bool isImmortal = false;
+
     public event EventHandler OnDeath;
     public event EventHandler<OnHealthChangedArgs> OnReceiveDamage;
     public event EventHandler<OnHealthChangedArgs> OnReceiveHealth;
@@ -42,17 +44,20 @@ public class DamageAbleObject : MonoBehaviour
 
     public virtual void DoDamage(float damage, GameObject statusEffect)
     {
-        OnHealthChangedArgs args = new OnHealthChangedArgs(damage, statusEffect);
-        if (OnReceiveDamage != null)
-            OnReceiveDamage(this, args);
-
-        if (!args.Cancel)
+        if (!isImmortal)
         {
-            health -= args.ChangeValue;
-            if (health <= 0)
+            OnHealthChangedArgs args = new OnHealthChangedArgs(damage, statusEffect);
+            if (OnReceiveDamage != null)
+                OnReceiveDamage(this, args);
+
+            if (!args.Cancel)
             {
-                if (OnDeath != null)
-                    OnDeath(this, EventArgs.Empty);
+                health -= args.ChangeValue;
+                if (health <= 0)
+                {
+                    if (OnDeath != null)
+                        OnDeath(this, EventArgs.Empty);
+                }
             }
         }
     }
