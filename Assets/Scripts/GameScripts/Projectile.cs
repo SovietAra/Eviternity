@@ -112,9 +112,9 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        DamageAbleObject damageObject = collision.gameObject.GetComponent<DamageAbleObject>();
+        DamageAbleObject damageObject = other.gameObject.GetComponent<DamageAbleObject>();
         if (damageObject != null)
         {
             Detonate(damageObject);
@@ -126,6 +126,22 @@ public class Projectile : MonoBehaviour
                 startTimer = true;
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //DamageAbleObject damageObject = collision.gameObject.GetComponent<DamageAbleObject>();
+        //if (damageObject != null)
+        //{
+        //    Detonate(damageObject);
+        //}
+        //else
+        //{
+        //    if (!startTimer)
+        //    {
+        //        startTimer = true;
+        //    }
+        //}
     }
 
     private void Detonate(DamageAbleObject collisionObject)
