@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     private float elapsedDashRegenerationTime = 0f;
     private float elapsedReviveDelay = 0f;
+    private float elapsedImmortal;
     private float attackInProgressTimer = 0f;
 
     private float angle;
@@ -72,7 +73,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 30f)]
     private float reviveDelay = 2f;
-    
+
+    [SerializeField]
+    [Range(0.1f, 5)]
+    private float maxImmortality = 2f;
+
     public bool Freeze = false;
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
@@ -231,6 +236,9 @@ public class Player : MonoBehaviour
                 meshBounds = mesh.bounds.size;
             }
         }
+
+        //Set Immortality Time Value
+        elapsedImmortal = maxImmortality;
     }
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
@@ -243,11 +251,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         if (hasPlayerIndex)
         {
             GamePadState state = GamePad.GetState(Index);
             if (state.IsConnected)
             {
+                if (elapsedImmortal < maxImmortality)
+                    healthContainer.isImmortal = true;
+                else
+                    healthContainer.isImmortal = false;
+
                 UpdateTimers();
                 if (isDead)
                 {
@@ -283,6 +297,7 @@ public class Player : MonoBehaviour
 
     private void UpdateTimers()
     {
+        elapsedImmortal += Time.deltaTime;
         elapsedDashRegenerationTime += Time.deltaTime;
         if(isDead)
             elapsedReviveDelay += Time.deltaTime;
@@ -669,6 +684,7 @@ public class Player : MonoBehaviour
 
     private void RevivePlayer()
     {
+     
         if (elapsedReviveDelay >= reviveDelay)
         {
             if (!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
@@ -679,6 +695,7 @@ public class Player : MonoBehaviour
             {
                 elapsedReviveDelay = 0f;
                 isDead = false;
+                elapsedImmortal = 0;
             }
         }
     }
