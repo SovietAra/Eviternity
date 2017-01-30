@@ -453,7 +453,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
     {
         gameStarted = true;
 
-        SceneManager.LoadScene("PrototypeScene");
+        SceneManager.LoadScene(7);
     }
 
     public void PressBackToPlayerAssignment()
@@ -468,7 +468,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
     public void PressNext()
     {
-        SceneManager.LoadScene("PrototypeScene");
+        SceneManager.LoadScene(7);
     }
 
     public void ChangeImage(int playerIndex, int index, int prevIndex)
