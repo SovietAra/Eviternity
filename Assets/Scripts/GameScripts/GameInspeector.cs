@@ -66,35 +66,35 @@ public class GameInspeector : MonoBehaviour
             {
                 PauseMenuCanvas.SetActive(true);
             }
-            Player.Freeze = true;
+            FreezeAllPlayers();
         }
     }
 
     public void ResumeGame()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        Player.Freeze = false;
+        UnfreezeAllPlayers();
     }
 
     public void CreditsScreen()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("Credits");
-        Player.Freeze = false;
+        UnfreezeAllPlayers();
     }
 
     public void Restart()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("Prototyp");
-        Player.Freeze = false;
+        UnfreezeAllPlayers();
     }
 
     public void MainMenu()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("MainMenu");
-        Player.Freeze = false;
+        UnfreezeAllPlayers();
     }
 
     private void SpawnPlayers()
@@ -169,6 +169,28 @@ public class GameInspeector : MonoBehaviour
         {
             if (GlobalReferences.PlayerStates[i].Index == index)
                 GlobalReferences.PlayerStates.RemoveAt(i);
+        }
+    }
+
+    private void UnfreezeAllPlayers()
+    {
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject item in playerObjects)
+        {
+            Player player = item.GetComponent<Player>();
+            if(player != null)
+                player.Freeze = false;
+        }
+    }
+
+    private void FreezeAllPlayers()
+    {
+        GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject item in playerObjects)
+        {
+            Player player = item.GetComponent<Player>();
+            if (player != null)
+                player.Freeze = true;
         }
     }
 }
