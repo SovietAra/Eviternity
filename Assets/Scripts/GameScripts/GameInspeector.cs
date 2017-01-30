@@ -115,7 +115,7 @@ public class GameInspeector : MonoBehaviour
         spawnedPlayers.Remove(e.PlayerScript);
         RemovePlayerState(e.PlayerScript.Index);
         GamePadManager.Disconnect(e.PlayerScript.Index);
-        
+
         Destroy(e.PlayerObject);
         uiScript.OnExit(e.PlayerScript.Index);
     }
