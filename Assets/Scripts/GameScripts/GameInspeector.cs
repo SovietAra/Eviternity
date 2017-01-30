@@ -55,6 +55,7 @@ public class GameInspeector : MonoBehaviour
         {
             Time.timeScale = 1;
             PauseMenuCanvas.SetActive(false);
+            
 
         }
         else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
@@ -64,30 +65,35 @@ public class GameInspeector : MonoBehaviour
             {
                 PauseMenuCanvas.SetActive(true);
             }
+            Player.Freeze = true;
         }
     }
 
     public void ResumeGame()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        Player.Freeze = false;
     }
 
     public void CreditsScreen()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("Credits");
+        Player.Freeze = false;
     }
 
     public void Restart()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("Prototyp");
+        Player.Freeze = false;
     }
 
     public void MainMenu()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("MainMenu");
+        Player.Freeze = false;
     }
 
     private void SpawnPlayers()

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
     public static Vector3 LastCheckpointPosition;
+    public static bool Freeze = false;
     #endregion
 
     #region privats
@@ -73,7 +74,6 @@ public class Player : MonoBehaviour
     [Range(0.1f, 30f)]
     private float reviveDelay = 2f;
     
-    public bool Freeze = false;
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
     public GameObject SecondaryWeapon;
