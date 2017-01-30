@@ -77,6 +77,11 @@ public class GameInspeector : MonoBehaviour
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
     }
 
+    public void CreditsScreen()
+    {
+
+    }
+
     private void SpawnPlayers()
     {
         spawnedPlayers = new List<Player>();

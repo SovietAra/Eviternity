@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4851682306719148}
   - component: {fileID: 33889359807495656}
   - component: {fileID: 23214954120026592}
+  - component: {fileID: 64103668741991540}
   m_Layer: 0
   m_Name: ServerTower
   m_TagString: Untagged
@@ -78,4 +79,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1530254994136328}
+  m_Mesh: {fileID: 4300000, guid: 86f93138c96e1c543a111afa4706a660, type: 3}
+--- !u!64 &64103668741991540
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1530254994136328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 86f93138c96e1c543a111afa4706a660, type: 3}
