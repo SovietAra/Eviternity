@@ -251,7 +251,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         if (hasPlayerIndex)
         {
             GamePadState state = GamePad.GetState(Index);
@@ -562,7 +561,7 @@ public class Player : MonoBehaviour
     {
         if (ability.IsActive && ability.name.Contains("LifeSteal"))
         {
-            healthContainer.Heal(damage * ability.AbilityValue);
+            healthContainer.Heal(null, damage * ability.AbilityValue);
         }
     }
     
@@ -674,7 +673,7 @@ public class Player : MonoBehaviour
         if (addHealth > 0)
         {
             TeamHealth -= subHealth;
-            healthContainer.Heal(addHealth);
+            healthContainer.Heal(null, addHealth);
             return true;
         }
         return false;
@@ -692,12 +691,12 @@ public class Player : MonoBehaviour
     }
 
     private void RevivePlayer()
-    {
-     
+    {   
         if (elapsedReviveDelay >= reviveDelay)
         {
             if (!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
             {
+                GamePadManager.Disconnect(index);
                 Destroy(gameObject);
             }
             else
