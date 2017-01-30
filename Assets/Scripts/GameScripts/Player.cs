@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
     public static Vector3 LastCheckpointPosition;
+    public static bool Freeze = false;
     #endregion
 
     #region privats
@@ -269,9 +270,12 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    Input(state);
-                   // UpdateVelocity();
-                    UpdateRotation();
+                    if (!Freeze)
+                    {
+                        Input(state);
+                        // UpdateVelocity();
+                        UpdateRotation();
+                    }
                 }
                 prevState = state;
             }
@@ -336,6 +340,12 @@ public class Player : MonoBehaviour
         if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
+        }
+
+        if (state.Buttons.Y == ButtonState.Released)
+        {
+            if (audioSources[6].isPlaying)
+                audioSources[6].Stop(); //stop healing sound
         }
 
         if (state.Buttons.B == ButtonState.Pressed && !executed)
