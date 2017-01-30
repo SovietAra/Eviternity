@@ -255,9 +255,12 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    Input(state);
-                   // UpdateVelocity();
-                    UpdateRotation();
+                    if (!Freeze)
+                    {
+                        Input(state);
+                        // UpdateVelocity();
+                        UpdateRotation();
+                    }
                 }
                 prevState = state;
             }
