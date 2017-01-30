@@ -3,6 +3,7 @@ using UnityEngine;
 using Assets.Scripts;
 using XInputDotNetPure;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameInspeector : MonoBehaviour
 {
@@ -13,32 +14,27 @@ public class GameInspeector : MonoBehaviour
     public GameObject PauseMenuCanvas;
 
 
-    [SerializeField]
-    [Range(0, 10000f)]
-    public float maxTeamHealth = 10;    
+    [SerializeField] [Range(0, 10000f)] public float maxTeamHealth = 10;
 
-    [SerializeField]
-    [Range(0, 10)]
-    private float healthRegenerationMultiplicator = 1f;
+    [SerializeField] [Range(0, 10)] private float healthRegenerationMultiplicator = 1f;
 
-    [SerializeField]
-    [Range(0, 10)]
-    private float healthRegenerationMulitplicatorOnDeath = 2f;
+    [SerializeField] [Range(0, 10)] private float healthRegenerationMulitplicatorOnDeath = 2f;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        SpawnPlayers();
+        spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
+        SpawnPlayers();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         Pause();
 
         CheckForNewPlayers();
-
+        
         List<GameObject> AvailablePlayer = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         if (AvailablePlayer != null)
         {
@@ -60,6 +56,7 @@ public class GameInspeector : MonoBehaviour
         {
             Time.timeScale = 1;
             PauseMenuCanvas.SetActive(false);
+            
 
         }
         else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
@@ -68,23 +65,40 @@ public class GameInspeector : MonoBehaviour
             if (PauseMenuCanvas.activeInHierarchy == false)
             {
                 PauseMenuCanvas.SetActive(true);
-            }            
+            }
+            Player.Freeze = true;
         }
     }
 
     public void ResumeGame()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        Player.Freeze = false;
     }
 
     public void CreditsScreen()
     {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        SceneManager.LoadScene("Credits");
+        Player.Freeze = false;
+    }
 
+    public void Restart()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        SceneManager.LoadScene("Prototyp");
+        Player.Freeze = false;
+    }
+
+    public void MainMenu()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        SceneManager.LoadScene("MainMenu");
+        Player.Freeze = false;
     }
 
     private void SpawnPlayers()
     {
-        spawnedPlayers = new List<Player>();
         Player.TeamHealth = maxTeamHealth;
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
