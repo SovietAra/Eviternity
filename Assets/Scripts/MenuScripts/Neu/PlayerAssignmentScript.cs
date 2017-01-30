@@ -100,6 +100,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
     int[] rightWeaponIndex = new int[3] { 0, 0, 0 };
     int[] rightWeaponPrevIndex = new int[3] { 0, 0, 0 };
 
+    bool changeMenu = false;
     // Use this for initialization
     void Start ()
     {
@@ -282,11 +283,11 @@ public class PlayerAssignmentScript : MonoBehaviour {
         {
             PlayerIndex index = freePads[i];
             GamePadState state = GamePad.GetState(index);
-            if (state.Buttons.A == ButtonState.Pressed)
+            if (state.Buttons.A == ButtonState.Pressed && !changeMenu)
             {
-                Debug.Log("Test");
                 GamePadManager.Connect((int)index);
                 GlobalReferences.PlayerStates.Add(new PlayerState(index, state));
+                
                 //TODO: Change menu
                 if (index == PlayerIndex.One)
                 {
@@ -455,17 +456,19 @@ public class PlayerAssignmentScript : MonoBehaviour {
     private void StartNewGame()
     {
         gameStarted = true;
-
+        changeMenu = true;
         SceneManager.LoadScene("Prototyp");
     }
 
     public void PressBackToPlayerAssignment()
     {
+        changeMenu = true;
         SceneManager.LoadScene("PlayerAssignment");
     }
 
     public void PressBackToMain()
     {
+        changeMenu = true;
         foreach (PlayerState item in GlobalReferences.PlayerStates)
         {
             GamePadManager.Disconnect(item.Index);
