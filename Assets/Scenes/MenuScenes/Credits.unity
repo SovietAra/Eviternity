@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1609972823}
         m_MethodName: PressBackToMain
         m_Mode: 1
         m_Arguments:
@@ -442,6 +442,8 @@ GameObject:
   - component: {fileID: 1609972818}
   - component: {fileID: 1609972817}
   - component: {fileID: 1609972821}
+  - component: {fileID: 1609972822}
+  - component: {fileID: 1609972823}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -537,6 +539,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ES: {fileID: 244394688}
+--- !u!114 &1609972822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1609972816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1156492e7b083c2439c0cccd3f769643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTime: 120
+--- !u!114 &1609972823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1609972816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c96a7f7f40e21d49977c23a54810a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1700571331
 GameObject:
   m_ObjectHideFlags: 0

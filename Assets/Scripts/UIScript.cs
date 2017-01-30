@@ -24,6 +24,10 @@ public class UIScript : MonoBehaviour
     public GameObject Player4HealthUI_background;
     public GameObject Player4HealthUI_fill;
     public GameObject Player4HealthUI_outline;
+    public GameObject IndicatorPlane1;
+    public GameObject IndicatorPlane2;
+    public GameObject IndicatorPlane3;
+    public GameObject IndicatorPlane4;
     public Image TeamHealthBar;
     public Image TeamHealthBar_Border;
     public Sprite TeamHealthActive;
@@ -129,24 +133,28 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.One:
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    IndicatorPlane1.transform.SetParent(player.transform, false);
                 }
                 break;
 
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    IndicatorPlane2.transform.SetParent(player.transform, false);
                 }
                 break;
 
             case PlayerIndex.Three:
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    IndicatorPlane3.transform.SetParent(player.transform, false);
                 }
                 break;
 
             case PlayerIndex.Four:
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    IndicatorPlane4.transform.SetParent(player.transform, false);
                 }
                 break;
 
