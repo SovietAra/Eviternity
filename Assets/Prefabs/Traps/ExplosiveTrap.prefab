@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114422014259761280}
   - component: {fileID: 54992739523861658}
   m_Layer: 0
-  m_Name: ExplosiveTrap (4)
+  m_Name: ExplosiveTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerByCollision: 1
-  triggerByRange: 0
-  range: 2.2
+  triggerByRange: 1
+  range: 2.5
   damage: 1
   damageRange: 5
   plane: {fileID: 1157527102328806, guid: 6edcab201dfa45247bea9417c1d4abf4, type: 2}
