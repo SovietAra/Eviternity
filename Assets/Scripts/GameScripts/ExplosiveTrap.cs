@@ -55,7 +55,10 @@ public class ExplosiveTrap : MonoBehaviour
 
     private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
     {
-        Detonate();
+        if (triggerByCollision)
+        {
+            Detonate();
+        }
     }
 
     private void Detonate()
