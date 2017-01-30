@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
     private float elapsedLifeTime;
 
     private bool startTimer = false;
-    private string attackerTag;
+    //private string attackerTag;
 
     public event EventHandler<HitEventArgs> OnHit;
 
@@ -56,7 +56,31 @@ public class Projectile : MonoBehaviour
         get { return damage; }
     }
 
-    public string AttackerTag
+    private GameObject attacker;
+
+    public GameObject Attacker
+    {
+        get { return attacker; }
+        set
+        {
+            attacker = value;
+            if (!DoTeamDamage && !attacker.CompareTag("Untagged"))
+            {
+                if (attacker.CompareTag("Player"))
+                {
+                    gameObject.layer = 10;
+                    Physics.IgnoreLayerCollision(gameObject.layer, 8);
+                }
+                else if (attacker.CompareTag("Enemy"))
+                {
+                    gameObject.layer = 11;
+                    Physics.IgnoreLayerCollision(gameObject.layer, 9);
+                }
+            }
+        }
+    }
+
+    /*public string AttackerTag
     {
         get
         {
@@ -80,7 +104,7 @@ public class Projectile : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     private void Start()
     {  
@@ -153,7 +177,7 @@ public class Projectile : MonoBehaviour
         {
             if (collisionObject != null)
             {
-                bool isTeam = AttackerTag != null && collisionObject.transform.CompareTag(AttackerTag);
+                bool isTeam = attacker != null && collisionObject.transform.CompareTag(Attacker.tag);
                 DoDamage(collisionObject.gameObject, collisionObject, damage, isTeam);
             }
         }
@@ -162,31 +186,19 @@ public class Projectile : MonoBehaviour
             GameObject explosionObj = Instantiate(Explosion, transform.position, transform.rotation);
             Explosion explosionScript = explosionObj.GetComponent<Explosion>();
 
-            explosionScript.Init(damage, damageRange, attackerTag, 1.2f, DoAOETeamDamage ? TeamDamageMultiplicator : 0);
+            explosionScript.Init(damage, damageRange, attacker, 1.2f, DoAOETeamDamage ? TeamDamageMultiplicator : 0);
         }
     }
 
     private void DoDamage(GameObject victim, DamageAbleObject damageAbleObject, float damage, bool teamDamage)
     {
-        HitEventArgs hitArgs = new HitEventArgs(damage * (DoTeamDamage ? TeamDamageMultiplicator : 1), attackerTag, victim, teamDamage, false);
+        HitEventArgs hitArgs = new HitEventArgs(damage * (DoTeamDamage ? TeamDamageMultiplicator : 1), attacker, victim, teamDamage, false);
         if (OnHit != null)
             OnHit(this, hitArgs);
 
         if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
         {
-            if (StatusEffect != null && victim != null)
-            {
-                GameObject tempStatusEffect = Instantiate(StatusEffect, victim.transform);
-                if (tempStatusEffect != null)
-                {
-                    StatusEffect statusScript = tempStatusEffect.GetComponent<StatusEffect>();
-                    if (statusScript != null)
-                    {
-                        statusScript.Activate(victim);
-                    }
-                }
-            }
-            damageAbleObject.DoDamage(hitArgs.FinalDamage);
+            damageAbleObject.DoDamage(attacker, hitArgs.FinalDamage, StatusEffect);
         }
     }
 }

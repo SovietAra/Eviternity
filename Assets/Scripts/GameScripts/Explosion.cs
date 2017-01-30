@@ -25,7 +25,7 @@ public class Explosion : MonoBehaviour
 
     public GameObject StatusEffect;
 
-    private string ownerTag;
+    private GameObject owner;
     private SphereCollider sphereExplosion;
     private bool exploded;
     private bool playOnce;
@@ -37,11 +37,11 @@ public class Explosion : MonoBehaviour
 
     public event EventHandler<HitEventArgs> OnHit;
 
-    public void Init(float damage, float radius, string ownerTag, float damageReduction, float teamDamageMultiplicator)
+    public void Init(float damage, float radius, GameObject owner, float damageReduction, float teamDamageMultiplicator)
     {
         this.damage = damage;
         this.damageReduction = damageReduction;
-        this.ownerTag = ownerTag;
+        this.owner = owner;
         this.teamDamageMultiplicator = teamDamageMultiplicator;
         this.radius = radius;
         if (sphereExplosion == null)
@@ -51,14 +51,14 @@ public class Explosion : MonoBehaviour
         overrideValues = false;
     }
 
-    public void Init(float damage, float radius, string ownerTag, float teamDamageMultiplicator)
+    public void Init(float damage, float radius, GameObject owner, float teamDamageMultiplicator)
     {
-        Init(damage, radius, ownerTag, damageReduction, teamDamageMultiplicator);
+        Init(damage, radius, owner, damageReduction, teamDamageMultiplicator);
     }
 
-    public void Init(float damage, float radius, string ownerTag, bool doTeamDamage)
+    public void Init(float damage, float radius, GameObject owner, bool doTeamDamage)
     {
-        Init(damage, radius, ownerTag, damageReduction, doTeamDamage ? 1 : 0);
+        Init(damage, radius, owner, damageReduction, doTeamDamage ? 1 : 0);
     }
 
     private void Start()
@@ -67,7 +67,7 @@ public class Explosion : MonoBehaviour
         {
             if (gameObject.tag != null)
             {
-                ownerTag = gameObject.tag;
+                owner = gameObject;
             }
         }
 
@@ -110,8 +110,8 @@ public class Explosion : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         bool isTeam = false;
-        if (ownerTag != null)
-            isTeam = other.transform.CompareTag(ownerTag);
+        if (owner != null)
+            isTeam = other.transform.CompareTag(owner.tag);
 
         DamageAbleObject healthContainer = other.gameObject.GetComponent<DamageAbleObject>();
         if (healthContainer != null)
@@ -121,7 +121,7 @@ public class Explosion : MonoBehaviour
             if (isTeam)
                 rangeDamage *= teamDamageMultiplicator;
 
-            HitEventArgs hitArgs = new HitEventArgs(rangeDamage, ownerTag, other.gameObject, isTeam, true);
+            HitEventArgs hitArgs = new HitEventArgs(rangeDamage, owner, other.gameObject, isTeam, true);
             if (OnHit != null)
                 OnHit(this, hitArgs);
 
@@ -139,7 +139,7 @@ public class Explosion : MonoBehaviour
                         }
                     }
                 }
-                healthContainer.DoDamage(rangeDamage);
+                healthContainer.DoDamage(owner, rangeDamage);
             }
 
             exploded = true;

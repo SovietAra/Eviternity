@@ -34,7 +34,7 @@ public class Poison : StatusEffect
             GetDamageScript();
 
         if (damageScript != null)
-            damageScript.DoDamage(damagePerSecond * Time.deltaTime);
+            damageScript.DoDamage(null, damagePerSecond * Time.deltaTime);
     }
 
     private void GetDamageScript()
