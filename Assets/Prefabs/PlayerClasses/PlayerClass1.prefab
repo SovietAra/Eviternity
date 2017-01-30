@@ -378,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   maxHealth: 20
+  isImmortal: 0
 --- !u!114 &114584673856983150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -394,6 +395,7 @@ MonoBehaviour:
   dashTime: 1.5
   regenerationPerSecond: 17
   reviveDelay: 2
+  maxImmortality: 2
   Freeze: 0
   RotateOnMove: 0
   PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
