@@ -23,6 +23,7 @@ public class GameInspeector : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        spawnedPlayers = new List<Player>();
         //SpawnPlayers();
         //uiScript = GetComponent<UIScript>();
     }
@@ -93,9 +94,8 @@ public class GameInspeector : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-private void SpawnPlayers()
+    private void SpawnPlayers()
     {
-        spawnedPlayers = new List<Player>();
         Player.TeamHealth = maxTeamHealth;
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
