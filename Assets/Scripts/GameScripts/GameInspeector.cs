@@ -3,6 +3,7 @@ using UnityEngine;
 using Assets.Scripts;
 using XInputDotNetPure;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameInspeector : MonoBehaviour
 {
@@ -13,27 +14,21 @@ public class GameInspeector : MonoBehaviour
     public GameObject PauseMenuCanvas;
 
 
-    [SerializeField]
-    [Range(0, 10000f)]
-    public float maxTeamHealth = 10;    
+    [SerializeField] [Range(0, 10000f)] public float maxTeamHealth = 10;
 
-    [SerializeField]
-    [Range(0, 10)]
-    private float healthRegenerationMultiplicator = 1f;
+    [SerializeField] [Range(0, 10)] private float healthRegenerationMultiplicator = 1f;
 
-    [SerializeField]
-    [Range(0, 10)]
-    private float healthRegenerationMulitplicatorOnDeath = 2f;
+    [SerializeField] [Range(0, 10)] private float healthRegenerationMulitplicatorOnDeath = 2f;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         SpawnPlayers();
         uiScript = GetComponent<UIScript>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         Pause();
 
@@ -68,7 +63,7 @@ public class GameInspeector : MonoBehaviour
             if (PauseMenuCanvas.activeInHierarchy == false)
             {
                 PauseMenuCanvas.SetActive(true);
-            }            
+            }
         }
     }
 
@@ -79,10 +74,23 @@ public class GameInspeector : MonoBehaviour
 
     public void CreditsScreen()
     {
-
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        SceneManager.LoadScene("Credits");
     }
 
-    private void SpawnPlayers()
+    public void Restart()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        SceneManager.LoadScene("Prototyp");
+    }
+
+    public void MainMenu()
+    {
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+private void SpawnPlayers()
     {
         spawnedPlayers = new List<Player>();
         Player.TeamHealth = maxTeamHealth;
