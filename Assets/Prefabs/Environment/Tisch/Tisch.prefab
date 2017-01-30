@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33704927031875086}
   - component: {fileID: 23011192914360570}
   - component: {fileID: 95690266194245560}
+  - component: {fileID: 64222745458072666}
   m_Layer: 0
   m_Name: Tisch
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609330498930426}
+  m_Mesh: {fileID: 4300000, guid: 0619a0bc9154581409f5a12bf71ca086, type: 3}
+--- !u!64 &64222745458072666
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609330498930426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 0619a0bc9154581409f5a12bf71ca086, type: 3}
 --- !u!95 &95690266194245560
 Animator:
