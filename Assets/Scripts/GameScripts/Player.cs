@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public static float HealthRegenerationMultiplicator = 1f;
     public static float HealthRegenerationMulitplicatorOnDeath = 2f;
     public static Vector3 LastCheckpointPosition;
-    public static bool Freeze = false;
     #endregion
 
     #region privats
