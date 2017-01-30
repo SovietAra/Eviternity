@@ -1,6 +1,6 @@
 ﻿/* 
  * Purpose: Händelt die Character- und Waffenzuweisung
- * Author: Gregor von Frankenberg
+ * Author: Gregor von Frankenberg / Marcel Croonenbroeck
  * Date: 27.01.2017
  */
 
@@ -9,6 +9,7 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -98,6 +99,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
     int[] rightWeaponIndex = new int[3] { 0, 0, 0 };
     int[] rightWeaponPrevIndex = new int[3] { 0, 0, 0 };
+
     // Use this for initialization
     void Start ()
     {
@@ -282,6 +284,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
             GamePadState state = GamePad.GetState(index);
             if (state.Buttons.A == ButtonState.Pressed)
             {
+                Debug.Log("Test");
                 GamePadManager.Connect((int)index);
                 GlobalReferences.PlayerStates.Add(new PlayerState(index, state));
                 //TODO: Change menu
@@ -290,7 +293,6 @@ public class PlayerAssignmentScript : MonoBehaviour {
                     playerOneJoin.enabled = false;
                     playerOneAssigned.enabled = true;
                     charSelectPlayerOne.enabled = true;
-                    //weaponSelectionPlayerOne.enabled = true;
                 }
 
                 if (index == PlayerIndex.Two)
@@ -439,6 +441,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
                 }
                 GamePadManager.Disconnect(GlobalReferences.PlayerStates[i].Index);
                 GlobalReferences.PlayerStates.RemoveAt(i);
+                Debug.Log(GlobalReferences.PlayerStates.Count);
             }
             //TODO: Change classes here
             if (GlobalReferences.PlayerStates[i].Ready)
@@ -459,6 +462,17 @@ public class PlayerAssignmentScript : MonoBehaviour {
     public void PressBackToPlayerAssignment()
     {
         SceneManager.LoadScene("PlayerAssignment");
+    }
+
+    public void PressBackToMain()
+    {
+        foreach (PlayerState item in GlobalReferences.PlayerStates)
+        {
+            GamePadManager.Disconnect(item.Index);
+        }
+        GlobalReferences.PlayerStates.Clear();
+
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PressStartGame()
