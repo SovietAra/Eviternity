@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class NewFollowingCamera : MonoBehaviour
+public class FollowingCamera : MonoBehaviour
 {
     #region Private Fields
 

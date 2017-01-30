@@ -28,14 +28,14 @@ public class ExplosiveTrap : MonoBehaviour
     private GameObject explosion;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
         dmgobjct.OnDeath += Dmgobjct_OnDeath;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (triggerByRange)
         {

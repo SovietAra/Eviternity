@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         Spawn_Sound.Play();
 
         mainCamera = Camera.main;
-        mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
+        mainCamera.GetComponentInParent<FollowingCamera>().AddToCamera(transform);
         
         mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
         uiScript = mainGameObject.GetComponent<UIScript>();
@@ -193,8 +193,6 @@ public class Player : MonoBehaviour
         if (Ability != null)
         {
             ability = Instantiate(Ability, transform).GetComponent<Ability>();
-            ability.OnActivated += Ability_OnActivated;
-            ability.OnAbort += Ability_OnAbort;
             if(ability.name == "DashAbility")
             {
                 ability.OnActivated += DashAbility_OnActivated;
@@ -205,8 +203,6 @@ public class Player : MonoBehaviour
         if (SecondaryAbility != null)
         {
             secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
-            secondaryAbility.OnActivated += SecondaryAbility_OnActivated;
-            secondaryAbility.OnAbort += SecondaryAbility_OnAbort;
             if (ability.name == "DashAbility")
             {
                 secondaryAbility.OnActivated += DashAbility_OnActivated;
@@ -586,23 +582,6 @@ public class Player : MonoBehaviour
     #endregion Abilities
 
     #region AbilityEvents
-
-    private void SecondaryAbility_OnAbort(object sender, EventArgs e)
-    {
-    }
-
-    private void SecondaryAbility_OnActivated(object sender, EventArgs e)
-    {
-    }
-
-    private void Ability_OnAbort(object sender, EventArgs e)
-    {
-    }
-
-    private void Ability_OnActivated(object sender, EventArgs e)
-    {
-    }
-
     private void DashAbility_OnAbort(object sender, EventArgs e)
     {
         velocity = Vector3.zero;

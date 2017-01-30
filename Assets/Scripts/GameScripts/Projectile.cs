@@ -39,16 +39,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     [Range(0.0f, 10f)]
     public float TeamDamageMultiplicator = 0.75f;
-
     public bool InvertGravity;
-    
-    private Rigidbody attachedBody;
-    private float elapsedTime = 0f;
-    private float elapsedLifeTime;
-
-    private bool startTimer = false;
-    //private string attackerTag;
-
     public event EventHandler<HitEventArgs> OnHit;
 
     public float Damage
@@ -56,6 +47,10 @@ public class Projectile : MonoBehaviour
         get { return damage; }
     }
 
+    private Rigidbody attachedBody;
+    private float elapsedTime = 0f;
+    private float elapsedLifeTime;
+    private bool startTimer = false;
     private GameObject attacker;
 
     public GameObject Attacker
@@ -79,32 +74,6 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-
-    /*public string AttackerTag
-    {
-        get
-        {
-            return attackerTag;
-        }
-
-        set
-        {
-            attackerTag = value;
-            if(!DoTeamDamage && attackerTag != null)
-            {
-                if (attackerTag == "Player")
-                {
-                    gameObject.layer = 10;
-                    Physics.IgnoreLayerCollision(gameObject.layer, 8);
-                }
-                else if (attackerTag == "Enemy")
-                {
-                    gameObject.layer = 11;
-                    Physics.IgnoreLayerCollision(gameObject.layer, 9);
-                }
-            }
-        }
-    }*/
 
     private void Start()
     {  
@@ -150,22 +119,6 @@ public class Projectile : MonoBehaviour
                 startTimer = true;
             }
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //DamageAbleObject damageObject = collision.gameObject.GetComponent<DamageAbleObject>();
-        //if (damageObject != null)
-        //{
-        //    Detonate(damageObject);
-        //}
-        //else
-        //{
-        //    if (!startTimer)
-        //    {
-        //        startTimer = true;
-        //    }
-        //}
     }
 
     private void Detonate(DamageAbleObject collisionObject)

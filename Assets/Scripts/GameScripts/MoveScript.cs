@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using Assets.Scripts;
-using System.Threading;
 
 public class MoveScript : MonoBehaviour
 {
@@ -27,10 +26,6 @@ public class MoveScript : MonoBehaviour
     {
         defaultMovementMultiplicator = MovementMultiplicator;
         physics = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
     }
 
     private void FixedUpdate()

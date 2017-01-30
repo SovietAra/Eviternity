@@ -1,21 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ColorSwitch_check : MonoBehaviour {
-
-    private Color ObjectColor = Color.red;
+public class ColorSwitchCheck : MonoBehaviour
+{
+    private Color objectColor = Color.red;
 
     private Color currentColor;
     private Material materialColored;
 
     private void Start()
     {
-        ObjectColor.a = 0.3f;
+        objectColor.a = 0.3f;
     }
-    void Update()
+
+    private void Update()
     {
-        if (ObjectColor != currentColor)
+        if (objectColor != currentColor)
         {
             //helps stop memory leaks
             if (materialColored != null)
@@ -23,15 +22,16 @@ public class ColorSwitch_check : MonoBehaviour {
 
             //create a new material
             materialColored = new Material(Shader.Find("Transparent/Diffuse"));
-            materialColored.color = currentColor = ObjectColor;
+            materialColored.color = currentColor = objectColor;
             GetComponent<Renderer>().material = materialColored;
 
         }
 
     }
+
     public void ChangeColor()
     {
-        ObjectColor = Color.green;
-        ObjectColor.a = 0.3f;
+        objectColor = Color.green;
+        objectColor.a = 0.3f;
     }
 }

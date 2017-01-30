@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Doors : MonoBehaviour
+public class Door : MonoBehaviour
 {
     private AudioSource DoorSound;
-
     private Animator animator;
     private bool DoorOpen;
-    public List<GameObject> Enemies;
     private GameObject EnemyAlive;
+
+    public List<GameObject> Enemies;
 
     // Use this for initialization
     private void Start()
@@ -44,7 +44,7 @@ public class Doors : MonoBehaviour
             //      print("Open!");
             DoorOpen = true;
 
-            Door("OpenDoor");
+            DoorAnimations("OpenDoor");
         }
     }
 
@@ -55,11 +55,11 @@ public class Doors : MonoBehaviour
             PlaySound();
             DoorOpen = false;
 
-            Door("CloseDoor");
+            DoorAnimations("CloseDoor");
         }
     }
 
-    private void Door(string direction)
+    private void DoorAnimations(string direction)
     {
         animator.SetTrigger(direction);
     }

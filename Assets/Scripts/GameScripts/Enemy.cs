@@ -3,9 +3,6 @@
  * Author: Fabian Subat
  * Date: 10.01.2016 - TBA
  */
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -29,7 +26,7 @@ public class Enemy : MonoBehaviour
     [Range(0.1f, 100.0f)]
     private float viewRange = 15.0f;
     
-    enum enemyTypes
+    private enum enemyTypes
     {
         Crawler = 1,
         Mosquito = 2,
@@ -58,13 +55,13 @@ public class Enemy : MonoBehaviour
     private Weapon primaryWeapon;
     private MoveScript moveScript;
 
-    public UnityEvent onEnemyDeath;
+    public UnityEvent OnEnemyDeath;
     private Vector3 movement;
 
-    NavMeshAgent navAgent;
+    private NavMeshAgent navAgent;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
         if(dmgobjct != null)
@@ -89,11 +86,11 @@ public class Enemy : MonoBehaviour
     private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
     {
         Destroy(gameObject);
-        onEnemyDeath.Invoke();
+        OnEnemyDeath.Invoke();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         CheckAlivePlayers();
         SetUI();
@@ -150,13 +147,7 @@ public class Enemy : MonoBehaviour
             enemyfront = transform.eulerAngles.y;
         }
     }
-
-    private void FixedUpdate()
-    {
-        //physics.velocity = movement + Physics.gravity;
-        //movement = Vector3.zero;
-    }
-
+    
     private void SetUI()
     {
         HealthSlider.value = dmgobjct.Health;

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class EnvironmentPillar : MonoBehaviour {
-
+public class EnvironmentPillar : MonoBehaviour
+{
     private BoxCollider spawnarea;
 
     [SerializeField]
@@ -20,13 +17,13 @@ public class EnvironmentPillar : MonoBehaviour {
     private GameObject[] debris;
 
     // Use this for initialization
-    void Start ()
+    private void Start ()
     {
         spawnarea = GetComponent<BoxCollider>();
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
     {
         if (healthPoints == 0)
         {

@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5a4c6b795f0174cb83fd6d9a84b704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ES: {fileID: 244394688}
+  EventSys: {fileID: 244394688}
 --- !u!114 &1609972822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,7 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1156492e7b083c2439c0cccd3f769643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTime: 120
 --- !u!114 &1609972823
 MonoBehaviour:
   m_ObjectHideFlags: 0
