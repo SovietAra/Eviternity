@@ -24,11 +24,20 @@ public class UIScript : MonoBehaviour
     public GameObject Player4HealthUI_background;
     public GameObject Player4HealthUI_fill;
     public GameObject Player4HealthUI_outline;
+    public GameObject IndicatorPlaneOne;
+    public GameObject IndicatorPlaneTwo;
+    public GameObject IndicatorPlaneThree;
+    public GameObject IndicatorPlaneFour;
     public Image TeamHealthBar;
     public Image TeamHealthBar_Border;
     public Sprite TeamHealthActive;
     public Sprite TeamHealthInactive;
 
+    private GameObject game;
+    private GameObject P1IndicatorPlane;
+    private GameObject P2IndicatorPlane;
+    private GameObject P3IndicatorPlane;
+    private GameObject P4IndicatorPlane;
     private float teamhealthAmount;
     private float maxTeamHealth;
     private float maxPlayerHealth;
@@ -50,7 +59,7 @@ public class UIScript : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        GameObject game = GameObject.Find("Game");
+        game = GameObject.Find("Game");
         GameInspeector gameInspector = game.GetComponent<GameInspeector>();
         maxTeamHealth = gameInspector.maxTeamHealth;
         GameObject playerPrefab = GameObject.Find("Player");
@@ -129,24 +138,32 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.One:
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    GameObject Indicate = Instantiate(P1IndicatorPlane);
+                    Indicate.transform.SetParent(player.transform, false);
                 }
                 break;
 
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    GameObject Indicate2 = Instantiate(P2IndicatorPlane);
+                    Indicate2.transform.SetParent(player.transform, false);
                 }
                 break;
 
             case PlayerIndex.Three:
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    GameObject Indicate3 = Instantiate(P3IndicatorPlane);
+                    Indicate3.transform.SetParent(player.transform, false);
                 }
                 break;
 
             case PlayerIndex.Four:
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    GameObject Indicate4 = Instantiate(P4IndicatorPlane);
+                    Indicate4.transform.SetParent(player.transform, false);
                 }
                 break;
 
@@ -164,6 +181,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1HealthBar_1.gameObject);
                     Destroy(player1HealthBar_2.gameObject);
                     Destroy(player1HealthBar_3.gameObject);
+                    //GameObject Indicate = Instantiate(IndicatorPlane1);
                 }
                 break;
             case PlayerIndex.Two:
@@ -171,6 +189,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2HealthBar_1.gameObject);
                     Destroy(player2HealthBar_2.gameObject);
                     Destroy(player2HealthBar_3.gameObject);
+                    //GameObject Indicate = Instantiate(IndicatorPlane2);
                 }
                 break;
             case PlayerIndex.Three:
@@ -178,6 +197,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3HealthBar_1.gameObject);
                     Destroy(player3HealthBar_2.gameObject);
                     Destroy(player3HealthBar_3.gameObject);
+                    //GameObject Indicate = Instantiate(IndicatorPlane3);
                 }
                 break;
             case PlayerIndex.Four:
@@ -185,6 +205,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4HealthBar_1.gameObject);
                     Destroy(player4HealthBar_2.gameObject);
                     Destroy(player4HealthBar_3.gameObject);
+                    //GameObject Indicate = Instantiate(IndicatorPlane4);
                 }
                 break;
 
@@ -212,6 +233,7 @@ public class UIScript : MonoBehaviour
                     GameObject P1_3 = Instantiate(Player1HealthUI_outline);
                     player1HealthBar_3 = P1_3.GetComponent<Image>();
                     player1HealthBar_3.transform.SetParent(UICanvas, false);
+                    P1IndicatorPlane = IndicatorPlaneOne;
                 }
                 break;
             case PlayerIndex.Two:
@@ -228,6 +250,7 @@ public class UIScript : MonoBehaviour
                     GameObject P2_3 = Instantiate(Player2HealthUI_outline);
                     player2HealthBar_3 = P2_3.GetComponent<Image>();
                     player2HealthBar_3.transform.SetParent(UICanvas, false);
+                    P2IndicatorPlane = IndicatorPlaneTwo;
                 }
                 break;
             case PlayerIndex.Three:
@@ -244,6 +267,7 @@ public class UIScript : MonoBehaviour
                     GameObject P3_3 = Instantiate(Player3HealthUI_outline);
                     player3HealthBar_3 = P3_3.GetComponent<Image>();
                     player3HealthBar_3.transform.SetParent(UICanvas, false);
+                    P3IndicatorPlane = IndicatorPlaneThree;
                 }
                 break;
             case PlayerIndex.Four:
@@ -260,6 +284,7 @@ public class UIScript : MonoBehaviour
                     GameObject P4_3 = Instantiate(Player4HealthUI_outline);
                     player4HealthBar_3 = P4_3.GetComponent<Image>();
                     player4HealthBar_3.transform.SetParent(UICanvas, false);
+                    P4IndicatorPlane = IndicatorPlaneFour;
                 }
                 break;
 

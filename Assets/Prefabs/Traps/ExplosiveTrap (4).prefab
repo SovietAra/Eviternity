@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 136226900077417400}
   - component: {fileID: 114374971844098084}
   - component: {fileID: 114422014259761280}
+  - component: {fileID: 54992739523861658}
   m_Layer: 0
   m_Name: ExplosiveTrap (4)
   m_TagString: Untagged
@@ -112,6 +113,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901326068449720}
   m_Mesh: {fileID: 4300000, guid: 79d76050afb103a4f963f2a991ac6030, type: 3}
+--- !u!54 &54992739523861658
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279671234857354}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!95 &95347618096751112
 Animator:
   serializedVersion: 3
@@ -160,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
+  isImmortal: 0
 --- !u!136 &136226900077417400
 CapsuleCollider:
   m_ObjectHideFlags: 1
