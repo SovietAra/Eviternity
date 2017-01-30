@@ -23,17 +23,13 @@ public class GameInspeector : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        spawnedPlayers = new List<Player>();
-        //SpawnPlayers();
-        //uiScript = GetComponent<UIScript>();
+        uiScript = GetComponent<UIScript>();
+        SpawnPlayers();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (uiScript == null)
-            uiScript = GetComponent<UIScript>();
-
         Pause();
 
         CheckForNewPlayers();
