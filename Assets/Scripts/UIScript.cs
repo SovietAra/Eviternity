@@ -150,7 +150,7 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.One:
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player1Heat.fillAmount = player.PrimaryHeat() / Weapon.maxHeat;
+                    player1Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
                     if (Indicate == null)
                     {
                         Indicate = Instantiate(P1IndicatorPlane);
@@ -162,7 +162,7 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player2Heat.fillAmount = player.PrimaryHeat() / Weapon.maxHeat;
+                    player2Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
                     if (Indicate2 == null)
                     {
                         Indicate2 = Instantiate(P2IndicatorPlane);
@@ -174,7 +174,7 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Three:
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player3Heat.fillAmount = player.PrimaryHeat() / Weapon.maxHeat;
+                    player3Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
                     if (Indicate3 == null)
                     {
                         Indicate3 = Instantiate(P3IndicatorPlane);
@@ -186,7 +186,7 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Four:
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player4Heat.fillAmount = player.PrimaryHeat() / Weapon.maxHeat;
+                    player4Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
                     if (Indicate4 == null)
                     {
                         Indicate4 = Instantiate(P4IndicatorPlane);

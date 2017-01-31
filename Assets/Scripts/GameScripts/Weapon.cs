@@ -26,11 +26,11 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]
     [Range(0, 1000)]
-    public static float maxHeat = 50;
+    private float maxHeat = 50;
 
     [SerializeField]
     [Range(0, 1000)]
-    public float heat = 0;
+    private float heat = 0;
 
     [SerializeField]
     [Range(0.1f, 1000)]
@@ -77,6 +77,16 @@ public class Weapon : MonoBehaviour
     public event EventHandler OnReloadBegin;
     public event EventHandler OnReloadEnd;
     public event EventHandler OnReloadAbort;
+
+    public float MaxHeat
+    {
+        get { return maxHeat; }
+    }
+
+    public float Heat
+    {
+        get { return heat;  }
+    }
 
     private void Start()
     {

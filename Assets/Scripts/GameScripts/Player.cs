@@ -59,14 +59,6 @@ public class Player : MonoBehaviour
     private float speed = 1f;
     
     [SerializeField]
-    [Range(1f, 100f)]
-    private float dashSpeed = 5f;
-
-    [SerializeField]
-    [Range(0.1f, 10f)]
-    private float dashTime = 1.25f;
-
-    [SerializeField]
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
 
@@ -717,8 +709,25 @@ public class Player : MonoBehaviour
         moveScript.ResetMultiplicator();
     }
 
-    public float PrimaryHeat()
+    public float PrimaryHeat
     {
-        return primaryWeapon.heat;
+        get
+        {
+            if (primaryWeapon != null)
+                return primaryWeapon.Heat;
+
+            return 0;
+        }
+    }
+
+    public float PrimaryMaxHeat
+    {
+        get
+        {
+            if (primaryWeapon != null)
+                return primaryWeapon.MaxHeat;
+
+            return 0;
+        }
     }
 }
