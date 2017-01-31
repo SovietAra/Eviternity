@@ -719,6 +719,10 @@ public class Player : MonoBehaviour
 
     public float PrimaryHeat()
     {
-        return primaryWeapon.heat;
+        if (primaryWeapon != null)
+        {
+            return primaryWeapon.heat;
+        }
+        else { return 0; }
     }
 }
