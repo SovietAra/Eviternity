@@ -224,7 +224,7 @@ MonoBehaviour:
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
-  Explosion: {fileID: 1318014844589646, guid: fbb85103f81d24d43936e47bf760f26e, type: 2}
+  Explosion: {fileID: 1318014844589646, guid: bfff34c5953179d46ad2c86cfd570dfb, type: 2}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 1
