@@ -716,4 +716,9 @@ public class Player : MonoBehaviour
         OnIce = false;
         moveScript.ResetMultiplicator();
     }
+
+    public float PrimaryHeat()
+    {
+        return primaryWeapon.heat;
+    }
 }

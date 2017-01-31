@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1659,6 +1659,30 @@ Prefab:
       propertyPath: IndicatorPlaneFour
       value: 
       objectReference: {fileID: 1166199761868078, guid: d35b3ebf033ae2045a9e8f9372959052,
+        type: 2}
+    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: P1GunHeat
+      value: 
+      objectReference: {fileID: 1652839949167732, guid: 79c6aa98e8f93b94ebe006a9add11304,
+        type: 2}
+    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: P2GunHeat
+      value: 
+      objectReference: {fileID: 1858705302666362, guid: 5fa43f33b2458604398b8d2ad933b434,
+        type: 2}
+    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: P3GunHeat
+      value: 
+      objectReference: {fileID: 1665816485692868, guid: d591ac9de766932469bb755ff2159837,
+        type: 2}
+    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: P4GunHeat
+      value: 
+      objectReference: {fileID: 1423149499134798, guid: 77cc7043629adf34887dcc1de6b6f5a7,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
