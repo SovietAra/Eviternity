@@ -209,6 +209,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1HealthBar_1.gameObject);
                     Destroy(player1HealthBar_2.gameObject);
                     Destroy(player1HealthBar_3.gameObject);
+                    Destroy(player1Heat.gameObject);
                 }
                 break;
             case PlayerIndex.Two:
@@ -216,6 +217,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2HealthBar_1.gameObject);
                     Destroy(player2HealthBar_2.gameObject);
                     Destroy(player2HealthBar_3.gameObject);
+                    Destroy(player2Heat.gameObject);
                 }
                 break;
             case PlayerIndex.Three:
@@ -223,6 +225,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3HealthBar_1.gameObject);
                     Destroy(player3HealthBar_2.gameObject);
                     Destroy(player3HealthBar_3.gameObject);
+                    Destroy(player3Heat.gameObject);
                 }
                 break;
             case PlayerIndex.Four:
@@ -230,6 +233,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4HealthBar_1.gameObject);
                     Destroy(player4HealthBar_2.gameObject);
                     Destroy(player4HealthBar_3.gameObject);
+                    Destroy(player4Heat.gameObject);
                 }
                 break;
 
