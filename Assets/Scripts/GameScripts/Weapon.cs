@@ -26,11 +26,11 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]
     [Range(0, 1000)]
-    private float maxHeat = 50;
+    public static float maxHeat = 50;
 
     [SerializeField]
     [Range(0, 1000)]
-    private float heat = 0;
+    public float heat = 0;
 
     [SerializeField]
     [Range(0.1f, 1000)]
