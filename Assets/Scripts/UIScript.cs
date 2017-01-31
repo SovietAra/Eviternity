@@ -15,15 +15,19 @@ public class UIScript : MonoBehaviour
     public GameObject Player1HealthUI_background;
     public GameObject Player1HealthUI_fill;
     public GameObject Player1HealthUI_outline;
+    public GameObject P1GunHeat;
     public GameObject Player2HealthUI_background;
     public GameObject Player2HealthUI_fill;
     public GameObject Player2HealthUI_outline;
+    public GameObject P2GunHeat;
     public GameObject Player3HealthUI_background;
     public GameObject Player3HealthUI_fill;
     public GameObject Player3HealthUI_outline;
+    public GameObject P3GunHeat;
     public GameObject Player4HealthUI_background;
     public GameObject Player4HealthUI_fill;
     public GameObject Player4HealthUI_outline;
+    public GameObject P4GunHeat;
     public GameObject IndicatorPlaneOne;
     public GameObject IndicatorPlaneTwo;
     public GameObject IndicatorPlaneThree;
@@ -38,21 +42,29 @@ public class UIScript : MonoBehaviour
     private GameObject P2IndicatorPlane;
     private GameObject P3IndicatorPlane;
     private GameObject P4IndicatorPlane;
+    private GameObject Indicate;
+    private GameObject Indicate2;
+    private GameObject Indicate3;
+    private GameObject Indicate4;
     private float teamhealthAmount;
     private float maxTeamHealth;
     private float maxPlayerHealth;
     private Image player1HealthBar_1;
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
+    private Image player1Heat;
     private Image player2HealthBar_1;
     private Image player2HealthBar_2;
     private Image player2HealthBar_3;
+    private Image player2Heat;
     private Image player3HealthBar_1;
     private Image player3HealthBar_2;
     private Image player3HealthBar_3;
+    private Image player3Heat;
     private Image player4HealthBar_1;
     private Image player4HealthBar_2;
     private Image player4HealthBar_3;
+    private Image player4Heat;
     private bool isHealing = false;
     private List<GameObject> CurrentPlayers;
 
@@ -60,8 +72,8 @@ public class UIScript : MonoBehaviour
     private void Start()
     {
         game = GameObject.Find("Game");
-        GameInspeector gameInspector = game.GetComponent<GameInspeector>();
-        maxTeamHealth = gameInspector.maxTeamHealth;
+        GameInspector gameInspector = game.GetComponent<GameInspector>();
+        maxTeamHealth = gameInspector.MaxTeamHealth;
         GameObject playerPrefab = GameObject.Find("Player");
         DamageAbleObject playerDamageable = gameInspector.PlayerPrefab.GetComponent<DamageAbleObject>();
         maxPlayerHealth = playerDamageable.MaxHealth;
@@ -114,19 +126,19 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    internal void OnSpawn(PlayerIndex index)
+    public void OnSpawn(PlayerIndex index)
     {
         CreateUI(index, UICanvas.transform);
         CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
     }
 
-    internal void OnExit(PlayerIndex index)
+    public void OnExit(PlayerIndex index)
     {
         CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         RemoveUI(index);
     }
 
-    internal void ActivateTeamBar()
+    public void ActivateTeamBar()
     {
         isHealing = true;
     }
@@ -138,7 +150,11 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.One:
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    GameObject Indicate = Instantiate(P1IndicatorPlane);
+                    player1Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    if (Indicate == null)
+                    {
+                        Indicate = Instantiate(P1IndicatorPlane);
+                    }
                     Indicate.transform.SetParent(player.transform, false);
                 }
                 break;
@@ -146,7 +162,11 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    GameObject Indicate2 = Instantiate(P2IndicatorPlane);
+                    player2Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    if (Indicate2 == null)
+                    {
+                        Indicate2 = Instantiate(P2IndicatorPlane);
+                    }
                     Indicate2.transform.SetParent(player.transform, false);
                 }
                 break;
@@ -154,7 +174,11 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Three:
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    GameObject Indicate3 = Instantiate(P3IndicatorPlane);
+                    player3Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    if (Indicate3 == null)
+                    {
+                        Indicate3 = Instantiate(P3IndicatorPlane);
+                    }
                     Indicate3.transform.SetParent(player.transform, false);
                 }
                 break;
@@ -162,7 +186,11 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Four:
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    GameObject Indicate4 = Instantiate(P4IndicatorPlane);
+                    player4Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    if (Indicate4 == null)
+                    {
+                        Indicate4 = Instantiate(P4IndicatorPlane);
+                    }
                     Indicate4.transform.SetParent(player.transform, false);
                 }
                 break;
@@ -172,7 +200,7 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    internal void RemoveUI(PlayerIndex index)
+    private void RemoveUI(PlayerIndex index)
     {
         switch (index)
         {
@@ -181,7 +209,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1HealthBar_1.gameObject);
                     Destroy(player1HealthBar_2.gameObject);
                     Destroy(player1HealthBar_3.gameObject);
-                    //GameObject Indicate = Instantiate(IndicatorPlane1);
+                    Destroy(player1Heat.gameObject);
                 }
                 break;
             case PlayerIndex.Two:
@@ -189,7 +217,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2HealthBar_1.gameObject);
                     Destroy(player2HealthBar_2.gameObject);
                     Destroy(player2HealthBar_3.gameObject);
-                    //GameObject Indicate = Instantiate(IndicatorPlane2);
+                    Destroy(player2Heat.gameObject);
                 }
                 break;
             case PlayerIndex.Three:
@@ -197,7 +225,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3HealthBar_1.gameObject);
                     Destroy(player3HealthBar_2.gameObject);
                     Destroy(player3HealthBar_3.gameObject);
-                    //GameObject Indicate = Instantiate(IndicatorPlane3);
+                    Destroy(player3Heat.gameObject);
                 }
                 break;
             case PlayerIndex.Four:
@@ -205,7 +233,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4HealthBar_1.gameObject);
                     Destroy(player4HealthBar_2.gameObject);
                     Destroy(player4HealthBar_3.gameObject);
-                    //GameObject Indicate = Instantiate(IndicatorPlane4);
+                    Destroy(player4Heat.gameObject);
                 }
                 break;
 
@@ -214,16 +242,13 @@ public class UIScript : MonoBehaviour
         };
     }
 
-    public void CreateUI(PlayerIndex index, Transform UICanvas)
+    private void CreateUI(PlayerIndex index, Transform UICanvas)
     {
 
         switch (index)
         {
             case PlayerIndex.One:
                 {
-                    //GameObject P1 = Instantiate(Player1HealthUI);
-                    //player1HealthBar = P1.GetComponent<Image>();
-                    //player1HealthBar.transform.SetParent(UICanvas, false);
                     GameObject P1_1 = Instantiate(Player1HealthUI_background);
                     player1HealthBar_1 = P1_1.GetComponent<Image>();
                     player1HealthBar_1.transform.SetParent(UICanvas, false);
@@ -234,13 +259,13 @@ public class UIScript : MonoBehaviour
                     player1HealthBar_3 = P1_3.GetComponent<Image>();
                     player1HealthBar_3.transform.SetParent(UICanvas, false);
                     P1IndicatorPlane = IndicatorPlaneOne;
+                    GameObject Heat1 = Instantiate(P1GunHeat);
+                    player1Heat = Heat1.GetComponent<Image>();
+                    player1Heat.transform.SetParent(UICanvas, false);
                 }
                 break;
             case PlayerIndex.Two:
                 {
-                    //GameObject P2 = Instantiate(Player2HealthUI);
-                    //player2HealthBar = P2.GetComponent<Image>();
-                    //player2HealthBar.transform.SetParent(UICanvas, false);
                     GameObject P2_1 = Instantiate(Player2HealthUI_background);
                     player2HealthBar_1 = P2_1.GetComponent<Image>();
                     player2HealthBar_1.transform.SetParent(UICanvas, false);
@@ -251,13 +276,13 @@ public class UIScript : MonoBehaviour
                     player2HealthBar_3 = P2_3.GetComponent<Image>();
                     player2HealthBar_3.transform.SetParent(UICanvas, false);
                     P2IndicatorPlane = IndicatorPlaneTwo;
+                    GameObject Heat2 = Instantiate(P2GunHeat);
+                    player2Heat = Heat2.GetComponent<Image>();
+                    player2Heat.transform.SetParent(UICanvas, false);
                 }
                 break;
             case PlayerIndex.Three:
                 {
-                    //GameObject P3 = Instantiate(Player3HealthUI);
-                    //player3HealthBar = P3.GetComponent<Image>();
-                    //player3HealthBar.transform.SetParent(UICanvas, false);
                     GameObject P3_1 = Instantiate(Player3HealthUI_background);
                     player3HealthBar_1 = P3_1.GetComponent<Image>();
                     player3HealthBar_1.transform.SetParent(UICanvas, false);
@@ -268,13 +293,13 @@ public class UIScript : MonoBehaviour
                     player3HealthBar_3 = P3_3.GetComponent<Image>();
                     player3HealthBar_3.transform.SetParent(UICanvas, false);
                     P3IndicatorPlane = IndicatorPlaneThree;
+                    GameObject Heat3 = Instantiate(P3GunHeat);
+                    player3Heat = Heat3.GetComponent<Image>();
+                    player3Heat.transform.SetParent(UICanvas, false);
                 }
                 break;
             case PlayerIndex.Four:
                 {
-                    //GameObject P4 = Instantiate(Player4HealthUI);
-                    //player4HealthBar = P4.GetComponent<Image>();
-                    //player4HealthBar.transform.SetParent(UICanvas, false);
                     GameObject P4_1 = Instantiate(Player4HealthUI_background);
                     player4HealthBar_1 = P4_1.GetComponent<Image>();
                     player4HealthBar_1.transform.SetParent(UICanvas, false);
@@ -285,6 +310,9 @@ public class UIScript : MonoBehaviour
                     player4HealthBar_3 = P4_3.GetComponent<Image>();
                     player4HealthBar_3.transform.SetParent(UICanvas, false);
                     P4IndicatorPlane = IndicatorPlaneFour;
+                    GameObject Heat4 = Instantiate(P4GunHeat);
+                    player4Heat = Heat4.GetComponent<Image>();
+                    player4Heat.transform.SetParent(UICanvas, false);
                 }
                 break;
 

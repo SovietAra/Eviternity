@@ -78,6 +78,16 @@ public class Weapon : MonoBehaviour
     public event EventHandler OnReloadEnd;
     public event EventHandler OnReloadAbort;
 
+    public float MaxHeat
+    {
+        get { return maxHeat; }
+    }
+
+    public float Heat
+    {
+        get { return heat;  }
+    }
+
     private void Start()
     {
         elapsedAttackDelay = fireRate;
@@ -185,7 +195,7 @@ public class Weapon : MonoBehaviour
             //TODO: smooth spray
             GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + sprayAngle), 0));
             Projectile projectile = gobj.GetComponent<Projectile>();
-            projectile.AttackerTag = transform.parent.tag;
+            projectile.Attacker = transform.parent.gameObject;
 
             if(OnPrimaryAttack != null)
                 OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile, AnimationDuration));

@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Checkpoint : MonoBehaviour {
-
-    private ColorSwitch_check colorSwitch;
+public class Checkpoint : MonoBehaviour
+{
+    private ColorSwitchCheck colorSwitch;
 
     private void Start()
     {
-        colorSwitch = GetComponent<ColorSwitch_check>();
+        colorSwitch = GetComponent<ColorSwitchCheck>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         colorSwitch.ChangeColor();
         Debug.Log("It might have worked");
         Player.LastCheckpointPosition = transform.position;
-       // Debug.Log(GetComponent<Player>().checkpos);
     }
 }

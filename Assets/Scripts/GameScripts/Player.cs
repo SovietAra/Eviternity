@@ -59,14 +59,6 @@ public class Player : MonoBehaviour
     private float speed = 1f;
     
     [SerializeField]
-    [Range(1f, 100f)]
-    private float dashSpeed = 5f;
-
-    [SerializeField]
-    [Range(0.1f, 10f)]
-    private float dashTime = 1.25f;
-
-    [SerializeField]
     [Range(1, 100)]
     private float regenerationPerSecond = 5f;
 
@@ -159,7 +151,7 @@ public class Player : MonoBehaviour
         Spawn_Sound.Play();
 
         mainCamera = Camera.main;
-        mainCamera.GetComponentInParent<NewFollowingCamera>().AddToCamera(transform);
+        mainCamera.GetComponentInParent<FollowingCamera>().AddToCamera(transform);
         
         mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
         uiScript = mainGameObject.GetComponent<UIScript>();
@@ -193,8 +185,6 @@ public class Player : MonoBehaviour
         if (Ability != null)
         {
             ability = Instantiate(Ability, transform).GetComponent<Ability>();
-            ability.OnActivated += Ability_OnActivated;
-            ability.OnAbort += Ability_OnAbort;
             if(ability.name == "DashAbility")
             {
                 ability.OnActivated += DashAbility_OnActivated;
@@ -205,8 +195,6 @@ public class Player : MonoBehaviour
         if (SecondaryAbility != null)
         {
             secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
-            secondaryAbility.OnActivated += SecondaryAbility_OnActivated;
-            secondaryAbility.OnAbort += SecondaryAbility_OnAbort;
             if (ability.name == "DashAbility")
             {
                 secondaryAbility.OnActivated += DashAbility_OnActivated;
@@ -251,7 +239,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         if (hasPlayerIndex)
         {
             GamePadState state = GamePad.GetState(Index);
@@ -562,7 +549,7 @@ public class Player : MonoBehaviour
     {
         if (ability.IsActive && ability.name.Contains("LifeSteal"))
         {
-            healthContainer.Heal(damage * ability.AbilityValue);
+            healthContainer.Heal(null, damage * ability.AbilityValue);
         }
     }
     
@@ -587,23 +574,6 @@ public class Player : MonoBehaviour
     #endregion Abilities
 
     #region AbilityEvents
-
-    private void SecondaryAbility_OnAbort(object sender, EventArgs e)
-    {
-    }
-
-    private void SecondaryAbility_OnActivated(object sender, EventArgs e)
-    {
-    }
-
-    private void Ability_OnAbort(object sender, EventArgs e)
-    {
-    }
-
-    private void Ability_OnActivated(object sender, EventArgs e)
-    {
-    }
-
     private void DashAbility_OnAbort(object sender, EventArgs e)
     {
         velocity = Vector3.zero;
@@ -674,7 +644,7 @@ public class Player : MonoBehaviour
         if (addHealth > 0)
         {
             TeamHealth -= subHealth;
-            healthContainer.Heal(addHealth);
+            healthContainer.Heal(null, addHealth);
             return true;
         }
         return false;
@@ -692,12 +662,12 @@ public class Player : MonoBehaviour
     }
 
     private void RevivePlayer()
-    {
-     
+    {   
         if (elapsedReviveDelay >= reviveDelay)
         {
             if (!TakeTeamHealth(healthContainer.MaxHealth, HealthRegenerationMulitplicatorOnDeath))
             {
+                GamePadManager.Disconnect(index);
                 Destroy(gameObject);
             }
             else
@@ -737,5 +707,27 @@ public class Player : MonoBehaviour
     {
         OnIce = false;
         moveScript.ResetMultiplicator();
+    }
+
+    public float PrimaryHeat
+    {
+        get
+        {
+            if (primaryWeapon != null)
+                return primaryWeapon.Heat;
+
+            return 0;
+        }
+    }
+
+    public float PrimaryMaxHeat
+    {
+        get
+        {
+            if (primaryWeapon != null)
+                return primaryWeapon.MaxHeat;
+
+            return 0;
+        }
     }
 }

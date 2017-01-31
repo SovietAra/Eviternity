@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 60fe495f557d86840a28f4825435b403
+timeCreated: 1484753770
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - customBloom: {fileID: 4800000, guid: fa4f9840dbbeb814a89c71ed147a2814, type: 3}
+  - fastBlur: {fileID: 4800000, guid: 34f7df8c1f623b346a2bcbe49661f70d, type: 3}
+  - customBrightCap: {fileID: 4800000, guid: d3df6edb14801cf49b131e04269c70d8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

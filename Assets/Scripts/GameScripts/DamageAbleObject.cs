@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts;
+
 public class DamageAbleObject : MonoBehaviour
 {
     [SerializeField]
@@ -35,23 +34,30 @@ public class DamageAbleObject : MonoBehaviour
         if(health > maxHealth)
             health = maxHealth;
 	}
-	
-	// Update is called once per frame
-	private void Update ()
-    {
-		
-	}
 
-    public virtual void DoDamage(float damage, GameObject statusEffect)
+    public virtual void DoDamage(GameObject attacker, float damage, GameObject statusEffect)
     {
         if (!isImmortal)
         {
-            OnHealthChangedArgs args = new OnHealthChangedArgs(damage, statusEffect);
+            OnHealthChangedArgs args = new OnHealthChangedArgs(attacker, damage, statusEffect);
             if (OnReceiveDamage != null)
                 OnReceiveDamage(this, args);
 
-            if (!args.Cancel)
+            if (!args.Cancel && args.ChangeValue != 0)
             {
+                if (statusEffect != null && gameObject != null)
+                {
+                    GameObject tempStatusEffect = Instantiate(statusEffect, transform);
+                    if (tempStatusEffect != null)
+                    {
+                        StatusEffect statusScript = tempStatusEffect.GetComponent<StatusEffect>();
+                        if (statusScript != null)
+                        {
+                            statusScript.Activate(gameObject);
+                        }
+                    }
+                }
+
                 health -= args.ChangeValue;
                 if (health <= 0)
                 {
@@ -62,14 +68,14 @@ public class DamageAbleObject : MonoBehaviour
         }
     }
 
-    public virtual void DoDamage(float damage)
+    public virtual void DoDamage(GameObject attacker, float damage)
     {
-        DoDamage(damage, null);
+        DoDamage(attacker, damage, null);
     }
 
-    public virtual void Heal(float addHealth, GameObject statusEffect)
+    public virtual void Heal(GameObject healer, float addHealth, GameObject statusEffect)
     {
-        OnHealthChangedArgs args = new OnHealthChangedArgs(addHealth, statusEffect);
+        OnHealthChangedArgs args = new OnHealthChangedArgs(healer, addHealth, statusEffect);
         if (OnReceiveHealth != null)
             OnReceiveHealth(this, args);
 
@@ -83,8 +89,8 @@ public class DamageAbleObject : MonoBehaviour
         }
     }
 
-    public virtual void Heal(float addHealth)
+    public virtual void Heal(GameObject healer, float addHealth)
     {
-        Heal(addHealth, null);
+        Heal(healer, addHealth, null);
     }
 }

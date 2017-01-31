@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IceZoneColor : MonoBehaviour {
 
@@ -11,11 +9,11 @@ public class IceZoneColor : MonoBehaviour {
     {
         ObjectColor.a = 0.2f;
     }
-    void Update()
+
+    private void Update()
     {
             materialColored = new Material(Shader.Find("Transparent/Diffuse"));
             materialColored.color = ObjectColor;
             GetComponent<Renderer>().material = materialColored;
     }
-   
 }

@@ -7,15 +7,15 @@ namespace Assets.Scripts
     {
         public float FinalDamage;
         public bool Cancel;
-        public readonly string AttackerTag;
+        public readonly GameObject Attacker;
         public readonly GameObject Victim;
         public readonly bool IsTeamDamage;
         public readonly bool IsAOEDamage;
 
-        public HitEventArgs(float finalDamage, string attackerTag, GameObject victim, bool isTeamDamage, bool isAOEDamage)
+        public HitEventArgs(float finalDamage, GameObject attacker, GameObject victim, bool isTeamDamage, bool isAOEDamage)
         {
             FinalDamage = finalDamage;
-            AttackerTag = attackerTag;
+            Attacker = attacker;
             Victim = victim;
             IsTeamDamage = isTeamDamage;
             IsAOEDamage = isAOEDamage;

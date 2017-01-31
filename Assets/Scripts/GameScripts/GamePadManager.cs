@@ -6,12 +6,20 @@ namespace Assets.Scripts
 {
     public static class GamePadManager
     {
+        public static event EventHandler OnPlayerCountChanged;
+
         private static bool[] usedIndices = new bool[4] { false, false, false, false };
 
         public static void Connect(int padIndex)
         {
-            if(padIndex >= 0 && padIndex <= 4)
+            if (padIndex >= 0 && padIndex <= 4)
+            {
                 usedIndices[padIndex] = true;
+                if(OnPlayerCountChanged != null)
+                {
+                    OnPlayerCountChanged(null, EventArgs.Empty);
+                }
+            }
         }
 
         public static bool IsInUse(int padIndex)
@@ -26,7 +34,11 @@ namespace Assets.Scripts
         {
             int index = (int)playerIndex;
             if (index >= 0 && index <= 4)
+            {
                 usedIndices[index] = false;
+                if (OnPlayerCountChanged != null)
+                    OnPlayerCountChanged(null, EventArgs.Empty);
+            }
         }
 
         public static PlayerIndex GetPlayerIndex()
