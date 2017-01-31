@@ -58,7 +58,8 @@ MonoBehaviour:
   damageReduction: 1
   teamDamageMultiplicator: 1
   damage: 20
-  StatusEffect: {fileID: 0}
+  StatusEffect: {fileID: 1086101472029054, guid: 5609bee2f64a4c64a96fdc09965ee37d,
+    type: 2}
 --- !u!135 &135978038496077504
 SphereCollider:
   m_ObjectHideFlags: 1

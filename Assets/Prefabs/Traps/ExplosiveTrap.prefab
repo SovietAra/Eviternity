@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerByCollision: 1
-  triggerByRange: 1
+  triggerByRange: 0
   range: 2.5
   damage: 1
   damageRange: 5
