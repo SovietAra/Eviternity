@@ -144,11 +144,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.size
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 224343106477204238, guid: 2b1696b364f857a4aa3787214324fc59,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -239,78 +234,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[0]
-      value: 
-      objectReference: {fileID: 1464132735741188, guid: fa576b0bed8527d43b8e225ac1a134bd,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[1]
-      value: 
-      objectReference: {fileID: 1304345167909060, guid: b1ff2438cc51a864586f01cc0adada76,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[2]
-      value: 
-      objectReference: {fileID: 1792599764118274, guid: af378b2f272635f4081314ec9ad07b95,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[3]
-      value: 
-      objectReference: {fileID: 1926425276541274, guid: cbdbfc8c96dd23e4e9fc735252e44531,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[4]
-      value: 
-      objectReference: {fileID: 1167234290355160, guid: f8f4a58b0acb748468f6163a215637f8,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[5]
-      value: 
-      objectReference: {fileID: 1627779350324660, guid: b4a6011f5ef430d4f81ab6d1521c2601,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[6]
-      value: 
-      objectReference: {fileID: 1393664232187522, guid: e9c5ff840e065be4faae8ae04b52cdc2,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[7]
-      value: 
-      objectReference: {fileID: 1099895414336962, guid: af8578aa08b4c1f48ad1dd6c8f8841ec,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[8]
-      value: 
-      objectReference: {fileID: 1626397642311916, guid: f7a02b8168951b2499d09300c510dee4,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[9]
-      value: 
-      objectReference: {fileID: 1607465620283002, guid: 8d15113615df3274db8fd9c0d02a8112,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[10]
-      value: 
-      objectReference: {fileID: 1006989301317268, guid: 7bd6e9019b90abc4ca000dcd6f7f1a38,
-        type: 2}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: EnergyBars.Array.data[11]
-      value: 
-      objectReference: {fileID: 1608844635934286, guid: 107f53e0248b9c24990cbf21f243007e,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
   m_IsPrefabParent: 0
@@ -379,7 +302,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 920717c9989967647a90f5f97bae9f34, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 920717c9989967647a90f5f97bae9f34, type: 3}
       propertyPath: m_ReceiveShadows

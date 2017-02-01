@@ -574,7 +574,6 @@ MonoBehaviour:
   Player1HealthUI_outline: {fileID: 1547503387022526, guid: f68926afdfbf9004caa6dd1c24a89df0,
     type: 2}
   P1GunHeat: {fileID: 1652839949167732, guid: 79c6aa98e8f93b94ebe006a9add11304, type: 2}
-  P1Energy: {fileID: 1304345167909060, guid: b1ff2438cc51a864586f01cc0adada76, type: 2}
   Player2HealthUI_background: {fileID: 1569887316451116, guid: dc7844a6464d1cb44aff06e6209ed131,
     type: 2}
   Player2HealthUI_fill: {fileID: 1997414900097076, guid: 481f3412d80d3fb4b9f1b600d35f4bfa,
@@ -582,7 +581,6 @@ MonoBehaviour:
   Player2HealthUI_outline: {fileID: 1188185140123202, guid: e6ade1c1731b0a94080c9e293ffae8f7,
     type: 2}
   P2GunHeat: {fileID: 1858705302666362, guid: 5fa43f33b2458604398b8d2ad933b434, type: 2}
-  P2Energy: {fileID: 1167234290355160, guid: f8f4a58b0acb748468f6163a215637f8, type: 2}
   Player3HealthUI_background: {fileID: 1284116535402494, guid: 1fdda810d50a4994cad19bfab6218463,
     type: 2}
   Player3HealthUI_fill: {fileID: 1476039569351898, guid: b382837f08c6e474e83b336e8083d3a5,
@@ -590,7 +588,6 @@ MonoBehaviour:
   Player3HealthUI_outline: {fileID: 1943094320875720, guid: 2f3ca651397cadd40b487c49a7aa324a,
     type: 2}
   P3GunHeat: {fileID: 1665816485692868, guid: d591ac9de766932469bb755ff2159837, type: 2}
-  P3Energy: {fileID: 1099895414336962, guid: af8578aa08b4c1f48ad1dd6c8f8841ec, type: 2}
   Player4HealthUI_background: {fileID: 1513834427438496, guid: 88e48badc2e6a5d4e8c900083ff616f1,
     type: 2}
   Player4HealthUI_fill: {fileID: 1281638155783234, guid: 72ac4d00273fca84898a8955371be260,
@@ -598,7 +595,6 @@ MonoBehaviour:
   Player4HealthUI_outline: {fileID: 1052911196868522, guid: 045be2bcb0ed09b4e84536b951ba3fb7,
     type: 2}
   P4GunHeat: {fileID: 1423149499134798, guid: 77cc7043629adf34887dcc1de6b6f5a7, type: 2}
-  P4Energy: {fileID: 1006989301317268, guid: 7bd6e9019b90abc4ca000dcd6f7f1a38, type: 2}
   IndicatorPlaneOne: {fileID: 1835578991355316, guid: cae3b5806be1ec84ba2ecd0638cdf8a6,
     type: 2}
   IndicatorPlaneTwo: {fileID: 1661036203557974, guid: a3c32b2437cbcd949827c52e4bb10cbe,
@@ -611,6 +607,19 @@ MonoBehaviour:
   TeamHealthBar_Border: {fileID: 114392379955333076}
   TeamHealthActive: {fileID: 21300000, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
   TeamHealthInactive: {fileID: 21300002, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
+  EnergyBars:
+  - {fileID: 1464132735741188, guid: fa576b0bed8527d43b8e225ac1a134bd, type: 2}
+  - {fileID: 1304345167909060, guid: b1ff2438cc51a864586f01cc0adada76, type: 2}
+  - {fileID: 1792599764118274, guid: af378b2f272635f4081314ec9ad07b95, type: 2}
+  - {fileID: 1926425276541274, guid: cbdbfc8c96dd23e4e9fc735252e44531, type: 2}
+  - {fileID: 1167234290355160, guid: f8f4a58b0acb748468f6163a215637f8, type: 2}
+  - {fileID: 1627779350324660, guid: b4a6011f5ef430d4f81ab6d1521c2601, type: 2}
+  - {fileID: 1393664232187522, guid: e9c5ff840e065be4faae8ae04b52cdc2, type: 2}
+  - {fileID: 1099895414336962, guid: af8578aa08b4c1f48ad1dd6c8f8841ec, type: 2}
+  - {fileID: 1626397642311916, guid: f7a02b8168951b2499d09300c510dee4, type: 2}
+  - {fileID: 1607465620283002, guid: 8d15113615df3274db8fd9c0d02a8112, type: 2}
+  - {fileID: 1006989301317268, guid: 7bd6e9019b90abc4ca000dcd6f7f1a38, type: 2}
+  - {fileID: 1608844635934286, guid: 107f53e0248b9c24990cbf21f243007e, type: 2}
 --- !u!114 &114046271804463248
 MonoBehaviour:
   m_ObjectHideFlags: 1
