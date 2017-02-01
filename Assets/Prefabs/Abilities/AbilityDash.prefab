@@ -51,14 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5651e95458760f84d830d7060b820c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimationDuration: 0
   activeOnKeyPressed: 0
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 300
-  energyRegenerationPerSecond: 67
+  energyRequiredPerSeconds: 220
+  energyRegenerationPerSecond: 100
   energyRequiredOnce: 0
-  regnerationDelay: 2
+  regnerationDelay: 1
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 0
   spawnOncePerActivation: 0

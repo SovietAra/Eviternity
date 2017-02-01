@@ -9,45 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1695727237837050}
+  m_RootGameObject: {fileID: 1942048181651496}
   m_IsPrefabParent: 1
---- !u!1 &1695727237837050
+--- !u!1 &1942048181651496
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4868908138800958}
-  - component: {fileID: 33200574088835044}
-  - component: {fileID: 23194777321421064}
-  - component: {fileID: 64018574003880666}
+  - component: {fileID: 4241366744561246}
+  - component: {fileID: 33220532610658454}
+  - component: {fileID: 23125348093631776}
+  - component: {fileID: 95780544468516152}
+  - component: {fileID: 64356776280511730}
   m_Layer: 0
-  m_Name: Chair
+  m_Name: Crytsal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
---- !u!4 &4868908138800958
+--- !u!4 &4241366744561246
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1695727237837050}
-  m_LocalRotation: {x: -0.6903456, y: -0.15304592, z: -0.15304591, w: 0.6903455}
-  m_LocalPosition: {x: -144.0211, y: -13.371621, z: -204.64955}
-  m_LocalScale: {x: 12.9996395, y: 12.9996395, z: 12.999644}
+  m_GameObject: {fileID: 1942048181651496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.078835, y: -0.7206919, z: -66.1938}
+  m_LocalScale: {x: 300.863, y: 30.086317, z: 300.8632}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23194777321421064
+--- !u!23 &23125348093631776
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1695727237837050}
+  m_GameObject: {fileID: 1942048181651496}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -55,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c6e28d0c3542ac74f9a19970cf9bb1ce, type: 2}
+  - {fileID: 2100000, guid: 3a380daa4f449e5499a999d8c433b6e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,19 +74,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33200574088835044
+--- !u!33 &33220532610658454
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1695727237837050}
-  m_Mesh: {fileID: 4300000, guid: 3df030c15fbe0764ba238eee7353cd3b, type: 3}
---- !u!64 &64018574003880666
+  m_GameObject: {fileID: 1942048181651496}
+  m_Mesh: {fileID: 4300000, guid: d04a35a3d269b054b8df0fc24a078135, type: 3}
+--- !u!64 &64356776280511730
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1695727237837050}
+  m_GameObject: {fileID: 1942048181651496}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -93,4 +94,21 @@ MeshCollider:
   m_Convex: 0
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 3df030c15fbe0764ba238eee7353cd3b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d04a35a3d269b054b8df0fc24a078135, type: 3}
+--- !u!95 &95780544468516152
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1942048181651496}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d04a35a3d269b054b8df0fc24a078135, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
