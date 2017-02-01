@@ -107,7 +107,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+        if (!other.isTrigger)
         {
             DamageAbleObject damageObject = other.gameObject.GetComponent<DamageAbleObject>();
             if (damageObject != null)
