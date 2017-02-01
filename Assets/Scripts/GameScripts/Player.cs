@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     private UIScript uiScript;
 
     private Vector3 meshBounds;
+
+    private float stepTimer;
     #endregion
 
     #region InspectorFields
@@ -81,7 +83,16 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public bool OnIce;
 
-    public AudioClip[] AudioClips = new AudioClip[20];
+    public AudioClip[] AudioClips = new AudioClip[31];
+
+    [SerializeField]
+    float ShotVolume;
+
+    [SerializeField]
+    float StepVolume;
+
+    [SerializeField]
+    float stepCooldown;
     #endregion
 
     #region EventHandlers
@@ -111,6 +122,8 @@ public class Player : MonoBehaviour
     {
         get { return isDead; }
     }
+
+    
     #endregion
 
     #region UnityMethodes
@@ -135,14 +148,22 @@ public class Player : MonoBehaviour
         var Spawn_Sound = audioSources[0];
         var Despawn_Sound = audioSources[1];
         var Dash_Sound = audioSources[2];
-        var Walk_Ice_1_Sound = audioSources[3];
-        var Walk_Metal_1_Sound = audioSources[4];
-        var Walk_Snow_1_Sound = audioSources[5];
-        var Healing_Sound = audioSources[6];
-        var Hit1_Sound = audioSources[7];
-        var ShieldActivated_Sound = audioSources[8];
-        var Shielddestroyed_Sound = audioSources[9];
-        var LaserShot1_Sound = audioSources[10];
+        //var Walk_Ice_1_Sound = audioSources[3];   3-7 Ice_Walk
+        //var Walk_Ice_2_Sound = audioSources[4];   8-12 Metal_Walk
+        //var Walk_Ice_3_Sound = audioSources[5];   13-17 Oil_Walk
+        //var Walk_Ice_4_Sound = audioSources[6];   18-22 Snow_Walk
+        //var Walk_Ice_5_Sound = audioSources[7]; 
+        //var Hit1_Sound = audioSources[7];         23-26 Hit
+        var Healing_Sound = audioSources[27];
+        var ShieldActivated_Sound = audioSources[28];
+        var Shielddestroyed_Sound = audioSources[29];
+        var ShortShot_Sound = audioSources[30];
+
+        audioSources[10].volume = ShotVolume;
+        for(int i = 3; i < 23; i++)
+        {
+            audioSources[i].volume = StepVolume;
+        }
         
 
         //TODO call sounds in correct places/functions
@@ -232,8 +253,15 @@ public class Player : MonoBehaviour
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
         e.Cancel = OnIce;
-        if(!OnIce && !audioSources[5].isPlaying && e.Velocity != Physics.gravity)
-            audioSources[5].Play();
+        if(!OnIce && e.Velocity != Physics.gravity)
+        {
+            if(stepTimer >= stepCooldown)
+            {
+                System.Random rand = new System.Random();
+                audioSources[rand.Next(3,23)].Play();
+                stepTimer = 0;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -271,6 +299,8 @@ public class Player : MonoBehaviour
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
         }
+
+        stepTimer += Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -330,8 +360,8 @@ public class Player : MonoBehaviour
 
         if (state.Buttons.Y == ButtonState.Released)
         {
-            if (audioSources[6].isPlaying)
-                audioSources[6].Stop(); //stop healing sound
+            if (audioSources[27].isPlaying)
+                audioSources[27].Stop(); //stop healing sound
         }
 
         if (state.Buttons.B == ButtonState.Pressed && !executed)
@@ -470,14 +500,14 @@ public class Player : MonoBehaviour
 
             if (RotateOnMove && moveVector != Vector3.zero)
             {
-                float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
+                float leftAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
                 if (leftStick != Vector2.zero)
                 {
                     DoRotation(leftAngle);
                 }
             }
 
-            float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
+            float rightAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
             if (rightStick != Vector2.zero)
             {
                 DoRotation(rightAngle);
@@ -495,20 +525,6 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
-
-    private float CalculateAngle(Vector2 target, Vector2 source)
-    {
-        return ((float)Math.Atan2(target.y - source.y, target.x - source.x)) * (180f / (float)Math.PI);
-    }
-
-    private float FixAngle(float value)
-    {
-        if (value < 0)
-            return 360 + value;
-
-        return value;
-    }
-
     #endregion Movement
 
     #endregion UpdateMethodes
@@ -523,8 +539,8 @@ public class Player : MonoBehaviour
             
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                if(!audioSources[6].isPlaying)
-                    audioSources[6].Play();
+                if(!audioSources[27].isPlaying)
+                    audioSources[27].Play();
                 return true;
             }
         }
@@ -612,7 +628,7 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
-        audioSources[10].Play();
+        audioSources[30].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
     }
@@ -686,8 +702,11 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
     {
-        //if (!audioSources[7].isPlaying)
-            audioSources[7].Play();
+        if (!audioSources[23].isPlaying && !audioSources[24].isPlaying && !audioSources[25].isPlaying && !audioSources[26].isPlaying)
+        {
+            System.Random rand = new System.Random();
+                audioSources[rand.Next(23,27)].Play();
+        }
     }
 
     #endregion PlayerHealth
@@ -726,6 +745,28 @@ public class Player : MonoBehaviour
         {
             if (primaryWeapon != null)
                 return primaryWeapon.MaxHeat;
+
+            return 0;
+        }
+    }
+
+    public float AbilityEnergy
+    {
+        get
+        {
+            if (ability != null)
+                return ability.Energy;
+
+            return 0;
+        }
+    }
+
+    public float MaxEnergy
+    {
+        get
+        {
+            if (ability != null)
+                return ability.MaxEnergy;
 
             return 0;
         }

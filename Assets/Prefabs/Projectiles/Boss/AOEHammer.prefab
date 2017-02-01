@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 136392794051119610}
   - component: {fileID: 114348550102327902}
   m_Layer: 0
-  m_Name: BossAOEHammer
+  m_Name: AOEHammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

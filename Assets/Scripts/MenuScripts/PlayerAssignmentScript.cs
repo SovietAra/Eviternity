@@ -1,21 +1,19 @@
 ﻿/* 
  * Purpose: Händelt die Character- und Waffenzuweisung
- * Author: Marcel Croonenbroeck / Gregor von Frankenberg
- * Date: 31.01.2017
+ * Author: Gregor von Frankenberg / Marcel Croonenbroeck
+ * Date: 1.2.2017
  */
 
 
 using Assets.Scripts;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using XInputDotNetPure;
 
-public class PlayerAssignmentScript : MonoBehaviour {
+public class PlayerAssignmentScript : MonoBehaviour
+{
 
     #region GameObjects
     private bool gameStarted;
@@ -99,13 +97,13 @@ public class PlayerAssignmentScript : MonoBehaviour {
     #endregion
 
     #region Listen und ihre ints
-    public Dictionary<int, List <Image>> ImageList = new Dictionary<int, List<Image>>();
+    public Dictionary<int, List<Image>> ImageList = new Dictionary<int, List<Image>>();
 
     GamePadState[] prevState = new GamePadState[4];
 
     int[] index = new int[2] { 0, 0 };
     int[] prevIndex = new int[2] { 0, 0 };
-    
+
     public Dictionary<int, List<Image>> Weaponset_Aegis_links = new Dictionary<int, List<Image>>();
     public Dictionary<int, List<Image>> Weaponset_Aegis_rechts = new Dictionary<int, List<Image>>();
 
@@ -115,7 +113,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
     int[] AegisIndex_rechts = new int[2] { 0, 0 };
     int[] AegisPrevIndex_rechts = new int[2] { 0, 0 };
 
-    
+
 
     public Dictionary<int, List<Image>> Weaponset_Stalker_links = new Dictionary<int, List<Image>>();
     public Dictionary<int, List<Image>> Weaponset_Stalker_rechts = new Dictionary<int, List<Image>>();
@@ -126,12 +124,12 @@ public class PlayerAssignmentScript : MonoBehaviour {
     int[] StalkerIndex_rechts = new int[2] { 0, 0 };
     int[] StalkerPrevIndex_rechts = new int[2] { 0, 0 };
     #endregion
-    
+
 
 
     bool changeMenu = false;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         #region GameObjects getter
         playerAssignmentScreen = playerAssignmentScreen.GetComponent<Canvas>();
@@ -147,7 +145,7 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
         playerFourJoin = playerFourJoin.GetComponent<Text>();
         playerFourAssigned = playerFourAssigned.GetComponent<Text>();
-        
+
         playerOneJoin.enabled = true;
         playerOneAssigned.enabled = false;
 
@@ -299,9 +297,9 @@ public class PlayerAssignmentScript : MonoBehaviour {
         Weaponset_Stalker_rechts.Add(3, TempWeaponset_Stalker_rechts);
         #endregion
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         if (!gameStarted)
         {
@@ -380,16 +378,16 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
             }
 
-            if(state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
+            if (state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
             {
                 prevIndex[playerIndex] = index[playerIndex];
                 index[playerIndex] -= 1;
                 Debug.Log("index:" + index[playerIndex]);
-                if (index[playerIndex] < 0 )
-                    {
-                        Debug.Log("Sprung auf Ende der List");
-                        index[playerIndex] = 1;
-                    }
+                if (index[playerIndex] < 0)
+                {
+                    Debug.Log("Sprung auf Ende der List");
+                    index[playerIndex] = 1;
+                }
 
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
@@ -661,14 +659,14 @@ public class PlayerAssignmentScript : MonoBehaviour {
 
     public void ChangeLeftWeaponAegis(int playerIndex, int index, int prevIndex)
     {
-       Weaponset_Aegis_links[playerIndex][index].enabled = true;
-       Weaponset_Aegis_links[playerIndex][prevIndex].enabled = false;
+        Weaponset_Aegis_links[playerIndex][index].enabled = true;
+        Weaponset_Aegis_links[playerIndex][prevIndex].enabled = false;
     }
 
     public void ChangeRightWeaponAegis(int playerIndex, int index, int prevIndex)
     {
-       Weaponset_Aegis_rechts[playerIndex][index].enabled = true;
-       Weaponset_Aegis_rechts[playerIndex][prevIndex].enabled = false;
+        Weaponset_Aegis_rechts[playerIndex][index].enabled = true;
+        Weaponset_Aegis_rechts[playerIndex][prevIndex].enabled = false;
     }
 
     public void ChangeLeftWeaponStalker(int playerIndex, int index, int prevIndex)
