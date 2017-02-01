@@ -236,8 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8.4
-  dashSpeed: 17.1
-  dashTime: 1.5
   regenerationPerSecond: 17
   reviveDelay: 2
   maxImmortality: 2
