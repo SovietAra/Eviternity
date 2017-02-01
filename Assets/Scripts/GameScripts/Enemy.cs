@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -117,19 +118,13 @@ public class Enemy : MonoBehaviour
                 }
             }
 
+            UpdateRotation();
+
+            //Calculate Distance to target
             distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
-            
-
-            //Look at Player
-            transform.rotation = Quaternion.Slerp(transform.rotation
-                                                 , Quaternion.LookRotation(currentTarget.transform.position - transform.position)
-                                                 , rotationSpeed * Time.deltaTime);
-
-            //Follow Player
+            //Follow Target
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                //movement = transform.forward * moveSpeed * Time.deltaTime * 100;
-                //moveScript.Move(movement);
                 navAgent.SetDestination(currentTarget.transform.position);
             }
             else if (distanceToPlayer < viewRange)
@@ -139,7 +134,6 @@ public class Enemy : MonoBehaviour
             }
             if (distanceToPlayer < attackRange)
             {
-                //TryShoot();
                 if(primaryWeapon != null)
                     primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
             }
@@ -147,7 +141,15 @@ public class Enemy : MonoBehaviour
             enemyfront = transform.eulerAngles.y;
         }
     }
-    
+
+    private void UpdateRotation()
+    {
+        //Look at Player
+        transform.rotation = Quaternion.Slerp(transform.rotation
+                                             , Quaternion.LookRotation(currentTarget.transform.position - transform.position)
+                                             , rotationSpeed * Time.deltaTime);
+    }
+
     private void SetUI()
     {
         HealthSlider.value = dmgobjct.Health;

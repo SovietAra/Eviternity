@@ -1,29 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class KeepButtonsScript : MonoBehaviour
-{
-    public EventSystem EventSys;
-    private GameObject storeSelected;
+public class KeepButtonsScript : MonoBehaviour {
+
+    public EventSystem ES;
+    private GameObject StoreSelected;
 
     // Use this for initialization
-    private void Start ()
-    {
-        storeSelected = EventSys.firstSelectedGameObject;
+    void Start () {
+        StoreSelected = ES.firstSelectedGameObject;
     }
 	
 	// Update is called once per frame
-	void Update ()
-    {
-        if (EventSys.currentSelectedGameObject != storeSelected)
+	void Update () {
+        if (ES.currentSelectedGameObject != StoreSelected)
         {
-            if (EventSys.currentSelectedGameObject == null)
+            if (ES.currentSelectedGameObject == null)
             {
-                EventSys.SetSelectedGameObject(storeSelected);
+                ES.SetSelectedGameObject(StoreSelected);
             }
             else
             {
-                storeSelected = EventSys.currentSelectedGameObject;
+                StoreSelected = ES.currentSelectedGameObject;
             }
         }
     }
