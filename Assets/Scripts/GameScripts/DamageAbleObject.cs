@@ -17,6 +17,7 @@ public class DamageAbleObject : MonoBehaviour
     public event EventHandler OnDeath;
     public event EventHandler<OnHealthChangedArgs> OnReceiveDamage;
     public event EventHandler<OnHealthChangedArgs> OnReceiveHealth;
+    public event EventHandler<StatusEffectArgs> OnNewStatusEffect;
 
     public float Health
     {
@@ -39,7 +40,7 @@ public class DamageAbleObject : MonoBehaviour
     {
         if (!isImmortal)
         {
-            OnHealthChangedArgs args = new OnHealthChangedArgs(attacker, damage, statusEffect);
+            OnHealthChangedArgs args = new OnHealthChangedArgs(attacker, damage);
             if (OnReceiveDamage != null)
                 OnReceiveDamage(this, args);
 
@@ -53,7 +54,12 @@ public class DamageAbleObject : MonoBehaviour
                         StatusEffect statusScript = tempStatusEffect.GetComponent<StatusEffect>();
                         if (statusScript != null)
                         {
-                            statusScript.Activate(gameObject);
+                            StatusEffectArgs statusArgs = new StatusEffectArgs(statusScript, tempStatusEffect);
+                            if (OnNewStatusEffect != null)
+                                OnNewStatusEffect(this, statusArgs);
+
+                            if(!statusArgs.Cancel)
+                                statusScript.Activate(gameObject);
                         }
                     }
                 }
@@ -75,7 +81,7 @@ public class DamageAbleObject : MonoBehaviour
 
     public virtual void Heal(GameObject healer, float addHealth, GameObject statusEffect)
     {
-        OnHealthChangedArgs args = new OnHealthChangedArgs(healer, addHealth, statusEffect);
+        OnHealthChangedArgs args = new OnHealthChangedArgs(healer, addHealth);
         if (OnReceiveHealth != null)
             OnReceiveHealth(this, args);
 

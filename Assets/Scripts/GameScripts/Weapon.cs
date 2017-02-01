@@ -192,10 +192,10 @@ public class Weapon : MonoBehaviour
                 sprayAngle = UnityEngine.Random.Range(-(maxSprayAngle / 2f), (maxSprayAngle / 2f));
             }
 
-            //TODO: smooth spray
             GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + sprayAngle), 0));
             Projectile projectile = gobj.GetComponent<Projectile>();
-            projectile.Attacker = transform.parent.gameObject;
+            if(transform.parent != null)
+                projectile.Attacker = transform.parent.gameObject;
 
             if(OnPrimaryAttack != null)
                 OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile, AnimationDuration));
