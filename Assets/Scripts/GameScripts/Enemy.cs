@@ -18,7 +18,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     [Range(0.1f, 100.0f)]
-    private float moveSpeed = 3.0f;
+    private float slowedSpeed = 3.0f;
+
+    [SerializeField]
+    [Range(0.1f, 100.0f)]
+    private float defaultSpeed = 8.0f;
 
     [SerializeField]
     [Range(0.1f, 100.0f)]
@@ -71,8 +75,11 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
-        if(dmgobjct != null)
+        if (dmgobjct != null)
+        {
             dmgobjct.OnDeath += Dmgobjct_OnDeath;
+            dmgobjct.OnNewStatusEffect += Dmgobjct_OnNewStatusEffect;
+        }
 
         if(PrimaryWeapon != null)
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
@@ -83,6 +90,31 @@ public class Enemy : MonoBehaviour
 
         navAgent = GetComponent<NavMeshAgent>();
         SetUI();
+    }
+
+    private void Dmgobjct_OnNewStatusEffect(object sender, Assets.Scripts.StatusEffectArgs e)
+    {
+        e.StatusScript.OnActivate += StatusScript_OnActivate;
+        e.StatusScript.OnDeactivate += StatusScript_OnDeactivate;
+    }
+
+    private void StatusScript_OnDeactivate(object sender, EventArgs e)
+    {
+        navAgent.speed = defaultSpeed;
+    }
+
+    private void StatusScript_OnActivate(object sender, EventArgs e)
+    {
+        StatusEffect script = sender as StatusEffect;
+        if(script.name.Contains("Slow"))
+        {
+            navAgent.speed = slowedSpeed;
+        }
+        else if(script.name.Contains("Stun"))
+        {
+            navAgent.speed = 0;
+            
+        }
     }
 
     private void Update()
@@ -140,9 +172,12 @@ public class Enemy : MonoBehaviour
     private void UpdateRotation()
     {
         //Look at Player
-        transform.rotation = Quaternion.Slerp(transform.rotation
-                                             , Quaternion.LookRotation(nearestTarget.transform.position - transform.position)
-                                             , rotationSpeed * Time.deltaTime);
+        if (nearestTarget != null)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation
+                                                 , Quaternion.LookRotation(nearestTarget.transform.position - transform.position)
+                                                 , rotationSpeed * Time.deltaTime);
+        }
     }
 
     /// <summary>

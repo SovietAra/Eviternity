@@ -750,15 +750,37 @@ public class Player : MonoBehaviour
         }
     }
 
-    public float AbilityEnergy
+    public float AbilityEnergy(int abilityNumber)
     {
-        get
+        float energyLevel = 0;
+        switch (abilityNumber)
         {
-            if (ability != null)
-                return ability.Energy;
-
-            return 0;
+            case 1:
+                {
+                    if (dashAbility != null)
+                        energyLevel = dashAbility.Energy;
+                    else energyLevel = 0;
+                }
+                break;
+            case 2:
+                {
+                    if (ability != null)
+                        energyLevel = ability.Energy;
+                    else energyLevel = 0;
+                }
+                break;
+            case 3:
+                {
+                    if (secondaryAbility != null)
+                        energyLevel = secondaryAbility.Energy;
+                    else energyLevel = 0;
+                }
+                break;
+            default: energyLevel = 0;
+                break;
         }
+
+        return energyLevel;
     }
 
     public float MaxEnergy
