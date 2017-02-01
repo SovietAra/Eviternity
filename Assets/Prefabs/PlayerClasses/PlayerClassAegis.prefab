@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114445025244611432}
   - component: {fileID: 114584673856983150}
   m_Layer: 8
-  m_Name: PlayerClass1
+  m_Name: PlayerClassAegis
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8.4
+  speed: 8
   regenerationPerSecond: 17
   reviveDelay: 2
   maxImmortality: 2
