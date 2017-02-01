@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4926958602366876}
   - component: {fileID: 114506238796585466}
   m_Layer: 0
-  m_Name: WeaponMinigun
+  m_Name: SecWeaponSniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,14 +52,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  maxSprayAngle: 20
-  maxAmmoPerClip: 100
-  reloadTimePerShell: 0.75
-  reloadTimePerClip: 2
+  maxSprayAngle: 10
+  maxAmmoPerClip: 1000
+  reloadTimePerShell: 10
+  reloadTimePerClip: 10
+  maxHeat: 12
   heat: 0
-  heatPerShot: 1
-  heatReductionPerSecond: 25
-  heatReductionDelay: 1
+  heatPerShot: 12
+  heatReductionPerSecond: 2
+  heatReductionDelay: 0
   AnimationDuration: 0
   smoothSpray: 0
   sprayValueSpeed: 2
@@ -68,6 +69,5 @@ MonoBehaviour:
   AutoReload: 1
   ProduceHeat: 1
   HeatCooldown: 1
-  SecondaryWeapon: {fileID: 1761816047511776, guid: 2d13056773f4bd5468d5c56afae01c36,
-    type: 2}
-  Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}
+  SecondaryWeapon: {fileID: 0}
+  Projectile: {fileID: 1078364581439068, guid: d55db27390874134bae613821533c951, type: 2}

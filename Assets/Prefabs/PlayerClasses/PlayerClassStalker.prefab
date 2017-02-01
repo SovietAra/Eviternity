@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114445025244611432}
   - component: {fileID: 114584673856983150}
   m_Layer: 8
-  m_Name: PlayerClass1
+  m_Name: PlayerClassStalker
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,15 +235,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8.4
+  speed: 9
   regenerationPerSecond: 17
   reviveDelay: 2
   maxImmortality: 2
   Freeze: 0
-  RotateOnMove: 1
-  PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
+  RotateOnMove: 0
+  PrimaryWeapon: {fileID: 1302081713190986, guid: b7bd7b82850075e4dbb5275e26922603,
     type: 2}
-  SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
+  SecondaryWeapon: {fileID: 1302081713190986, guid: c5558f0b271959f4382b1dd35650e108,
     type: 2}
   Ability: {fileID: 1106245875336466, guid: 3892a081e8b0cec4fa829c6f24345625, type: 2}
   SecondaryAbility: {fileID: 1657859246270480, guid: ce02c73a09e0aff4db5afc1921376a5e,
