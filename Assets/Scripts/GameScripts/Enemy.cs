@@ -18,7 +18,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     [Range(0.1f, 100.0f)]
-    private float moveSpeed = 3.0f;
+    private float slowedSpeed = 3.0f;
+
+    [SerializeField]
+    [Range(0.1f, 100.0f)]
+    private float defaultSpeed = 8.0f;
 
     [SerializeField]
     [Range(0.1f, 100.0f)]
@@ -96,7 +100,7 @@ public class Enemy : MonoBehaviour
 
     private void StatusScript_OnDeactivate(object sender, EventArgs e)
     {
-        //speed auf standardwert setzen
+        navAgent.speed = defaultSpeed;
     }
 
     private void StatusScript_OnActivate(object sender, EventArgs e)
@@ -104,11 +108,11 @@ public class Enemy : MonoBehaviour
         StatusEffect script = sender as StatusEffect;
         if(script.name.Contains("Slow"))
         {
-            //speed reduzieren
+            navAgent.speed = slowedSpeed;
         }
         else if(script.name.Contains("Stun"))
         {
-            //speed auf 0
+            navAgent.speed = 0;
             
         }
     }
