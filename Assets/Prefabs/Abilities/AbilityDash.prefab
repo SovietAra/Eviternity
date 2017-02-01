@@ -56,10 +56,10 @@ MonoBehaviour:
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 200
-  energyRegenerationPerSecond: 67
+  energyRequiredPerSeconds: 220
+  energyRegenerationPerSecond: 100
   energyRequiredOnce: 0
-  regnerationDelay: 2
+  regnerationDelay: 1
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 0
   spawnOncePerActivation: 0
