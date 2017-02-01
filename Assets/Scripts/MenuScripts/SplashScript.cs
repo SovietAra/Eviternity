@@ -1,52 +1,55 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XInputDotNetPure;
 
 public class SplashScript : MonoBehaviour {
 
     public Text Text1;
     public Text Text2;
-    private float targetTime = 3.0f;
-    private float partTime = 1.0f;
-    private float timerTime = 1.0f;
+    public float targetTime = 3.0f;
+    public float partTime = 1.0f;
+    public float timerTime = 1.0f;
     // Use this for initialization
-    private void Start ()
+    void Start ()
     {
         Text1.enabled = true;
         Text2.enabled = false;
 	}
     
 	// Update is called once per frame
-	private void Update ()
+	void Update ()
     {
         targetTime -= Time.deltaTime;
         partTime -= Time.deltaTime;
 
         if(targetTime <= 0.0f || Input.GetButton("Submit"))
         {
-            TimerEnded();
+            timerEnded();
         }
         if(partTime <= 0.0f)
         {
-            ChangeTextToBlack();
+            changeTextToBlack();
             if(timerTime <= 0.0f)
-            ChangeTextToRed();
+            changeTextToRed();
         }
 	}
 
-    private void TimerEnded()
+    public void timerEnded()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    private void ChangeTextToBlack()
+    public void changeTextToBlack()
     {
         Text1.enabled = false;
         Text2.enabled = true;
         timerTime -= Time.deltaTime;
     }
 
-    private void ChangeTextToRed()
+    public void changeTextToRed()
     {
         Text1.enabled = true;
         Text2.enabled = false;
