@@ -30,3 +30,17 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+/Assets/Models/Environment/Stützpfeiler/Materials.meta
+/Assets/Models/Environment/Stützpfeiler/Materials/No Name.mat.meta
+/Assets/Models/Environment/Stützpfeiler/Materials/No Name.mat
+/Assets/Models/Environment/Stützpfeiler/Materials
+/Assets/Models/Environment/Stützpfeiler
+/Assets/Models/Environment/Stones/Materials/steine.mat.meta
+/Assets/Models/Environment/Stones/Materials/steine.mat
+/Assets/Models/Environment/Stones/Materials/No Name.mat.meta
+/Assets/Models/Environment/Stones/Materials/No Name.mat
+/Assets/Models/Environment/Stones/Materials
+/Assets/Models/Environment/Portal/Materials/No Name.mat.meta
+/Assets/Models/Environment/Portal/Materials/No Name.mat
+/Assets/Models/Environment/Portal/Materials
+/Assets/Models/Environment
