@@ -107,16 +107,19 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        DamageAbleObject damageObject = other.gameObject.GetComponent<DamageAbleObject>();
-        if (damageObject != null)
+        if (!other.isTrigger)
         {
-            Detonate(damageObject);
-        }
-        else
-        {
-            if (!startTimer)
+            DamageAbleObject damageObject = other.gameObject.GetComponent<DamageAbleObject>();
+            if (damageObject != null)
             {
-                startTimer = true;
+                Detonate(damageObject);
+            }
+            else
+            {
+                if (!startTimer)
+                {
+                    startTimer = true;
+                }
             }
         }
     }
