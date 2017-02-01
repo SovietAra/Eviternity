@@ -26,8 +26,15 @@ public class Boss : MonoBehaviour
     private float angle;
     private Quaternion targetRotation;
     private bool updatePlayers = true;
+    private Vector3 spawnPosition;
+    private NavMeshAgent agent;
 
     public bool Freeze = false;
+    
+    private float receivedDamagePerSecond = 0f;
+    private float elapsedDamageTime = 0f;
+    private float elapsedHitTime = 0f;
+    private float damageReceived = 0f;
 
     [SerializeField]
     [Range(0, 1000)]
@@ -41,48 +48,63 @@ public class Boss : MonoBehaviour
     [Range(0, 20)]
     private float minimumDistance = 2f;
 
-    private NavMeshAgent agent;
-
+    [SerializeField]
+    [Range(0, 100)]
+    private float resetTime = 10f;
+    
     private void Start()
     {
         damageDone = new float[4];
         if (AOEWeapon != null)
         {
             GameObject gobj = Instantiate(AOEWeapon, transform);
-            if(gobj != null)
+            if (gobj != null)
+            {
                 aoeWeapon = gobj.GetComponent<Weapon>();
+                aoeWeapon.OnPrimaryAttack += OnPrimaryAttack;
+            }
         }
 
         if (IceWaveWeapon != null)
         {
             GameObject gobj = Instantiate(IceWaveWeapon, transform);
-            if(gobj != null)
+            if (gobj != null)
+            {
                 iceWaveWeapon = gobj.GetComponent<Weapon>();
+                iceWaveWeapon.OnPrimaryAttack += OnPrimaryAttack;
+            }
         }
 
-        if(IcicleWeapon != null)
+        if (IcicleWeapon != null)
         {
             GameObject gobj = Instantiate(IcicleWeapon, transform);
             if (gobj != null)
+            {
                 icicleWeapon = gobj.GetComponent<Weapon>();
+                icicleWeapon.OnPrimaryAttack += OnPrimaryAttack;
+            }
         }
 
         if (StormAbility != null)
         {
             GameObject gobj = Instantiate(StormAbility, transform);
-            if(gobj != null)
+            if (gobj != null)
+            {
                 stormAbility = gobj.GetComponent<Ability>();
+                stormAbility.OnActivated += OnAbilityActivated;
+            }
         }
 
         healthContainer = GetComponent<DamageAbleObject>();
-        moveScript = GetComponent<MoveScript>();
-        agent = GetComponent<NavMeshAgent>();
-        playerScripts = new List<Player>();
-
-        if(healthContainer != null)
+        if (healthContainer != null)
         {
             healthContainer.OnReceiveDamage += HealthContainer_OnReceiveDamage;
         }
+
+        moveScript = GetComponent<MoveScript>();
+        agent = GetComponent<NavMeshAgent>();
+        playerScripts = new List<Player>();
+        spawnPosition = transform.position;
 
         GetPlayers();
         GamePadManager.OnPlayerCountChanged += GamePadManager_OnPlayerCountChanged;
@@ -106,13 +128,19 @@ public class Boss : MonoBehaviour
 
         updatePlayers = playerScripts.Count == 0;
     }
-    
+
     private void HealthContainer_OnReceiveDamage(object sender, Assets.Scripts.OnHealthChangedArgs e)
     {
-        if(e.ResponsibleObject != null && e.ChangeValue > 0 && e.ResponsibleObject.CompareTag("Player"))
+        if (e.ResponsibleObject != null && e.ChangeValue > 0 && e.ResponsibleObject.CompareTag("Player"))
         {
+            if (Mathf.Approximately(healthContainer.Health, healthContainer.MaxHealth))
+                elapsedDamageTime = 0f;
+
+            elapsedHitTime = 0f;
+            damageReceived += e.ChangeValue;
+
             Player playerScript = e.ResponsibleObject.GetComponent<Player>();
-            if(playerScript != null)
+            if (playerScript != null)
             {
                 damageDone[(int)playerScript.Index] += e.ChangeValue;
             }
@@ -124,8 +152,9 @@ public class Boss : MonoBehaviour
         if (updatePlayers)
             GetPlayers();
 
-        animationDuration -= Time.deltaTime;
-        if(!Freeze)
+        UpdateTimers();
+
+        if (!Freeze)
         {
             CheckCurrentTarget();
 
@@ -134,7 +163,7 @@ public class Boss : MonoBehaviour
 
             if (currentTarget != null)
             {
-                Hunt();
+                SetTargetPosition(currentTarget.transform.position, minimumDistance);
                 DoRotation();
                 AttackPlayer();
             }
@@ -144,15 +173,44 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private void UpdateTimers()
+    {
+        if (animationDuration >= 0)
+            animationDuration -= Time.deltaTime;
+
+        if (damageReceived > 0)
+        {
+            elapsedDamageTime += Time.deltaTime;
+            receivedDamagePerSecond = damageReceived / elapsedDamageTime;
+        }
+
+        elapsedHitTime += Time.deltaTime;
+        if (elapsedHitTime > resetTime)
+        {
+            ResetBoss();
+        }
+    }
+
     private void DoRotation()
     {
         targetRotation = Quaternion.LookRotation(currentTarget.transform.position - transform.position);
     }
 
-    private void Hunt()
+    private void SetTargetPosition(Vector3 targetPosition, float stoppingDistance)
     {
-        agent.SetDestination(currentTarget.transform.position);
-        agent.stoppingDistance = minimumDistance;
+        if (agent != null)
+        {
+            if (agent.isOnNavMesh)
+            {
+                agent.SetDestination(targetPosition);
+                agent.stoppingDistance = stoppingDistance;
+            }
+            else
+            {
+                transform.position = spawnPosition;
+                Debug.Log("Position reset required!");
+            }
+        }
     }
 
     private void CheckCurrentTarget()
@@ -180,7 +238,7 @@ public class Boss : MonoBehaviour
                 damage = damageDone[i];
                 currentTarget = GetPlayerByIndex((PlayerIndex)i);
 
-                if(i + 1 < damageDone.Length)
+                if (i + 1 < damageDone.Length)
                     CheckAggro();
 
                 return;
@@ -204,10 +262,10 @@ public class Boss : MonoBehaviour
         float damage = -1;
         for (int i = 0; i < playerScripts.Count; i++)
         {
-            if(Vector3.Distance(playerScripts[i].transform.position, transform.position) < viewRange)
+            if (Vector3.Distance(playerScripts[i].transform.position, transform.position) < viewRange)
             {
                 float tempDamage = damageDone[(int)playerScripts[i].Index];
-                if(tempDamage > damage)
+                if (tempDamage > damage)
                 {
                     index = i;
                     damage = tempDamage;
@@ -215,7 +273,7 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if(index >= 0)
+        if (index >= 0)
             currentTarget = playerScripts[index];
     }
 
@@ -224,44 +282,51 @@ public class Boss : MonoBehaviour
         if (animationDuration < 0 && Mathf.Approximately(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y))
         {
             float distance = Vector3.Distance(currentTarget.transform.position, transform.position);
-            WeaponDecider(currentTarget.transform.position, distance, angle);
+            WeaponDecider(currentTarget.transform.position, distance);
         }
     }
 
-    private Weapon WeaponDecider(Vector3 targetPosition, float distance, float angle)
+    private void WeaponDecider(Vector3 targetPosition, float distance)
     {
         bool done = false;
-        if(aoeWeapon != null)
+        if (aoeWeapon != null && false)
         {
-            done = Shoot(aoeWeapon, transform.position, Vector3.zero, 0);
+            done = aoeWeapon.PrimaryAttack(transform.position, Vector3.zero, 0);
         }
 
         if (iceWaveWeapon != null && !done)
         {
-            done = Shoot(iceWaveWeapon, transform.position, transform.forward, angle);
+            done = iceWaveWeapon.PrimaryAttack(transform.position, transform.forward, angle);
         }
 
         if (icicleWeapon != null && !done)
         {
-            done = Shoot(iceWaveWeapon, targetPosition, Vector3.zero, 0);
+            done = icicleWeapon.PrimaryAttack(targetPosition, Vector3.zero, 0);
         }
 
         if (stormAbility != null && !done)
         {
-            done = stormAbility.Use();
+            stormAbility.Use();
         }
-
-        return null;
     }
 
-    private bool Shoot(Weapon weapon, Vector3 spawn, Vector3 forward, float angle)
+    private void OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
-        if(weapon.PrimaryAttack(spawn, forward, angle))
-        {
-            animationDuration = weapon.AnimationDuration;
-            return true;
-        }
-        return false;
+        animationDuration = ((Weapon)sender).AnimationDuration;
+    }
+
+    private void OnAbilityActivated(object sender, EventArgs e)
+    {
+        animationDuration = ((Ability)sender).AnimationDuration;
+    }
+
+    private void ResetBoss()
+    {
+        healthContainer.Heal(gameObject, healthContainer.MaxHealth);
+        elapsedHitTime = 0f;
+        elapsedDamageTime = 0f;
+        damageReceived = 0f;
+        animationDuration = 0f;
+        SetTargetPosition(spawnPosition, 0);
     }
 }
-

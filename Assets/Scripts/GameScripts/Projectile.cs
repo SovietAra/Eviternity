@@ -28,6 +28,9 @@ public class Projectile : MonoBehaviour
     [Range(0, 60)]
     private float lifeTime = 10f;
 
+    [SerializeField]
+    private bool startDetonationTimer = false;
+
     public bool DestroyOnCollision = true;
     public bool CollideWithOtherProjectiles = false;
 
@@ -50,7 +53,6 @@ public class Projectile : MonoBehaviour
     private Rigidbody attachedBody;
     private float elapsedTime = 0f;
     private float elapsedLifeTime;
-    private bool startTimer = false;
     private GameObject attacker;
 
     public GameObject Attacker
@@ -95,7 +97,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (startTimer)
+        if (startDetonationTimer)
         {
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= detonationTimer)
@@ -116,9 +118,9 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                if (!startTimer)
+                if (!startDetonationTimer)
                 {
-                    startTimer = true;
+                    startDetonationTimer = true;
                 }
             }
         }

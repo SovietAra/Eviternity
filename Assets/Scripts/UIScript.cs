@@ -16,22 +16,18 @@ public class UIScript : MonoBehaviour
     public GameObject Player1HealthUI_fill;
     public GameObject Player1HealthUI_outline;
     public GameObject P1GunHeat;
-    public GameObject P1Energy;
     public GameObject Player2HealthUI_background;
     public GameObject Player2HealthUI_fill;
     public GameObject Player2HealthUI_outline;
     public GameObject P2GunHeat;
-    public GameObject P2Energy;
     public GameObject Player3HealthUI_background;
     public GameObject Player3HealthUI_fill;
     public GameObject Player3HealthUI_outline;
     public GameObject P3GunHeat;
-    public GameObject P3Energy;
     public GameObject Player4HealthUI_background;
     public GameObject Player4HealthUI_fill;
     public GameObject Player4HealthUI_outline;
     public GameObject P4GunHeat;
-    public GameObject P4Energy;
     public GameObject IndicatorPlaneOne;
     public GameObject IndicatorPlaneTwo;
     public GameObject IndicatorPlaneThree;
@@ -40,6 +36,7 @@ public class UIScript : MonoBehaviour
     public Image TeamHealthBar_Border;
     public Sprite TeamHealthActive;
     public Sprite TeamHealthInactive;
+    public GameObject[] EnergyBars;
 
     private GameObject game;
     private GameObject P1IndicatorPlane;
@@ -57,24 +54,21 @@ public class UIScript : MonoBehaviour
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
     private Image player1Heat;
-    private Image player1Energy;
     private Image player2HealthBar_1;
     private Image player2HealthBar_2;
     private Image player2HealthBar_3;
     private Image player2Heat;
-    private Image player2Energy;
     private Image player3HealthBar_1;
     private Image player3HealthBar_2;
     private Image player3HealthBar_3;
     private Image player3Heat;
-    private Image player3Energy;
     private Image player4HealthBar_1;
     private Image player4HealthBar_2;
     private Image player4HealthBar_3;
     private Image player4Heat;
-    private Image player4Energy;
     private bool isHealing = false;
     private List<GameObject> CurrentPlayers;
+    private Image[] AbilityBars = new Image[12];
 
     // Use this for initialization
     private void Start()
@@ -99,38 +93,35 @@ public class UIScript : MonoBehaviour
                     UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
 
-            if (CurrentPlayers.Count == 0)
+            if (UICanvas.activeInHierarchy == false)
             {
-                UICanvas.SetActive(false);
+                UICanvas.SetActive(true);
             }
-            else if (CurrentPlayers.Count >= 1)
+
+            teamhealthAmount = Player.TeamHealth / maxTeamHealth;
+            TeamHealthBar.fillAmount = teamhealthAmount;
+
+            if (isHealing)
             {
-                if(UICanvas.activeInHierarchy == false)
+                if (TeamHealthBar != null && TeamHealthActive != null)
                 {
-                    UICanvas.SetActive(true);
+                    Image image = TeamHealthBar_Border.GetComponent<Image>();
+                    image.sprite = TeamHealthActive;
                 }
-
-                teamhealthAmount = Player.TeamHealth / maxTeamHealth;
-                TeamHealthBar.fillAmount = teamhealthAmount;
-
-                if (isHealing)
-                {
-                    if (TeamHealthBar != null && TeamHealthActive != null)
-                    {
-                        Image image = TeamHealthBar_Border.GetComponent<Image>();
-                        image.sprite = TeamHealthActive;
-                    }
-                }
-                else
-                {
-                    if (TeamHealthBar != null && TeamHealthInactive != null)
-                    {
-                        Image image = TeamHealthBar_Border.GetComponent<Image>();
-                        image.sprite = TeamHealthInactive;
-                    }
-                }
-                isHealing = false;
             }
+            else
+            {
+                if (TeamHealthBar != null && TeamHealthInactive != null)
+                {
+                    Image image = TeamHealthBar_Border.GetComponent<Image>();
+                    image.sprite = TeamHealthInactive;
+                }
+            }
+            isHealing = false;
+        }
+        else
+        {
+            UICanvas.SetActive(false);
         }
     }
 
@@ -159,7 +150,12 @@ public class UIScript : MonoBehaviour
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player1Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
-                    player1Energy.fillAmount = player.AbilityEnergy / player.MaxEnergy;
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        AbilityBars[j].fillAmount = player.AbilityEnergy(j + 1) / player.MaxEnergy;
+                    }
+
                     if (Indicate == null)
                     {
                         Indicate = Instantiate(P1IndicatorPlane);
@@ -172,7 +168,12 @@ public class UIScript : MonoBehaviour
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player2Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
-                    player2Energy.fillAmount = player.AbilityEnergy / player.MaxEnergy;
+
+                    for (int j = 3; j < 6; j++)
+                    {
+                        AbilityBars[j].fillAmount = player.AbilityEnergy(j - 2) / player.MaxEnergy;
+                    }
+
                     if (Indicate2 == null)
                     {
                         Indicate2 = Instantiate(P2IndicatorPlane);
@@ -185,7 +186,12 @@ public class UIScript : MonoBehaviour
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player3Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
-                    player3Energy.fillAmount = player.AbilityEnergy / player.MaxEnergy;
+
+                    for (int j = 6; j < 9; j++)
+                    {
+                        AbilityBars[j].fillAmount = player.AbilityEnergy(j - 5) / player.MaxEnergy;
+                    }
+
                     if (Indicate3 == null)
                     {
                         Indicate3 = Instantiate(P3IndicatorPlane);
@@ -198,7 +204,12 @@ public class UIScript : MonoBehaviour
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player4Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
-                    player4Energy.fillAmount = player.AbilityEnergy / player.MaxEnergy;
+
+                    for (int j = 9; j < 12; j++)
+                    {
+                        AbilityBars[j].fillAmount = player.AbilityEnergy(j - 8) / player.MaxEnergy;
+                    }
+
                     if (Indicate4 == null)
                     {
                         Indicate4 = Instantiate(P4IndicatorPlane);
@@ -222,7 +233,11 @@ public class UIScript : MonoBehaviour
                     Destroy(player1HealthBar_2.gameObject);
                     Destroy(player1HealthBar_3.gameObject);
                     Destroy(player1Heat.gameObject);
-                    Destroy(player1Energy.gameObject);
+
+                    for (int k = 0; k < 3; k++)
+                    {
+                        Destroy(AbilityBars[k].gameObject);
+                    }
                 }
                 break;
             case PlayerIndex.Two:
@@ -231,7 +246,11 @@ public class UIScript : MonoBehaviour
                     Destroy(player2HealthBar_2.gameObject);
                     Destroy(player2HealthBar_3.gameObject);
                     Destroy(player2Heat.gameObject);
-                    Destroy(player2Energy.gameObject);
+
+                    for (int k = 3; k < 6; k++)
+                    {
+                        Destroy(AbilityBars[k].gameObject);
+                    }
                 }
                 break;
             case PlayerIndex.Three:
@@ -240,7 +259,11 @@ public class UIScript : MonoBehaviour
                     Destroy(player3HealthBar_2.gameObject);
                     Destroy(player3HealthBar_3.gameObject);
                     Destroy(player3Heat.gameObject);
-                    Destroy(player3Energy.gameObject);
+
+                    for (int k = 6; k < 9; k++)
+                    {
+                        Destroy(AbilityBars[k].gameObject);
+                    }
                 }
                 break;
             case PlayerIndex.Four:
@@ -249,7 +272,11 @@ public class UIScript : MonoBehaviour
                     Destroy(player4HealthBar_2.gameObject);
                     Destroy(player4HealthBar_3.gameObject);
                     Destroy(player4Heat.gameObject);
-                    Destroy(player4Energy.gameObject);
+
+                    for (int k = 9; k < 12; k++)
+                    {
+                        Destroy(AbilityBars[k].gameObject);
+                    }
                 }
                 break;
 
@@ -278,9 +305,13 @@ public class UIScript : MonoBehaviour
                     GameObject Heat1 = Instantiate(P1GunHeat);
                     player1Heat = Heat1.GetComponent<Image>();
                     player1Heat.transform.SetParent(UICanvas, false);
-                    GameObject Energy1 = Instantiate(P1Energy);
-                    player1Energy = Energy1.GetComponent<Image>();
-                    player1Energy.transform.SetParent(UICanvas, false);
+
+                    for (int i = 0; i < 3; i++)
+                    {
+                        GameObject Energy = Instantiate(EnergyBars[i]);
+                        AbilityBars[i] = Energy.GetComponent<Image>();
+                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                    }
                 }
                 break;
             case PlayerIndex.Two:
@@ -298,9 +329,13 @@ public class UIScript : MonoBehaviour
                     GameObject Heat2 = Instantiate(P2GunHeat);
                     player2Heat = Heat2.GetComponent<Image>();
                     player2Heat.transform.SetParent(UICanvas, false);
-                    GameObject Energy2 = Instantiate(P2Energy);
-                    player2Energy = Energy2.GetComponent<Image>();
-                    player2Energy.transform.SetParent(UICanvas, false);
+
+                    for (int i = 3; i < 6; i++)
+                    {
+                        GameObject Energy = Instantiate(EnergyBars[i]);
+                        AbilityBars[i] = Energy.GetComponent<Image>();
+                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                    }
                 }
                 break;
             case PlayerIndex.Three:
@@ -318,9 +353,13 @@ public class UIScript : MonoBehaviour
                     GameObject Heat3 = Instantiate(P3GunHeat);
                     player3Heat = Heat3.GetComponent<Image>();
                     player3Heat.transform.SetParent(UICanvas, false);
-                    GameObject Energy3 = Instantiate(P3Energy);
-                    player3Energy = Energy3.GetComponent<Image>();
-                    player3Energy.transform.SetParent(UICanvas, false);
+
+                    for (int i = 6; i < 9; i++)
+                    {
+                        GameObject Energy = Instantiate(EnergyBars[i]);
+                        AbilityBars[i] = Energy.GetComponent<Image>();
+                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                    }
                 }
                 break;
             case PlayerIndex.Four:
@@ -338,9 +377,13 @@ public class UIScript : MonoBehaviour
                     GameObject Heat4 = Instantiate(P4GunHeat);
                     player4Heat = Heat4.GetComponent<Image>();
                     player4Heat.transform.SetParent(UICanvas, false);
-                    GameObject Energy4 = Instantiate(P4Energy);
-                    player4Energy = Energy4.GetComponent<Image>();
-                    player4Energy.transform.SetParent(UICanvas, false);
+
+                    for (int i = 9; i < 12; i++)
+                    {
+                        GameObject Energy = Instantiate(EnergyBars[i]);
+                        AbilityBars[i] = Energy.GetComponent<Image>();
+                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                    }
                 }
                 break;
 
