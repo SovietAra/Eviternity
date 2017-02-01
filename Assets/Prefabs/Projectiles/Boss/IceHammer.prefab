@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 136863909086862348}
   - component: {fileID: 114057011657559750}
   m_Layer: 0
-  m_Name: BossIceHammer
+  m_Name: IceHammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 1
-  Explosion: {fileID: 1092858050321016, guid: bc51dba245ca0194d934add39af3d585, type: 2}
+  Explosion: {fileID: 1427027737285786, guid: 89fec2ad57a13b247a8d83e6238d065c, type: 2}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0
