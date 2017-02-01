@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4926958602366876}
   - component: {fileID: 114506238796585466}
   m_Layer: 0
-  m_Name: PrimWeaponShotgun
+  m_Name: SecWeaponShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,24 +51,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e433b3e64c77734469234be49f6da008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
-  maxSprayAngle: 30
-  maxAmmoPerClip: 4
-  reloadTimePerShell: 0.01
-  reloadTimePerClip: 4
-  maxHeat: 20
+  fireRate: 0.01
+  maxSprayAngle: 45
+  maxAmmoPerClip: 1000
+  reloadTimePerShell: 10
+  reloadTimePerClip: 10
+  maxHeat: 80
   heat: 0
   heatPerShot: 5
-  heatReductionPerSecond: 5
-  heatReductionDelay: 0
+  heatReductionPerSecond: 10
+  heatReductionDelay: 0.2
   AnimationDuration: 0
   smoothSpray: 0
   sprayValueSpeed: 2
   AllowShellRelaod: 0
-  UseAmmo: 1
+  UseAmmo: 0
   AutoReload: 1
-  ProduceHeat: 0
-  HeatCooldown: 0
-  SecondaryWeapon: {fileID: 1302081713190986, guid: d7341e53fb4efc34483e07cb7e1fc230,
-    type: 2}
-  Projectile: {fileID: 1728551009898034, guid: 29e4a15bbcee9204a93d34a8fca6dbbb, type: 2}
+  ProduceHeat: 1
+  HeatCooldown: 1
+  SecondaryWeapon: {fileID: 0}
+  Projectile: {fileID: 1078364581439068, guid: 8584380a8a14c05449525a94cc8544e5, type: 2}
