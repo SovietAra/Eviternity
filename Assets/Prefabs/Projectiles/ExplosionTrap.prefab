@@ -212,7 +212,7 @@ MonoBehaviour:
   radius: 10
   damageReduction: 1
   teamDamageMultiplicator: 1
-  damage: 20
+  damage: 10
   StatusEffect: {fileID: 0}
 --- !u!135 &135978038496077504
 SphereCollider:

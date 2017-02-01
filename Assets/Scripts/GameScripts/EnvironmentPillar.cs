@@ -25,7 +25,7 @@ public class EnvironmentPillar : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-        if (healthPoints == 0)
+        if (healthPoints <= 0)
         {
             dropDebris();
 
