@@ -71,8 +71,11 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         dmgobjct = GetComponent<DamageAbleObject>();
-        if(dmgobjct != null)
+        if (dmgobjct != null)
+        {
             dmgobjct.OnDeath += Dmgobjct_OnDeath;
+            dmgobjct.OnNewStatusEffect += Dmgobjct_OnNewStatusEffect;
+        }
 
         if(PrimaryWeapon != null)
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
@@ -83,6 +86,31 @@ public class Enemy : MonoBehaviour
 
         navAgent = GetComponent<NavMeshAgent>();
         SetUI();
+    }
+
+    private void Dmgobjct_OnNewStatusEffect(object sender, Assets.Scripts.StatusEffectArgs e)
+    {
+        e.StatusScript.OnActivate += StatusScript_OnActivate;
+        e.StatusScript.OnDeactivate += StatusScript_OnDeactivate;
+    }
+
+    private void StatusScript_OnDeactivate(object sender, EventArgs e)
+    {
+        //speed auf standardwert setzen
+    }
+
+    private void StatusScript_OnActivate(object sender, EventArgs e)
+    {
+        StatusEffect script = sender as StatusEffect;
+        if(script.name.Contains("Slow"))
+        {
+            //speed reduzieren
+        }
+        else if(script.name.Contains("Stun"))
+        {
+            //speed auf 0
+            
+        }
     }
 
     private void Update()

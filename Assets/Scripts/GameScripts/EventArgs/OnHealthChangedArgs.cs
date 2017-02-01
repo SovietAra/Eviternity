@@ -7,14 +7,12 @@ namespace Assets.Scripts
     {
         public GameObject ResponsibleObject;
         public float ChangeValue;
-        public GameObject StatusEffect;
         public bool Cancel;
 
-        public OnHealthChangedArgs(GameObject responsibleObject, float changeValue, GameObject statusEffect)
+        public OnHealthChangedArgs(GameObject responsibleObject, float changeValue)
         {
             ResponsibleObject = responsibleObject;
             ChangeValue = changeValue;
-            StatusEffect = statusEffect;
             Cancel = false;
         }
     }
