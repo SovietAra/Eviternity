@@ -757,17 +757,23 @@ public class Player : MonoBehaviour
         {
             case 1:
                 {
-                    energyLevel = dashAbility.Energy;
+                    if (dashAbility != null)
+                        energyLevel = dashAbility.Energy;
+                    else energyLevel = 0;
                 }
                 break;
             case 2:
                 {
-                    energyLevel = ability.Energy;
+                    if (ability != null)
+                        energyLevel = ability.Energy;
+                    else energyLevel = 0;
                 }
                 break;
             case 3:
                 {
-                    energyLevel = secondaryAbility.Energy;
+                    if (secondaryAbility != null)
+                        energyLevel = secondaryAbility.Energy;
+                    else energyLevel = 0;
                 }
                 break;
             default: energyLevel = 0;

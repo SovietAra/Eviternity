@@ -93,38 +93,35 @@ public class UIScript : MonoBehaviour
                     UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
             }
 
-            if (CurrentPlayers.Count == 0)
+            if (UICanvas.activeInHierarchy == false)
             {
-                UICanvas.SetActive(false);
+                UICanvas.SetActive(true);
             }
-            else if (CurrentPlayers.Count >= 1)
+
+            teamhealthAmount = Player.TeamHealth / maxTeamHealth;
+            TeamHealthBar.fillAmount = teamhealthAmount;
+
+            if (isHealing)
             {
-                if(UICanvas.activeInHierarchy == false)
+                if (TeamHealthBar != null && TeamHealthActive != null)
                 {
-                    UICanvas.SetActive(true);
+                    Image image = TeamHealthBar_Border.GetComponent<Image>();
+                    image.sprite = TeamHealthActive;
                 }
-
-                teamhealthAmount = Player.TeamHealth / maxTeamHealth;
-                TeamHealthBar.fillAmount = teamhealthAmount;
-
-                if (isHealing)
-                {
-                    if (TeamHealthBar != null && TeamHealthActive != null)
-                    {
-                        Image image = TeamHealthBar_Border.GetComponent<Image>();
-                        image.sprite = TeamHealthActive;
-                    }
-                }
-                else
-                {
-                    if (TeamHealthBar != null && TeamHealthInactive != null)
-                    {
-                        Image image = TeamHealthBar_Border.GetComponent<Image>();
-                        image.sprite = TeamHealthInactive;
-                    }
-                }
-                isHealing = false;
             }
+            else
+            {
+                if (TeamHealthBar != null && TeamHealthInactive != null)
+                {
+                    Image image = TeamHealthBar_Border.GetComponent<Image>();
+                    image.sprite = TeamHealthInactive;
+                }
+            }
+            isHealing = false;
+        }
+        else
+        {
+            UICanvas.SetActive(false);
         }
     }
 

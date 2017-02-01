@@ -28,7 +28,7 @@ public class Door : MonoBehaviour
 
     private void CountEnemies()
     {
-        print(Enemies.Count);
+        //print(Enemies.Count);
         for (var i = Enemies.Count - 1; i > -1; i--)
         {
             if (Enemies[i] == null)
