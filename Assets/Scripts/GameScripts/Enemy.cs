@@ -11,6 +11,7 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
+    #region PropertySliders
     [SerializeField]
     [Range(0.1f, 100.0f)]
     private float rotationSpeed = 3.0f;
@@ -33,23 +34,29 @@ public class Enemy : MonoBehaviour
         Mosquito = 2,
         Mantis = 3
     }
-
     [SerializeField]
     enemyTypes enemyType;
 
     [SerializeField]
     [Range(0.1f, 100f)]
     private float switchDelay = 3f;
-    private float elapsedSwitchDelay = 0f;
+    #endregion Propertysliders
+
+    #region Privates
+    private NavMeshAgent navAgent;
 
     private GameObject currentTarget;
     private GameObject possibleTarget;
-    private float distanceToPlayer;
     private GameObject targetPlayer;
+    private GameObject nearestTarget;
+
+    private float enemyfront;
+    private float distanceToPlayer;
+    private float elapsedSwitchDelay = 0f;
 
     public Slider HealthSlider;
-    private float enemyfront;
 
+    public bool Freeze = false;
     private bool isValidTarget = false;
     private DamageAbleObject dmgobjct;
     public GameObject PrimaryWeapon;
@@ -58,8 +65,7 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent OnEnemyDeath;
     private Vector3 movement;
-
-    private NavMeshAgent navAgent;
+    #endregion Privates
 
     // Use this for initialization
     private void Start()
@@ -79,27 +85,15 @@ public class Enemy : MonoBehaviour
         SetUI();
     }
 
-    /// <summary>
-    /// Called as the Entity gets destroyed
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
-    {
-        Destroy(gameObject);
-        OnEnemyDeath.Invoke();
-    }
-
-    // Update is called once per frame
     private void Update()
     {
         CheckAlivePlayers();
         SetUI();
 
-        if (isValidTarget) //On player found
+        if (isValidTarget && !Freeze) //On player found
         {
             //Calculate Distance between Enemyinstance and Player and switch target if delay allows
-            GameObject nearestTarget = FindClosestPlayer();
+            nearestTarget = FindClosestPlayer();
             if (currentTarget == null)
             {
                 currentTarget = nearestTarget;
@@ -118,14 +112,15 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            UpdateRotation();
-
             //Calculate Distance to target
             distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
+
+            UpdateRotation();
+
             //Follow Target
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                navAgent.SetDestination(currentTarget.transform.position);
+                navAgent.SetDestination(nearestTarget.transform.position);
             }
             else if (distanceToPlayer < viewRange)
             {
@@ -146,8 +141,19 @@ public class Enemy : MonoBehaviour
     {
         //Look at Player
         transform.rotation = Quaternion.Slerp(transform.rotation
-                                             , Quaternion.LookRotation(currentTarget.transform.position - transform.position)
+                                             , Quaternion.LookRotation(nearestTarget.transform.position - transform.position)
                                              , rotationSpeed * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// Called as the Entity gets destroyed
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
+        OnEnemyDeath.Invoke();
     }
 
     private void SetUI()
@@ -201,7 +207,6 @@ public class Enemy : MonoBehaviour
                 if (!checkedAlivePlayer.IsDead)
                 {
                     isValidTarget = true;
-                    //targetPlayer = Players[i];
                     return;
                 }
                 else

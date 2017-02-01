@@ -240,7 +240,7 @@ MonoBehaviour:
   reviveDelay: 2
   maxImmortality: 2
   Freeze: 0
-  RotateOnMove: 0
+  RotateOnMove: 1
   PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
     type: 2}
   SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
