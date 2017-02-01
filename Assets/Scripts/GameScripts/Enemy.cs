@@ -144,10 +144,12 @@ public class Enemy : MonoBehaviour
 
     private void UpdateRotation()
     {
-        //Look at Player
-        transform.rotation = Quaternion.Slerp(transform.rotation
-                                             , Quaternion.LookRotation(currentTarget.transform.position - transform.position)
-                                             , rotationSpeed * Time.deltaTime);
+        if (currentTarget != null)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation
+                                                 , Quaternion.LookRotation(currentTarget.transform.position - transform.position)
+                                                 , rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void SetUI()
