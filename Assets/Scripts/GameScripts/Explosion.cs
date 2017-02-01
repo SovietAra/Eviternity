@@ -44,7 +44,8 @@ public class Explosion : MonoBehaviour
         if (sphereExplosion == null)
             sphereExplosion = GetComponent<SphereCollider>();
 
-        sphereExplosion.radius = radius;
+        if(sphereExplosion != null)
+            sphereExplosion.radius = radius;
         overrideValues = false;
     }
 
@@ -73,7 +74,8 @@ public class Explosion : MonoBehaviour
         if(sphereExplosion == null)
         {
             sphereExplosion = GetComponent<SphereCollider>();
-            sphereExplosion.radius = radius;
+            if(sphereExplosion != null)
+                sphereExplosion.radius = radius;
         }
         effect = GetComponent<ParticleSystem>();
     }
@@ -82,7 +84,9 @@ public class Explosion : MonoBehaviour
     {
         if(exploded)
         {
-            Destroy(sphereExplosion);
+            if(sphereExplosion != null)
+                Destroy(sphereExplosion);
+
             if (!playOnce)
             {
                 effect.Play();
@@ -141,7 +145,6 @@ public class Explosion : MonoBehaviour
 
             exploded = true;
         }
-
     }
 }
 
