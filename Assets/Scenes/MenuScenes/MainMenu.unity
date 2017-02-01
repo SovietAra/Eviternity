@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 1623615209}
   - component: {fileID: 1623615210}
   - component: {fileID: 1623615211}
+  - component: {fileID: 1623615212}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -769,6 +770,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ES: {fileID: 1616837799}
+--- !u!114 &1623615212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1623615204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e7fdc49078d5db4baf552652c802d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditTime: 30
+  inputTime: 0
 --- !u!1 &1784265517
 GameObject:
   m_ObjectHideFlags: 0
