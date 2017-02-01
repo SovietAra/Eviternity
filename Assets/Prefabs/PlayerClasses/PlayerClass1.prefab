@@ -236,8 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8.4
-  dashSpeed: 17.1
-  dashTime: 1.5
   regenerationPerSecond: 17
   reviveDelay: 2
   maxImmortality: 2
@@ -257,23 +255,37 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddd0c7d916af8f44b9f501b3159ca57e, type: 3}
   - {fileID: 8300000, guid: dd22f5ed30a97ab478ec4f74caea7fe8, type: 3}
   - {fileID: 8300000, guid: c8f9092dbf3e77e459b1d88b287ef65d, type: 3}
-  - {fileID: 8300000, guid: 69039c7eee237b044b94cf8e88f41671, type: 3}
-  - {fileID: 8300000, guid: a28e1d0665d9638419caa613ccd6907a, type: 3}
-  - {fileID: 8300000, guid: 4aa63a0f4b096c0409bfe7f024dc90b3, type: 3}
-  - {fileID: 8300000, guid: 8a4d0b37fd5233846bb3dddb51d4cde2, type: 3}
+  - {fileID: 8300000, guid: 7e2052cd0e0fe4542a8e06d30aefc914, type: 3}
+  - {fileID: 8300000, guid: 5d3f057be660c1541bcd551ae4ebd3ae, type: 3}
+  - {fileID: 8300000, guid: bea2e6f9ec988984a92af69f2dd34f3a, type: 3}
+  - {fileID: 8300000, guid: eb5c6ee8eb0c1b54f95ce563eb6d74ef, type: 3}
+  - {fileID: 8300000, guid: b7cf1a3a09dece246932b843e8e3cf12, type: 3}
+  - {fileID: 8300000, guid: 9b8b2a35eb8b2e94da5c9aafbc7a82b7, type: 3}
+  - {fileID: 8300000, guid: 1b19cd9c08f20a340840e2ebd34145d6, type: 3}
+  - {fileID: 8300000, guid: 41f908b1e8e958c4fac8c4c5aa2744ff, type: 3}
+  - {fileID: 8300000, guid: ad64d3238ad2f0241af8137cb50685ca, type: 3}
+  - {fileID: 8300000, guid: c2bbd38c5ad071e4c9b881dbfbfdf78d, type: 3}
+  - {fileID: 8300000, guid: 6543f6c5c47472a4fba58c50b32d43f6, type: 3}
+  - {fileID: 8300000, guid: 1c42ed8c5cadc4848a665318507d48df, type: 3}
+  - {fileID: 8300000, guid: 44c633bb86a1e904887a9984e3a73f6f, type: 3}
+  - {fileID: 8300000, guid: 13c84ebdeba83324d8f9528b19895301, type: 3}
+  - {fileID: 8300000, guid: ec84d8426b727924ca85e114f257772b, type: 3}
+  - {fileID: 8300000, guid: db94cee7bab06894b89cab142cfd562f, type: 3}
+  - {fileID: 8300000, guid: 02c89023350db3d4a969b09acadd8508, type: 3}
+  - {fileID: 8300000, guid: 34457a3a09d0fe84eb68b5ee88a5e861, type: 3}
+  - {fileID: 8300000, guid: fdb419c1cc76fc5498295b4cec65ed11, type: 3}
+  - {fileID: 8300000, guid: 2e82dbfe48f46aa4da258a5b75d323ca, type: 3}
   - {fileID: 8300000, guid: 4b37d67245dc1ab438de1d7fa49fab5d, type: 3}
+  - {fileID: 8300000, guid: b13cef437bf4e7642bfea80e39df63c9, type: 3}
+  - {fileID: 8300000, guid: bc7ccac98d91f764fafe61cc237cdbb1, type: 3}
+  - {fileID: 8300000, guid: daa5e3c6a4247364b9bc0306c9a453cf, type: 3}
+  - {fileID: 8300000, guid: 6eece261429ba4a4e917bb162ec5cf27, type: 3}
   - {fileID: 8300000, guid: 0b18fb32f7ce5c04eb1e198ceebb9f75, type: 3}
   - {fileID: 8300000, guid: c99890907c00e454886af0e635c2f0d4, type: 3}
   - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  ShotVolume: 0.2
+  StepVolume: 0.4
+  stepCooldown: 0.5
 --- !u!136 &136804792390595418
 CapsuleCollider:
   m_ObjectHideFlags: 1
