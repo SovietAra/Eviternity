@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
+    public float AnimationDuration = 0;
+
     [SerializeField]
     private bool activeOnKeyPressed = false;
 
