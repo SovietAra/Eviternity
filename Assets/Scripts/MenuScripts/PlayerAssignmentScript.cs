@@ -1,7 +1,7 @@
 ﻿/* 
  * Purpose: Händelt die Character- und Waffenzuweisung
  * Author: Gregor von Frankenberg / Marcel Croonenbroeck
- * Date: 27.01.2017
+ * Date: 1.2.2017
  */
 
 
@@ -13,7 +13,10 @@ using UnityEngine.UI;
 using XInputDotNetPure;
 
 public class PlayerAssignmentScript : MonoBehaviour
-{  
+{
+
+    #region GameObjects
+    private bool gameStarted;
     public Canvas playerAssignmentScreen;
 
     public Text playerOneJoin;
@@ -45,63 +48,90 @@ public class PlayerAssignmentScript : MonoBehaviour
     public Image playerFourStalker;
 
     public Canvas weaponSelectionPlayerOne;
-    public Image player1_weapon1_left;
-    public Image player1_weapon2_left;
-    public Image player1_weapon3_left;
-
-    public Image player1_weapon1_right;
-    public Image player1_weapon2_right;
-    public Image player1_weapon3_right;
 
     public Canvas weaponSelectionPlayerTwo;
-    public Image player2_weapon1_left;
-    public Image player2_weapon2_left;
-    public Image player2_weapon3_left;
-
-    public Image player2_weapon1_right;
-    public Image player2_weapon2_right;
-    public Image player2_weapon3_right;
 
     public Canvas weaponSelectionPlayerThree;
-    public Image player3_weapon1_left;
-    public Image player3_weapon2_left;
-    public Image player3_weapon3_left;
-
-    public Image player3_weapon1_right;
-    public Image player3_weapon2_right;
-    public Image player3_weapon3_right;
 
     public Canvas weaponSelectionPlayerFour;
-    public Image player4_weapon1_left;
-    public Image player4_weapon2_left;
-    public Image player4_weapon3_left;
 
-    public Image player4_weapon1_right;
-    public Image player4_weapon2_right;
-    public Image player4_weapon3_right;
+    public Image player1_Aegis_Bohrer;
+    public Image player1_Aegis_GGun;
+    public Image player1_Aegis_Granatenwerfer;
+    public Image player1_Aegis_Flammenwerfer;
 
-    private Dictionary<int, List<Image>> ImageList = new Dictionary<int, List<Image>>();
+    public Image player2_Aegis_Bohrer;
+    public Image player2_Aegis_GGun;
+    public Image player2_Aegis_Granatenwerfer;
+    public Image player2_Aegis_Flammenwerfer;
 
-    private GamePadState[] prevState = new GamePadState[4];
+    public Image player3_Aegis_Bohrer;
+    public Image player3_Aegis_GGun;
+    public Image player3_Aegis_Granatenwerfer;
+    public Image player3_Aegis_Flammenwerfer;
 
-    private int[] index = new int[2] { 0, 0 };
-    private int[] prevIndex = new int[2] { 0, 0 };
+    public Image player4_Aegis_Bohrer;
+    public Image player4_Aegis_GGun;
+    public Image player4_Aegis_Granatenwerfer;
+    public Image player4_Aegis_Flammenwerfer;
 
-    private Dictionary<int, List<Image>> WeaponListLeft = new Dictionary<int, List<Image>>();
-    private Dictionary<int, List<Image>> WeaponListRight = new Dictionary<int, List<Image>>();
+    public Image player1_Stalker_Sniper;
+    public Image player1_Stalker_EMP_Gun;
+    public Image player1_Stalker_Schwert;
+    public Image player1_Stalker_Shotgun;
 
-    private int[] leftWeaponIndex = new int[3] { 0, 0, 0 };
-    private int[] leftWeaponPrevIndex = new int[3] { 0, 0, 0 };
+    public Image player2_Stalker_Sniper;
+    public Image player2_Stalker_EMP_Gun;
+    public Image player2_Stalker_Schwert;
+    public Image player2_Stalker_Shotgun;
 
-    private int[] rightWeaponIndex = new int[3] { 0, 0, 0 };
-    private int[] rightWeaponPrevIndex = new int[3] { 0, 0, 0 };
+    public Image player3_Stalker_Sniper;
+    public Image player3_Stalker_EMP_Gun;
+    public Image player3_Stalker_Schwert;
+    public Image player3_Stalker_Shotgun;
 
-    private bool changeMenu = false;
-    private bool gameStarted;
+    public Image player4_Stalker_Sniper;
+    public Image player4_Stalker_EMP_Gun;
+    public Image player4_Stalker_Schwert;
+    public Image player4_Stalker_Shotgun;
+    #endregion
 
+    #region Listen und ihre ints
+    public Dictionary<int, List<Image>> ImageList = new Dictionary<int, List<Image>>();
+
+    GamePadState[] prevState = new GamePadState[4];
+
+    int[] index = new int[2] { 0, 0 };
+    int[] prevIndex = new int[2] { 0, 0 };
+
+    public Dictionary<int, List<Image>> Weaponset_Aegis_links = new Dictionary<int, List<Image>>();
+    public Dictionary<int, List<Image>> Weaponset_Aegis_rechts = new Dictionary<int, List<Image>>();
+
+    int[] AegisIndex_links = new int[2] { 0, 0 };
+    int[] AegisPrevIndex_links = new int[2] { 0, 0 };
+
+    int[] AegisIndex_rechts = new int[2] { 0, 0 };
+    int[] AegisPrevIndex_rechts = new int[2] { 0, 0 };
+
+
+
+    public Dictionary<int, List<Image>> Weaponset_Stalker_links = new Dictionary<int, List<Image>>();
+    public Dictionary<int, List<Image>> Weaponset_Stalker_rechts = new Dictionary<int, List<Image>>();
+
+    int[] StalkerIndex_links = new int[2] { 0, 0 };
+    int[] StalkerPrevIndex_links = new int[2] { 0, 0 };
+
+    int[] StalkerIndex_rechts = new int[2] { 0, 0 };
+    int[] StalkerPrevIndex_rechts = new int[2] { 0, 0 };
+    #endregion
+
+
+
+    bool changeMenu = false;
     // Use this for initialization
-    private void Start ()
+    void Start()
     {
+        #region GameObjects getter
         playerAssignmentScreen = playerAssignmentScreen.GetComponent<Canvas>();
 
         playerOneJoin = playerOneJoin.GetComponent<Text>();
@@ -115,7 +145,7 @@ public class PlayerAssignmentScript : MonoBehaviour
 
         playerFourJoin = playerFourJoin.GetComponent<Text>();
         playerFourAssigned = playerFourAssigned.GetComponent<Text>();
-        
+
         playerOneJoin.enabled = true;
         playerOneAssigned.enabled = false;
 
@@ -149,7 +179,9 @@ public class PlayerAssignmentScript : MonoBehaviour
         playerFourAegis = playerFourAegis.GetComponent<Image>();
         playerFourStalker = playerFourStalker.GetComponent<Image>();
         charSelectPlayerFour.enabled = false;
+        #endregion
 
+        #region Characterlisten
         List<Image> TempImageList = new List<Image>();
         TempImageList.Add(playerOneAegis);
         TempImageList.Add(playerOneStalker);
@@ -171,96 +203,103 @@ public class PlayerAssignmentScript : MonoBehaviour
         ImageList.Add(3, TempImageList);
 
         weaponSelectionPlayerOne = weaponSelectionPlayerOne.GetComponent<Canvas>();
-        player1_weapon1_left = player1_weapon1_left.GetComponent<Image>();
-        player1_weapon2_left = player1_weapon2_left.GetComponent<Image>();
-        player1_weapon3_left = player1_weapon3_left.GetComponent<Image>();
-
-        player1_weapon1_right = player1_weapon1_right.GetComponent<Image>();
-        player1_weapon2_right = player1_weapon2_right.GetComponent<Image>();
-        player1_weapon3_right = player1_weapon3_right.GetComponent<Image>();
         weaponSelectionPlayerOne.enabled = true;
 
         weaponSelectionPlayerTwo = weaponSelectionPlayerTwo.GetComponent<Canvas>();
-        player2_weapon1_left = player2_weapon1_left.GetComponent<Image>();
-        player2_weapon2_left = player2_weapon2_left.GetComponent<Image>();
-        player2_weapon3_left = player2_weapon3_left.GetComponent<Image>();
-
-        player2_weapon1_right = player2_weapon1_right.GetComponent<Image>();
-        player2_weapon2_right = player2_weapon2_right.GetComponent<Image>();
-        player2_weapon3_right = player2_weapon3_right.GetComponent<Image>();
         weaponSelectionPlayerTwo.enabled = true;
 
         weaponSelectionPlayerThree = weaponSelectionPlayerThree.GetComponent<Canvas>();
-        player3_weapon1_left = player3_weapon1_left.GetComponent<Image>();
-        player3_weapon2_left = player3_weapon2_left.GetComponent<Image>();
-        player3_weapon3_left = player3_weapon3_left.GetComponent<Image>();
-
-        player3_weapon1_right = player3_weapon1_right.GetComponent<Image>();
-        player3_weapon2_right = player3_weapon2_right.GetComponent<Image>();
-        player3_weapon3_right = player3_weapon3_right.GetComponent<Image>();
         weaponSelectionPlayerThree.enabled = true;
 
         weaponSelectionPlayerFour = weaponSelectionPlayerFour.GetComponent<Canvas>();
-        player4_weapon1_left = player4_weapon1_left.GetComponent<Image>();
-        player4_weapon2_left = player4_weapon2_left.GetComponent<Image>();
-        player4_weapon3_left = player4_weapon3_left.GetComponent<Image>();
-
-        player4_weapon1_right = player4_weapon1_right.GetComponent<Image>();
-        player4_weapon2_right = player4_weapon2_right.GetComponent<Image>();
-        player4_weapon3_right = player4_weapon3_right.GetComponent<Image>();
         weaponSelectionPlayerFour.enabled = true;
+        #endregion
 
-        List<Image> TempWeaponListLeft = new List<Image>();
-        TempWeaponListLeft.Add(player1_weapon1_left);
-        TempWeaponListLeft.Add(player1_weapon2_left);
-        TempWeaponListLeft.Add(player1_weapon3_left);
-        WeaponListLeft.Add(0, TempWeaponListLeft);
+        #region Waffenlisten
+        List<Image> TempWeaponset_Aegis_links = new List<Image>();
+        TempWeaponset_Aegis_links.Add(player1_Aegis_GGun);
+        TempWeaponset_Aegis_links.Add(player1_Aegis_Granatenwerfer);
+        Weaponset_Aegis_links.Add(0, TempWeaponset_Aegis_links);
 
-        List<Image> TempWeaponListRight = new List<Image>();
-        TempWeaponListRight.Add(player1_weapon1_right);
-        TempWeaponListRight.Add(player1_weapon2_right);
-        TempWeaponListRight.Add(player1_weapon3_right);
-        WeaponListRight.Add(0, TempWeaponListRight);
-        ////////////////////////////////////////////
-        TempWeaponListLeft = new List<Image>();
-        TempWeaponListLeft.Add(player2_weapon1_left);
-        TempWeaponListLeft.Add(player2_weapon2_left);
-        TempWeaponListLeft.Add(player2_weapon3_left);
-        WeaponListLeft.Add(1, TempWeaponListLeft);
+        TempWeaponset_Aegis_links = new List<Image>();
+        TempWeaponset_Aegis_links.Add(player2_Aegis_GGun);
+        TempWeaponset_Aegis_links.Add(player2_Aegis_Granatenwerfer);
+        Weaponset_Aegis_links.Add(1, TempWeaponset_Aegis_links);
 
-        TempWeaponListRight = new List<Image>();
-        TempWeaponListRight.Add(player2_weapon1_right);
-        TempWeaponListRight.Add(player2_weapon2_right);
-        TempWeaponListRight.Add(player2_weapon3_right);
-        WeaponListRight.Add(1, TempWeaponListRight);
+        TempWeaponset_Aegis_links = new List<Image>();
+        TempWeaponset_Aegis_links.Add(player3_Aegis_GGun);
+        TempWeaponset_Aegis_links.Add(player3_Aegis_Granatenwerfer);
+        Weaponset_Aegis_links.Add(2, TempWeaponset_Aegis_links);
 
-        TempWeaponListLeft = new List<Image>();
-        TempWeaponListLeft.Add(player3_weapon1_left);
-        TempWeaponListLeft.Add(player3_weapon2_left);
-        TempWeaponListLeft.Add(player3_weapon3_left);
-        WeaponListLeft.Add(2, TempWeaponListLeft);
+        TempWeaponset_Aegis_links = new List<Image>();
+        TempWeaponset_Aegis_links.Add(player4_Aegis_GGun);
+        TempWeaponset_Aegis_links.Add(player4_Aegis_Granatenwerfer);
+        Weaponset_Aegis_links.Add(3, TempWeaponset_Aegis_links);
 
-        TempWeaponListRight = new List<Image>();
-        TempWeaponListRight.Add(player3_weapon1_right);
-        TempWeaponListRight.Add(player3_weapon2_right);
-        TempWeaponListRight.Add(player3_weapon3_right);
-        WeaponListRight.Add(2, TempWeaponListRight);
+        List<Image> TempWeaponset_Aegis_rechts = new List<Image>();
+        TempWeaponset_Aegis_rechts.Add(player1_Aegis_Bohrer);
+        TempWeaponset_Aegis_rechts.Add(player1_Aegis_Flammenwerfer);
+        Weaponset_Aegis_rechts.Add(0, TempWeaponset_Aegis_rechts);
 
-        TempWeaponListLeft = new List<Image>();
-        TempWeaponListLeft.Add(player4_weapon1_left);
-        TempWeaponListLeft.Add(player4_weapon2_left);
-        TempWeaponListLeft.Add(player4_weapon3_left);
-        WeaponListLeft.Add(3, TempWeaponListLeft);
+        TempWeaponset_Aegis_rechts = new List<Image>();
+        TempWeaponset_Aegis_rechts.Add(player2_Aegis_Bohrer);
+        TempWeaponset_Aegis_rechts.Add(player2_Aegis_Flammenwerfer);
+        Weaponset_Aegis_rechts.Add(1, TempWeaponset_Aegis_rechts);
 
-        TempWeaponListRight = new List<Image>();
-        TempWeaponListRight.Add(player4_weapon1_right);
-        TempWeaponListRight.Add(player4_weapon2_right);
-        TempWeaponListRight.Add(player4_weapon3_right);
-        WeaponListRight.Add(3, TempWeaponListRight);
+        TempWeaponset_Aegis_rechts = new List<Image>();
+        TempWeaponset_Aegis_rechts.Add(player3_Aegis_Bohrer);
+        TempWeaponset_Aegis_rechts.Add(player3_Aegis_Flammenwerfer);
+        Weaponset_Aegis_rechts.Add(2, TempWeaponset_Aegis_rechts);
+
+        TempWeaponset_Aegis_rechts = new List<Image>();
+        TempWeaponset_Aegis_rechts.Add(player4_Aegis_Bohrer);
+        TempWeaponset_Aegis_rechts.Add(player4_Aegis_Flammenwerfer);
+        Weaponset_Aegis_rechts.Add(3, TempWeaponset_Aegis_rechts);
+
+        List<Image> TempWeaponset_Stalker_links = new List<Image>();
+        TempWeaponset_Stalker_links.Add(player1_Stalker_Sniper);
+        TempWeaponset_Stalker_links.Add(player1_Stalker_EMP_Gun);
+        Weaponset_Stalker_links.Add(0, TempWeaponset_Stalker_links);
+
+        TempWeaponset_Stalker_links = new List<Image>();
+        TempWeaponset_Stalker_links.Add(player2_Stalker_Sniper);
+        TempWeaponset_Stalker_links.Add(player2_Stalker_EMP_Gun);
+        Weaponset_Stalker_links.Add(1, TempWeaponset_Stalker_links);
+
+        TempWeaponset_Stalker_links = new List<Image>();
+        TempWeaponset_Stalker_links.Add(player3_Stalker_Sniper);
+        TempWeaponset_Stalker_links.Add(player3_Stalker_EMP_Gun);
+        Weaponset_Stalker_links.Add(2, TempWeaponset_Stalker_links);
+
+        TempWeaponset_Stalker_links = new List<Image>();
+        TempWeaponset_Stalker_links.Add(player4_Stalker_Sniper);
+        TempWeaponset_Stalker_links.Add(player4_Stalker_EMP_Gun);
+        Weaponset_Stalker_links.Add(3, TempWeaponset_Stalker_links);
+
+        List<Image> TempWeaponset_Stalker_rechts = new List<Image>();
+        TempWeaponset_Stalker_rechts.Add(player1_Stalker_Schwert);
+        TempWeaponset_Stalker_rechts.Add(player1_Stalker_Shotgun);
+        Weaponset_Stalker_rechts.Add(0, TempWeaponset_Stalker_rechts);
+
+        TempWeaponset_Stalker_rechts = new List<Image>();
+        TempWeaponset_Stalker_rechts.Add(player2_Stalker_Schwert);
+        TempWeaponset_Stalker_rechts.Add(player2_Stalker_Shotgun);
+        Weaponset_Stalker_rechts.Add(1, TempWeaponset_Stalker_rechts);
+
+        TempWeaponset_Stalker_rechts = new List<Image>();
+        TempWeaponset_Stalker_rechts.Add(player3_Stalker_Schwert);
+        TempWeaponset_Stalker_rechts.Add(player3_Stalker_Shotgun);
+        Weaponset_Stalker_rechts.Add(2, TempWeaponset_Stalker_rechts);
+
+        TempWeaponset_Stalker_rechts = new List<Image>();
+        TempWeaponset_Stalker_rechts.Add(player4_Stalker_Schwert);
+        TempWeaponset_Stalker_rechts.Add(player4_Stalker_Shotgun);
+        Weaponset_Stalker_rechts.Add(3, TempWeaponset_Stalker_rechts);
+        #endregion
     }
-	
-	// Update is called once per frame
-	private void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         if (!gameStarted)
         {
@@ -273,7 +312,13 @@ public class PlayerAssignmentScript : MonoBehaviour
             }
         }
     }
-
+    private void StartNewGame()
+    {
+        gameStarted = true;
+        changeMenu = true;
+        SceneManager.LoadScene("Prototyp");
+    }
+    #region player Funktionen
     private void CheckPlayerJoins()
     {
         PlayerIndex[] freePads = GamePadManager.GetFreeControllers();
@@ -285,7 +330,7 @@ public class PlayerAssignmentScript : MonoBehaviour
             {
                 GamePadManager.Connect((int)index);
                 GlobalReferences.PlayerStates.Add(new PlayerState(index, state));
-                
+
                 //TODO: Change menu
                 if (index == PlayerIndex.One)
                 {
@@ -332,16 +377,17 @@ public class PlayerAssignmentScript : MonoBehaviour
                 //TODO: Change menu
 
             }
-            if(state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
+
+            if (state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
             {
                 prevIndex[playerIndex] = index[playerIndex];
                 index[playerIndex] -= 1;
                 Debug.Log("index:" + index[playerIndex]);
-                if (index[playerIndex] < 0 )
-                    {
-                        Debug.Log("Sprung auf Ende der List");
-                        index[playerIndex] = 1;
-                    }
+                if (index[playerIndex] < 0)
+                {
+                    Debug.Log("Sprung auf Ende der List");
+                    index[playerIndex] = 1;
+                }
 
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
@@ -358,57 +404,179 @@ public class PlayerAssignmentScript : MonoBehaviour
                 }
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
-            
+            #region Ausnamebedingungen Waffen
+            if (playerOneAegis.enabled == true)
+            {
+                player1_Stalker_EMP_Gun.enabled = false;
+                player1_Stalker_Schwert.enabled = false;
+                player1_Stalker_Shotgun.enabled = false;
+                player1_Stalker_Sniper.enabled = false;
+            }
+            if (playerTwoAegis.enabled == true)
+            {
+                player2_Stalker_EMP_Gun.enabled = false;
+                player2_Stalker_Schwert.enabled = false;
+                player2_Stalker_Shotgun.enabled = false;
+                player2_Stalker_Sniper.enabled = false;
+            }
+            if (playerThreeAegis.enabled == true)
+            {
+                player3_Stalker_EMP_Gun.enabled = false;
+                player3_Stalker_Schwert.enabled = false;
+                player3_Stalker_Shotgun.enabled = false;
+                player3_Stalker_Sniper.enabled = false;
+            }
+            if (playerFourAegis.enabled == true)
+            {
+                player4_Stalker_EMP_Gun.enabled = false;
+                player4_Stalker_Schwert.enabled = false;
+                player4_Stalker_Shotgun.enabled = false;
+                player4_Stalker_Sniper.enabled = false;
+            }
+
+            if (playerOneStalker.enabled == true)
+            {
+                player1_Aegis_Bohrer.enabled = false;
+                player1_Aegis_Flammenwerfer.enabled = false;
+                player1_Aegis_GGun.enabled = false;
+                player1_Aegis_Granatenwerfer.enabled = false;
+            }
+            if (playerTwoStalker.enabled == true)
+            {
+                player2_Aegis_Bohrer.enabled = false;
+                player2_Aegis_Flammenwerfer.enabled = false;
+                player2_Aegis_GGun.enabled = false;
+                player2_Aegis_Granatenwerfer.enabled = false;
+            }
+            if (playerThreeStalker.enabled == true)
+            {
+                player3_Aegis_Bohrer.enabled = false;
+                player3_Aegis_Flammenwerfer.enabled = false;
+                player3_Aegis_GGun.enabled = false;
+                player3_Aegis_Granatenwerfer.enabled = false;
+            }
+            if (playerFourStalker.enabled == true)
+            {
+                player4_Aegis_Bohrer.enabled = false;
+                player4_Aegis_Flammenwerfer.enabled = false;
+                player4_Aegis_GGun.enabled = false;
+                player4_Aegis_Granatenwerfer.enabled = false;
+            }
+            #endregion
             if (state.Buttons.LeftShoulder == ButtonState.Pressed && prevState[playerIndex].Buttons.LeftShoulder == ButtonState.Released)
             {
-                leftWeaponPrevIndex[playerIndex] = leftWeaponIndex[playerIndex];
-                leftWeaponIndex[playerIndex] += 1;
-                Debug.Log("index:" + leftWeaponIndex[playerIndex]);
-                if (leftWeaponIndex[playerIndex] > 2)
+                if (playerOneAegis.enabled == true || playerTwoAegis.enabled == true || playerThreeAegis.enabled == true || playerFourAegis.enabled == true)
                 {
-                    Debug.Log("Links\nSprung auf Anfang der Liste");
-                    leftWeaponIndex[playerIndex] = 0;
+                    AegisPrevIndex_links[playerIndex] = AegisIndex_links[playerIndex];
+                    AegisIndex_links[playerIndex] += 1;
+                    Debug.Log("AegisIndex_links:" + AegisIndex_links[playerIndex]);
+                    if (AegisIndex_links[playerIndex] >= 2)
+                    {
+                        Debug.Log("Links\nSprung auf Anfang der Liste");
+                        AegisIndex_links[playerIndex] = 0;
+                    }
+                    ChangeLeftWeaponAegis(playerIndex, AegisIndex_links[playerIndex], AegisPrevIndex_links[playerIndex]);
                 }
-                ChangeLeftWeapon(playerIndex, leftWeaponIndex[playerIndex], leftWeaponPrevIndex[playerIndex]);
+
+                if (playerOneStalker.enabled == true || playerTwoStalker.enabled == true || playerThreeStalker.enabled == true || playerFourStalker.enabled == true)
+                {
+                    StalkerPrevIndex_links[playerIndex] = StalkerIndex_links[playerIndex];
+                    StalkerIndex_links[playerIndex] += 1;
+                    Debug.Log("StalkerIndex_links:" + StalkerIndex_links[playerIndex]);
+                    if (StalkerIndex_links[playerIndex] >= 2)
+                    {
+                        Debug.Log("Links\nSprung auf Anfang der Liste");
+                        StalkerIndex_links[playerIndex] = 0;
+                    }
+                    ChangeLeftWeaponStalker(playerIndex, StalkerIndex_links[playerIndex], StalkerPrevIndex_links[playerIndex]);
+                }
             }
 
             if (state.Triggers.Left > 0.8 && prevState[playerIndex].Triggers.Left < 0.8)
             {
-                leftWeaponPrevIndex[playerIndex] = leftWeaponIndex[playerIndex];
-                leftWeaponIndex[playerIndex] -= 1;
-                Debug.Log("index:" + leftWeaponIndex[playerIndex]);
-                if (leftWeaponIndex[playerIndex] < 0)
+                if (playerOneAegis.enabled == true || playerTwoAegis.enabled == true || playerThreeAegis.enabled == true || playerFourAegis.enabled == true)
                 {
-                    Debug.Log("Links\nSprung auf Anfang der Liste");
-                    leftWeaponIndex[playerIndex] = 2;
+                    AegisPrevIndex_links[playerIndex] = AegisIndex_links[playerIndex];
+                    AegisIndex_links[playerIndex] -= 1;
+                    Debug.Log("AegisIndex_links:" + AegisIndex_links[playerIndex]);
+                    if (AegisIndex_links[playerIndex] < 0)
+                    {
+                        Debug.Log("Links\nSprung auf Anfang der Liste");
+                        AegisIndex_links[playerIndex] = 1;
+                    }
+                    ChangeLeftWeaponAegis(playerIndex, AegisIndex_links[playerIndex], AegisPrevIndex_links[playerIndex]);
                 }
-                ChangeLeftWeapon(playerIndex, leftWeaponIndex[playerIndex], leftWeaponPrevIndex[playerIndex]);
+
+                if (playerOneStalker.enabled == true || playerTwoStalker.enabled == true || playerThreeStalker.enabled == true || playerFourStalker.enabled == true)
+                {
+                    StalkerPrevIndex_links[playerIndex] = StalkerIndex_links[playerIndex];
+                    StalkerIndex_links[playerIndex] -= 1;
+                    Debug.Log("StalkerIndex_links:" + StalkerIndex_links[playerIndex]);
+                    if (StalkerIndex_links[playerIndex] < 0)
+                    {
+                        Debug.Log("Links\nSprung auf Anfang der Liste");
+                        StalkerIndex_links[playerIndex] = 1;
+                    }
+                    ChangeLeftWeaponStalker(playerIndex, StalkerIndex_links[playerIndex], StalkerPrevIndex_links[playerIndex]);
+                }
             }
 
             if (state.Buttons.RightShoulder == ButtonState.Pressed && prevState[playerIndex].Buttons.RightShoulder == ButtonState.Released)
             {
-                rightWeaponPrevIndex[playerIndex] = rightWeaponIndex[playerIndex];
-                rightWeaponIndex[playerIndex] += 1;
-                Debug.Log("index:" + rightWeaponIndex[playerIndex]);
-                if (rightWeaponIndex[playerIndex] > 2)
+                if (playerOneAegis.enabled == true || playerTwoAegis.enabled == true || playerThreeAegis.enabled == true || playerFourAegis.enabled == true)
                 {
-                    Debug.Log("Rechts\nSprung auf Anfang der Liste");
-                    rightWeaponIndex[playerIndex] = 0;
+                    AegisPrevIndex_rechts[playerIndex] = AegisIndex_rechts[playerIndex];
+                    AegisIndex_rechts[playerIndex] += 1;
+                    Debug.Log("AegisIndex_rechts:" + AegisIndex_rechts[playerIndex]);
+                    if (AegisIndex_rechts[playerIndex] >= 2)
+                    {
+                        Debug.Log("Rechts\nSprung auf Anfang der Liste");
+                        AegisIndex_rechts[playerIndex] = 0;
+                    }
+                    ChangeRightWeaponAegis(playerIndex, AegisIndex_rechts[playerIndex], AegisPrevIndex_rechts[playerIndex]);
                 }
-                ChangeRightWeapon(playerIndex, rightWeaponIndex[playerIndex], rightWeaponPrevIndex[playerIndex]);
+
+                if (playerOneStalker.enabled == true || playerTwoStalker.enabled == true || playerThreeStalker.enabled == true || playerFourStalker.enabled == true)
+                {
+                    StalkerPrevIndex_rechts[playerIndex] = StalkerIndex_rechts[playerIndex];
+                    StalkerIndex_rechts[playerIndex] += 1;
+                    Debug.Log("StalkerIndex_rechts:" + StalkerIndex_rechts[playerIndex]);
+                    if (StalkerIndex_rechts[playerIndex] >= 2)
+                    {
+                        Debug.Log("Rechts\nSprung auf Anfang der Liste");
+                        StalkerIndex_rechts[playerIndex] = 0;
+                    }
+                    ChangeRightWeaponStalker(playerIndex, StalkerIndex_rechts[playerIndex], StalkerPrevIndex_rechts[playerIndex]);
+                }
             }
 
             if (state.Triggers.Right > 0.8 && prevState[playerIndex].Triggers.Right < 0.8)
             {
-                rightWeaponPrevIndex[playerIndex] = rightWeaponIndex[playerIndex];
-                rightWeaponIndex[playerIndex] -= 1;
-                Debug.Log("index:" + rightWeaponIndex[playerIndex]);
-                if (rightWeaponIndex[playerIndex] < 0)
+                if (playerOneAegis.enabled == true || playerTwoAegis.enabled == true || playerThreeAegis.enabled == true || playerFourAegis.enabled == true)
                 {
-                    Debug.Log("Rechts\nSprung auf Anfang der Liste");
-                    rightWeaponIndex[playerIndex] = 2;
+                    AegisPrevIndex_rechts[playerIndex] = AegisIndex_rechts[playerIndex];
+                    AegisIndex_rechts[playerIndex] -= 1;
+                    Debug.Log("AegisIndex_rechts:" + AegisIndex_rechts[playerIndex]);
+                    if (AegisIndex_rechts[playerIndex] < 0)
+                    {
+                        Debug.Log("Rechts\nSprung auf Anfang der Liste");
+                        AegisIndex_rechts[playerIndex] = 1;
+                    }
+                    ChangeRightWeaponAegis(playerIndex, AegisIndex_rechts[playerIndex], AegisPrevIndex_rechts[playerIndex]);
                 }
-                ChangeRightWeapon(playerIndex, rightWeaponIndex[playerIndex], rightWeaponPrevIndex[playerIndex]);
+
+                if (playerOneStalker.enabled == true || playerTwoStalker.enabled == true || playerThreeStalker.enabled == true || playerFourStalker.enabled == true)
+                {
+                    StalkerPrevIndex_rechts[playerIndex] = StalkerIndex_rechts[playerIndex];
+                    StalkerIndex_rechts[playerIndex] -= 1;
+                    Debug.Log("StalkerIndex_rechts:" + StalkerIndex_rechts[playerIndex]);
+                    if (StalkerIndex_rechts[playerIndex] < 0)
+                    {
+                        Debug.Log("Rechts\nSprung auf Anfang der Liste");
+                        StalkerIndex_rechts[playerIndex] = 1;
+                    }
+                    ChangeRightWeaponStalker(playerIndex, StalkerIndex_rechts[playerIndex], StalkerPrevIndex_rechts[playerIndex]);
+                }
             }
 
             if (state.Buttons.B == ButtonState.Pressed)
@@ -450,14 +618,9 @@ public class PlayerAssignmentScript : MonoBehaviour
         }
         return readyCount;
     }
+    #endregion
 
-    private void StartNewGame()
-    {
-        gameStarted = true;
-        changeMenu = true;
-        SceneManager.LoadScene("Prototyp");
-    }
-
+    #region Button Funktionen
     public void PressBackToPlayerAssignment()
     {
         changeMenu = true;
@@ -485,22 +648,37 @@ public class PlayerAssignmentScript : MonoBehaviour
     {
         SceneManager.LoadScene("Prototyp");
     }
+    #endregion
 
-    private void ChangeImage(int playerIndex, int index, int prevIndex)
+    #region -change Funktionen
+    public void ChangeImage(int playerIndex, int index, int prevIndex)
     {
         ImageList[playerIndex][index].enabled = true;
         ImageList[playerIndex][prevIndex].enabled = false;
     }
 
-    private void ChangeLeftWeapon(int playerIndex, int index, int prevIndex)
+    public void ChangeLeftWeaponAegis(int playerIndex, int index, int prevIndex)
     {
-        WeaponListLeft[playerIndex][index].enabled = true;
-        WeaponListLeft[playerIndex][prevIndex].enabled = false;
+        Weaponset_Aegis_links[playerIndex][index].enabled = true;
+        Weaponset_Aegis_links[playerIndex][prevIndex].enabled = false;
     }
 
-    private void ChangeRightWeapon(int playerIndex, int index, int prevIndex)
+    public void ChangeRightWeaponAegis(int playerIndex, int index, int prevIndex)
     {
-        WeaponListRight[playerIndex][index].enabled = true;
-        WeaponListRight[playerIndex][prevIndex].enabled = false;
+        Weaponset_Aegis_rechts[playerIndex][index].enabled = true;
+        Weaponset_Aegis_rechts[playerIndex][prevIndex].enabled = false;
     }
+
+    public void ChangeLeftWeaponStalker(int playerIndex, int index, int prevIndex)
+    {
+        Weaponset_Stalker_links[playerIndex][index].enabled = true;
+        Weaponset_Stalker_links[playerIndex][prevIndex].enabled = false;
+    }
+
+    public void ChangeRightWeaponStalker(int playerIndex, int index, int prevIndex)
+    {
+        Weaponset_Stalker_rechts[playerIndex][index].enabled = true;
+        Weaponset_Stalker_rechts[playerIndex][prevIndex].enabled = false;
+    }
+    #endregion
 }
