@@ -470,14 +470,14 @@ public class Player : MonoBehaviour
 
             if (RotateOnMove && moveVector != Vector3.zero)
             {
-                float leftAngle = FixAngle(CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
+                float leftAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
                 if (leftStick != Vector2.zero)
                 {
                     DoRotation(leftAngle);
                 }
             }
 
-            float rightAngle = FixAngle(CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
+            float rightAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
             if (rightStick != Vector2.zero)
             {
                 DoRotation(rightAngle);
@@ -495,20 +495,6 @@ public class Player : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 14);
     }
-
-    private float CalculateAngle(Vector2 target, Vector2 source)
-    {
-        return ((float)Math.Atan2(target.y - source.y, target.x - source.x)) * (180f / (float)Math.PI);
-    }
-
-    private float FixAngle(float value)
-    {
-        if (value < 0)
-            return 360 + value;
-
-        return value;
-    }
-
     #endregion Movement
 
     #endregion UpdateMethodes
