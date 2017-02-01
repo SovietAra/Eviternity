@@ -749,4 +749,26 @@ public class Player : MonoBehaviour
             return 0;
         }
     }
+
+    public float AbilityEnergy
+    {
+        get
+        {
+            if (ability != null)
+                return ability.Energy;
+
+            return 0;
+        }
+    }
+
+    public float MaxEnergy
+    {
+        get
+        {
+            if (ability != null)
+                return ability.MaxEnergy;
+
+            return 0;
+        }
+    }
 }

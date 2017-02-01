@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: b5f89bf1c2881a442bd965688549bc80
-timeCreated: 1485881616
+guid: d910794c2b259d84e904b4e7e22930d6
+timeCreated: 1485952553
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Cube.001
-    100002: door_left
-    100004: door_right
-    100006: //RootNode
+    100002: //RootNode
+    100004: door_left
+    100006: door_right
     400000: Cube.001
-    400002: door_left
-    400004: door_right
-    400006: //RootNode
+    400002: //RootNode
+    400004: door_left
+    400006: door_right
     2300000: Cube.001
     2300002: door_left
     2300004: door_right

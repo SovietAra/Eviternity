@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 92135643617186142}
   - component: {fileID: 124193343207915622}
   - component: {fileID: 81712899068176806}
+  - component: {fileID: 114588957026633204}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -574,6 +575,7 @@ MonoBehaviour:
   Player1HealthUI_outline: {fileID: 1547503387022526, guid: f68926afdfbf9004caa6dd1c24a89df0,
     type: 2}
   P1GunHeat: {fileID: 1652839949167732, guid: 79c6aa98e8f93b94ebe006a9add11304, type: 2}
+  P1Energy: {fileID: 0}
   Player2HealthUI_background: {fileID: 1569887316451116, guid: dc7844a6464d1cb44aff06e6209ed131,
     type: 2}
   Player2HealthUI_fill: {fileID: 1997414900097076, guid: 481f3412d80d3fb4b9f1b600d35f4bfa,
@@ -581,6 +583,7 @@ MonoBehaviour:
   Player2HealthUI_outline: {fileID: 1188185140123202, guid: e6ade1c1731b0a94080c9e293ffae8f7,
     type: 2}
   P2GunHeat: {fileID: 1858705302666362, guid: 5fa43f33b2458604398b8d2ad933b434, type: 2}
+  P2Energy: {fileID: 0}
   Player3HealthUI_background: {fileID: 1284116535402494, guid: 1fdda810d50a4994cad19bfab6218463,
     type: 2}
   Player3HealthUI_fill: {fileID: 1476039569351898, guid: b382837f08c6e474e83b336e8083d3a5,
@@ -588,6 +591,7 @@ MonoBehaviour:
   Player3HealthUI_outline: {fileID: 1943094320875720, guid: 2f3ca651397cadd40b487c49a7aa324a,
     type: 2}
   P3GunHeat: {fileID: 1665816485692868, guid: d591ac9de766932469bb755ff2159837, type: 2}
+  P3Energy: {fileID: 0}
   Player4HealthUI_background: {fileID: 1513834427438496, guid: 88e48badc2e6a5d4e8c900083ff616f1,
     type: 2}
   Player4HealthUI_fill: {fileID: 1281638155783234, guid: 72ac4d00273fca84898a8955371be260,
@@ -595,6 +599,7 @@ MonoBehaviour:
   Player4HealthUI_outline: {fileID: 1052911196868522, guid: 045be2bcb0ed09b4e84536b951ba3fb7,
     type: 2}
   P4GunHeat: {fileID: 1423149499134798, guid: 77cc7043629adf34887dcc1de6b6f5a7, type: 2}
+  P4Energy: {fileID: 0}
   IndicatorPlaneOne: {fileID: 1835578991355316, guid: cae3b5806be1ec84ba2ecd0638cdf8a6,
     type: 2}
   IndicatorPlaneTwo: {fileID: 1661036203557974, guid: a3c32b2437cbcd949827c52e4bb10cbe,
@@ -826,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c8d5d01bd6d014387949d60bb32b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 1209385188523736, guid: 26083c228818c144fa5b742f0898eeaa,
+  PlayerPrefab: {fileID: 1209385188523736, guid: 298de2387580600478f43b4d36ba5aa6,
     type: 2}
   PauseMenuCanvas: {fileID: 1679681612470828}
   maxTeamHealth: 200
@@ -859,6 +864,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114588957026633204
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763583642440090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fe495f557d86840a28f4825435b403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualizeBrightFilter: 0
+  customBloom: {fileID: 4800000, guid: fa4f9840dbbeb814a89c71ed147a2814, type: 3}
+  fastBlur: {fileID: 4800000, guid: 34f7df8c1f623b346a2bcbe49661f70d, type: 3}
+  customBrightCap: {fileID: 4800000, guid: d3df6edb14801cf49b131e04269c70d8, type: 3}
+  threshold: 0.052
+  downsample: 1
+  blurSize: 2.07
+  blurIterations: 2
+  blurType: 0
+  intensity: 1
 --- !u!114 &114626428027592336
 MonoBehaviour:
   m_ObjectHideFlags: 1

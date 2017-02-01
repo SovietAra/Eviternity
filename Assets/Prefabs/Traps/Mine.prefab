@@ -54,8 +54,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1346437825459662}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.417603, y: 0.021611199, z: 14.7389145}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -187.86507, y: -12.703689, z: -183.94092}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4817767230780826}
@@ -185,7 +185,7 @@ MonoBehaviour:
   triggerByCollision: 1
   triggerByRange: 1
   range: 2.5
-  damage: 1
+  damage: 18
   damageRange: 5
   plane: {fileID: 0}
   explosion: {fileID: 1318014844589646, guid: 8edc72a6ca1b73843b955bc2b5a5e307, type: 2}
