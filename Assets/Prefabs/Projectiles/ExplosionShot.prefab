@@ -209,8 +209,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a96568ee212d34789c5d4a05330726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 4
   damageReduction: 1
+  UseDamageReduction: 1
   teamDamageMultiplicator: 1
   damage: 20
   StatusEffect: {fileID: 0}

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114348550102327902}
   m_Layer: 0
   m_Name: AOEHammer
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,14 +54,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   damage: 40
-  damageRange: 0
+  damageRange: 1
   detonationTimer: 0.1
   invertGravityFactor: 0.5
   lifeTime: 0.1
+  startDetonationTimer: 0
   DestroyOnCollision: 0
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 1
+  SpawnExplosion: 1
   Explosion: {fileID: 1092858050321016, guid: bc51dba245ca0194d934add39af3d585, type: 2}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
@@ -73,7 +75,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1046114965573448}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
