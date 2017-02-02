@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222479026110448846}
   - component: {fileID: 114518243108307848}
   m_Layer: 0
-  m_Name: P1Weapon_gatlingIcon
+  m_Name: P1Weapon_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
