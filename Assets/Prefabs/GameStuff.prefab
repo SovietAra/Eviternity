@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 92135643617186142}
   - component: {fileID: 124193343207915622}
   - component: {fileID: 81712899068176806}
+  - component: {fileID: 114407681379004320}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -828,6 +829,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114407681379004320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763583642440090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fe495f557d86840a28f4825435b403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualizeBrightFilter: 0
+  customBloom: {fileID: 4800000, guid: fa4f9840dbbeb814a89c71ed147a2814, type: 3}
+  fastBlur: {fileID: 4800000, guid: 34f7df8c1f623b346a2bcbe49661f70d, type: 3}
+  customBrightCap: {fileID: 4800000, guid: d3df6edb14801cf49b131e04269c70d8, type: 3}
+  threshold: 0.003
+  downsample: 1
+  blurSize: 1.78
+  blurIterations: 3
+  blurType: 0
+  intensity: 1
 --- !u!114 &114450434089391508
 MonoBehaviour:
   m_ObjectHideFlags: 1

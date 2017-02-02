@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4926958602366876}
   - component: {fileID: 114506238796585466}
   m_Layer: 0
-  m_Name: PrimWeaponSniper
+  m_Name: EnemyWeaponShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,14 +52,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  maxSprayAngle: 0
+  maxSprayAngle: 15
   maxAmmoPerClip: 1000
   reloadTimePerShell: 10
   reloadTimePerClip: 10
-  maxHeat: 12
+  maxHeat: 10
   heat: 0
-  heatPerShot: 12
-  heatReductionPerSecond: 6
+  heatPerShot: 10
+  heatReductionPerSecond: 15
   heatReductionDelay: 0
   AnimationDuration: 0
   smoothSpray: 0
@@ -69,6 +69,5 @@ MonoBehaviour:
   AutoReload: 1
   ProduceHeat: 1
   HeatCooldown: 1
-  SecondaryWeapon: {fileID: 1302081713190986, guid: 6b25abf2b84327b4dba75d2f491f7164,
-    type: 2}
-  Projectile: {fileID: 1078364581439068, guid: 4cff84c82ec5095438ba03312d86cca6, type: 2}
+  SecondaryWeapon: {fileID: 0}
+  Projectile: {fileID: 1078364581439068, guid: 87a3d6186fd41304d938ad2a729de676, type: 2}
