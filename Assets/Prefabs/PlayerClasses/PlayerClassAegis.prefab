@@ -275,16 +275,35 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 34457a3a09d0fe84eb68b5ee88a5e861, type: 3}
   - {fileID: 8300000, guid: fdb419c1cc76fc5498295b4cec65ed11, type: 3}
   - {fileID: 8300000, guid: 2e82dbfe48f46aa4da258a5b75d323ca, type: 3}
-  - {fileID: 8300000, guid: 4b37d67245dc1ab438de1d7fa49fab5d, type: 3}
-  - {fileID: 8300000, guid: b13cef437bf4e7642bfea80e39df63c9, type: 3}
-  - {fileID: 8300000, guid: bc7ccac98d91f764fafe61cc237cdbb1, type: 3}
-  - {fileID: 8300000, guid: daa5e3c6a4247364b9bc0306c9a453cf, type: 3}
+  - {fileID: 8300000, guid: 262320ecd4393994fa5a317bd5c425f4, type: 3}
+  - {fileID: 8300000, guid: 588b6745180c18144a4c248e3dcb3288, type: 3}
+  - {fileID: 8300000, guid: 93a8ee3ff80466b47a048a65410f3572, type: 3}
+  - {fileID: 8300000, guid: fb12527abe82c144e9b398dcb686a217, type: 3}
+  - {fileID: 8300000, guid: b4b2b3616935abe45ae393147def1e54, type: 3}
   - {fileID: 8300000, guid: 6eece261429ba4a4e917bb162ec5cf27, type: 3}
-  - {fileID: 8300000, guid: 0b18fb32f7ce5c04eb1e198ceebb9f75, type: 3}
-  - {fileID: 8300000, guid: c99890907c00e454886af0e635c2f0d4, type: 3}
-  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
-  ShotVolume: 0.2
-  StepVolume: 0.4
+  - {fileID: 8300000, guid: 2f0232ed66319ae41a97ee74df5d8857, type: 3}
+  - {fileID: 8300000, guid: 814ff91f9a79ff54782998d147d62bb7, type: 3}
+  - {fileID: 8300000, guid: 7d5120ed0166c9842a16a2b9c25d9cc3, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 0206a5c0af9f5a94e95c0a8b5062aa2d, type: 3}
+  - {fileID: 8300000, guid: 5a90b167c60863b47b54261e67bc58db, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  - {fileID: 8300000, guid: 7ce9f3ccdecbb71469a1e0f1a8efeac7, type: 3}
+  ShotVolume: 0.1
+  StepVolume: 0.2
   stepCooldown: 0.5
 --- !u!136 &136804792390595418
 CapsuleCollider:
