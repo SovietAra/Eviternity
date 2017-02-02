@@ -67,6 +67,7 @@ public class DamageAbleObject : MonoBehaviour
                 health -= args.ChangeValue;
                 if (health <= 0)
                 {
+                    health = 0;
                     if (OnDeath != null)
                         OnDeath(this, EventArgs.Empty);
                 }

@@ -110,10 +110,6 @@ public class CustomBloom : PostEffectsBase
         var rtH4 = source.height / 4;
         float widthOverHeight = (1.0f * source.width) / (1.0f * source.height);
 
-
-        RenderTexture quater = RenderTexture.GetTemporary(rtW4, rtH4, 0);
-        RenderTexture half = RenderTexture.GetTemporary(rtW2, rtH2, 0);
-
         RenderTexture original = RenderTexture.GetTemporary(source.width, source.height, 0);
         Graphics.Blit(source, original);
 
@@ -128,19 +124,17 @@ public class CustomBloom : PostEffectsBase
         if (visualizeBrightFilter)
         {
             Graphics.Blit(blurTex, destination);
-            RenderTexture.ReleaseTemporary(quater);
-            RenderTexture.ReleaseTemporary(half);
             RenderTexture.ReleaseTemporary(threshTex);
             RenderTexture.ReleaseTemporary(blurTex);
+            RenderTexture.ReleaseTemporary(original);
             return;
         }
 
         Blend(original, blurTex, destination);
 
-        RenderTexture.ReleaseTemporary(quater);
-        RenderTexture.ReleaseTemporary(half);
         RenderTexture.ReleaseTemporary(threshTex);
         RenderTexture.ReleaseTemporary(blurTex);
+        RenderTexture.ReleaseTemporary(original);
     }
 
     private void Blend(RenderTexture source, RenderTexture blurTex, RenderTexture destination)
