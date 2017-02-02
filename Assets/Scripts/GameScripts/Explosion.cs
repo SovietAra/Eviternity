@@ -143,19 +143,7 @@ public class Explosion : MonoBehaviour
 
             if (!hitArgs.Cancel && hitArgs.FinalDamage > 0)
             {
-                if (StatusEffect != null)
-                {
-                    GameObject tempStatusEffect = Instantiate(StatusEffect, other.transform);
-                    if (tempStatusEffect != null)
-                    {
-                        StatusEffect statusScript = tempStatusEffect.GetComponent<StatusEffect>();
-                        if(statusScript != null)
-                        {
-                            statusScript.Activate(other.gameObject);
-                        }
-                    }
-                }
-                healthContainer.DoDamage(owner, rangeDamage);
+                healthContainer.DoDamage(owner, rangeDamage, StatusEffect);
             }
 
             exploded = true;
