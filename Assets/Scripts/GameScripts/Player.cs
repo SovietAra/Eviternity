@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using System;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using XInputDotNetPure;
 
 public class Player : MonoBehaviour
@@ -52,6 +53,8 @@ public class Player : MonoBehaviour
     private Vector3 meshBounds;
 
     private float stepTimer;
+
+    private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
     #region InspectorFields
@@ -82,8 +85,9 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public bool OnIce;
+    
 
-    public AudioClip[] AudioClips = new AudioClip[31];
+    public AudioClip[] AudioClips = new AudioClip[50];
 
     [SerializeField]
     float ShotVolume;
@@ -154,10 +158,6 @@ public class Player : MonoBehaviour
         //var Walk_Ice_4_Sound = audioSources[6];   18-22 Snow_Walk
         //var Walk_Ice_5_Sound = audioSources[7]; 
         //var Hit1_Sound = audioSources[7];         23-26 Hit
-        var Healing_Sound = audioSources[27];
-        var ShieldActivated_Sound = audioSources[28];
-        var Shielddestroyed_Sound = audioSources[29];
-        var ShortShot_Sound = audioSources[30];
 
         audioSources[10].volume = ShotVolume;
         for(int i = 3; i < 23; i++)
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
         if (Ability != null)
         {
             ability = Instantiate(Ability, transform).GetComponent<Ability>();
-            if(ability.name == "DashAbility")
+            if(ability.name.Contains("Dash"))
             {
                 ability.OnActivated += DashAbility_OnActivated;
                 ability.OnAbort += DashAbility_OnAbort;
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
         if (SecondaryAbility != null)
         {
             secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
-            if (ability.name == "DashAbility")
+            if (ability.name.Contains("Dash"))
             {
                 secondaryAbility.OnActivated += DashAbility_OnActivated;
                 secondaryAbility.OnAbort += DashAbility_OnAbort;
@@ -309,7 +309,28 @@ public class Player : MonoBehaviour
         {
             InputOnIce();
         }
+
+        for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
+        {
+         
+            if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
+
+                audioSources[i].Play(); 
+
+            if (audioSources[i].isPlaying && !PlayMusicTheme[i])
+
+                audioSources[i].Stop();
+
+
+
+        }
+        
+
+
+
         CheckOverlappingObjects();
+
+
     }
     #endregion
     
@@ -360,8 +381,8 @@ public class Player : MonoBehaviour
 
         if (state.Buttons.Y == ButtonState.Released)
         {
-            if (audioSources[27].isPlaying)
-                audioSources[27].Stop(); //stop healing sound
+            if (audioSources[28].isPlaying)
+                audioSources[28].Stop(); //stop healing sound
         }
 
         if (state.Buttons.B == ButtonState.Pressed && !executed)
@@ -539,8 +560,8 @@ public class Player : MonoBehaviour
             
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                if(!audioSources[27].isPlaying)
-                    audioSources[27].Play();
+                if(!audioSources[28].isPlaying)
+                    audioSources[28].Play();
                 return true;
             }
         }
@@ -628,7 +649,8 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
-        audioSources[30].Play();
+        System.Random rand = new System.Random();
+        audioSources[rand.Next(32,35)].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
     }
@@ -792,5 +814,11 @@ public class Player : MonoBehaviour
 
             return 0;
         }
+    }
+
+    public void   PlayMusicThemePicker(int tmp, bool state)
+
+    {
+        PlayMusicTheme[tmp] = state;
     }
 }

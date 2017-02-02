@@ -56,7 +56,7 @@ MonoBehaviour:
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 220
+  energyRequiredPerSeconds: 300
   energyRegenerationPerSecond: 100
   energyRequiredOnce: 0
   regnerationDelay: 1
