@@ -251,6 +251,7 @@ MonoBehaviour:
   DashAbility: {fileID: 1397790803564228, guid: d497b7f07f642344e9ef8a90c5ccb4f1,
     type: 2}
   OnIce: 0
+  PlayMusicTheme: 
   AudioClips:
   - {fileID: 8300000, guid: ddd0c7d916af8f44b9f501b3159ca57e, type: 3}
   - {fileID: 8300000, guid: dd22f5ed30a97ab478ec4f74caea7fe8, type: 3}
@@ -283,6 +284,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0b18fb32f7ce5c04eb1e198ceebb9f75, type: 3}
   - {fileID: 8300000, guid: c99890907c00e454886af0e635c2f0d4, type: 3}
   - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 63e24b2fcf09d8942a6c90178f5670f4, type: 3}
+  - {fileID: 8300000, guid: 1e58f973a4d216245bdab96a8669ef4e, type: 3}
+  - {fileID: 8300000, guid: 37ca1a0d636068b4681c3e6a624e1275, type: 3}
+  - {fileID: 8300000, guid: 7f2ef5e6bd715de4eb8b22fb7435a415, type: 3}
+  - {fileID: 8300000, guid: 3b2c96a64192cea43b561ebe9f466f76, type: 3}
   ShotVolume: 0.2
   StepVolume: 0.4
   stepCooldown: 0.5
