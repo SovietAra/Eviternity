@@ -26,7 +26,7 @@ GameObject:
   m_Layer: 0
   m_Name: MusicTrigger
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424295711990500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 0.9, z: 57.9}
+  m_LocalPosition: {x: -67.7, y: 6.1718407, z: -1.2}
   m_LocalScale: {x: 67.92714, y: 12.343681, z: 46.614132}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424295711990500}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ddc2a8d0a65d8458abe4e1454710b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicThemeIndex: 1
+  MusicThemeIndex: 45
