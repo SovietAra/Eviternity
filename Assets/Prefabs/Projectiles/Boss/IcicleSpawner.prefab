@@ -51,9 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388f88da95e728b40ab894eda4e69d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 10
+  count: 50
   duration: 5
-  radius: 10
+  radius: 7
   spawnHeight: 10
   IcicleProjectile: {fileID: 1753828525012254, guid: eaf0c420e2c02cc4dbb813386944e2cc,
     type: 2}

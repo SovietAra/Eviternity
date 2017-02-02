@@ -109,10 +109,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  damage: 1
+  damage: 50
   damageRange: 0
   detonationTimer: 2
-  invertGravityFactor: 0.5
+  invertGravityFactor: -45.4
   lifeTime: 10
   startDetonationTimer: 0
   DestroyOnCollision: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75
-  InvertGravity: 0
+  InvertGravity: 1
 --- !u!136 &136769878926269640
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -132,7 +132,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1753828525012254}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

@@ -4779,7 +4779,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1371446977708944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.652336, y: 0, z: 1.9003906}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4365944198798864}
@@ -6008,11 +6008,12 @@ MonoBehaviour:
   AOEWeapon: {fileID: 1767721549229172, guid: 36ac9940099ec6a4889d8fe89a6fff92, type: 2}
   IceWaveWeapon: {fileID: 1618444620573446, guid: 9c9e029e94725d94d8c6e7f3811e22f9,
     type: 2}
-  IcicleWeapon: {fileID: 0}
+  IcicleAbility: {fileID: 1552349041503300, guid: 07edc64c01261f649bc98d1aadfd0f17,
+    type: 2}
   Freeze: 0
   viewRange: 20
   aggroMultiplicator: 2
-  minimumDistance: 2
+  minimumDistance: 5
   resetTime: 10
 --- !u!114 &114218876342771258
 MonoBehaviour:
