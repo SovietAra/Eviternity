@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - HUD
   - GameObject
+  - MusicSystem
   layers:
   - Default
   - TransparentFX
