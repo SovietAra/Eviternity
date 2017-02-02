@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4d7facd4d47a34aabb0bd528790c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 2
+  Duration: 3
   DestroyOnDeactivation: 1
   ResetSameStatus: 1
   StackAble: 0

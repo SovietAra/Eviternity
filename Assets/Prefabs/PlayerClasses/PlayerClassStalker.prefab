@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 350
+  maxHealth: 350
   isImmortal: 0
 --- !u!114 &114584673856983150
 MonoBehaviour:
@@ -283,6 +283,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0b18fb32f7ce5c04eb1e198ceebb9f75, type: 3}
   - {fileID: 8300000, guid: c99890907c00e454886af0e635c2f0d4, type: 3}
   - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 8300000, guid: 63e24b2fcf09d8942a6c90178f5670f4, type: 3}
+  - {fileID: 8300000, guid: 1e58f973a4d216245bdab96a8669ef4e, type: 3}
+  - {fileID: 8300000, guid: 37ca1a0d636068b4681c3e6a624e1275, type: 3}
+  - {fileID: 8300000, guid: 7f2ef5e6bd715de4eb8b22fb7435a415, type: 3}
+  - {fileID: 8300000, guid: 3b2c96a64192cea43b561ebe9f466f76, type: 3}
   ShotVolume: 0.2
   StepVolume: 0.4
   stepCooldown: 0.5
