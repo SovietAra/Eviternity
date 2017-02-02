@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4889453389222230}
   - component: {fileID: 65804307729601904}
   - component: {fileID: 199003473813682636}
-  - component: {fileID: 198060669241248968}
   - component: {fileID: 114381427874493896}
+  - component: {fileID: 198060669241248968}
   m_Layer: 0
   m_Name: IceWave
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427027737285786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.06123, y: 1.27, z: 0.14542389}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.3, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,9 +68,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   damageReduction: 5
+  UseDamageReduction: 0
   teamDamageMultiplicator: 1
-  damage: 100
-  StatusEffect: {fileID: 0}
+  damage: 10
+  StatusEffect: {fileID: 1454155052766750, guid: a1f1863dfb2532e4685330ae615d2c7b,
+    type: 2}
 --- !u!198 &198060669241248968
 ParticleSystem:
   m_ObjectHideFlags: 1

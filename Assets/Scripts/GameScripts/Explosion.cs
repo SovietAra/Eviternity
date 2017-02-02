@@ -12,6 +12,8 @@ public class Explosion : MonoBehaviour
     [Range(0, 10)]
     private float damageReduction = 1;
 
+    public bool UseDamageReduction = true;
+
     [SerializeField]
     [Range(0, 2)]
     private float teamDamageMultiplicator = 1;
@@ -31,6 +33,11 @@ public class Explosion : MonoBehaviour
     private float removeDelay = 0.1f;
     private float elapsedTime = 0f;
     private bool overrideValues = true;
+
+    public float Radius
+    {
+        get { return radius; }
+    }
 
     public event EventHandler<HitEventArgs> OnHit;
 
@@ -118,7 +125,15 @@ public class Explosion : MonoBehaviour
         if (healthContainer != null)
         {
             float distance = Vector3.Distance(other.transform.position, transform.position);
-            float rangeDamage = (damageReduction - (distance / radius)) * damage;
+
+            float rangeDamage = damage;
+            if (UseDamageReduction)
+            {
+                rangeDamage = (damageReduction - (distance / radius)) * damage;
+                if (rangeDamage <= 0)
+                    return;
+            }
+
             if (isTeam)
                 rangeDamage *= teamDamageMultiplicator;
 
