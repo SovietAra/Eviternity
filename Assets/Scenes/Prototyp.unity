@@ -327,10 +327,14 @@ MonoBehaviour:
   TeamHealthBar_Border: {fileID: 1024691281}
   TeamHealthActive: {fileID: 21300000, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
   TeamHealthInactive: {fileID: 21300002, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
-  P1GunHeat: {fileID: 1652839949167732, guid: 79c6aa98e8f93b94ebe006a9add11304, type: 2}
-  P2GunHeat: {fileID: 1858705302666362, guid: 5fa43f33b2458604398b8d2ad933b434, type: 2}
-  P3GunHeat: {fileID: 1665816485692868, guid: d591ac9de766932469bb755ff2159837, type: 2}
-  P4GunHeat: {fileID: 1423149499134798, guid: 77cc7043629adf34887dcc1de6b6f5a7, type: 2}
+  P1WeaponHeat: {fileID: 1513010077647886, guid: 8f1f032051e15224ab4c2c1e6b87cab1,
+    type: 2}
+  P2WeaponHeat: {fileID: 1920149957827664, guid: 4c9fca6c8dbaba042b2c377d62b74576,
+    type: 2}
+  P3WeaponHeat: {fileID: 1247012471964974, guid: 578e4cecf9228d342b38f48b4c05a9d0,
+    type: 2}
+  P4WeaponHeat: {fileID: 1345165958357112, guid: 2499b7205d57aa24ab8bbd2ea04c83a1,
+    type: 2}
   EnergyBars:
   - {fileID: 1464132735741188, guid: fa576b0bed8527d43b8e225ac1a134bd, type: 2}
   - {fileID: 1304345167909060, guid: b1ff2438cc51a864586f01cc0adada76, type: 2}

@@ -32,10 +32,10 @@ public class UIScript : MonoBehaviour
     public Sprite TeamHealthInactive;
 
     // Weapon UI
-    public GameObject P1GunHeat;
-    public GameObject P2GunHeat;
-    public GameObject P3GunHeat;
-    public GameObject P4GunHeat;
+    public GameObject P1WeaponHeat;
+    public GameObject P2WeaponHeat;
+    public GameObject P3WeaponHeat;
+    public GameObject P4WeaponHeat;
 
     // Abilities
     public GameObject[] EnergyBars;
@@ -310,7 +310,7 @@ public class UIScript : MonoBehaviour
                     player1HealthBar_3 = P1_3.GetComponent<Image>();
                     player1HealthBar_3.transform.SetParent(UICanvas, false);
                     P1IndicatorPlane = IndicatorPlaneOne;
-                    GameObject Heat1 = Instantiate(P1GunHeat);
+                    GameObject Heat1 = Instantiate(P1WeaponHeat);
                     player1Heat = Heat1.GetComponent<Image>();
                     player1Heat.transform.SetParent(UICanvas, false);
 
@@ -334,7 +334,7 @@ public class UIScript : MonoBehaviour
                     player2HealthBar_3 = P2_3.GetComponent<Image>();
                     player2HealthBar_3.transform.SetParent(UICanvas, false);
                     P2IndicatorPlane = IndicatorPlaneTwo;
-                    GameObject Heat2 = Instantiate(P2GunHeat);
+                    GameObject Heat2 = Instantiate(P2WeaponHeat);
                     player2Heat = Heat2.GetComponent<Image>();
                     player2Heat.transform.SetParent(UICanvas, false);
 
@@ -358,7 +358,7 @@ public class UIScript : MonoBehaviour
                     player3HealthBar_3 = P3_3.GetComponent<Image>();
                     player3HealthBar_3.transform.SetParent(UICanvas, false);
                     P3IndicatorPlane = IndicatorPlaneThree;
-                    GameObject Heat3 = Instantiate(P3GunHeat);
+                    GameObject Heat3 = Instantiate(P3WeaponHeat);
                     player3Heat = Heat3.GetComponent<Image>();
                     player3Heat.transform.SetParent(UICanvas, false);
 
@@ -382,7 +382,7 @@ public class UIScript : MonoBehaviour
                     player4HealthBar_3 = P4_3.GetComponent<Image>();
                     player4HealthBar_3.transform.SetParent(UICanvas, false);
                     P4IndicatorPlane = IndicatorPlaneFour;
-                    GameObject Heat4 = Instantiate(P4GunHeat);
+                    GameObject Heat4 = Instantiate(P4WeaponHeat);
                     player4Heat = Heat4.GetComponent<Image>();
                     player4Heat.transform.SetParent(UICanvas, false);
 
