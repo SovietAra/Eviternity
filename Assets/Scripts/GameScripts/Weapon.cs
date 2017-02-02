@@ -17,11 +17,11 @@ public class Weapon : MonoBehaviour
     private int maxAmmoPerClip = 100;
 
     [SerializeField]
-    [Range(0.01f, 10f)]
+    [Range(0.01f, 100f)]
     private float reloadTimePerShell = 0.75f;
 
     [SerializeField]
-    [Range(0.01f, 10f)]
+    [Range(0.01f, 100f)]
     private float reloadTimePerClip = 2f;
 
     [SerializeField]
@@ -33,18 +33,18 @@ public class Weapon : MonoBehaviour
     private float heat = 0;
 
     [SerializeField]
-    [Range(0.1f, 1000)]
+    [Range(0, 1000)]
     private float heatPerShot = 1f;
 
     [SerializeField]
-    [Range(0.1f, 1000)]
+    [Range(0, 1000)]
     private float heatReductionPerSecond = 0.5f;
 
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 100)]
     private float heatReductionDelay = 2f;
 
-    [Range(0, 10)]
+    [Range(0, 100)]
     public float AnimationDuration = 0;
 
     [SerializeField]
@@ -215,7 +215,7 @@ public class Weapon : MonoBehaviour
 
             return true;
         }
-        else if (currentClipAmmo <= 0)
+        else if (currentClipAmmo <= 0 && !reloading)
         {
             if (AutoReload)
             {

@@ -36,6 +36,8 @@ public class Projectile : MonoBehaviour
 
     public bool DoTeamDamage = false;
     public bool DoAOETeamDamage = false;
+    public bool SpawnExplosion = false;
+    public bool OverwriteExplosionValues = false;
     public GameObject Explosion;
     public GameObject StatusEffect;
 
@@ -131,7 +133,7 @@ public class Projectile : MonoBehaviour
         if (DestroyOnCollision)
             Destroy(gameObject);
 
-        if (damageRange == 0)
+        if (!SpawnExplosion)
         {
             if (collisionObject != null)
             {
@@ -141,10 +143,13 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            GameObject explosionObj = Instantiate(Explosion, transform.position, transform.rotation);
-            Explosion explosionScript = explosionObj.GetComponent<Explosion>();
-
-            explosionScript.Init(damage, damageRange, attacker, 1.2f, DoAOETeamDamage ? TeamDamageMultiplicator : 0);
+            if (Explosion != null)
+            {
+                GameObject explosionObj = Instantiate(Explosion, transform.position, transform.rotation);
+                Explosion explosionScript = explosionObj.GetComponent<Explosion>();
+                if(explosionScript != null && OverwriteExplosionValues)
+                    explosionScript.Init(damage, damageRange > 0 ? damageRange : explosionScript.Radius, attacker, 1.2f, DoAOETeamDamage ? TeamDamageMultiplicator : 0);
+            }
         }
     }
 

@@ -55,4 +55,4 @@ MonoBehaviour:
   DestroyOnDeactivation: 1
   ResetSameStatus: 1
   StackAble: 0
-  slowDownPercentage: 0.2
+  slowDownPercentage: 0.51
