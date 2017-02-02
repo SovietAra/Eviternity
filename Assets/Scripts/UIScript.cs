@@ -12,31 +12,39 @@ using XInputDotNetPure;
 public class UIScript : MonoBehaviour
 {
     public GameObject UICanvas;
+
+    // Health UI
     public GameObject Player1HealthUI_background;
     public GameObject Player1HealthUI_fill;
     public GameObject Player1HealthUI_outline;
-    public GameObject P1GunHeat;
     public GameObject Player2HealthUI_background;
     public GameObject Player2HealthUI_fill;
     public GameObject Player2HealthUI_outline;
-    public GameObject P2GunHeat;
     public GameObject Player3HealthUI_background;
     public GameObject Player3HealthUI_fill;
     public GameObject Player3HealthUI_outline;
-    public GameObject P3GunHeat;
     public GameObject Player4HealthUI_background;
     public GameObject Player4HealthUI_fill;
     public GameObject Player4HealthUI_outline;
-    public GameObject P4GunHeat;
-    public GameObject IndicatorPlaneOne;
-    public GameObject IndicatorPlaneTwo;
-    public GameObject IndicatorPlaneThree;
-    public GameObject IndicatorPlaneFour;
     public Image TeamHealthBar;
     public Image TeamHealthBar_Border;
     public Sprite TeamHealthActive;
     public Sprite TeamHealthInactive;
+
+    // Weapon UI
+    public GameObject P1GunHeat;
+    public GameObject P2GunHeat;
+    public GameObject P3GunHeat;
+    public GameObject P4GunHeat;
+
+    // Abilities
     public GameObject[] EnergyBars;
+
+    // Other
+    public GameObject IndicatorPlaneOne;
+    public GameObject IndicatorPlaneTwo;
+    public GameObject IndicatorPlaneThree;
+    public GameObject IndicatorPlaneFour;
 
     private GameObject game;
     private GameObject P1IndicatorPlane;

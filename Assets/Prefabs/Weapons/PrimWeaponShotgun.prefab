@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 2
-  maxSprayAngle: 30
+  maxSprayAngle: 10
   maxAmmoPerClip: 4
   reloadTimePerShell: 0.01
   reloadTimePerClip: 4
@@ -71,4 +71,4 @@ MonoBehaviour:
   HeatCooldown: 0
   SecondaryWeapon: {fileID: 1302081713190986, guid: d7341e53fb4efc34483e07cb7e1fc230,
     type: 2}
-  Projectile: {fileID: 1728551009898034, guid: 29e4a15bbcee9204a93d34a8fca6dbbb, type: 2}
+  Projectile: {fileID: 1210590288747214, guid: 29e4a15bbcee9204a93d34a8fca6dbbb, type: 2}
