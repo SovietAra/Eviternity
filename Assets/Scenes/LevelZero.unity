@@ -137,32 +137,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 920717c9989967647a90f5f97bae9f34, type: 3}
---- !u!1 &864757838 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1763583642440090, guid: 2b1696b364f857a4aa3787214324fc59,
-    type: 2}
-  m_PrefabInternal: {fileID: 1084434578}
---- !u!114 &864757840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 864757838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60fe495f557d86840a28f4825435b403, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualizeBrightFilter: 0
-  customBloom: {fileID: 4800000, guid: fa4f9840dbbeb814a89c71ed147a2814, type: 3}
-  fastBlur: {fileID: 4800000, guid: 34f7df8c1f623b346a2bcbe49661f70d, type: 3}
-  customBrightCap: {fileID: 4800000, guid: d3df6edb14801cf49b131e04269c70d8, type: 3}
-  threshold: 0.006
-  downsample: 1
-  blurSize: 3
-  blurIterations: 2
-  blurType: 0
-  intensity: 1
 --- !u!1001 &1084434578
 Prefab:
   m_ObjectHideFlags: 0
