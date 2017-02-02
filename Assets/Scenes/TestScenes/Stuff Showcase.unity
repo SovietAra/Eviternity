@@ -3093,6 +3093,16 @@ Prefab:
       propertyPath: MusicThemeIndex
       value: 45
       objectReference: {fileID: 0}
+    - target: {fileID: 23687902166198694, guid: 930d292a76c188a49b0dabbf1b9dec81,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424295711990500, guid: 930d292a76c188a49b0dabbf1b9dec81, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 930d292a76c188a49b0dabbf1b9dec81, type: 2}
   m_IsPrefabParent: 0
