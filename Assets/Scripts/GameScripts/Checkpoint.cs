@@ -11,8 +11,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        colorSwitch.ChangeColor();
-        Debug.Log("It might have worked");
-        Player.LastCheckpointPosition = transform.position;
+        if(other.gameObject.tag == "Player")
+            Player.LastCheckpointPosition = transform.position;
     }
 }

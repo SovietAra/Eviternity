@@ -214,11 +214,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  damage: 8
+  damage: 20
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
   lifeTime: 10
+  startDetonationTimer: 0
   DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
