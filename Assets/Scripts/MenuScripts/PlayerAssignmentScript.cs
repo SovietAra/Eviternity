@@ -1,7 +1,7 @@
 ﻿/* 
  * Purpose: Händelt die Character- und Waffenzuweisung
  * Author: Gregor von Frankenberg / Marcel Croonenbroeck
- * Date: 1.2.2017
+ * Date: 2.2.2017
  */
 
 
@@ -20,16 +20,12 @@ public class PlayerAssignmentScript : MonoBehaviour
     public Canvas playerAssignmentScreen;
 
     public Text playerOneJoin;
-    public Text playerOneAssigned;
 
     public Text playerTwoJoin;
-    public Text playerTwoAssigned;
 
     public Text playerThreeJoin;
-    public Text playerThreeAssigned;
 
     public Text playerFourJoin;
-    public Text playerFourAssigned;
 
     public Canvas charSelectPlayerOne;
     public Image playerOneAegis;
@@ -125,7 +121,7 @@ public class PlayerAssignmentScript : MonoBehaviour
     int[] StalkerPrevIndex_rechts = new int[2] { 0, 0 };
     #endregion
 
-
+    private bool[] playerJoined;
 
     bool changeMenu = false;
     // Use this for initialization
@@ -135,28 +131,20 @@ public class PlayerAssignmentScript : MonoBehaviour
         playerAssignmentScreen = playerAssignmentScreen.GetComponent<Canvas>();
 
         playerOneJoin = playerOneJoin.GetComponent<Text>();
-        playerOneAssigned = playerOneAssigned.GetComponent<Text>();
 
         playerTwoJoin = playerTwoJoin.GetComponent<Text>();
-        playerTwoAssigned = playerTwoAssigned.GetComponent<Text>();
 
         playerThreeJoin = playerThreeJoin.GetComponent<Text>();
-        playerThreeAssigned = playerThreeAssigned.GetComponent<Text>();
 
         playerFourJoin = playerFourJoin.GetComponent<Text>();
-        playerFourAssigned = playerFourAssigned.GetComponent<Text>();
 
         playerOneJoin.enabled = true;
-        playerOneAssigned.enabled = false;
 
         playerTwoJoin.enabled = true;
-        playerTwoAssigned.enabled = false;
 
         playerThreeJoin.enabled = true;
-        playerThreeAssigned.enabled = false;
 
         playerFourJoin.enabled = true;
-        playerFourAssigned.enabled = false;
 
         playerAssignmentScreen.enabled = true;
 
@@ -214,6 +202,12 @@ public class PlayerAssignmentScript : MonoBehaviour
         weaponSelectionPlayerFour = weaponSelectionPlayerFour.GetComponent<Canvas>();
         weaponSelectionPlayerFour.enabled = true;
         #endregion
+
+        playerJoined = new bool[4];
+        playerJoined[0] = false;
+        playerJoined[1] = false;
+        playerJoined[2] = false;
+        playerJoined[3] = false;
 
         #region Waffenlisten
         List<Image> TempWeaponset_Aegis_links = new List<Image>();
@@ -308,15 +302,21 @@ public class PlayerAssignmentScript : MonoBehaviour
             int readyCount = CheckPlayerInput();
             if (readyCount == GlobalReferences.PlayerStates.Count && readyCount > 0)
             {
-                StartNewGame();
+                //if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
+                //{
+                    StartNewGame();
+                //}
             }
         }
     }
     private void StartNewGame()
     {
-        gameStarted = true;
-        changeMenu = true;
-        SceneManager.LoadScene("Prototyp");
+        //if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
+        //{
+            gameStarted = true;
+            changeMenu = true;
+            SceneManager.LoadScene("Prototyp");
+        //}
     }
     #region player Funktionen
     private void CheckPlayerJoins()
@@ -326,8 +326,10 @@ public class PlayerAssignmentScript : MonoBehaviour
         {
             PlayerIndex index = freePads[i];
             GamePadState state = GamePad.GetState(index);
-            if (state.Buttons.A == ButtonState.Pressed && !changeMenu)
+            GamePadState prevState = state;
+            if (state.Buttons.Start == ButtonState.Pressed && !changeMenu)
             {
+                //Debug.Log("Player One:" + playerJoined[0]);
                 GamePadManager.Connect((int)index);
                 GlobalReferences.PlayerStates.Add(new PlayerState(index, state));
 
@@ -335,29 +337,29 @@ public class PlayerAssignmentScript : MonoBehaviour
                 if (index == PlayerIndex.One)
                 {
                     playerOneJoin.enabled = false;
-                    playerOneAssigned.enabled = true;
                     charSelectPlayerOne.enabled = true;
+                    playerJoined[0] = true;
                 }
 
                 if (index == PlayerIndex.Two)
                 {
                     playerTwoJoin.enabled = false;
-                    playerTwoAssigned.enabled = true;
                     charSelectPlayerTwo.enabled = true;
+                    playerJoined[1] = true;
                 }
 
                 if (index == PlayerIndex.Three)
                 {
                     playerThreeJoin.enabled = false;
-                    playerThreeAssigned.enabled = true;
                     charSelectPlayerThree.enabled = true;
+                    playerJoined[2] = true;
                 }
 
                 if (index == PlayerIndex.Four)
                 {
                     playerFourJoin.enabled = false;
-                    playerFourAssigned.enabled = true;
                     charSelectPlayerFour.enabled = true;
+                    playerJoined[3] = true;
                 }
             }
         }
@@ -584,26 +586,22 @@ public class PlayerAssignmentScript : MonoBehaviour
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.One)
                 {
                     playerOneJoin.enabled = true;
-                    playerOneAssigned.enabled = false;
                     charSelectPlayerOne.enabled = false;
                 }
 
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.Two)
                 {
                     playerTwoJoin.enabled = true;
-                    playerTwoAssigned.enabled = false;
                     charSelectPlayerTwo.enabled = false;
                 }
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.Three)
                 {
                     playerThreeJoin.enabled = true;
-                    playerThreeAssigned.enabled = false;
                     charSelectPlayerThree.enabled = false;
                 }
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.Four)
                 {
                     playerFourJoin.enabled = true;
-                    playerFourAssigned.enabled = false;
                     charSelectPlayerFour.enabled = false;
                 }
                 GamePadManager.Disconnect(GlobalReferences.PlayerStates[i].Index);
@@ -630,23 +628,26 @@ public class PlayerAssignmentScript : MonoBehaviour
     public void PressBackToMain()
     {
         changeMenu = true;
-        foreach (PlayerState item in GlobalReferences.PlayerStates)
-        {
-            GamePadManager.Disconnect(item.Index);
-        }
-        GlobalReferences.PlayerStates.Clear();
+            foreach (PlayerState item in GlobalReferences.PlayerStates)
+            {
+                GamePadManager.Disconnect(item.Index);
+            }
+            GlobalReferences.PlayerStates.Clear();
 
-        SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("MainMenu");
+        
+        playerJoined[0] = false;
+        playerJoined[1] = false;
+        playerJoined[2] = false;
+        playerJoined[3] = false;
     }
 
     public void PressStartGame()
     {
+        if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
+        {
         StartNewGame();
-    }
-
-    public void PressNext()
-    {
-        SceneManager.LoadScene("Prototyp");
+        }
     }
     #endregion
 
