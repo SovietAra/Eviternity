@@ -106,14 +106,17 @@ public class Enemy : MonoBehaviour
     private void StatusScript_OnActivate(object sender, EventArgs e)
     {
         StatusEffect script = sender as StatusEffect;
-        if(script.name.Contains("Slow"))
+        if (script != null)
         {
-            navAgent.speed = slowedSpeed;
-        }
-        else if(script.name.Contains("Stun"))
-        {
-            navAgent.speed = 0;
-            
+            if (script.name.Contains("Slow"))
+            {
+                navAgent.speed = slowedSpeed;
+            }
+            else if (script.name.Contains("Stun"))
+            {
+                navAgent.speed = 0;
+
+            }
         }
     }
 
@@ -145,7 +148,8 @@ public class Enemy : MonoBehaviour
             }
 
             //Calculate Distance to target
-            distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
+            if(currentTarget != null)
+                distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
 
             UpdateRotation();
 

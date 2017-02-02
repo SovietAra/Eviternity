@@ -17,5 +17,13 @@ namespace Assets.Scripts
             
             return value;
         }
+
+        public static bool Between(float value, float minValue, float maxValue)
+        {
+            if (value >= minValue - Mathf.Epsilon && value <= maxValue + Mathf.Epsilon)
+                return true;
+
+            return false;
+        }
     }
 }

@@ -57,13 +57,14 @@ MonoBehaviour:
   damageRange: 1
   detonationTimer: 0.1
   invertGravityFactor: 0.5
-  lifeTime: 0.1
-  startDetonationTimer: 0
-  DestroyOnCollision: 0
+  lifeTime: 2
+  startDetonationTimer: 1
+  DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 1
   SpawnExplosion: 1
+  OverwriteExplosionValues: 0
   Explosion: {fileID: 1092858050321016, guid: bc51dba245ca0194d934add39af3d585, type: 2}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75

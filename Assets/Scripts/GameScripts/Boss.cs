@@ -10,12 +10,10 @@ public class Boss : MonoBehaviour
     public GameObject AOEWeapon;
     public GameObject IceWaveWeapon;
     public GameObject IcicleWeapon;
-    public GameObject StormAbility;
 
     private Weapon aoeWeapon;
     private Weapon iceWaveWeapon;
     private Weapon icicleWeapon;
-    private Ability stormAbility;
 
     private MoveScript moveScript;
     private DamageAbleObject healthContainer;
@@ -82,16 +80,6 @@ public class Boss : MonoBehaviour
             {
                 icicleWeapon = gobj.GetComponent<Weapon>();
                 icicleWeapon.OnPrimaryAttack += OnPrimaryAttack;
-            }
-        }
-
-        if (StormAbility != null)
-        {
-            GameObject gobj = Instantiate(StormAbility, transform);
-            if (gobj != null)
-            {
-                stormAbility = gobj.GetComponent<Ability>();
-                stormAbility.OnActivated += OnAbilityActivated;
             }
         }
 
@@ -279,7 +267,7 @@ public class Boss : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if (animationDuration < 0 && Mathf.Approximately(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y))
+        if (animationDuration < 0)
         {
             float distance = Vector3.Distance(currentTarget.transform.position, transform.position);
             WeaponDecider(currentTarget.transform.position, distance);
@@ -289,12 +277,14 @@ public class Boss : MonoBehaviour
     private void WeaponDecider(Vector3 targetPosition, float distance)
     {
         bool done = false;
-        if (aoeWeapon != null && false)
+        if (aoeWeapon != null && distance < 5f)
         {
             done = aoeWeapon.PrimaryAttack(transform.position, Vector3.zero, 0);
         }
 
-        if (iceWaveWeapon != null && !done)
+        if (iceWaveWeapon != null && !done 
+            && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f)
+            && distance < 10f)
         {
             done = iceWaveWeapon.PrimaryAttack(transform.position, transform.forward, angle);
         }
@@ -303,23 +293,13 @@ public class Boss : MonoBehaviour
         {
             done = icicleWeapon.PrimaryAttack(targetPosition, Vector3.zero, 0);
         }
-
-        if (stormAbility != null && !done)
-        {
-            stormAbility.Use();
-        }
     }
 
     private void OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         animationDuration = ((Weapon)sender).AnimationDuration;
     }
-
-    private void OnAbilityActivated(object sender, EventArgs e)
-    {
-        animationDuration = ((Ability)sender).AnimationDuration;
-    }
-
+    
     private void ResetBoss()
     {
         healthContainer.Heal(gameObject, healthContainer.MaxHealth);
