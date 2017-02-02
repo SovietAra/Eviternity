@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using System;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using XInputDotNetPure;
 
 public class Player : MonoBehaviour
@@ -52,6 +53,8 @@ public class Player : MonoBehaviour
     private Vector3 meshBounds;
 
     private float stepTimer;
+
+    private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
     #region InspectorFields
@@ -82,8 +85,9 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public bool OnIce;
+    
 
-    public AudioClip[] AudioClips = new AudioClip[31];
+    public AudioClip[] AudioClips = new AudioClip[50];
 
     [SerializeField]
     float ShotVolume;
@@ -309,7 +313,28 @@ public class Player : MonoBehaviour
         {
             InputOnIce();
         }
+
+        for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
+        {
+         
+            if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
+
+                audioSources[i].Play(); 
+
+            if (audioSources[i].isPlaying && !PlayMusicTheme[i])
+
+                audioSources[i].Stop();
+
+
+
+        }
+        
+
+
+
         CheckOverlappingObjects();
+
+
     }
     #endregion
     
@@ -792,5 +817,11 @@ public class Player : MonoBehaviour
 
             return 0;
         }
+    }
+
+    public void   PlayMusicThemePicker(int tmp, bool state)
+
+    {
+        PlayMusicTheme[tmp] = state;
     }
 }
