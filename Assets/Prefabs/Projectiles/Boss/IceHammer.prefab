@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4306035778900324}
   - component: {fileID: 136863909086862348}
   - component: {fileID: 114057011657559750}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IceHammer
   m_TagString: Projectile
   m_Icon: {fileID: 0}

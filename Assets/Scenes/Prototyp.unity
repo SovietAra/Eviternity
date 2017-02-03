@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c8d5d01bd6d014387949d60bb32b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 1209385188523736, guid: 298de2387580600478f43b4d36ba5aa6,
+  PlayerPrefab: {fileID: 1209385188523736, guid: 0fd93242d51970b47895ab566b8a11d1,
     type: 2}
   PauseMenuCanvas: {fileID: 1561763879}
   maxTeamHealth: 200
