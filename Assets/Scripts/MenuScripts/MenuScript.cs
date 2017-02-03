@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEditor.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
@@ -27,7 +22,6 @@ public class MenuScript : MonoBehaviour
 
     public void PressPlay()
     {
-        EditorSceneManager.LoadScene("PlayerAssignment");
         SceneManager.LoadScene("PlayerAssignment");
     }
 
