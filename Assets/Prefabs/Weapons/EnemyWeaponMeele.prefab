@@ -70,4 +70,4 @@ MonoBehaviour:
   ProduceHeat: 0
   HeatCooldown: 0
   SecondaryWeapon: {fileID: 0}
-  Projectile: {fileID: 1184549161438930, guid: f9bab6dad78bf7f41ac51c09e4b2f7d8, type: 2}
+  Projectile: {fileID: 1184549161438930, guid: 3fd2858bb9f57bc4aa56806ab492c5d9, type: 2}

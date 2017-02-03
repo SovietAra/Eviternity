@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114955743094048068}
   - component: {fileID: 135770454892661728}
   m_Layer: 0
-  m_Name: ProjectileMelee
+  m_Name: ProjectileEnemyMelee
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
