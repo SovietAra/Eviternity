@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114820282105720252}
   - component: {fileID: 96912481816556556}
   m_Layer: 10
-  m_Name: ProjectileShotgun
+  m_Name: PriPShotgun
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,6 +224,8 @@ MonoBehaviour:
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
+  SpawnExplosion: 0
+  OverwriteExplosionValues: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75

@@ -1106,8 +1106,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865923694238466}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.389694, y: 0.507, z: 8.9603615}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -154.19337, y: -13.159817, z: -273.2166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224500381575896340}
@@ -1492,7 +1492,7 @@ Animator:
   m_GameObject: {fileID: 1967203778796230}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ef71e540a43cccb4dba0662f264af405, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cec83379c45b2aa47b39e95209c02568, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1583,7 +1583,7 @@ MonoBehaviour:
   rotationSpeed: 3
   slowedSpeed: 3
   defaultSpeed: 8
-  attackRange: 1.5
+  attackRange: 2
   viewRange: 15
   enemyType: 1
   switchDelay: 32.3
@@ -1659,7 +1659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.121107265, b: 0.121107265, a: 0.785}
+  m_Color: {r: 1, g: 0.121107265, b: 0.121107265, a: 0.784}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1667,7 +1667,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
