@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1943094320875720}
+  m_RootGameObject: {fileID: 1097784883698690}
   m_IsPrefabParent: 1
---- !u!1 &1943094320875720
+--- !u!1 &1097784883698690
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224280512394599156}
-  - component: {fileID: 222766500912442108}
-  - component: {fileID: 114570839859425698}
+  - component: {fileID: 224550787929242730}
+  - component: {fileID: 222401094104367452}
+  - component: {fileID: 114170841575054544}
   m_Layer: 9
   m_Name: player3HealthBar_outline
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114570839859425698
+--- !u!114 &114170841575054544
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1943094320875720}
+  m_GameObject: {fileID: 1097784883698690}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -55,21 +55,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222766500912442108
+--- !u!222 &222401094104367452
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1943094320875720}
---- !u!224 &224280512394599156
+  m_GameObject: {fileID: 1097784883698690}
+--- !u!224 &224550787929242730
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1943094320875720}
+  m_GameObject: {fileID: 1097784883698690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -13.710979}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.42, y: 0.42, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

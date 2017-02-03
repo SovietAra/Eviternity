@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1569887316451116}
+  m_RootGameObject: {fileID: 1639795693969468}
   m_IsPrefabParent: 1
---- !u!1 &1569887316451116
+--- !u!1 &1639795693969468
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224466556149060490}
-  - component: {fileID: 222553082098026642}
-  - component: {fileID: 114206652143449090}
+  - component: {fileID: 224405073750294274}
+  - component: {fileID: 222302633000553890}
+  - component: {fileID: 114911850586201160}
   m_Layer: 5
   m_Name: player2HealthBar_bg
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114206652143449090
+--- !u!114 &114911850586201160
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1569887316451116}
+  m_GameObject: {fileID: 1639795693969468}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -55,27 +55,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222553082098026642
+--- !u!222 &222302633000553890
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1569887316451116}
---- !u!224 &224466556149060490
+  m_GameObject: {fileID: 1639795693969468}
+--- !u!224 &224405073750294274
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1569887316451116}
+  m_GameObject: {fileID: 1639795693969468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.305, y: 0.31, z: 0.25}
+  m_LocalScale: {x: 0.42, y: 0.42, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -46.5, y: -3.199997}
+  m_AnchoredPosition: {x: -70.53003, y: -3.8000488}
   m_SizeDelta: {x: 752, y: 84}
   m_Pivot: {x: 1, y: 1}

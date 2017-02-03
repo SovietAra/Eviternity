@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 18
-  damage: 6
+  damage: 20
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
@@ -224,6 +224,8 @@ MonoBehaviour:
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
+  SpawnExplosion: 0
+  OverwriteExplosionValues: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75

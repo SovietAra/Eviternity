@@ -9,13 +9,11 @@ public class Boss : MonoBehaviour
 {
     public GameObject AOEWeapon;
     public GameObject IceWaveWeapon;
-    public GameObject IcicleWeapon;
-    public GameObject StormAbility;
+    public GameObject IcicleAbility;
 
     private Weapon aoeWeapon;
     private Weapon iceWaveWeapon;
-    private Weapon icicleWeapon;
-    private Ability stormAbility;
+    private Ability icicleAbility;
 
     private MoveScript moveScript;
     private DamageAbleObject healthContainer;
@@ -75,23 +73,13 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if (IcicleWeapon != null)
+        if (IcicleAbility != null)
         {
-            GameObject gobj = Instantiate(IcicleWeapon, transform);
+            GameObject gobj = Instantiate(IcicleAbility, transform);
             if (gobj != null)
             {
-                icicleWeapon = gobj.GetComponent<Weapon>();
-                icicleWeapon.OnPrimaryAttack += OnPrimaryAttack;
-            }
-        }
-
-        if (StormAbility != null)
-        {
-            GameObject gobj = Instantiate(StormAbility, transform);
-            if (gobj != null)
-            {
-                stormAbility = gobj.GetComponent<Ability>();
-                stormAbility.OnActivated += OnAbilityActivated;
+                icicleAbility = gobj.GetComponent<Ability>();
+                icicleAbility.OnActivated += IcicleAbility_OnActivated;
             }
         }
 
@@ -163,9 +151,12 @@ public class Boss : MonoBehaviour
 
             if (currentTarget != null)
             {
-                SetTargetPosition(currentTarget.transform.position, minimumDistance);
-                DoRotation();
-                AttackPlayer();
+                if (animationDuration <= 0)
+                {
+                    SetTargetPosition(currentTarget.transform.position, minimumDistance);
+                    DoRotation();
+                    AttackPlayer();
+                }
             }
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14);
@@ -183,6 +174,9 @@ public class Boss : MonoBehaviour
             elapsedDamageTime += Time.deltaTime;
             receivedDamagePerSecond = damageReceived / elapsedDamageTime;
         }
+
+        if (currentTarget != null)
+            elapsedHitTime = 0f;
 
         elapsedHitTime += Time.deltaTime;
         if (elapsedHitTime > resetTime)
@@ -202,6 +196,7 @@ public class Boss : MonoBehaviour
         {
             if (agent.isOnNavMesh)
             {
+                agent.Resume();
                 agent.SetDestination(targetPosition);
                 agent.stoppingDistance = stoppingDistance;
             }
@@ -262,6 +257,13 @@ public class Boss : MonoBehaviour
         float damage = -1;
         for (int i = 0; i < playerScripts.Count; i++)
         {
+            if (playerScripts[i] == null)
+            {
+                playerScripts.RemoveAt(i);
+                i--;
+                continue;
+            }
+
             if (Vector3.Distance(playerScripts[i].transform.position, transform.position) < viewRange)
             {
                 float tempDamage = damageDone[(int)playerScripts[i].Index];
@@ -279,7 +281,7 @@ public class Boss : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if (animationDuration < 0 && Mathf.Approximately(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y))
+        if (animationDuration <= 0)
         {
             float distance = Vector3.Distance(currentTarget.transform.position, transform.position);
             WeaponDecider(currentTarget.transform.position, distance);
@@ -289,35 +291,35 @@ public class Boss : MonoBehaviour
     private void WeaponDecider(Vector3 targetPosition, float distance)
     {
         bool done = false;
-        if (aoeWeapon != null && false)
+        if (aoeWeapon != null && distance < 7f)
         {
-            done = aoeWeapon.PrimaryAttack(transform.position, Vector3.zero, 0);
+            done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
         }
 
-        if (iceWaveWeapon != null && !done)
+        if (iceWaveWeapon != null && !done && distance < 7f
+            && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
         {
-            done = iceWaveWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+            done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
         }
 
-        if (icicleWeapon != null && !done)
+        if (icicleAbility != null && !done && distance >= 7f)
         {
-            done = icicleWeapon.PrimaryAttack(targetPosition, Vector3.zero, 0);
-        }
-
-        if (stormAbility != null && !done)
-        {
-            stormAbility.Use();
+            Vector3 translation = targetPosition - transform.position;
+            icicleAbility.SpawnTranslation = translation;
+            done = icicleAbility.Use();
         }
     }
 
     private void OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
+        agent.Stop();
         animationDuration = ((Weapon)sender).AnimationDuration;
     }
 
-    private void OnAbilityActivated(object sender, EventArgs e)
+    private void IcicleAbility_OnActivated(object sender, EventArgs e)
     {
-        animationDuration = ((Ability)sender).AnimationDuration;
+        agent.Stop();
+        animationDuration = icicleAbility.AnimationDuration;
     }
 
     private void ResetBoss()

@@ -56,17 +56,17 @@ MonoBehaviour:
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 220
+  energyRequiredPerSeconds: 400
   energyRegenerationPerSecond: 100
   energyRequiredOnce: 0
-  regnerationDelay: 1
+  regnerationDelay: 0.5
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 0
   spawnOncePerActivation: 0
   destroyOnAbort: 1
   spawnObject: {fileID: 0}
   spawnForwardDistance: 0
-  spawnTranslation: {x: 0, y: 0, z: 0}
+  SpawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
   AbilityValue: 20

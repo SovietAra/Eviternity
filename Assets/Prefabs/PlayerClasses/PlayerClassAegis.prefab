@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 500
+  maxHealth: 500
   isImmortal: 0
 --- !u!114 &114584673856983150
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   RotateOnMove: 1
   PrimaryWeapon: {fileID: 1302081713190986, guid: 8eec1de659c7a014d9c7296bdcd16d70,
     type: 2}
-  SecondaryWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
+  SecondaryWeapon: {fileID: 1761816047511776, guid: 2d13056773f4bd5468d5c56afae01c36,
     type: 2}
   Ability: {fileID: 1106245875336466, guid: 3892a081e8b0cec4fa829c6f24345625, type: 2}
   SecondaryAbility: {fileID: 1657859246270480, guid: ce02c73a09e0aff4db5afc1921376a5e,
@@ -275,14 +275,33 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 34457a3a09d0fe84eb68b5ee88a5e861, type: 3}
   - {fileID: 8300000, guid: fdb419c1cc76fc5498295b4cec65ed11, type: 3}
   - {fileID: 8300000, guid: 2e82dbfe48f46aa4da258a5b75d323ca, type: 3}
-  - {fileID: 8300000, guid: 4b37d67245dc1ab438de1d7fa49fab5d, type: 3}
-  - {fileID: 8300000, guid: b13cef437bf4e7642bfea80e39df63c9, type: 3}
-  - {fileID: 8300000, guid: bc7ccac98d91f764fafe61cc237cdbb1, type: 3}
-  - {fileID: 8300000, guid: daa5e3c6a4247364b9bc0306c9a453cf, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 6eece261429ba4a4e917bb162ec5cf27, type: 3}
-  - {fileID: 8300000, guid: 0b18fb32f7ce5c04eb1e198ceebb9f75, type: 3}
-  - {fileID: 8300000, guid: c99890907c00e454886af0e635c2f0d4, type: 3}
-  - {fileID: 8300000, guid: 79723fd35ad547e44933801d7db4669a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 63e24b2fcf09d8942a6c90178f5670f4, type: 3}
+  - {fileID: 8300000, guid: 1e58f973a4d216245bdab96a8669ef4e, type: 3}
+  - {fileID: 8300000, guid: 37ca1a0d636068b4681c3e6a624e1275, type: 3}
+  - {fileID: 8300000, guid: 7f2ef5e6bd715de4eb8b22fb7435a415, type: 3}
+  - {fileID: 8300000, guid: 3b2c96a64192cea43b561ebe9f466f76, type: 3}
   ShotVolume: 0.2
   StepVolume: 0.4
   stepCooldown: 0.5

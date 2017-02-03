@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: ef71e540a43cccb4dba0662f264af405
+timeCreated: 1486045637
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bein1H.L
+    100002: Bein1H.R
+    100004: Bein1V.L
+    100006: Bein1V.R
+    100008: Bein2H.L
+    100010: Bein2H.R
+    100012: Bein2V.L
+    100014: Bein2V.R
+    100016: Bein3H.L
+    100018: Bein3H.L_end
+    100020: Bein3H.R
+    100022: Bein3H.R_end
+    100024: Bein3V.L
+    100026: Bein3V.L_end
+    100028: Bein3V.R
+    100030: Bein3V.R_end
+    100032: Bodymove1
+    100034: Bodymove1_end
+    100036: BodyMove2
+    100038: BodyMove2_end
+    100040: Camera
+    100042: Crawler Rig
+    100044: //RootNode
+    100046: Empty.001
+    100048: Hals
+    100050: Kopf
+    100052: "K\xF6rper1"
+    100054: "K\xF6rper2"
+    100056: Lamp
+    100058: Leg.v
+    100060: Mund1.L
+    100062: Mund1.R
+    100064: Mund2.L
+    100066: Mund2.L.001
+    100068: Mund2.L.001_end
+    100070: Mund2.R
+    100072: Mund2.R.001
+    100074: Mund2.R.001_end
+    100076: Steuerung1.L
+    100078: Steuerung1.L_end
+    100080: Steuerung1.R
+    100082: Steuerung1.R_end
+    100084: Steuerung2.L
+    100086: Steuerung2.L_end
+    100088: Steuerung2.R
+    100090: Steuerung2.R_end
+    400000: Bein1H.L
+    400002: Bein1H.R
+    400004: Bein1V.L
+    400006: Bein1V.R
+    400008: Bein2H.L
+    400010: Bein2H.R
+    400012: Bein2V.L
+    400014: Bein2V.R
+    400016: Bein3H.L
+    400018: Bein3H.L_end
+    400020: Bein3H.R
+    400022: Bein3H.R_end
+    400024: Bein3V.L
+    400026: Bein3V.L_end
+    400028: Bein3V.R
+    400030: Bein3V.R_end
+    400032: Bodymove1
+    400034: Bodymove1_end
+    400036: BodyMove2
+    400038: BodyMove2_end
+    400040: Camera
+    400042: Crawler Rig
+    400044: //RootNode
+    400046: Empty.001
+    400048: Hals
+    400050: Kopf
+    400052: "K\xF6rper1"
+    400054: "K\xF6rper2"
+    400056: Lamp
+    400058: Leg.v
+    400060: Mund1.L
+    400062: Mund1.R
+    400064: Mund2.L
+    400066: Mund2.L.001
+    400068: Mund2.L.001_end
+    400070: Mund2.R
+    400072: Mund2.R.001
+    400074: Mund2.R.001_end
+    400076: Steuerung1.L
+    400078: Steuerung1.L_end
+    400080: Steuerung1.R
+    400082: Steuerung1.R_end
+    400084: Steuerung2.L
+    400086: Steuerung2.L_end
+    400088: Steuerung2.R
+    400090: Steuerung2.R_end
+    4300000: Leg.v
+    7400000: Crawler Rig|Action
+    7400002: Crawler Rig|Action.001
+    7400004: Crawler Rig|Attack1
+    7400006: Crawler Rig|Attack2
+    7400008: Crawler Rig|Attack3
+    7400010: Crawler Rig|Attack3.001
+    7400012: Crawler Rig|Attack4
+    7400014: Crawler Rig|Die
+    7400016: Crawler Rig|Hit
+    7400018: Crawler Rig|Ideal
+    7400020: Crawler Rig|RangeAttack
+    7400022: Crawler Rig|RangeAttack.001
+    7400024: Crawler Rig|Walk
+    7400026: Crawler Rig|Walk.001
+    9500000: //RootNode
+    13700000: Leg.v
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

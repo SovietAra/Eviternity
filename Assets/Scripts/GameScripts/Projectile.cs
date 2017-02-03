@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
     private float detonationTimer = 2f;
 
     [SerializeField]
-    [Range(0.01f, 5f)]
+    [Range(-50.0f, 50f)]
     private float invertGravityFactor = 0.5f;
 
     [SerializeField]
@@ -130,27 +130,25 @@ public class Projectile : MonoBehaviour
 
     private void Detonate(DamageAbleObject collisionObject)
     {
-        if (DestroyOnCollision)
-            Destroy(gameObject);
-
-        if (!SpawnExplosion)
+        if (collisionObject != null)
         {
-            if (collisionObject != null)
-            {
-                bool isTeam = attacker != null && collisionObject.transform.CompareTag(Attacker.tag);
-                DoDamage(collisionObject.gameObject, collisionObject, damage, isTeam);
-            }
+            bool isTeam = attacker != null && collisionObject.transform.CompareTag(Attacker.tag);
+            DoDamage(collisionObject.gameObject, collisionObject, damage, isTeam);
         }
-        else
+
+        if (SpawnExplosion)
         {
             if (Explosion != null)
             {
                 GameObject explosionObj = Instantiate(Explosion, transform.position, transform.rotation);
                 Explosion explosionScript = explosionObj.GetComponent<Explosion>();
-                if(explosionScript != null && OverwriteExplosionValues)
+                if (explosionScript != null && OverwriteExplosionValues)
                     explosionScript.Init(damage, damageRange > 0 ? damageRange : explosionScript.Radius, attacker, 1.2f, DoAOETeamDamage ? TeamDamageMultiplicator : 0);
             }
         }
+
+        if (DestroyOnCollision)
+            Destroy(gameObject);
     }
 
     private void DoDamage(GameObject victim, DamageAbleObject damageAbleObject, float damage, bool teamDamage)
