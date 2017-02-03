@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
     private GameObject targetPlayer;
     private GameObject nearestTarget;
 
+    private Animator anim;
+
     private float enemyfront;
     private float distanceToPlayer;
     private float elapsedSwitchDelay = 0f;
@@ -69,11 +71,16 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent OnEnemyDeath;
     private Vector3 movement;
+
+    private bool attack;
     #endregion Privates
+
+
 
     // Use this for initialization
     private void Start()
     {
+        anim = transform.FindChild("Crawler_Animation").GetComponent<Animator>();
         dmgobjct = GetComponent<DamageAbleObject>();
         if (dmgobjct != null)
         {
@@ -120,10 +127,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
         CheckAlivePlayers();
         SetUI();
+
+
 
         if (isValidTarget && !Freeze) //On player found
         {
@@ -150,30 +160,50 @@ public class Enemy : MonoBehaviour
             //Calculate Distance to target
             if(currentTarget != null)
                 distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
+                
 
             UpdateRotation();
 
+
+
+
+           
             //Follow Target
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
+                bool walking = distanceToPlayer < viewRange;
+                
+                anim.SetBool("IsWalking", walking);
+
                 if (nearestTarget != null && navAgent != null)
                 {
                     if (navAgent.isOnNavMesh)
-                    {
+                    {                                                                      
                         navAgent.SetDestination(nearestTarget.transform.position);
                     }
                 }
             }
+            
             else if (distanceToPlayer < viewRange)
             {
                 targetPlayer = null;
                 isValidTarget = false;
+
             }
+
+            bool attackTmp = distanceToPlayer < attackRange;
+            anim.SetBool("IsMeleeAttack", attackTmp);
+
             if (distanceToPlayer < attackRange)
             {
-                if(primaryWeapon != null)
+
+
+                if (primaryWeapon != null)
+                {                                        
                     primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
+                }
             }
+   
 
             enemyfront = transform.eulerAngles.y;
         }

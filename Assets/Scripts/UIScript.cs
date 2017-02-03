@@ -17,19 +17,24 @@ public class UIScript : MonoBehaviour
     public GameObject Player1HealthUI_background;
     public GameObject Player1HealthUI_fill;
     public GameObject Player1HealthUI_outline;
+    public GameObject Player1Icon;
     public GameObject Player2HealthUI_background;
     public GameObject Player2HealthUI_fill;
     public GameObject Player2HealthUI_outline;
+    public GameObject Player2Icon;
     public GameObject Player3HealthUI_background;
     public GameObject Player3HealthUI_fill;
     public GameObject Player3HealthUI_outline;
+    public GameObject Player3Icon;
     public GameObject Player4HealthUI_background;
     public GameObject Player4HealthUI_fill;
     public GameObject Player4HealthUI_outline;
+    public GameObject Player4Icon;
     public Image TeamHealthBar;
     public Image TeamHealthBar_Border;
     public Sprite TeamHealthActive;
     public Sprite TeamHealthInactive;
+    public Sprite[] PlayerIcons;
 
     // Weapon UI
     public GameObject P1Weapon_background;
@@ -74,6 +79,7 @@ public class UIScript : MonoBehaviour
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
     private Image player1Heat;
+    private Image p1icon;
     private Image player1Weapon_1;
     private Image player1Weapon_2;
     private Image player1Weapon_3;
@@ -81,6 +87,7 @@ public class UIScript : MonoBehaviour
     private Image player2HealthBar_2;
     private Image player2HealthBar_3;
     private Image player2Heat;
+    private Image p2icon;
     private Image player2Weapon_1;
     private Image player2Weapon_2;
     private Image player2Weapon_3;
@@ -88,6 +95,7 @@ public class UIScript : MonoBehaviour
     private Image player3HealthBar_2;
     private Image player3HealthBar_3;
     private Image player3Heat;
+    private Image p3icon;
     private Image player3Weapon_1;
     private Image player3Weapon_2;
     private Image player3Weapon_3;
@@ -95,10 +103,15 @@ public class UIScript : MonoBehaviour
     private Image player4HealthBar_2;
     private Image player4HealthBar_3;
     private Image player4Heat;
+    private Image p4icon;
     private Image player4Weapon_1;
     private Image player4Weapon_2;
     private Image player4Weapon_3;
     private bool isHealing = false;
+    private bool P1iconSet = false;
+    private bool P2iconSet = false;
+    private bool P3iconSet = false;
+    private bool P4iconSet = false;
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityBars = new Image[12];
 
@@ -122,7 +135,7 @@ public class UIScript : MonoBehaviour
             foreach (GameObject player in CurrentPlayers)
             {
                 if (player != null)
-                    UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>());
+                    UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>(), player);
             }
 
             if (UICanvas.activeInHierarchy == false)
@@ -162,7 +175,7 @@ public class UIScript : MonoBehaviour
         CreateUI(index, UICanvas.transform);
         CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
     }
-
+    
     public void OnExit(PlayerIndex index)
     {
         CurrentPlayers = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
@@ -174,82 +187,180 @@ public class UIScript : MonoBehaviour
         isHealing = true;
     }
 
-    private void UpdateHealth(Player player, DamageAbleObject damageAbleObject)
+    private void UpdateHealth(Player playerScript, DamageAbleObject damageAbleObject, GameObject player)
     {
-        switch (player.Index)
+        switch (playerScript.Index)
         {
             case PlayerIndex.One:
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player1Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    player1Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
 
                     for (int j = 0; j < 3; j++)
                     {
-                        AbilityBars[j].fillAmount = player.AbilityEnergy(j + 1) / player.MaxEnergy;
+                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j + 1) / playerScript.MaxEnergy;
                     }
 
                     if (Indicate == null)
                     {
                         Indicate = Instantiate(P1IndicatorPlane);
                     }
-                    Indicate.transform.SetParent(player.transform, false);
+
+                    // Icon selection and instantiation, only call if icon is null!
+                    //Image icon = Player1Icon.GetComponent<Image>();
+                    //if (player.name == ("PlayerClassAegis(Clone)"))
+                    //{
+                    //    icon.sprite = PlayerIcons[0];
+                    //}
+                    //else if (player.name == ("PlayerClassStalker(Clone)"))
+                    //{
+                    //    icon.sprite = PlayerIcons[1];
+                    //}
+                    if (P1iconSet == false)
+                    {
+                        SetIcon(player, PlayerIndex.One);
+                        P1iconSet = true;
+                    }
+
+                    Indicate.transform.SetParent(playerScript.transform, false);
                 }
                 break;
 
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player2Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    player2Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
 
                     for (int j = 3; j < 6; j++)
                     {
-                        AbilityBars[j].fillAmount = player.AbilityEnergy(j - 2) / player.MaxEnergy;
+                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 2) / playerScript.MaxEnergy;
                     }
 
                     if (Indicate2 == null)
                     {
                         Indicate2 = Instantiate(P2IndicatorPlane);
                     }
-                    Indicate2.transform.SetParent(player.transform, false);
+
+                    if (P2iconSet == false)
+                    {
+                        SetIcon(player, PlayerIndex.Two);
+                        P2iconSet = true;
+                    }
+                    Indicate2.transform.SetParent(playerScript.transform, false);
                 }
                 break;
 
             case PlayerIndex.Three:
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player3Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    player3Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
 
                     for (int j = 6; j < 9; j++)
                     {
-                        AbilityBars[j].fillAmount = player.AbilityEnergy(j - 5) / player.MaxEnergy;
+                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 5) / playerScript.MaxEnergy;
                     }
 
                     if (Indicate3 == null)
                     {
                         Indicate3 = Instantiate(P3IndicatorPlane);
                     }
-                    Indicate3.transform.SetParent(player.transform, false);
+
+                    if (P3iconSet == false)
+                    {
+                        SetIcon(player, PlayerIndex.Three);
+                        P3iconSet = true;
+                    }
+                    Indicate3.transform.SetParent(playerScript.transform, false);
                 }
                 break;
 
             case PlayerIndex.Four:
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player4Heat.fillAmount = player.PrimaryHeat / player.PrimaryMaxHeat;
+                    player4Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
 
                     for (int j = 9; j < 12; j++)
                     {
-                        AbilityBars[j].fillAmount = player.AbilityEnergy(j - 8) / player.MaxEnergy;
+                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 8) / playerScript.MaxEnergy;
                     }
 
                     if (Indicate4 == null)
                     {
                         Indicate4 = Instantiate(P4IndicatorPlane);
                     }
-                    Indicate4.transform.SetParent(player.transform, false);
+
+                    if (P4iconSet == false)
+                    {
+                        SetIcon(player, PlayerIndex.Four);
+                        P4iconSet = true;
+                    }
+                    Indicate4.transform.SetParent(playerScript.transform, false);
                 }
                 break;
 
+            default:
+                break;
+        }
+    }
+
+    private void SetIcon(GameObject player, PlayerIndex index)
+    {
+        print("setting icon");
+        switch (index)
+        {
+            case PlayerIndex.One:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        p1icon.sprite = PlayerIcons[0];
+                        print("Player1 = aegis");
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        p1icon.sprite = PlayerIcons[1];
+                        print("Player1 = stalker");
+                    }
+                }
+                break;
+            case PlayerIndex.Two:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        p2icon.sprite = PlayerIcons[2];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        p2icon.sprite = PlayerIcons[3];
+                        print("Player2 = stalker");
+                    }
+                }
+                break;
+            case PlayerIndex.Three:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        p3icon.sprite = PlayerIcons[4];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        p3icon.sprite = PlayerIcons[5];
+                        print("Player3 = stalker");
+                    }
+                }
+                break;
+            case PlayerIndex.Four:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        p4icon.sprite = PlayerIcons[6];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        p4icon.sprite = PlayerIcons[7];
+                        print("Player4 = stalker");
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -268,6 +379,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1Weapon_1.gameObject);
                     Destroy(player1Weapon_2.gameObject);
                     Destroy(player1Weapon_3.gameObject);
+                    Destroy(p1icon.gameObject);
 
                     for (int k = 0; k < 3; k++)
                     {
@@ -284,6 +396,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2Weapon_1.gameObject);
                     Destroy(player2Weapon_2.gameObject);
                     Destroy(player2Weapon_3.gameObject);
+                    Destroy(p2icon.gameObject);
 
                     for (int k = 3; k < 6; k++)
                     {
@@ -300,6 +413,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Weapon_1.gameObject);
                     Destroy(player3Weapon_2.gameObject);
                     Destroy(player3Weapon_3.gameObject);
+                    Destroy(p3icon.gameObject);
 
                     for (int k = 6; k < 9; k++)
                     {
@@ -316,6 +430,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4Weapon_1.gameObject);
                     Destroy(player4Weapon_2.gameObject);
                     Destroy(player4Weapon_3.gameObject);
+                    Destroy(p4icon.gameObject);
 
                     for (int k = 9; k < 12; k++)
                     {
@@ -342,8 +457,11 @@ public class UIScript : MonoBehaviour
                     GameObject P1_2 = Instantiate(Player1HealthUI_fill);
                     player1HealthBar_2 = P1_2.GetComponent<Image>();
                     player1HealthBar_2.transform.SetParent(UICanvas, false);
-                    GameObject P1_3 = Instantiate(Player1HealthUI_outline);
-                    player1HealthBar_3 = P1_3.GetComponent<Image>();
+                    GameObject P1_3 = Instantiate(Player1Icon);
+                    p1icon = P1_3.GetComponent<Image>();
+                    p1icon.transform.SetParent(UICanvas, false);
+                    GameObject P1_4 = Instantiate(Player1HealthUI_outline);
+                    player1HealthBar_3 = P1_4.GetComponent<Image>();
                     player1HealthBar_3.transform.SetParent(UICanvas, false);
                     P1IndicatorPlane = IndicatorPlaneOne;
                     GameObject Heat1_1 = Instantiate(P1Weapon_background);
@@ -375,8 +493,11 @@ public class UIScript : MonoBehaviour
                     GameObject P2_2 = Instantiate(Player2HealthUI_fill);
                     player2HealthBar_2 = P2_2.GetComponent<Image>();
                     player2HealthBar_2.transform.SetParent(UICanvas, false);
-                    GameObject P2_3 = Instantiate(Player2HealthUI_outline);
-                    player2HealthBar_3 = P2_3.GetComponent<Image>();
+                    GameObject P2_3 = Instantiate(Player2Icon);
+                    p2icon = P2_3.GetComponent<Image>();
+                    p2icon.transform.SetParent(UICanvas, false);
+                    GameObject P2_4 = Instantiate(Player2HealthUI_outline);
+                    player2HealthBar_3 = P2_4.GetComponent<Image>();
                     player2HealthBar_3.transform.SetParent(UICanvas, false);
                     P2IndicatorPlane = IndicatorPlaneTwo;
                     GameObject Heat2_1 = Instantiate(P2Weapon_background);
@@ -408,8 +529,11 @@ public class UIScript : MonoBehaviour
                     GameObject P3_2 = Instantiate(Player3HealthUI_fill);
                     player3HealthBar_2 = P3_2.GetComponent<Image>();
                     player3HealthBar_2.transform.SetParent(UICanvas, false);
-                    GameObject P3_3 = Instantiate(Player3HealthUI_outline);
-                    player3HealthBar_3 = P3_3.GetComponent<Image>();
+                    GameObject P3_3 = Instantiate(Player3Icon);
+                    p3icon = P3_3.GetComponent<Image>();
+                    p3icon.transform.SetParent(UICanvas, false);
+                    GameObject P3_4 = Instantiate(Player3HealthUI_outline);
+                    player3HealthBar_3 = P3_4.GetComponent<Image>();
                     player3HealthBar_3.transform.SetParent(UICanvas, false);
                     P3IndicatorPlane = IndicatorPlaneThree;
                     GameObject Heat3_1 = Instantiate(P3Weapon_background);
@@ -441,8 +565,11 @@ public class UIScript : MonoBehaviour
                     GameObject P4_2 = Instantiate(Player4HealthUI_fill);
                     player4HealthBar_2 = P4_2.GetComponent<Image>();
                     player4HealthBar_2.transform.SetParent(UICanvas, false);
-                    GameObject P4_3 = Instantiate(Player4HealthUI_outline);
-                    player4HealthBar_3 = P4_3.GetComponent<Image>();
+                    GameObject P4_3 = Instantiate(Player4Icon);
+                    p4icon = P4_3.GetComponent<Image>();
+                    p4icon.transform.SetParent(UICanvas, false);
+                    GameObject P4_4 = Instantiate(Player4HealthUI_outline);
+                    player4HealthBar_3 = P4_4.GetComponent<Image>();
                     player4HealthBar_3.transform.SetParent(UICanvas, false);
                     P4IndicatorPlane = IndicatorPlaneFour;
                     GameObject Heat4_1 = Instantiate(P4Weapon_background);

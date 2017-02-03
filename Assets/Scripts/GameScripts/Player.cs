@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     private GameObject mainGameObject;
     private UIScript uiScript;
 
+    public Animator healingAnim;
+
     private Vector3 meshBounds;
 
     private float stepTimer;
@@ -135,6 +137,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        
         //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
@@ -377,6 +380,7 @@ public class Player : MonoBehaviour
         if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
+            healingAnim.SetTrigger("healIAnimationIsActivated");
         }
 
         if (state.Buttons.Y == ButtonState.Released)
@@ -395,7 +399,7 @@ public class Player : MonoBehaviour
             executed = TryAbillity();
         }
 
-        if (state.Buttons.A == ButtonState.Pressed && !executed)
+        if (state.Buttons.RightStick == ButtonState.Pressed && !executed)
         {
             executed = TryDash();
         }
