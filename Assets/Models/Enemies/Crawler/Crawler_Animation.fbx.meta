@@ -134,7 +134,1687 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Crawler Rig|Action
+      takeName: Crawler Rig|Action
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Action.001
+      takeName: Crawler Rig|Action.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Attack1
+      takeName: Crawler Rig|Attack1
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Attack2
+      takeName: Crawler Rig|Attack2
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Attack3
+      takeName: Crawler Rig|Attack3
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Attack3.001
+      takeName: Crawler Rig|Attack3.001
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Attack4
+      takeName: Crawler Rig|Attack4
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Die
+      takeName: Crawler Rig|Die
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Hit
+      takeName: Crawler Rig|Hit
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Ideal
+      takeName: Crawler Rig|Ideal
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|RangeAttack
+      takeName: Crawler Rig|RangeAttack
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|RangeAttack.001
+      takeName: Crawler Rig|RangeAttack.001
+      firstFrame: 0
+      lastFrame: 53
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Walk
+      takeName: Crawler Rig|Walk
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crawler Rig|Walk.001
+      takeName: Crawler Rig|Walk.001
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 1
+      - path: Crawler Rig
+        weight: 1
+      - path: Crawler Rig/Bodymove1
+        weight: 1
+      - path: Crawler Rig/Bodymove1/Bodymove1_end
+        weight: 1
+      - path: Crawler Rig/BodyMove2
+        weight: 1
+      - path: Crawler Rig/BodyMove2/BodyMove2_end
+        weight: 1
+      - path: Crawler Rig/Hals
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.L/Mund2.L/Mund2.L.001/Mund2.L.001_end
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001
+        weight: 1
+      - path: Crawler Rig/Hals/Kopf/Mund1.R/Mund2.R/Mund2.R.001/Mund2.R.001_end
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.L/Bein2V.L/Bein3V.L/Bein3V.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/Bein1V.R/Bein2V.R/Bein3V.R/Bein3V.R_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.L/Bein2H.L/Bein3H.L/Bein3H.L_end"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R"
+        weight: 1
+      - path: "Crawler Rig/K\xF6rper1/K\xF6rper2/Bein1H.R/Bein2H.R/Bein3H.R/Bein3H.R_end"
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L
+        weight: 1
+      - path: Crawler Rig/Steuerung1.L/Steuerung1.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R
+        weight: 1
+      - path: Crawler Rig/Steuerung1.R/Steuerung1.R_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L
+        weight: 1
+      - path: Crawler Rig/Steuerung2.L/Steuerung2.L_end
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R
+        weight: 1
+      - path: Crawler Rig/Steuerung2.R/Steuerung2.R_end
+        weight: 1
+      - path: Empty.001
+        weight: 1
+      - path: Lamp
+        weight: 1
+      - path: Leg.v
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
