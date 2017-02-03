@@ -56,7 +56,7 @@ public class Ability : MonoBehaviour
     private float spawnForwardDistance = 1;
 
     [SerializeField]
-    private Vector3 spawnTranslation = Vector3.zero;
+    public Vector3 SpawnTranslation = Vector3.zero;
 
     [SerializeField]
     private bool allowMultiplyObjects = false;
@@ -218,7 +218,7 @@ public class Ability : MonoBehaviour
         if (spawnedObjects.Count == 0 || (allowMultiplyObjects && objectsAtTheSameTime < spawnedObjects.Count))
         {
             GameObject gobj = Instantiate(spawnObject);
-            gobj.transform.position = transform.parent.position + (transform.parent.forward * spawnForwardDistance) + spawnTranslation;
+            gobj.transform.position = transform.parent.position + (transform.parent.forward * spawnForwardDistance) + SpawnTranslation;
             if(MultiplyRotation)
                 gobj.transform.localRotation *= transform.parent.rotation;
 
