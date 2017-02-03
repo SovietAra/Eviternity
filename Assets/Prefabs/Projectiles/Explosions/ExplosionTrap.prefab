@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 10
   damageReduction: 1
+  UseDamageReduction: 1
   teamDamageMultiplicator: 1
   damage: 10
   StatusEffect: {fileID: 0}

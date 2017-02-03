@@ -127,7 +127,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         CheckAlivePlayers();
@@ -173,7 +172,8 @@ public class Enemy : MonoBehaviour
             {
                 bool walking = distanceToPlayer < viewRange;
                 
-                anim.SetBool("IsWalking", walking);
+                if(anim != null && anim.isInitialized)
+                    anim.SetBool("IsWalking", walking);
 
                 if (nearestTarget != null && navAgent != null)
                 {
@@ -192,7 +192,8 @@ public class Enemy : MonoBehaviour
             }
 
             bool attackTmp = distanceToPlayer < attackRange;
-            anim.SetBool("IsMeleeAttack", attackTmp);
+            if(anim != null && anim.isInitialized)
+                anim.SetBool("IsMeleeAttack", attackTmp);
 
             if (distanceToPlayer < attackRange)
             {

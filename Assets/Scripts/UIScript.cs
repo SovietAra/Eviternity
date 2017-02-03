@@ -313,12 +313,10 @@ public class UIScript : MonoBehaviour
                     if (player.name == ("PlayerClassAegis(Clone)"))
                     {
                         p1icon.sprite = PlayerIcons[0];
-                        print("Player1 = aegis");
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         p1icon.sprite = PlayerIcons[1];
-                        print("Player1 = stalker");
                     }
                 }
                 break;
@@ -331,7 +329,6 @@ public class UIScript : MonoBehaviour
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         p2icon.sprite = PlayerIcons[3];
-                        print("Player2 = stalker");
                     }
                 }
                 break;
@@ -344,7 +341,6 @@ public class UIScript : MonoBehaviour
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         p3icon.sprite = PlayerIcons[5];
-                        print("Player3 = stalker");
                     }
                 }
                 break;
@@ -357,7 +353,6 @@ public class UIScript : MonoBehaviour
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         p4icon.sprite = PlayerIcons[7];
-                        print("Player4 = stalker");
                     }
                 }
                 break;
