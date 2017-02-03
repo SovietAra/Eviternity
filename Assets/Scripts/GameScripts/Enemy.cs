@@ -156,7 +156,13 @@ public class Enemy : MonoBehaviour
             //Follow Target
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                navAgent.SetDestination(nearestTarget.transform.position);
+                if (nearestTarget != null && navAgent != null)
+                {
+                    if (navAgent.isOnNavMesh)
+                    {
+                        navAgent.SetDestination(nearestTarget.transform.position);
+                    }
+                }
             }
             else if (distanceToPlayer < viewRange)
             {
