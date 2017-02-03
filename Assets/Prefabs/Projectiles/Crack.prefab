@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4766079563063842}
   - component: {fileID: 198173642890747642}
   - component: {fileID: 199629342808844656}
+  - component: {fileID: 114000374803502660}
+  - component: {fileID: 135505789710441206}
   m_Layer: 0
   m_Name: Crack
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +105,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &114000374803502660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117652589295750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a96568ee212d34789c5d4a05330726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  damageReduction: 1
+  UseDamageReduction: 1
+  teamDamageMultiplicator: 0
+  damage: 1
+  StatusEffect: {fileID: 1086101472029054, guid: 5609bee2f64a4c64a96fdc09965ee37d,
+    type: 2}
+--- !u!135 &135505789710441206
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1117652589295750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198173642890747642
 ParticleSystem:
   m_ObjectHideFlags: 1
