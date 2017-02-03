@@ -56,10 +56,10 @@ MonoBehaviour:
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 100
-  energyRegenerationPerSecond: 20
+  energyRequiredPerSeconds: 200
+  energyRegenerationPerSecond: 10
   energyRequiredOnce: 0
-  regnerationDelay: 1
+  regnerationDelay: 0.1
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 1
   spawnOncePerActivation: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   spawnObject: {fileID: 1184549161438930, guid: f9bab6dad78bf7f41ac51c09e4b2f7d8,
     type: 2}
   spawnForwardDistance: 0
-  spawnTranslation: {x: 0, y: 0, z: 0}
+  SpawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
   AbilityValue: 40
