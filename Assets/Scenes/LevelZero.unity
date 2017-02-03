@@ -5309,16 +5309,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 86206905}
     m_Modifications:
-    - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4340625546103528, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -190.88713
@@ -5354,6 +5344,16 @@ Prefab:
     - target: {fileID: 1830940599666644, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
       propertyPath: m_Name
       value: Shooter (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
@@ -11016,12 +11016,12 @@ Prefab:
     - target: {fileID: 114871071950309040, guid: 2b1696b364f857a4aa3787214324fc59,
         type: 2}
       propertyPath: minZoom
-      value: 40
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114871071950309040, guid: 2b1696b364f857a4aa3787214324fc59,
         type: 2}
       propertyPath: maxZoom
-      value: 50
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
         type: 2}
