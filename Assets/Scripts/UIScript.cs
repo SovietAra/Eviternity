@@ -79,6 +79,7 @@ public class UIScript : MonoBehaviour
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
     private Image player1Heat;
+    private Image p1icon;
     private Image player1Weapon_1;
     private Image player1Weapon_2;
     private Image player1Weapon_3;
@@ -86,6 +87,7 @@ public class UIScript : MonoBehaviour
     private Image player2HealthBar_2;
     private Image player2HealthBar_3;
     private Image player2Heat;
+    private Image p2icon;
     private Image player2Weapon_1;
     private Image player2Weapon_2;
     private Image player2Weapon_3;
@@ -93,6 +95,7 @@ public class UIScript : MonoBehaviour
     private Image player3HealthBar_2;
     private Image player3HealthBar_3;
     private Image player3Heat;
+    private Image p3icon;
     private Image player3Weapon_1;
     private Image player3Weapon_2;
     private Image player3Weapon_3;
@@ -100,6 +103,7 @@ public class UIScript : MonoBehaviour
     private Image player4HealthBar_2;
     private Image player4HealthBar_3;
     private Image player4Heat;
+    private Image p4icon;
     private Image player4Weapon_1;
     private Image player4Weapon_2;
     private Image player4Weapon_3;
@@ -306,57 +310,53 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    Image icon1 = Player1Icon.GetComponent<Image>();
                     if (player.name == ("PlayerClassAegis(Clone)"))
                     {
-                        icon1.sprite = PlayerIcons[0];
+                        p1icon.sprite = PlayerIcons[0];
                         print("Player1 = aegis");
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
-                        icon1.sprite = PlayerIcons[1];
+                        p1icon.sprite = PlayerIcons[1];
                         print("Player1 = stalker");
                     }
                 }
                 break;
             case PlayerIndex.Two:
                 {
-                    Image icon2 = Player2Icon.GetComponent<Image>();
                     if (player.name == ("PlayerClassAegis(Clone)"))
                     {
-                        icon2.sprite = PlayerIcons[2];
+                        p2icon.sprite = PlayerIcons[2];
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
-                        icon2.sprite = PlayerIcons[3];
+                        p2icon.sprite = PlayerIcons[3];
                         print("Player2 = stalker");
                     }
                 }
                 break;
             case PlayerIndex.Three:
                 {
-                    Image icon3 = Player3Icon.GetComponent<Image>();
                     if (player.name == ("PlayerClassAegis(Clone)"))
                     {
-                        icon3.sprite = PlayerIcons[4];
+                        p3icon.sprite = PlayerIcons[4];
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
-                        icon3.sprite = PlayerIcons[5];
+                        p3icon.sprite = PlayerIcons[5];
                         print("Player3 = stalker");
                     }
                 }
                 break;
             case PlayerIndex.Four:
                 {
-                    Image icon4 = Player4Icon.GetComponent<Image>();
                     if (player.name == ("PlayerClassAegis(Clone)"))
                     {
-                        icon4.sprite = PlayerIcons[6];
+                        p4icon.sprite = PlayerIcons[6];
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
-                        icon4.sprite = PlayerIcons[7];
+                        p4icon.sprite = PlayerIcons[7];
                         print("Player4 = stalker");
                     }
                 }
@@ -379,7 +379,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1Weapon_1.gameObject);
                     Destroy(player1Weapon_2.gameObject);
                     Destroy(player1Weapon_3.gameObject);
-                    Destroy(Player1Icon.gameObject);
+                    Destroy(p1icon.gameObject);
 
                     for (int k = 0; k < 3; k++)
                     {
@@ -396,7 +396,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2Weapon_1.gameObject);
                     Destroy(player2Weapon_2.gameObject);
                     Destroy(player2Weapon_3.gameObject);
-                    Destroy(Player2Icon.gameObject);
+                    Destroy(p2icon.gameObject);
 
                     for (int k = 3; k < 6; k++)
                     {
@@ -413,7 +413,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Weapon_1.gameObject);
                     Destroy(player3Weapon_2.gameObject);
                     Destroy(player3Weapon_3.gameObject);
-                    Destroy(Player3Icon.gameObject);
+                    Destroy(p3icon.gameObject);
 
                     for (int k = 6; k < 9; k++)
                     {
@@ -430,7 +430,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4Weapon_1.gameObject);
                     Destroy(player4Weapon_2.gameObject);
                     Destroy(player4Weapon_3.gameObject);
-                    Destroy(Player4Icon.gameObject);
+                    Destroy(p4icon.gameObject);
 
                     for (int k = 9; k < 12; k++)
                     {
@@ -458,7 +458,7 @@ public class UIScript : MonoBehaviour
                     player1HealthBar_2 = P1_2.GetComponent<Image>();
                     player1HealthBar_2.transform.SetParent(UICanvas, false);
                     GameObject P1_3 = Instantiate(Player1Icon);
-                    Image p1icon = P1_3.GetComponent<Image>();
+                    p1icon = P1_3.GetComponent<Image>();
                     p1icon.transform.SetParent(UICanvas, false);
                     GameObject P1_4 = Instantiate(Player1HealthUI_outline);
                     player1HealthBar_3 = P1_4.GetComponent<Image>();
@@ -494,8 +494,8 @@ public class UIScript : MonoBehaviour
                     player2HealthBar_2 = P2_2.GetComponent<Image>();
                     player2HealthBar_2.transform.SetParent(UICanvas, false);
                     GameObject P2_3 = Instantiate(Player2Icon);
-                    Image p1icon = P2_3.GetComponent<Image>();
-                    p1icon.transform.SetParent(UICanvas, false);
+                    p2icon = P2_3.GetComponent<Image>();
+                    p2icon.transform.SetParent(UICanvas, false);
                     GameObject P2_4 = Instantiate(Player2HealthUI_outline);
                     player2HealthBar_3 = P2_4.GetComponent<Image>();
                     player2HealthBar_3.transform.SetParent(UICanvas, false);
@@ -530,8 +530,8 @@ public class UIScript : MonoBehaviour
                     player3HealthBar_2 = P3_2.GetComponent<Image>();
                     player3HealthBar_2.transform.SetParent(UICanvas, false);
                     GameObject P3_3 = Instantiate(Player3Icon);
-                    Image p1icon = P3_3.GetComponent<Image>();
-                    p1icon.transform.SetParent(UICanvas, false);
+                    p3icon = P3_3.GetComponent<Image>();
+                    p3icon.transform.SetParent(UICanvas, false);
                     GameObject P3_4 = Instantiate(Player3HealthUI_outline);
                     player3HealthBar_3 = P3_4.GetComponent<Image>();
                     player3HealthBar_3.transform.SetParent(UICanvas, false);
@@ -566,8 +566,8 @@ public class UIScript : MonoBehaviour
                     player4HealthBar_2 = P4_2.GetComponent<Image>();
                     player4HealthBar_2.transform.SetParent(UICanvas, false);
                     GameObject P4_3 = Instantiate(Player4Icon);
-                    Image p1icon = P4_3.GetComponent<Image>();
-                    p1icon.transform.SetParent(UICanvas, false);
+                    p4icon = P4_3.GetComponent<Image>();
+                    p4icon.transform.SetParent(UICanvas, false);
                     GameObject P4_4 = Instantiate(Player4HealthUI_outline);
                     player4HealthBar_3 = P4_4.GetComponent<Image>();
                     player4HealthBar_3.transform.SetParent(UICanvas, false);
