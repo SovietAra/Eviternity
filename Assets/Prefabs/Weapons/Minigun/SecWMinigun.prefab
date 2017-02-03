@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4779555908977656}
   - component: {fileID: 114152953879126618}
   m_Layer: 0
-  m_Name: PriWDrill
+  m_Name: SecWMinigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

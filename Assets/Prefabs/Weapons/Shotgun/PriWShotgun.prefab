@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4926958602366876}
   - component: {fileID: 114506238796585466}
   m_Layer: 0
-  m_Name: PrimWeaponShotgun
+  m_Name: PriWShotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
