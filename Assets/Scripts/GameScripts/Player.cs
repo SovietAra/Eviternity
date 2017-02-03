@@ -725,6 +725,7 @@ public class Player : MonoBehaviour
             if (!audioSources[1].isPlaying)
                 audioSources[1].Play();
             Destroy(gameObject);
+            uiScript.OnExit(index);
         }
     }
 
