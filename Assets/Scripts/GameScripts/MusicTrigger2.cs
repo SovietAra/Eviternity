@@ -9,7 +9,7 @@ public class MusicTrigger2 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
-        GameObject.FindGameObjectWithTag("MusicPlayer")
+        GameObject.FindGameObjectWithTag("MusicObject")
             .GetComponent<MusicObjectScript>()
             .PlayMusicThemePicker(MusicThemeIndex, true);
     }
