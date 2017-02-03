@@ -299,7 +299,7 @@ public class Boss : MonoBehaviour
         if (iceWaveWeapon != null && !done && distance < 7f
             && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
         {
-            done = iceWaveWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+            done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
         }
 
         if (icicleAbility != null && !done && distance >= 7f)

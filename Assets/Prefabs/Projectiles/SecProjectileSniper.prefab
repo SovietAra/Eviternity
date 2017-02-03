@@ -213,16 +213,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 22
+  speed: 20
   damage: 6
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
   lifeTime: 10
+  startDetonationTimer: 0
   DestroyOnCollision: 0
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
+  SpawnExplosion: 0
+  OverwriteExplosionValues: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
   TeamDamageMultiplicator: 0.75

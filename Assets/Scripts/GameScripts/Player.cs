@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
         if (SecondaryAbility != null)
         {
             secondaryAbility = Instantiate(SecondaryAbility, transform).GetComponent<Ability>();
-            if (ability.name.Contains("Dash"))
+            if (secondaryAbility.name.Contains("Dash"))
             {
                 secondaryAbility.OnActivated += DashAbility_OnActivated;
                 secondaryAbility.OnAbort += DashAbility_OnAbort;
