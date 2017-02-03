@@ -880,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ES: {fileID: 1616837799}
+  ClickClip: {fileID: 8300000, guid: 40d23d1ce3b8e2a45981990b1de91c3e, type: 3}
 --- !u!114 &1623615212
 MonoBehaviour:
   m_ObjectHideFlags: 0

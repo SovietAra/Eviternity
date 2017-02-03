@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5651e95458760f84d830d7060b820c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimationDuration: 0
   activeOnKeyPressed: 0
   abortAble: 1
   maxEnergy: 100
@@ -63,10 +64,10 @@ MonoBehaviour:
   spawnObjectOnActivation: 1
   spawnOncePerActivation: 1
   destroyOnAbort: 0
-  spawnObject: {fileID: 1419582517019900, guid: 4e01031e96ee80244be8170ac672cba8,
+  spawnObject: {fileID: 1117652589295750, guid: c2d89e8e1cc3c5e4bb0b17893b1d08bc,
     type: 2}
   spawnForwardDistance: 0
-  spawnTranslation: {x: 0, y: 0, z: 0}
+  SpawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
   AbilityValue: 0

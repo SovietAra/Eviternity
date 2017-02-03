@@ -13,7 +13,7 @@ public class FollowingCamera : MonoBehaviour
     private List<Transform> followedObjects;
 
     [SerializeField]
-    private float minZoom = 8f, maxZoom = 15f;
+    public float minZoom = 8f, maxZoom = 15f;
 
     [SerializeField]
     private ZoomState state;
