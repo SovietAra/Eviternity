@@ -1589,7 +1589,7 @@ MonoBehaviour:
   switchDelay: 32.3
   HealthSlider: {fileID: 114205726039098528}
   Freeze: 0
-  PrimaryWeapon: {fileID: 1761816047511776, guid: 0e1bfa490b38c74499f9f6795992f005,
+  PrimaryWeapon: {fileID: 1761816047511776, guid: d89e6c8e65e3e16468489aa8729263e1,
     type: 2}
   OnEnemyDeath:
     m_PersistentCalls:
