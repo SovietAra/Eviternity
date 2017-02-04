@@ -392,7 +392,7 @@ public class Player : MonoBehaviour
             executed = TryAbillity();
         }
 
-        if ((state.Buttons.RightStick == ButtonState.Pressed || state.Buttons.A == ButtonState.Pressed) && !executed)
+        if ((state.Buttons.LeftStick == ButtonState.Pressed || state.Buttons.A == ButtonState.Pressed) && !executed)
         {
             executed = TryDash();
         }
