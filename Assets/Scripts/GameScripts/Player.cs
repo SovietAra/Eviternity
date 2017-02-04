@@ -92,13 +92,10 @@ public class Player : MonoBehaviour
     public AudioClip[] AudioClips = new AudioClip[50];
 
     [SerializeField]
-    float ShotVolume;
+    private float StepVolume = 0.4f;
 
     [SerializeField]
-    float StepVolume;
-
-    [SerializeField]
-    float stepCooldown;
+    private float stepCooldown = 0.5f;
     #endregion
 
     #region EventHandlers
@@ -161,8 +158,7 @@ public class Player : MonoBehaviour
         //var Walk_Ice_4_Sound = audioSources[6];   18-22 Snow_Walk
         //var Walk_Ice_5_Sound = audioSources[7]; 
         //var Hit1_Sound = audioSources[7];         23-26 Hit
-
-        audioSources[10].volume = ShotVolume;
+        
         for(int i = 3; i < 23; i++)
         {
             audioSources[i].volume = StepVolume;
@@ -427,9 +423,7 @@ public class Player : MonoBehaviour
             moveScript.Move(finalVelocity);
         }
     }
-
-    bool preVis = false;
-    Vector3 lastVec = Vector3.zero;
+    
     private void Borders()
     {
         xMax = (mainCamera.ViewportPointToRay(new Vector3(1, 1)).origin +

@@ -19,6 +19,10 @@ public class DamageAbleObject : MonoBehaviour
     public event EventHandler<OnHealthChangedArgs> OnReceiveHealth;
     public event EventHandler<StatusEffectArgs> OnNewStatusEffect;
 
+    public AudioClip DamageSound;
+    public AudioClip DeathSound;
+    private AudioSource audioSource;
+
     public float Health
     {
         get { return health; }
@@ -32,6 +36,10 @@ public class DamageAbleObject : MonoBehaviour
 	// Use this for initialization
 	private void Start ()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+
         if(health > maxHealth)
             health = maxHealth;
 	}
@@ -70,6 +78,20 @@ public class DamageAbleObject : MonoBehaviour
                     health = 0;
                     if (OnDeath != null)
                         OnDeath(this, EventArgs.Empty);
+
+                    if (audioSource != null && DeathSound != null)
+                    {
+                        audioSource.clip = DeathSound;
+                        audioSource.Play();
+                    }
+                }
+                else
+                {
+                    if (audioSource != null && DamageSound != null && !audioSource.isPlaying)
+                    {
+                        audioSource.clip = DamageSound;
+                        audioSource.Play();
+                    }
                 }
             }
         }
