@@ -391,22 +391,22 @@ public class Player : MonoBehaviour
 
         #region AttackAnimationHandler
 
-        if (!(state.Triggers.Right > 0 && !executed))
+        if (!(state.Triggers.Right > 0 && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("RightAttack", false);
         }
 
-        if (!(state.Triggers.Left > 0 && !executed))
+        if (!(state.Triggers.Left > 0 && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("LeftAttack", false);
         }
 
-        if (!(state.Buttons.RightShoulder == ButtonState.Pressed && !executed))
+        if (!(state.Buttons.RightShoulder == ButtonState.Pressed && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("RightAttack2", false);
         }
 
-        if (!(state.Buttons.LeftShoulder == ButtonState.Pressed && !executed))
+        if (!(state.Buttons.LeftShoulder == ButtonState.Pressed && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("LeftAttack2", false);
         }
