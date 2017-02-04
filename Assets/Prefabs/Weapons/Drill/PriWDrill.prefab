@@ -69,6 +69,9 @@ MonoBehaviour:
   AutoReload: 1
   ProduceHeat: 0
   HeatCooldown: 0
+  OverwriteSound: 1
+  FireSound: {fileID: 0}
+  ReloadSound: {fileID: 0}
   SecondaryWeapon: {fileID: 1761816047511776, guid: 4abee4b9b1f71854691220adb8b211ec,
     type: 2}
   Projectile: {fileID: 1184549161438930, guid: 90c834b3bfbfdd5448f150cf491ef362, type: 2}

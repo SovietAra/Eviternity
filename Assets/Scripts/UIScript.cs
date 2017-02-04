@@ -41,18 +41,34 @@ public class UIScript : MonoBehaviour
     public GameObject P1Weapon_border;
     public GameObject P1Weapon_icon;
     public GameObject P1WeaponHeat;
+    public GameObject P1SecWeapon_background;
+    public GameObject P1SecWeapon_border;
+    public GameObject P1SecWeapon_icon;
+    public GameObject P1SecWeaponHeat;
     public GameObject P2Weapon_background;
     public GameObject P2Weapon_border;
     public GameObject P2Weapon_icon;
     public GameObject P2WeaponHeat;
+    public GameObject P2SecWeapon_background;
+    public GameObject P2SecWeapon_border;
+    public GameObject P2SecWeapon_icon;
+    public GameObject P2SecWeaponHeat;
     public GameObject P3Weapon_background;
     public GameObject P3Weapon_border;
     public GameObject P3Weapon_icon;
     public GameObject P3WeaponHeat;
+    public GameObject P3SecWeapon_background;
+    public GameObject P3SecWeapon_border;
+    public GameObject P3SecWeapon_icon;
+    public GameObject P3SecWeaponHeat;
     public GameObject P4Weapon_background;
     public GameObject P4Weapon_border;
     public GameObject P4Weapon_icon;
     public GameObject P4WeaponHeat;
+    public GameObject P4SecWeapon_background;
+    public GameObject P4SecWeapon_border;
+    public GameObject P4SecWeapon_icon;
+    public GameObject P4SecWeaponHeat;
 
     // Abilities
     public GameObject[] EnergyBars;
@@ -63,6 +79,7 @@ public class UIScript : MonoBehaviour
     public GameObject IndicatorPlaneThree;
     public GameObject IndicatorPlaneFour;
 
+    #region private variables
     private GameObject game;
     private GameObject P1IndicatorPlane;
     private GameObject P2IndicatorPlane;
@@ -79,34 +96,50 @@ public class UIScript : MonoBehaviour
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
     private Image player1Heat;
+    private Image player1Heat2;
     private Image p1icon;
     private Image player1Weapon_1;
     private Image player1Weapon_2;
     private Image player1Weapon_3;
+    private Image player1Weapon2_1;
+    private Image player1Weapon2_2;
+    private Image player1Weapon2_3;
     private Image player2HealthBar_1;
     private Image player2HealthBar_2;
     private Image player2HealthBar_3;
     private Image player2Heat;
+    private Image player2Heat2;
     private Image p2icon;
     private Image player2Weapon_1;
     private Image player2Weapon_2;
     private Image player2Weapon_3;
+    private Image player2Weapon2_1;
+    private Image player2Weapon2_2;
+    private Image player2Weapon2_3;
     private Image player3HealthBar_1;
     private Image player3HealthBar_2;
     private Image player3HealthBar_3;
     private Image player3Heat;
+    private Image player3Heat2;
     private Image p3icon;
     private Image player3Weapon_1;
     private Image player3Weapon_2;
     private Image player3Weapon_3;
+    private Image player3Weapon2_1;
+    private Image player3Weapon2_2;
+    private Image player3Weapon2_3;
     private Image player4HealthBar_1;
     private Image player4HealthBar_2;
     private Image player4HealthBar_3;
     private Image player4Heat;
+    private Image player4Heat2;
     private Image p4icon;
     private Image player4Weapon_1;
     private Image player4Weapon_2;
     private Image player4Weapon_3;
+    private Image player4Weapon2_1;
+    private Image player4Weapon2_2;
+    private Image player4Weapon2_3;
     private bool isHealing = false;
     private bool P1iconSet = false;
     private bool P2iconSet = false;
@@ -114,6 +147,7 @@ public class UIScript : MonoBehaviour
     private bool P4iconSet = false;
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityBars = new Image[12];
+    #endregion
 
     // Use this for initialization
     private void Start()
@@ -205,17 +239,7 @@ public class UIScript : MonoBehaviour
                     {
                         Indicate = Instantiate(P1IndicatorPlane);
                     }
-
-                    // Icon selection and instantiation, only call if icon is null!
-                    //Image icon = Player1Icon.GetComponent<Image>();
-                    //if (player.name == ("PlayerClassAegis(Clone)"))
-                    //{
-                    //    icon.sprite = PlayerIcons[0];
-                    //}
-                    //else if (player.name == ("PlayerClassStalker(Clone)"))
-                    //{
-                    //    icon.sprite = PlayerIcons[1];
-                    //}
+                    
                     if (P1iconSet == false)
                     {
                         SetIcon(player, PlayerIndex.One);
@@ -371,10 +395,15 @@ public class UIScript : MonoBehaviour
                     Destroy(player1HealthBar_2.gameObject);
                     Destroy(player1HealthBar_3.gameObject);
                     Destroy(player1Heat.gameObject);
+                    Destroy(player1Heat2.gameObject);
                     Destroy(player1Weapon_1.gameObject);
                     Destroy(player1Weapon_2.gameObject);
                     Destroy(player1Weapon_3.gameObject);
+                    Destroy(player1Weapon2_1.gameObject);
+                    Destroy(player1Weapon2_2.gameObject);
+                    Destroy(player1Weapon2_3.gameObject);
                     Destroy(p1icon.gameObject);
+                    P1iconSet = false;
 
                     for (int k = 0; k < 3; k++)
                     {
@@ -388,10 +417,15 @@ public class UIScript : MonoBehaviour
                     Destroy(player2HealthBar_2.gameObject);
                     Destroy(player2HealthBar_3.gameObject);
                     Destroy(player2Heat.gameObject);
+                    Destroy(player2Heat2.gameObject);
                     Destroy(player2Weapon_1.gameObject);
                     Destroy(player2Weapon_2.gameObject);
                     Destroy(player2Weapon_3.gameObject);
+                    Destroy(player2Weapon2_1.gameObject);
+                    Destroy(player2Weapon2_2.gameObject);
+                    Destroy(player2Weapon2_3.gameObject);
                     Destroy(p2icon.gameObject);
+                    P2iconSet = false;
 
                     for (int k = 3; k < 6; k++)
                     {
@@ -405,10 +439,15 @@ public class UIScript : MonoBehaviour
                     Destroy(player3HealthBar_2.gameObject);
                     Destroy(player3HealthBar_3.gameObject);
                     Destroy(player3Heat.gameObject);
+                    Destroy(player3Heat2.gameObject);
                     Destroy(player3Weapon_1.gameObject);
                     Destroy(player3Weapon_2.gameObject);
                     Destroy(player3Weapon_3.gameObject);
+                    Destroy(player3Weapon2_1.gameObject);
+                    Destroy(player3Weapon2_2.gameObject);
+                    Destroy(player3Weapon2_3.gameObject);
                     Destroy(p3icon.gameObject);
+                    P3iconSet = false;
 
                     for (int k = 6; k < 9; k++)
                     {
@@ -422,10 +461,15 @@ public class UIScript : MonoBehaviour
                     Destroy(player4HealthBar_2.gameObject);
                     Destroy(player4HealthBar_3.gameObject);
                     Destroy(player4Heat.gameObject);
+                    Destroy(player4Heat2.gameObject);
                     Destroy(player4Weapon_1.gameObject);
                     Destroy(player4Weapon_2.gameObject);
                     Destroy(player4Weapon_3.gameObject);
+                    Destroy(player4Weapon2_1.gameObject);
+                    Destroy(player4Weapon2_2.gameObject);
+                    Destroy(player4Weapon2_3.gameObject);
                     Destroy(p4icon.gameObject);
+                    P4iconSet = false;
 
                     for (int k = 9; k < 12; k++)
                     {
@@ -471,6 +515,18 @@ public class UIScript : MonoBehaviour
                     GameObject Heat1_4 = Instantiate(P1Weapon_border);
                     player1Weapon_3 = Heat1_4.GetComponent<Image>();
                     player1Weapon_3.transform.SetParent(UICanvas, false);
+                    GameObject Heat5_1 = Instantiate(P1SecWeapon_background);
+                    player1Weapon2_1 = Heat5_1.GetComponent<Image>();
+                    player1Weapon2_1.transform.SetParent(UICanvas, false);
+                    GameObject Heat5_2 = Instantiate(P1SecWeapon_icon);
+                    player1Weapon2_2 = Heat5_2.GetComponent<Image>();
+                    player1Weapon2_2.transform.SetParent(UICanvas, false);
+                    GameObject Heat5_3 = Instantiate(P1SecWeaponHeat);
+                    player1Heat2 = Heat5_3.GetComponent<Image>();
+                    player1Heat2.transform.SetParent(UICanvas, false);
+                    GameObject Heat5_4 = Instantiate(P1SecWeapon_border);
+                    player1Weapon2_3 = Heat5_4.GetComponent<Image>();
+                    player1Weapon2_3.transform.SetParent(UICanvas, false);
 
                     for (int i = 0; i < 3; i++)
                     {
@@ -505,8 +561,20 @@ public class UIScript : MonoBehaviour
                     player2Heat = Heat2_3.GetComponent<Image>();
                     player2Heat.transform.SetParent(UICanvas, false);
                     GameObject Heat2_4 = Instantiate(P2Weapon_border);
-                    player2Weapon_3 = Heat2_4.GetComponent<Image>();
-                    player2Weapon_3.transform.SetParent(UICanvas, false);
+                    player2Weapon2_3 = Heat2_4.GetComponent<Image>();
+                    player2Weapon2_3.transform.SetParent(UICanvas, false);
+                    GameObject Heat6_1 = Instantiate(P2SecWeapon_background);
+                    player2Weapon2_1 = Heat6_1.GetComponent<Image>();
+                    player2Weapon2_1.transform.SetParent(UICanvas, false);
+                    GameObject Heat6_2 = Instantiate(P2SecWeapon_icon);
+                    player2Weapon2_2 = Heat6_2.GetComponent<Image>();
+                    player2Weapon2_2.transform.SetParent(UICanvas, false);
+                    GameObject Heat6_3 = Instantiate(P2SecWeaponHeat);
+                    player2Heat2 = Heat6_3.GetComponent<Image>();
+                    player2Heat2.transform.SetParent(UICanvas, false);
+                    GameObject Heat6_4 = Instantiate(P2SecWeapon_border);
+                    player2Weapon2_3 = Heat6_4.GetComponent<Image>();
+                    player2Weapon2_3.transform.SetParent(UICanvas, false);
 
                     for (int i = 3; i < 6; i++)
                     {
@@ -542,6 +610,18 @@ public class UIScript : MonoBehaviour
                     player3Heat.transform.SetParent(UICanvas, false);
                     GameObject Heat3_4 = Instantiate(P3Weapon_border);
                     player3Weapon_3 = Heat3_4.GetComponent<Image>();
+                    player3Weapon_3.transform.SetParent(UICanvas, false);
+                    GameObject Heat7_1 = Instantiate(P3SecWeapon_background);
+                    player3Weapon_1 = Heat7_1.GetComponent<Image>();
+                    player3Weapon_1.transform.SetParent(UICanvas, false);
+                    GameObject Heat7_2 = Instantiate(P3SecWeapon_icon);
+                    player3Weapon_2 = Heat7_2.GetComponent<Image>();
+                    player3Weapon_2.transform.SetParent(UICanvas, false);
+                    GameObject Heat7_3 = Instantiate(P3SecWeaponHeat);
+                    player3Heat = Heat7_3.GetComponent<Image>();
+                    player3Heat.transform.SetParent(UICanvas, false);
+                    GameObject Heat7_4 = Instantiate(P3SecWeapon_border);
+                    player3Weapon_3 = Heat7_4.GetComponent<Image>();
                     player3Weapon_3.transform.SetParent(UICanvas, false);
 
                     for (int i = 6; i < 9; i++)
@@ -579,6 +659,18 @@ public class UIScript : MonoBehaviour
                     GameObject Heat4_4 = Instantiate(P4Weapon_border);
                     player4Weapon_3 = Heat4_4.GetComponent<Image>();
                     player4Weapon_3.transform.SetParent(UICanvas, false);
+                    GameObject Heat8_1 = Instantiate(P4SecWeapon_background);
+                    player4Weapon2_1 = Heat8_1.GetComponent<Image>();
+                    player4Weapon2_1.transform.SetParent(UICanvas, false);
+                    GameObject Heat8_2 = Instantiate(P4SecWeapon_icon);
+                    player4Weapon2_2 = Heat8_2.GetComponent<Image>();
+                    player4Weapon2_2.transform.SetParent(UICanvas, false);
+                    GameObject Heat8_3 = Instantiate(P4SecWeaponHeat);
+                    player4Heat2 = Heat8_3.GetComponent<Image>();
+                    player4Heat2.transform.SetParent(UICanvas, false);
+                    GameObject Heat8_4 = Instantiate(P4SecWeapon_border);
+                    player4Weapon2_3 = Heat8_4.GetComponent<Image>();
+                    player4Weapon2_3.transform.SetParent(UICanvas, false);
 
                     for (int i = 9; i < 12; i++)
                     {
