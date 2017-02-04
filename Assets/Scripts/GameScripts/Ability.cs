@@ -6,6 +6,7 @@ public class Ability : MonoBehaviour
 {
     public float AnimationDuration = 0;
     public AudioClip ActivationSound;
+    public AudioClip DeactivationSound;
     public AudioClip ReachedMaxEnergySound;
 
     [SerializeField]
@@ -219,6 +220,12 @@ public class Ability : MonoBehaviour
         if(destroyOnAbort)
         {
             Despawn();
+        }
+
+        if(audioSource != null && DeactivationSound != null)
+        {
+            audioSource.clip = DeactivationSound;
+            audioSource.Play();
         }
 
         if (OnAbort != null)
