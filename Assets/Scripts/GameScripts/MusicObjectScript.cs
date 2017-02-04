@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class MusicObjectScript : MonoBehaviour
 {
@@ -6,6 +8,9 @@ public class MusicObjectScript : MonoBehaviour
     private AudioSource[] audioSources;
     private bool[] MusicTheme ;
 
+    [SerializeField]
+    [Range(1f, 100f)]
+    private float FadeInDelay=2f;
     // Use this for initialization
     private void Start()
     {
@@ -24,6 +29,7 @@ public class MusicObjectScript : MonoBehaviour
         {
             audioSources[tmp].clip = AudioClips[tmp];
             audioSources[tmp].Play();
+            audioSources[tmp].loop = true;
             audioSources[tmp].volume = 0; //mute all sounds at start
         }
     }
@@ -33,9 +39,9 @@ public class MusicObjectScript : MonoBehaviour
     {
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
-            if ( MusicTheme[tmp])
+            if ( MusicTheme[tmp] && audioSources[tmp].volume < 1f)
             {
-               audioSources[tmp].volume = 1;
+               audioSources[tmp].volume +=Time.deltaTime /FadeInDelay;
             }
         }
     }
@@ -45,4 +51,7 @@ public class MusicObjectScript : MonoBehaviour
     {
         MusicTheme[tmp] = state;
     }
+   
+
+    
 }

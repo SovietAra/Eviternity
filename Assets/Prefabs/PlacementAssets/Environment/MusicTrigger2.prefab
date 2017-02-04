@@ -20,11 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4902117504433920}
   - component: {fileID: 65143866447349410}
-  - component: {fileID: 114731264996274448}
+  - component: {fileID: 114154654343151530}
   m_Layer: 0
   m_Name: MusicTrigger2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53,7 +53,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114731264996274448
+--- !u!114 &114154654343151530
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1424295711990500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b7919b496955c43a909ecd96ea70dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b491d5b2657b245b65bbf8b995c5d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MusicThemeIndex: 0

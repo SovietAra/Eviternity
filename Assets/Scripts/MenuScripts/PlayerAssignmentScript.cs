@@ -302,21 +302,15 @@ public class PlayerAssignmentScript : MonoBehaviour
             int readyCount = CheckPlayerInput();
             if (readyCount == GlobalReferences.PlayerStates.Count && readyCount > 0)
             {
-                //if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
-                //{
                     StartNewGame();
-                //}
             }
         }
     }
     private void StartNewGame()
     {
-        //if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
-        //{
             gameStarted = true;
             changeMenu = true;
             SceneManager.LoadScene("Prototyp");
-        //}
     }
     #region player Funktionen
     private void CheckPlayerJoins()
@@ -329,7 +323,6 @@ public class PlayerAssignmentScript : MonoBehaviour
             GamePadState prevState = state;
             if (state.Buttons.Start == ButtonState.Pressed && !changeMenu)
             {
-                //Debug.Log("Player One:" + playerJoined[0]);
                 GamePadManager.Connect((int)index);
                 GlobalReferences.PlayerStates.Add(new PlayerState(index, state));
 

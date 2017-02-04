@@ -86,6 +86,7 @@ public class Boss : MonoBehaviour
         healthContainer = GetComponent<DamageAbleObject>();
         if (healthContainer != null)
         {
+            healthContainer.OnDeath += HealthContainer_OnDeath;
             healthContainer.OnReceiveDamage += HealthContainer_OnReceiveDamage;
         }
 
@@ -96,6 +97,11 @@ public class Boss : MonoBehaviour
 
         GetPlayers();
         GamePadManager.OnPlayerCountChanged += GamePadManager_OnPlayerCountChanged;
+    }
+
+    private void HealthContainer_OnDeath(object sender, EventArgs e)
+    {
+        Destroy(gameObject);
     }
 
     private void GamePadManager_OnPlayerCountChanged(object sender, EventArgs e)

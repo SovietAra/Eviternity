@@ -1113,8 +1113,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830940599666644}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.667183, y: 0.7826427, z: -4.005127}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -190.88713, y: -12.883042, z: -273.0449}
   m_LocalScale: {x: 1.5471275, y: 1.5471275, z: 1.5471275}
   m_Children:
   - {fileID: 224455381073300414}
@@ -1492,7 +1492,7 @@ Animator:
   m_GameObject: {fileID: 1202805712766940}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ef71e540a43cccb4dba0662f264af405, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cec83379c45b2aa47b39e95209c02568, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1638,7 +1638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.121107265, b: 0.121107265, a: 0.785}
+  m_Color: {r: 1, g: 0.121107265, b: 0.121107265, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1646,7 +1646,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
