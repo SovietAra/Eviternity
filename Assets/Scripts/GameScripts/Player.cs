@@ -327,13 +327,8 @@ public class Player : MonoBehaviour
 
 
         }
-        
-
-
-
+       
         CheckOverlappingObjects();
-
-
     }
     #endregion
     
@@ -676,18 +671,21 @@ public class Player : MonoBehaviour
     {
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+        e.ProjectileScript.IncreaseVelocity(finalVelocity);
     }
 
     private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+        e.ProjectileScript.IncreaseVelocity(finalVelocity);
     }
 
     private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
     {
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+        e.ProjectileScript.IncreaseVelocity(finalVelocity);
     }
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
@@ -696,6 +694,7 @@ public class Player : MonoBehaviour
         audioSources[rand.Next(32,35)].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+        e.ProjectileScript.IncreaseVelocity(finalVelocity);
     }
 
     private void ProjectileScript_OnHit(object sender, HitEventArgs e)
