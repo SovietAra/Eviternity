@@ -370,8 +370,8 @@ public class Player : MonoBehaviour
 
         if (state.Buttons.Y == ButtonState.Released)
         {
-            if (audioSources[28].isPlaying)
-                audioSources[28].Stop(); //stop healing sound
+            if (audioSources[23].isPlaying)
+                audioSources[23].Stop(); //stop healing sound
         }
 
         if (state.Buttons.B == ButtonState.Pressed && !executed)
@@ -563,8 +563,8 @@ public class Player : MonoBehaviour
             
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                if(!audioSources[28].isPlaying)
-                    audioSources[28].Play();
+                if(!audioSources[23].isPlaying)
+                    audioSources[23].Play();
                 return true;
             }
         }
@@ -663,7 +663,7 @@ public class Player : MonoBehaviour
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         System.Random rand = new System.Random();
-        audioSources[rand.Next(32,35)].Play();
+        //audioSources[rand.Next(32,35)].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         e.ProjectileScript.IncreaseVelocity(finalVelocity);
@@ -739,11 +739,11 @@ public class Player : MonoBehaviour
 
     private void HealthContainer_OnReceiveDamage(object sender, OnHealthChangedArgs e)
     {
-        if (!audioSources[23].isPlaying && !audioSources[24].isPlaying && !audioSources[25].isPlaying && !audioSources[26].isPlaying)
-        {
-            System.Random rand = new System.Random();
-                audioSources[rand.Next(23,27)].Play();
-        }
+        //if (!audioSources[23].isPlaying && !audioSources[24].isPlaying && !audioSources[25].isPlaying && !audioSources[26].isPlaying)
+        //{
+        //    System.Random rand = new System.Random();
+        //        audioSources[rand.Next(23,27)].Play();
+        //}
     }
 
     #endregion PlayerHealth
