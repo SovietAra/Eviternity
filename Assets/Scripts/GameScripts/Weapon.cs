@@ -60,6 +60,11 @@ public class Weapon : MonoBehaviour
     public bool AutoReload = true;
     public bool ProduceHeat = false;
     public bool HeatCooldown = false;
+    public bool OverwriteSound = true;
+    public AudioClip FireSound;
+    public AudioClip ReloadSound;
+
+
     public GameObject SecondaryWeapon;
     public GameObject Projectile;
     private Weapon secondaryWeapon;
@@ -77,6 +82,8 @@ public class Weapon : MonoBehaviour
     public event EventHandler OnReloadBegin;
     public event EventHandler OnReloadEnd;
     public event EventHandler OnReloadAbort;
+
+    private AudioSource audioSource;
 
     public float MaxHeat
     {
@@ -97,6 +104,8 @@ public class Weapon : MonoBehaviour
             secondaryWeapon = Instantiate(SecondaryWeapon, transform.parent).GetComponent<Weapon>();
             secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -200,6 +209,15 @@ public class Weapon : MonoBehaviour
             if(OnPrimaryAttack != null)
                 OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile, AnimationDuration));
 
+            if(audioSource != null && FireSound != null)
+            {
+                if (!audioSource.isPlaying || OverwriteSound)
+                {
+                    audioSource.clip = FireSound;
+                    audioSource.Play();
+                }
+            }
+
             elapsedAttackDelay = 0f;
 
             if (UseAmmo)
@@ -211,6 +229,18 @@ public class Weapon : MonoBehaviour
                 elapsedHeatReductionDelay = 0f;
                 heat += heatPerShot;
                 overheat = heat >= maxHeat;
+
+                if(overheat)
+                {
+                    if (audioSource != null && ReloadSound != null)
+                    {
+                        if (!audioSource.isPlaying)
+                        {
+                            audioSource.clip = ReloadSound;
+                            audioSource.Play();
+                        }
+                    }
+                }
             }
 
             return true;
@@ -244,6 +274,18 @@ public class Weapon : MonoBehaviour
     {
         if (UseAmmo)
         {
+            if (!reloading)
+            {
+                if (audioSource != null && ReloadSound != null)
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.clip = ReloadSound;
+                        audioSource.Play();
+                    }
+                }
+            }
+
             elapsedReloadTime = 0f;
             reloading = true;
             if (OnReloadBegin != null)
