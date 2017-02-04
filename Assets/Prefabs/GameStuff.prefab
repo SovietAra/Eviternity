@@ -574,11 +574,15 @@ MonoBehaviour:
     type: 2}
   Player1HealthUI_outline: {fileID: 1080071821691062, guid: f68926afdfbf9004caa6dd1c24a89df0,
     type: 2}
+  Player1Icon: {fileID: 1037427217207164, guid: eca21bd3c4832a54e8b07c6e49ab8ddd,
+    type: 2}
   Player2HealthUI_background: {fileID: 1639795693969468, guid: dc7844a6464d1cb44aff06e6209ed131,
     type: 2}
   Player2HealthUI_fill: {fileID: 1620131760359492, guid: 481f3412d80d3fb4b9f1b600d35f4bfa,
     type: 2}
   Player2HealthUI_outline: {fileID: 1682553469380310, guid: e6ade1c1731b0a94080c9e293ffae8f7,
+    type: 2}
+  Player2Icon: {fileID: 1166511113042202, guid: 726fac22dfb2dbf41b057ae25def2aa3,
     type: 2}
   Player3HealthUI_background: {fileID: 1812027146096240, guid: 1fdda810d50a4994cad19bfab6218463,
     type: 2}
@@ -586,16 +590,29 @@ MonoBehaviour:
     type: 2}
   Player3HealthUI_outline: {fileID: 1097784883698690, guid: 2f3ca651397cadd40b487c49a7aa324a,
     type: 2}
+  Player3Icon: {fileID: 1722401275274682, guid: 9ab61b38746f12e468d5037351efadb5,
+    type: 2}
   Player4HealthUI_background: {fileID: 1325526174054338, guid: 88e48badc2e6a5d4e8c900083ff616f1,
     type: 2}
   Player4HealthUI_fill: {fileID: 1249875902681176, guid: 72ac4d00273fca84898a8955371be260,
     type: 2}
   Player4HealthUI_outline: {fileID: 1069659291913358, guid: 045be2bcb0ed09b4e84536b951ba3fb7,
     type: 2}
+  Player4Icon: {fileID: 1424498713575558, guid: 5428b2ac4f048e04d81033defe5d2eb3,
+    type: 2}
   TeamHealthBar: {fileID: 114997412315837756}
   TeamHealthBar_Border: {fileID: 114392379955333076}
   TeamHealthActive: {fileID: 21300000, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
   TeamHealthInactive: {fileID: 21300002, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
+  PlayerIcons:
+  - {fileID: 21300004, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300002, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300012, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300010, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300016, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300014, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300008, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300006, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
   P1Weapon_background: {fileID: 1102794828692938, guid: 5cc624ce65083d349be779ae556e5e7c,
     type: 2}
   P1Weapon_border: {fileID: 1772067579695382, guid: 7dafe66bae9dbc6499e327c1399c2984,
