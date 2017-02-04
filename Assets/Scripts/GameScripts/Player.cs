@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     private UIScript uiScript;
 
     public Animator healingAnim;
+    public Animator animator;
 
     private Vector3 meshBounds;
 
