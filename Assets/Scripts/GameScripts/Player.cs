@@ -443,29 +443,6 @@ public class Player : MonoBehaviour
                 (-mainCamera.ViewportPointToRay(new Vector3(0, 0)).origin.y /
                  mainCamera.ViewportPointToRay(new Vector3(0, 0)).direction.y)).z;
 
-        /*Plane[] planes = GeometryUtility.CalculateFrustumPlanes(mainCamera);
-        if(!GeometryUtility.TestPlanesAABB(planes, new Bounds(transform.position + (Vector3.right * meshBounds.x), new Vector3(1, 1, 1))))
-        {
-            if (finalVelocity.x > 0)
-                finalVelocity.x = 0;
-        }
-        else if (!GeometryUtility.TestPlanesAABB(planes, new Bounds(transform.position + (Vector3.left * meshBounds.x), new Vector3(1, 1, 1))))
-        {
-            if (finalVelocity.x < 0)
-                finalVelocity.x = 0;
-        }
-
-        if (!GeometryUtility.TestPlanesAABB(planes, new Bounds(transform.position + (Vector3.forward * meshBounds.z), new Vector3(1, 1, 1))))
-        {
-            if (finalVelocity.z > 0)
-                finalVelocity.z = 0;
-        }
-        else if (!GeometryUtility.TestPlanesAABB(planes, new Bounds(transform.position + (Vector3.back * meshBounds.z), new Vector3(1, 1, 1))))
-        {
-            if (finalVelocity.z < 0)
-                finalVelocity.z = 0;
-        }*/
-
         if (transform.position.x < xMin + meshBounds.x && finalVelocity.x < 0)
             finalVelocity.x = 0;
 
@@ -599,8 +576,8 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
-                if (!audioSources[2].isPlaying)
-                    audioSources[2].Play();
+                /*if (!audioSources[2].isPlaying)
+                    audioSources[2].Play();*/
                 return true;
             }
         }
