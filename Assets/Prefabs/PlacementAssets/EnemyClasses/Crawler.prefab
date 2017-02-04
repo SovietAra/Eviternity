@@ -1587,8 +1587,9 @@ MonoBehaviour:
   viewRange: 15
   enemyType: 1
   switchDelay: 32.3
+  squadID: 0
   HealthSlider: {fileID: 114205726039098528}
-  Freeze: 0
+  freeze: 0
   PrimaryWeapon: {fileID: 1761816047511776, guid: d89e6c8e65e3e16468489aa8729263e1,
     type: 2}
   OnEnemyDeath:
