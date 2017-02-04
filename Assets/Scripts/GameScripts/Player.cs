@@ -357,13 +357,6 @@ public class Player : MonoBehaviour
         Vector2 rightStick = new Vector2(state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
         TryMove(leftStick, rightStick);
 
-        finalVelocity = (moveVector * 100) + velocity;
-        if(moveScript !=null && !OnIce)
-        {
-            Borders();
-            moveScript.Move(finalVelocity);          
-        }
-
         bool executed = false;
 
         if (state.Buttons.Start == ButtonState.Pressed && prevState.Buttons.Start == ButtonState.Released)
@@ -399,7 +392,7 @@ public class Player : MonoBehaviour
             executed = TryAbillity();
         }
 
-        if (state.Buttons.RightStick == ButtonState.Pressed && !executed)
+        if ((state.Buttons.RightStick == ButtonState.Pressed || state.Buttons.A == ButtonState.Pressed) && !executed)
         {
             executed = TryDash();
         }
@@ -429,6 +422,14 @@ public class Player : MonoBehaviour
                 if (secondaryWeapon != null)
                     executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
             }
+        }
+
+
+        finalVelocity = (moveVector * 100) + velocity;
+        if (moveScript != null && !OnIce)
+        {
+            Borders();
+            moveScript.Move(finalVelocity);
         }
     }
 
@@ -540,27 +541,33 @@ public class Player : MonoBehaviour
 
     private void TryMove(Vector2 leftStick, Vector2 rightStick)
     {
+        moveVector = Vector3.zero;
         if (!Freeze)
-        {
-            if (leftStick.y > 0.1f || leftStick.y < 0.1f)
+        { 
+            if (leftStick.magnitude > 0.25f)
+            {//if (leftStick.y > 0.1f || leftStick.y < 0.1f)
                 moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
 
-            if (leftStick.x > 0.1f || leftStick.x < 0.1f)
-                moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
+             //if (leftStick.x > 0.1f || leftStick.x < 0.1f)
+                    moveVector += Vector3.right * leftStick.x * Time.deltaTime * speed;
 
-            if (RotateOnMove && moveVector != Vector3.zero)
-            {
-                float leftAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
-                if (leftStick != Vector2.zero)
+                if (RotateOnMove && moveVector != Vector3.zero)
                 {
-                    DoRotation(leftAngle);
+                    float leftAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(leftStick.x * -1, leftStick.y), Vector2.zero) - 90);
+                    if (leftStick != Vector2.zero)
+                    {
+                        DoRotation(leftAngle);
+                    }
                 }
             }
 
-            float rightAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
-            if (rightStick != Vector2.zero)
+            if (rightStick.magnitude > 0.25f)
             {
-                DoRotation(rightAngle);
+                float rightAngle = MathUtil.FixAngle(MathUtil.CalculateAngle(new Vector2(rightStick.x * -1, rightStick.y), Vector2.zero) - 90);
+                if (rightStick != Vector2.zero)
+                {
+                    DoRotation(rightAngle);
+                }
             }
         }
     }
@@ -647,7 +654,14 @@ public class Player : MonoBehaviour
 
     private void DashAbility_OnActivated(object sender, EventArgs e)
     {
-        velocity = transform.forward * dashAbility.AbilityValue;
+        if (moveVector != Vector3.zero)
+        {
+            velocity = (moveVector * 2) * dashAbility.AbilityValue;
+        }
+        else
+        {
+            velocity = transform.forward * dashAbility.AbilityValue;
+        }
     }
 
     private void DashAbility_OnUsing(object sender, EventArgs e)
