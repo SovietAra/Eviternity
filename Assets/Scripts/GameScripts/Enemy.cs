@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using System;
+using Boo.Lang;
 
 public class Enemy : MonoBehaviour
 {
@@ -44,6 +45,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 100f)]
     private float switchDelay = 3f;
+
+    [SerializeField]
+    [Range(0, 30)]
+    private int squadID;
     #endregion Propertysliders
 
     #region Privates
@@ -60,8 +65,9 @@ public class Enemy : MonoBehaviour
 
     public Slider HealthSlider;
 
-    public bool Freeze = false;
+    public bool freeze = false;
     private bool isValidTarget = false;
+    private bool triggeredBySquad = false;
     private DamageAbleObject dmgobjct;
     public GameObject PrimaryWeapon;
     private Weapon primaryWeapon;
@@ -69,6 +75,8 @@ public class Enemy : MonoBehaviour
 
     public UnityEvent OnEnemyDeath;
     private Vector3 movement;
+
+    private List<Enemy> squadList = new List<Enemy>();
     #endregion Privates
 
     // Use this for initialization
@@ -89,6 +97,23 @@ public class Enemy : MonoBehaviour
             moveScript.AddGravity = false;
 
         navAgent = GetComponent<NavMeshAgent>();
+        if (navAgent != null)
+            navAgent.stoppingDistance = attackRange;
+
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyList.Length; i++)
+        {
+            Enemy enemy = enemyList[i].GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                if (enemy.squadID == squadID)
+                {
+                    squadList.Add(enemy);
+                }
+            }
+        }
+
         SetUI();
     }
 
@@ -125,7 +150,7 @@ public class Enemy : MonoBehaviour
         CheckAlivePlayers();
         SetUI();
 
-        if (isValidTarget && !Freeze) //On player found
+        if (isValidTarget && !freeze) //On player found
         {
             //Calculate Distance between Enemyinstance and Player and switch target if delay allows
             nearestTarget = FindClosestPlayer();
@@ -153,23 +178,47 @@ public class Enemy : MonoBehaviour
 
             UpdateRotation();
 
+            if (triggeredBySquad && distanceToPlayer < viewRange)
+            {
+                triggeredBySquad = false;
+            }
+
             //Follow Target
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
-                if (nearestTarget != null && navAgent != null)
+                if (currentTarget != null && navAgent != null)
                 {
+                    for (int i = 0; i < squadList.Count; i++)
+                    {
+                        squadList[i].triggeredBySquad = true;
+                    }
+
                     if (navAgent.isOnNavMesh)
                     {
-                        navAgent.SetDestination(nearestTarget.transform.position);
+                        navAgent.SetDestination(currentTarget.transform.position);
                     }
                 }
             }
-            else if (distanceToPlayer < viewRange)
+            else if (distanceToPlayer > viewRange)
             {
                 targetPlayer = null;
                 isValidTarget = false;
             }
-            if (distanceToPlayer < attackRange)
+
+            if (triggeredBySquad)
+            {
+                if (currentTarget != null && navAgent != null)
+                {
+                    if (navAgent.isOnNavMesh)
+                    {
+                        navAgent.SetDestination(currentTarget.transform.position);
+                    }
+                }
+            }
+
+            triggeredBySquad = false;
+
+            if (distanceToPlayer <= navAgent.stoppingDistance)
             {
                 if(primaryWeapon != null)
                     primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
@@ -224,17 +273,20 @@ public class Enemy : MonoBehaviour
         GameObject[] availablePlayers;
         availablePlayers = GameObject.FindGameObjectsWithTag("Player");
         float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
+
         foreach (GameObject checkedTargetPlayer in availablePlayers)
         {
-            Vector3 diff = checkedTargetPlayer.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
+            //Vector3 diff = checkedTargetPlayer.transform.position - transform.position;
+            //float curDistance = diff.sqrMagnitude;
+
+            float curDistance = Vector3.Distance(checkedTargetPlayer.transform.position, transform.position);
             if (curDistance < distance)
             {
                 targetPlayer = checkedTargetPlayer;
                 distance = curDistance;
             }
         }
+
         return targetPlayer;
     }
 
