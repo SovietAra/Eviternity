@@ -389,6 +389,30 @@ public class Player : MonoBehaviour
             executed = TryDash();
         }
 
+        #region AttackAnimationHandler
+
+        if (!(state.Triggers.Right > 0 && !executed))
+        {
+            animator.SetBool("RightAttack", false);
+        }
+
+        if (!(state.Triggers.Left > 0 && !executed))
+        {
+            animator.SetBool("LeftAttack", false);
+        }
+
+        if (!(state.Buttons.RightShoulder == ButtonState.Pressed && !executed))
+        {
+            animator.SetBool("RightAttack2", false);
+        }
+
+        if (!(state.Buttons.LeftShoulder == ButtonState.Pressed && !executed))
+        {
+            animator.SetBool("LeftAttack2", false);
+        }
+
+        #endregion
+
         if (attackInProgressTimer <= 0)
         {
             if (state.Triggers.Right > 0 && !executed)
@@ -510,7 +534,11 @@ public class Player : MonoBehaviour
     {
         moveVector = Vector3.zero;
         if (!Freeze)
-        { 
+        {
+            animator.SetBool("Walking", false);
+            if (leftStick != Vector2.zero)
+                animator.SetBool("Walking", true);
+
             if (leftStick.magnitude > 0.25f)
             {//if (leftStick.y > 0.1f || leftStick.y < 0.1f)
                 moveVector = Vector3.forward * leftStick.y * Time.deltaTime * speed;
@@ -524,6 +552,7 @@ public class Player : MonoBehaviour
                     if (leftStick != Vector2.zero)
                     {
                         DoRotation(leftAngle);
+                        animator.SetInteger("WalkAnim", 0);
                     }
                 }
             }
@@ -534,9 +563,30 @@ public class Player : MonoBehaviour
                 if (rightStick != Vector2.zero)
                 {
                     DoRotation(rightAngle);
+                    FindWalkAnimation(leftStick, rightStick);
                 }
             }
         }
+    }
+
+    private void FindWalkAnimation(Vector2 leftStick, Vector2 rightStick)
+    {
+        if (leftStick.y > leftStick.x) ;
+
+        float ang = Vector2.Angle(leftStick, rightStick);
+        Vector3 cross = Vector3.Cross(leftStick, rightStick);
+
+        if (cross.z > 0)
+            ang = 360 - ang;
+
+        if (ang < 45 || ang > 315)
+            animator.SetInteger("WalkAnim", 0);
+        if (ang > 45 && ang < 135)
+            animator.SetInteger("WalkAnim", 2);
+        if (ang > 135 && ang < 225)
+            animator.SetInteger("WalkAnim", 3);
+        if (ang > 225 && ang < 315)
+            animator.SetInteger("WalkAnim", 1);
     }
 
     private void DoRotation(float angle)
@@ -577,6 +627,7 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
+                animator.SetTrigger("Dash");
                 /*if (!audioSources[2].isPlaying)
                     audioSources[2].Play();*/
                 return true;
@@ -641,6 +692,7 @@ public class Player : MonoBehaviour
 
     private void SecondaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
     {
+        animator.SetBool("LeftAttack2", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         e.ProjectileScript.IncreaseVelocity(finalVelocity);
@@ -648,6 +700,7 @@ public class Player : MonoBehaviour
 
     private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
+        animator.SetBool("LeftAttack", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         e.ProjectileScript.IncreaseVelocity(finalVelocity);
@@ -655,6 +708,7 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
     {
+        animator.SetBool("RightAttack2", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         e.ProjectileScript.IncreaseVelocity(finalVelocity);
@@ -662,6 +716,7 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
+        animator.SetBool("RightAttack", true);
         System.Random rand = new System.Random();
         //audioSources[rand.Next(32,35)].Play();
         attackInProgressTimer += e.AnimationDuration;
@@ -705,6 +760,11 @@ public class Player : MonoBehaviour
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
         isDead = true;
+        if (!animator.GetBool("IsDead"))
+        {
+            animator.SetBool("IsDead", true);
+            animator.SetTrigger("OnDeath");
+        }
         if (TeamHealth == 0)
         {
             if (!audioSources[1].isPlaying)
@@ -727,6 +787,7 @@ public class Player : MonoBehaviour
             {
                 elapsedReviveDelay = 0f;
                 isDead = false;
+                animator.SetBool("IsDead", false);
                 elapsedImmortal = 0;
             }
         }
