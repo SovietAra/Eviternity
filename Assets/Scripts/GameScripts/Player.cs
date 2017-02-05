@@ -365,8 +365,9 @@ public class Player : MonoBehaviour
         if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
-            healingAnim.SetTrigger("healIAnimationIsActivated");
         }
+        else
+            healingAnim.SetBool("heal", false);
 
         if (state.Buttons.Y == ButtonState.Released)
         {
@@ -610,13 +611,17 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
-            
+
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                if(!audioSources[23].isPlaying)
+                if(!isDead)
+                    healingAnim.SetBool("heal", true);
+                if (!audioSources[23].isPlaying)
                     audioSources[23].Play();
                 return true;
             }
+            else
+                healingAnim.SetBool("heal", false);
         }
         return false;
     }
@@ -627,6 +632,7 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
+
                 animator.SetTrigger("Dash");
                 /*if (!audioSources[2].isPlaying)
                     audioSources[2].Play();*/
@@ -760,6 +766,7 @@ public class Player : MonoBehaviour
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
         isDead = true;
+        healingAnim.SetBool("heal", false);
         if (!animator.GetBool("IsDead"))
         {
             animator.SetBool("IsDead", true);
