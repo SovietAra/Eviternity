@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     private MoveScript moveScript;
     [SerializeField]
     private GameObject dashTrail;
+    private ParticleSystem[] dashParticles;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax;
@@ -254,6 +255,7 @@ public class Player : MonoBehaviour
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
+        dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
         e.Cancel = OnIce;
         if(!OnIce && e.Velocity != Physics.gravity)
         {
@@ -415,7 +417,7 @@ public class Player : MonoBehaviour
         }
 
         if (dashAbility.Energy <= 0)
-            dashTrail.SetActive(false);
+            SetDashParticles(false);
 
         #endregion
 
@@ -637,7 +639,7 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
-                dashTrail.SetActive(true);
+                SetDashParticles(true);
                 animator.SetTrigger("Dash");
                 /*if (!audioSources[2].isPlaying)
                     audioSources[2].Play();*/
@@ -772,7 +774,7 @@ public class Player : MonoBehaviour
     {
         isDead = true;
         healingAnim.SetBool("heal", false);
-        dashTrail.SetActive(false);
+        SetDashParticles(false);
         if (!animator.GetBool("IsDead"))
         {
             animator.SetBool("IsDead", true);
@@ -909,5 +911,15 @@ public class Player : MonoBehaviour
 
     {
         PlayMusicTheme[tmp] = state;
+    }
+
+    private void SetDashParticles(bool active)
+    {
+        foreach (ParticleSystem particles in dashParticles)
+            if (active)
+                particles.Play();
+            else
+                particles.Stop();
+        print(dashParticles.Length);
     }
 }
