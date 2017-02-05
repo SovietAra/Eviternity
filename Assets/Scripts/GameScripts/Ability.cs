@@ -5,6 +5,9 @@ using UnityEngine;
 public class Ability : MonoBehaviour
 {
     public float AnimationDuration = 0;
+    public AudioClip ActivationSound;
+    public AudioClip DeactivationSound;
+    public AudioClip ReachedMaxEnergySound;
 
     [SerializeField]
     private bool activeOnKeyPressed = false;
@@ -79,6 +82,7 @@ public class Ability : MonoBehaviour
     private bool keyPressed;
     private bool regenerating;
     private bool allowSpawning;
+    private AudioSource audioSource;
     private float elapsedRegenerationDelay;
 
     public event EventHandler OnActivated;
@@ -109,6 +113,9 @@ public class Ability : MonoBehaviour
     {
         allowSpawning = true;
         spawnedObjects = new List<GameObject>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
     }
 	
 	// Update is called once per frame
@@ -193,6 +200,12 @@ public class Ability : MonoBehaviour
             }
         }
 
+        if(audioSource != null && ActivationSound != null)
+        {
+            audioSource.clip = ActivationSound;
+            audioSource.Play();
+        }
+
         if (OnActivated != null)
             OnActivated(this, null);
     }
@@ -207,6 +220,12 @@ public class Ability : MonoBehaviour
         if(destroyOnAbort)
         {
             Despawn();
+        }
+
+        if(audioSource != null && DeactivationSound != null)
+        {
+            audioSource.clip = DeactivationSound;
+            audioSource.Play();
         }
 
         if (OnAbort != null)
@@ -290,6 +309,12 @@ public class Ability : MonoBehaviour
 
             if (OnReachedMaxEnergy != null)
                 OnReachedMaxEnergy(this, null);
+
+            if(audioSource != null && ReachedMaxEnergySound !=null)
+            {
+                audioSource.clip = ReachedMaxEnergySound;
+                audioSource.Play();
+            }
         }
     }
 }

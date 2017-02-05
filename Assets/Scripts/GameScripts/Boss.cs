@@ -11,6 +11,9 @@ public class Boss : MonoBehaviour
     public GameObject IceWaveWeapon;
     public GameObject IcicleAbility;
 
+    public AudioClip MoveSound;
+
+    private AudioSource audioSource;
     private Weapon aoeWeapon;
     private Weapon iceWaveWeapon;
     private Ability icicleAbility;
@@ -52,6 +55,8 @@ public class Boss : MonoBehaviour
     
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         damageDone = new float[4];
         if (AOEWeapon != null)
         {
@@ -160,6 +165,14 @@ public class Boss : MonoBehaviour
                 if (animationDuration <= 0)
                 {
                     SetTargetPosition(currentTarget.transform.position, minimumDistance);
+                    if (agent.velocity != Vector3.zero)
+                    {
+                        if (audioSource != null && MoveSound != null && !audioSource.isPlaying)
+                        {
+                            audioSource.clip = MoveSound;
+                            audioSource.Play();
+                        }
+                    }
                     DoRotation();
                     AttackPlayer();
                 }
@@ -167,6 +180,11 @@ public class Boss : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14);
             angle = transform.eulerAngles.y;
+        }
+        else
+        {
+            if (agent != null)
+                agent.Stop();
         }
     }
 

@@ -38,8 +38,12 @@ public class Projectile : MonoBehaviour
     public bool DoAOETeamDamage = false;
     public bool SpawnExplosion = false;
     public bool OverwriteExplosionValues = false;
+    public bool AllowVelocityIncreasing = false;
     public GameObject Explosion;
     public GameObject StatusEffect;
+
+    public AudioClip ImpactSound;
+    private AudioSource audioSource;
 
     [SerializeField]
     [Range(0.0f, 10f)]
@@ -80,10 +84,11 @@ public class Projectile : MonoBehaviour
     }
 
     private void Start()
-    {  
+    {
+        audioSource = GetComponent<AudioSource>();  
         attachedBody = GetComponent<Rigidbody>();
         if(attachedBody != null)
-            attachedBody.velocity = (transform.forward * speed) + (InvertGravity ? new Vector3(0, invertGravityFactor, 0) : Vector3.zero);
+            attachedBody.velocity += (transform.forward * speed) + (InvertGravity ? new Vector3(0, invertGravityFactor, 0) : Vector3.zero);
 
         if (CollideWithOtherProjectiles)
         {
@@ -113,6 +118,12 @@ public class Projectile : MonoBehaviour
     {
         if (!other.isTrigger)
         {
+            if(audioSource != null && ImpactSound != null && !audioSource.isPlaying)
+            {
+                audioSource.clip = ImpactSound;
+                audioSource.Play();
+            }
+
             DamageAbleObject damageObject = other.gameObject.GetComponent<DamageAbleObject>();
             if (damageObject != null)
             {
@@ -160,6 +171,18 @@ public class Projectile : MonoBehaviour
         if(!hitArgs.Cancel && hitArgs.FinalDamage > 0)
         {
             damageAbleObject.DoDamage(attacker, hitArgs.FinalDamage, StatusEffect);
+        }
+    }
+
+    public void IncreaseVelocity(Vector3 velocity)
+    {
+        if (AllowVelocityIncreasing)
+        {
+            if (attachedBody == null)
+                attachedBody = GetComponent<Rigidbody>();
+
+            if (attachedBody != null)
+                attachedBody.velocity += velocity;
         }
     }
 }

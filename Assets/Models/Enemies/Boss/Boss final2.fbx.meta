@@ -465,7 +465,3895 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: metarig|Death.001
+      takeName: metarig|Death.001
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|HammerBoden.001
+      takeName: metarig|HammerBoden.001
+      firstFrame: 0
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|HammerMulitHit.001
+      takeName: metarig|HammerMulitHit.001
+      firstFrame: 0
+      lastFrame: 217
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Icewave.001
+      takeName: metarig|Icewave.001
+      firstFrame: 0
+      lastFrame: 172
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Idle
+      takeName: metarig|Idle
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Idle.002
+      takeName: metarig|Idle.002
+      firstFrame: 0
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Staggerd.001
+      takeName: metarig|Staggerd.001
+      firstFrame: 0
+      lastFrame: 137
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|UpintheAir.001
+      takeName: metarig|UpintheAir.001
+      firstFrame: 0
+      lastFrame: 112
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Walk2
+      takeName: metarig|Walk2
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: back
+        weight: 1
+      - path: BossV1:pCube1
+        weight: 1
+      - path: BossV1:pCube1/BossV1:transform1
+        weight: 1
+      - path: BossV1:pCube2
+        weight: 1
+      - path: BossV1:pCube2/BossV1:transform2
+        weight: 1
+      - path: left
+        weight: 1
+      - path: metarig
+        weight: 1
+      - path: metarig/armHandler.L
+        weight: 1
+      - path: metarig/armHandler.L/armHandler.L_end
+        weight: 1
+      - path: metarig/armHandler.R
+        weight: 1
+      - path: metarig/armHandler.R/armHandler.R_end
+        weight: 1
+      - path: metarig/Bone
+        weight: 1
+      - path: metarig/Bone/Bone_end
+        weight: 1
+      - path: metarig/ElBow.Right
+        weight: 1
+      - path: metarig/ElBow.Right/ElBow.Right_end
+        weight: 1
+      - path: metarig/FootHandler.L
+        weight: 1
+      - path: metarig/FootHandler.L/FootHandler.L_end
+        weight: 1
+      - path: metarig/FootHandler.R
+        weight: 1
+      - path: metarig/FootHandler.R/FootHandler.R_end
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/spine
+        weight: 1
+      - path: metarig/hips/spine/chest
+        weight: 1
+      - path: metarig/hips/spine/chest/Head
+        weight: 1
+      - path: metarig/hips/spine/chest/Head/Head_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/palm.02.L/f_middle.01.L/f_middle.02.L/f_middle.02.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/palm.R/f_middle.R.001/f_middle.R/f_middle.R_end
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001
+        weight: 1
+      - path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.R/thumb.02.R/thumb.R.001/thumb.R.001_end
+        weight: 1
+      - path: metarig/hips/thigh.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L
+        weight: 1
+      - path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+        weight: 1
+      - path: metarig/hips/thigh.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R
+        weight: 1
+      - path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+        weight: 1
+      - path: metarig/Knee.L
+        weight: 1
+      - path: metarig/Knee.L/Knee.L_end
+        weight: 1
+      - path: metarig/Knee.R
+        weight: 1
+      - path: metarig/Knee.R/Knee.R_end
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: persp1
+        weight: 1
+      - path: polySurface1.001
+        weight: 1
+      - path: polySurface1.001/polySurface13
+        weight: 1
+      - path: polySurface1.001/polySurface13/transform16
+        weight: 1
+      - path: polySurface1.001/polySurface14
+        weight: 1
+      - path: polySurface1.001/polySurface14/transform15
+        weight: 1
+      - path: polySurface1.001/transform14
+        weight: 1
+      - path: polySurface4.001
+        weight: 1
+      - path: polySurface4.001/transform7
+        weight: 1
+      - path: polySurface7.001
+        weight: 1
+      - path: polySurface7.001/transform8
+        weight: 1
+      - path: polySurface10.001
+        weight: 1
+      - path: polySurface10.001/polySurface18
+        weight: 1
+      - path: polySurface10.001/polySurface18/transform25
+        weight: 1
+      - path: polySurface10.001/polySurface19
+        weight: 1
+      - path: polySurface10.001/polySurface19/transform26
+        weight: 1
+      - path: polySurface10.001/transform24
+        weight: 1
+      - path: polySurface13.001
+        weight: 1
+      - path: polySurface13.001/transform20
+        weight: 1
+      - path: polySurface15
+        weight: 1
+      - path: polySurface15/polySurface16
+        weight: 1
+      - path: polySurface15/polySurface16/transform22
+        weight: 1
+      - path: polySurface15/polySurface17
+        weight: 1
+      - path: polySurface15/polySurface17/transform23
+        weight: 1
+      - path: polySurface15/transform21
+        weight: 1
+      - path: polySurface17.001
+        weight: 1
+      - path: polySurface17.001/polySurface20
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface26/transform45
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/polySurface27/transform46
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface24/transform30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/polySurface25/transform47
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface21/transform29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface22/transform33
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface28/transform41
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface29/transform34
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface30/transform36
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/polySurface31/transform32
+        weight: 1
+      - path: polySurface17.001/polySurface20/polySurface23/transform31
+        weight: 1
+      - path: polySurface17.001/polySurface20/transform28
+        weight: 1
+      - path: polySurface17.001/transform27
+        weight: 1
+      - path: polySurface19.001
+        weight: 1
+      - path: polySurface19.001/polySurface32
+        weight: 1
+      - path: polySurface19.001/polySurface32/transform40
+        weight: 1
+      - path: polySurface19.001/polySurface33
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface34/transform43
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35
+        weight: 1
+      - path: polySurface19.001/polySurface33/polySurface35/transform39
+        weight: 1
+      - path: polySurface19.001/polySurface33/transform38
+        weight: 1
+      - path: polySurface19.001/transform37
+        weight: 1
+      - path: polySurface25.001
+        weight: 1
+      - path: polySurface25.001/transform51
+        weight: 1
+      - path: polySurface29.001
+        weight: 1
+      - path: polySurface29.001/transform35
+        weight: 1
+      - path: polySurface30.001
+        weight: 1
+      - path: polySurface30.001/transform52
+        weight: 1
+      - path: polySurface32.001
+        weight: 1
+      - path: polySurface32.001/transform42
+        weight: 1
+      - path: polySurface34.001
+        weight: 1
+      - path: polySurface34.001/polySurface36
+        weight: 1
+      - path: polySurface34.001/polySurface36/transform49
+        weight: 1
+      - path: polySurface34.001/polySurface37
+        weight: 1
+      - path: polySurface34.001/polySurface37/transform50
+        weight: 1
+      - path: polySurface34.001/polySurface38
+        weight: 1
+      - path: polySurface34.001/polySurface38/transform48
+        weight: 1
+      - path: polySurface34.001/transform44
+        weight: 1
+      - path: polySurface37.001
+        weight: 1
+      - path: polySurface37.001/transform53
+        weight: 1
+      - path: polySurface39
+        weight: 1
+      - path: polySurface39/transform54
+        weight: 1
+      - path: polySurface44.001
+        weight: 1
+      - path: polySurface47.001
+        weight: 1
+      - path: polySurface48.001
+        weight: 1
+      - path: polySurface48.001/polySurface53
+        weight: 1
+      - path: polySurface48.001/transform64
+        weight: 1
+      - path: pPipe1
+        weight: 1
+      - path: pPipe1/transform18
+        weight: 1
+      - path: pPipe2
+        weight: 1
+      - path: pPipe2/transform19
+        weight: 1
+      - path: pPlane2
+        weight: 1
+      - path: pPlane2/transform55
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/polySurface1
+        weight: 1
+      - path: pPlane3/polySurface1/transform13
+        weight: 1
+      - path: pPlane3/polySurface2
+        weight: 1
+      - path: pPlane3/polySurface2/transform12
+        weight: 1
+      - path: pPlane3/polySurface3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface5/transform5
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface6/transform3
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface7/transform4
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface10/transform11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface11/transform10
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/polySurface12/transform17
+        weight: 1
+      - path: pPlane3/polySurface3/polySurface8/transform9
+        weight: 1
+      - path: pPlane3/polySurface3/transform2
+        weight: 1
+      - path: pPlane3/transform1
+        weight: 1
+      - path: pPlane4
+        weight: 1
+      - path: pPlane4/polySurface40
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47
+        weight: 1
+      - path: pPlane4/polySurface40/polySurface47/transform66
+        weight: 1
+      - path: pPlane4/polySurface40/transform59
+        weight: 1
+      - path: pPlane4/polySurface41
+        weight: 1
+      - path: pPlane4/polySurface41/transform57
+        weight: 1
+      - path: pPlane4/polySurface43
+        weight: 1
+      - path: pPlane4/polySurface43/transform65
+        weight: 1
+      - path: pPlane4/polySurface44
+        weight: 1
+      - path: pPlane4/polySurface44/transform58
+        weight: 1
+      - path: pPlane4/polySurface45
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface48/transform63
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface50
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/polySurface51/transform62
+        weight: 1
+      - path: pPlane4/polySurface45/polySurface49/transform61
+        weight: 1
+      - path: pPlane4/polySurface45/transform60
+        weight: 1
+      - path: pPlane4/transform56
+        weight: 1
+      - path: pSphere1
+        weight: 1
+      - path: pSphere2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

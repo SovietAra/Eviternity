@@ -23,7 +23,9 @@ public class Explosion : MonoBehaviour
     private float damage = 1;
 
     public GameObject StatusEffect;
+    public AudioClip ExplosionSound;
 
+    private AudioSource audioSource;
     private GameObject owner;
     private SphereCollider sphereExplosion;
     private bool exploded;
@@ -76,6 +78,7 @@ public class Explosion : MonoBehaviour
             }
         }
 
+        audioSource = GetComponent<AudioSource>();
         exploded = false;
         playOnce = false;
         if(sphereExplosion == null)
@@ -98,6 +101,15 @@ public class Explosion : MonoBehaviour
             {
                 effect.Play();
                 playOnce = true;
+
+                if (audioSource != null && ExplosionSound != null)
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.clip = ExplosionSound;
+                        audioSource.Play();
+                    }
+                }
             }
             else
             {

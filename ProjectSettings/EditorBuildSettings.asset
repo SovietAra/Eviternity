@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/Testing.unity
   - enabled: 0
     path: Assets/Scenes/TestScenes/PlayerTestScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/PrototypeScene.unity
   - enabled: 1
     path: Assets/Scenes/MenuScenes/SplashScreen.unity
@@ -31,5 +31,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScenes/Credits.unity
   - enabled: 0
     path: Assets/Scenes/MenuScenes/CharacterSelection.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototyp.unity
+  - enabled: 1
+    path: Assets/Scenes/LevelZero.unity
