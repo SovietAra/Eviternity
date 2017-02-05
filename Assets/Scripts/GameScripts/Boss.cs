@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public GameObject IcicleAbility;
 
     public AudioClip MoveSound;
+    public Animator animator;
 
     private AudioSource audioSource;
     private Weapon aoeWeapon;
@@ -56,6 +57,9 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        animator.SetBool("Walking", false);
+
+        print(animator.GetBool("Walking"));
 
         damageDone = new float[4];
         if (AOEWeapon != null)
@@ -106,6 +110,7 @@ public class Boss : MonoBehaviour
 
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
+        //TODO: Umbauen, dass Boss erst nach Delay/Animationsende stirbt
         Destroy(gameObject);
     }
 
@@ -167,12 +172,15 @@ public class Boss : MonoBehaviour
                     SetTargetPosition(currentTarget.transform.position, minimumDistance);
                     if (agent.velocity != Vector3.zero)
                     {
+                        animator.SetBool("Walking", true);
                         if (audioSource != null && MoveSound != null && !audioSource.isPlaying)
                         {
                             audioSource.clip = MoveSound;
                             audioSource.Play();
                         }
                     }
+                    else
+                        animator.SetBool("Walking", false);
                     DoRotation();
                     AttackPlayer();
                 }
