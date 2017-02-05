@@ -42,9 +42,9 @@ public class MenuMusicScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (SceneManager.GetActiveScene().name == "Prototyp")
+        if (SceneManager.GetActiveScene().name == "LevelZero")
         {
-            Debug.Log("Scene gewechselt in Prototyp");
+            Debug.Log("Scene gewechselt in LevelZero");
             Destroy(this.gameObject);
         }
     }
