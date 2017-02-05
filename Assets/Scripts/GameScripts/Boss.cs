@@ -323,22 +323,29 @@ public class Boss : MonoBehaviour
     private void WeaponDecider(Vector3 targetPosition, float distance)
     {
         bool done = false;
-        if (aoeWeapon != null && distance < 7f)
+        if (aoeWeapon != null && distance < 7f && !done)
         {
+            animator.SetTrigger("MultiHit");
             done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
         }
 
         if (iceWaveWeapon != null && !done && distance < 7f
             && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
         {
+            animator.SetTrigger("IceWave");
             done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
         }
 
         if (icicleAbility != null && !done && distance >= 7f)
         {
+            
             Vector3 translation = targetPosition - transform.position;
             icicleAbility.SpawnTranslation = translation;
-            done = icicleAbility.Use();
+            if(icicleAbility.Use())
+            {
+                animator.SetTrigger("SingleHit");
+                done = icicleAbility.Use();
+            }
         }
     }
 
