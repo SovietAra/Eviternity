@@ -28,6 +28,7 @@ public class Boss : MonoBehaviour
     private float angle;
     private Quaternion targetRotation;
     private bool updatePlayers = true;
+    private bool isDead = false;
     private Vector3 spawnPosition;
     private NavMeshAgent agent;
 
@@ -37,6 +38,7 @@ public class Boss : MonoBehaviour
     private float elapsedDamageTime = 0f;
     private float elapsedHitTime = 0f;
     private float damageReceived = 0f;
+    private float elapsedDeathTime = 0f;
 
     [SerializeField]
     [Range(0, 1000)]
@@ -53,6 +55,10 @@ public class Boss : MonoBehaviour
     [SerializeField]
     [Range(0, 100)]
     private float resetTime = 10f;
+
+    [SerializeField]
+    [Range(0,10)]
+    private float deathDelay = 0;
     
     private void Start()
     {
@@ -111,7 +117,10 @@ public class Boss : MonoBehaviour
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
         //TODO: Umbauen, dass Boss erst nach Delay/Animationsende stirbt
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        if(!isDead)
+        animator.SetTrigger("OnDeath");
+        isDead = true;
     }
 
     private void GamePadManager_OnPlayerCountChanged(object sender, EventArgs e)
@@ -153,47 +162,62 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
-        if (updatePlayers)
-            GetPlayers();
-
-        UpdateTimers();
-
-        if (!Freeze)
+        if (!isDead)
         {
-            CheckCurrentTarget();
+            if (updatePlayers)
+                GetPlayers();
 
-            if (currentTarget == null)
-                SearchPlayer();
+            UpdateTimers();
 
-            if (currentTarget != null)
+            if (!Freeze)
             {
-                if (animationDuration <= 0)
-                {
-                    SetTargetPosition(currentTarget.transform.position, minimumDistance);
-                    if (agent.velocity != Vector3.zero)
-                    {
-                        animator.SetBool("Walking", true);
-                        if (audioSource != null && MoveSound != null && !audioSource.isPlaying)
-                        {
-                            audioSource.clip = MoveSound;
-                            audioSource.Play();
-                        }
-                    }
-                    else
-                        animator.SetBool("Walking", false);
-                    DoRotation();
-                    AttackPlayer();
-                }
-            }
+                CheckCurrentTarget();
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14);
-            angle = transform.eulerAngles.y;
+                if (currentTarget == null)
+                    SearchPlayer();
+
+                if (currentTarget != null)
+                {
+                    if (animationDuration <= 0)
+                    {
+                        SetTargetPosition(currentTarget.transform.position, minimumDistance);
+                        if (agent.velocity != Vector3.zero)
+                        {
+                            animator.SetBool("Walking", true);
+                            if (audioSource != null && MoveSound != null && !audioSource.isPlaying)
+                            {
+                                audioSource.clip = MoveSound;
+                                audioSource.Play();
+                            }
+                        }
+                        else
+                            animator.SetBool("Walking", false);
+                        DoRotation();
+                        AttackPlayer();
+                    }
+                }
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14);
+                angle = transform.eulerAngles.y;
+            }
+            else
+            {
+                if (agent != null)
+                    agent.Stop();
+            }
         }
         else
         {
-            if (agent != null)
-                agent.Stop();
+            UpdateDeath();
         }
+            
+    }
+
+    private void UpdateDeath()
+    {
+        elapsedDeathTime += Time.deltaTime;
+        if (elapsedDeathTime >= deathDelay)
+            Destroy(gameObject);
     }
 
     private void UpdateTimers()
