@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
     private Ability dashAbility;
     private DamageAbleObject healthContainer;
     private MoveScript moveScript;
+    [SerializeField]
+    private GameObject dashTrail;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax;
@@ -390,7 +392,7 @@ public class Player : MonoBehaviour
             executed = TryDash();
         }
 
-        #region AttackAnimationHandler
+        #region AnimationHandler
 
         if (!(state.Triggers.Right > 0 && !executed) || attackInProgressTimer > 0)
         {
@@ -411,6 +413,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("LeftAttack2", false);
         }
+
+        if (dashAbility.Energy <= 0)
+            dashTrail.SetActive(false);
 
         #endregion
 
@@ -632,7 +637,7 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
-
+                dashTrail.SetActive(true);
                 animator.SetTrigger("Dash");
                 /*if (!audioSources[2].isPlaying)
                     audioSources[2].Play();*/
@@ -767,6 +772,7 @@ public class Player : MonoBehaviour
     {
         isDead = true;
         healingAnim.SetBool("heal", false);
+        dashTrail.SetActive(false);
         if (!animator.GetBool("IsDead"))
         {
             animator.SetBool("IsDead", true);
