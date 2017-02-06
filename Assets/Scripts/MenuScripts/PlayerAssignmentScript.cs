@@ -299,6 +299,10 @@ public class PlayerAssignmentScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (VideoPlayer.AnimationPlayed)
+        {
+            StartNewGame();
+        }
         if (!gameStarted)
         {
             CheckPlayerJoins();
@@ -643,7 +647,8 @@ public class PlayerAssignmentScript : MonoBehaviour
     {
         if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
         {
-        StartNewGame();
+            VideoPlayer.StartGamePressed = true;
+
         }
     }
     #endregion
