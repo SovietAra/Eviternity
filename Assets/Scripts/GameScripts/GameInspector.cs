@@ -145,6 +145,7 @@ public class GameInspector : MonoBehaviour
             {
                 PlayerPrefab = PlayerPrefabAegis;
             }
+            
 
             SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
         }

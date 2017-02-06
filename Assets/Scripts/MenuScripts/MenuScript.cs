@@ -6,7 +6,8 @@ public class MenuScript : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        
+        VideoPlayer.AnimationPlayed = false;
+        VideoPlayer.StartGamePressed = false;
     }
 	
 	// Update is called once per frame

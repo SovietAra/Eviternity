@@ -72,7 +72,9 @@ public class UIScript : MonoBehaviour
     public Sprite[] WeaponIcons;
 
     // Abilities
-    public GameObject[] EnergyBars;
+    //public GameObject[] EnergyBars;
+    public Sprite[] AbilityIcons;
+    public GameObject[] AbilityObjs;
 
     // Other
     public GameObject IndicatorPlaneOne;
@@ -155,7 +157,8 @@ public class UIScript : MonoBehaviour
     private bool P3iconsSet = false;
     private bool P4iconsSet = false;
     private List<GameObject> CurrentPlayers;
-    private Image[] AbilityBars = new Image[12];
+    private Image[] AbilityFill = new Image[64];
+    //private Image[] AbilityBars = new Image[12];
     #endregion
 
     // Use this for initialization
@@ -239,10 +242,14 @@ public class UIScript : MonoBehaviour
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player1Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
 
-                    for (int j = 0; j < 3; j++)
-                    {
-                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j + 1) / playerScript.MaxEnergy;
-                    }
+                    //for (int j = 0; j < 3; j++)
+                    //{
+                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j + 1) / playerScript.MaxEnergy;
+                    //}
+                    // WRNG
+                    AbilityFill[6].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
+                    AbilityFill[10].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
+                    AbilityFill[14].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
 
                     if (Indicate == null)
                     {
@@ -253,7 +260,7 @@ public class UIScript : MonoBehaviour
                     {
                         SetIcon(player, PlayerIndex.One);
                         SetWeaponIcon(player, PlayerIndex.One);
-                        //SetAbilityIcon(player, PlayerIndex.One);
+                        SetAbilityIcons(player, PlayerIndex.One);
                         P1iconsSet = true;
                     }
 
@@ -266,10 +273,15 @@ public class UIScript : MonoBehaviour
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player2Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
 
-                    for (int j = 3; j < 6; j++)
-                    {
-                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 2) / playerScript.MaxEnergy;
-                    }
+                    //for (int j = 3; j < 6; j++)
+                    //{
+                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 2) / playerScript.MaxEnergy;
+                    //}
+                    //WRNG
+
+                    AbilityFill[22].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
+                    AbilityFill[26].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
+                    AbilityFill[30].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
 
                     if (Indicate2 == null)
                     {
@@ -280,7 +292,7 @@ public class UIScript : MonoBehaviour
                     {
                         SetIcon(player, PlayerIndex.Two);
                         SetWeaponIcon(player, PlayerIndex.Two);
-                        //SetAbilityIcon(player, PlayerIndex.Two);
+                        SetAbilityIcons(player, PlayerIndex.Two);
                         P2iconsSet = true;
                     }
                     Indicate2.transform.SetParent(playerScript.transform, false);
@@ -291,11 +303,15 @@ public class UIScript : MonoBehaviour
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player3Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
+                    //WRNG
+                    //for (int j = 6; j < 9; j++)
+                    //{
+                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 5) / playerScript.MaxEnergy;
+                    //}
 
-                    for (int j = 6; j < 9; j++)
-                    {
-                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 5) / playerScript.MaxEnergy;
-                    }
+                    AbilityFill[38].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
+                    AbilityFill[42].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
+                    AbilityFill[46].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
 
                     if (Indicate3 == null)
                     {
@@ -306,7 +322,7 @@ public class UIScript : MonoBehaviour
                     {
                         SetIcon(player, PlayerIndex.Three);
                         SetWeaponIcon(player, PlayerIndex.Three);
-                        //SetAbilityIcon(player, PlayerIndex.Three);
+                        SetAbilityIcons(player, PlayerIndex.Three);
                         P3iconsSet = true;
                     }
                     Indicate3.transform.SetParent(playerScript.transform, false);
@@ -317,11 +333,15 @@ public class UIScript : MonoBehaviour
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player4Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
+                    //WRNG
+                    //for (int j = 9; j < 12; j++)
+                    //{
+                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 8) / playerScript.MaxEnergy;
+                    //}
 
-                    for (int j = 9; j < 12; j++)
-                    {
-                        AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 8) / playerScript.MaxEnergy;
-                    }
+                    AbilityFill[54].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
+                    AbilityFill[58].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
+                    AbilityFill[62].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
 
                     if (Indicate4 == null)
                     {
@@ -332,13 +352,94 @@ public class UIScript : MonoBehaviour
                     {
                         SetIcon(player, PlayerIndex.Four);
                         SetWeaponIcon(player, PlayerIndex.Four);
-                        //SetAbilityIcon(player, PlayerIndex.Four);
+                        SetAbilityIcons(player, PlayerIndex.Four);
                         P4iconsSet = true;
                     }
                     Indicate4.transform.SetParent(playerScript.transform, false);
                 }
                 break;
 
+            default:
+                break;
+        }
+    }
+
+    private void SetAbilityIcons(GameObject player, PlayerIndex index)
+    {
+        switch (index)
+        {
+            case PlayerIndex.One:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        //AbilityFill[1].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[5].sprite = AbilityIcons[0];
+                        //AbilityFill[9].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[13].sprite = AbilityIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        //AbilityFill[1].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[5].sprite = AbilityIcons[2];
+                        //AbilityFill[9].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[13].sprite = AbilityIcons[3];
+                    }
+                }
+                break;
+            case PlayerIndex.Two:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        //AbilityFill[rip].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[21].sprite = AbilityIcons[0];
+                        //AbilityFill[rip].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[29].sprite = AbilityIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        //AbilityFill[rip].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[21].sprite = AbilityIcons[2];
+                        //AbilityFill[rip].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[29].sprite = AbilityIcons[3];
+                    }
+                }
+                break;
+            case PlayerIndex.Three:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        //AbilityFill[rip].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[37].sprite = AbilityIcons[0];
+                        //AbilityFill[rip].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[45].sprite = AbilityIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        //AbilityFill[rip].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[37].sprite = AbilityIcons[2];
+                        //AbilityFill[rip].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[45].sprite = AbilityIcons[3];
+                    }
+                }
+                break;
+            case PlayerIndex.Four:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        //AbilityFill[rip].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[53].sprite = AbilityIcons[0];
+                        //AbilityFill[rip].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[61].sprite = AbilityIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        //AbilityFill[rip].sprite = WeaponIcons[0]; granate bleibt 
+                        AbilityFill[53].sprite = AbilityIcons[2];
+                        //AbilityFill[rip].sprite = AbilityIcons[]; A bleibt immer dash
+                        AbilityFill[61].sprite = AbilityIcons[3];
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -487,9 +588,14 @@ public class UIScript : MonoBehaviour
                     Destroy(p1icon.gameObject);
                     P1iconsSet = false;
 
-                    for (int k = 0; k < 3; k++)
+                    //for (int k = 0; k < 3; k++)
+                    //{
+                    //    Destroy(AbilityBars[k].gameObject);
+                    //}
+
+                    for (int k = 0; k < 4; k++)
                     {
-                        Destroy(AbilityBars[k].gameObject);
+                        Destroy(AbilityFill[k].gameObject);
                     }
                 }
                 break;
@@ -509,9 +615,14 @@ public class UIScript : MonoBehaviour
                     Destroy(p2icon.gameObject);
                     P2iconsSet = false;
 
-                    for (int k = 3; k < 6; k++)
+                    //for (int k = 3; k < 6; k++)
+                    //{
+                    //    Destroy(AbilityBars[k].gameObject);
+                    //}
+
+                    for (int k = 4; k < 8; k++)
                     {
-                        Destroy(AbilityBars[k].gameObject);
+                        Destroy(AbilityFill[k].gameObject);
                     }
                 }
                 break;
@@ -531,9 +642,14 @@ public class UIScript : MonoBehaviour
                     Destroy(p3icon.gameObject);
                     P3iconsSet = false;
 
-                    for (int k = 6; k < 9; k++)
+                    //for (int k = 6; k < 9; k++)
+                    //{
+                    //    Destroy(AbilityBars[k].gameObject);
+                    //}
+
+                    for (int k = 8; k < 12; k++)
                     {
-                        Destroy(AbilityBars[k].gameObject);
+                        Destroy(AbilityFill[k].gameObject);
                     }
                 }
                 break;
@@ -553,9 +669,14 @@ public class UIScript : MonoBehaviour
                     Destroy(p4icon.gameObject);
                     P4iconsSet = false;
 
-                    for (int k = 9; k < 12; k++)
+                    //for (int k = 9; k < 12; k++)
+                    //{
+                    //    Destroy(AbilityBars[k].gameObject);
+                    //}
+
+                    for (int k = 12; k < 16; k++)
                     {
-                        Destroy(AbilityBars[k].gameObject);
+                        Destroy(AbilityFill[k].gameObject);
                     }
                 }
                 break;
@@ -610,11 +731,18 @@ public class UIScript : MonoBehaviour
                     player1Weapon2_3 = Heat5_4.GetComponent<Image>();
                     player1Weapon2_3.transform.SetParent(UICanvas, false);
 
-                    for (int i = 0; i < 3; i++)
+                    //for (int i = 0; i < 3; i++)
+                    //{
+                    //    GameObject Energy = Instantiate(EnergyBars[i]);
+                    //    AbilityBars[i] = Energy.GetComponent<Image>();
+                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
+                    //}
+
+                    for (int i = 0; i < 16; i++)
                     {
-                        GameObject Energy = Instantiate(EnergyBars[i]);
-                        AbilityBars[i] = Energy.GetComponent<Image>();
-                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                        GameObject Ability = Instantiate(AbilityObjs[i]);
+                        AbilityFill[i] = Ability.GetComponent<Image>();
+                        AbilityFill[i].transform.SetParent(UICanvas, false);
                     }
                 }
                 break;
@@ -658,11 +786,18 @@ public class UIScript : MonoBehaviour
                     player2Weapon2_3 = Heat6_4.GetComponent<Image>();
                     player2Weapon2_3.transform.SetParent(UICanvas, false);
 
-                    for (int i = 3; i < 6; i++)
+                    //for (int i = 3; i < 6; i++)
+                    //{
+                    //    GameObject Energy = Instantiate(EnergyBars[i]);
+                    //    AbilityBars[i] = Energy.GetComponent<Image>();
+                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
+                    //}
+
+                    for (int i = 16; i < 32; i++)
                     {
-                        GameObject Energy = Instantiate(EnergyBars[i]);
-                        AbilityBars[i] = Energy.GetComponent<Image>();
-                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                        GameObject Ability = Instantiate(AbilityObjs[i]);
+                        AbilityFill[i] = Ability.GetComponent<Image>();
+                        AbilityFill[i].transform.SetParent(UICanvas, false);
                     }
                 }
                 break;
@@ -694,23 +829,30 @@ public class UIScript : MonoBehaviour
                     player3Weapon_3 = Heat3_4.GetComponent<Image>();
                     player3Weapon_3.transform.SetParent(UICanvas, false);
                     GameObject Heat7_1 = Instantiate(P3SecWeapon_background);
-                    player3Weapon_1 = Heat7_1.GetComponent<Image>();
-                    player3Weapon_1.transform.SetParent(UICanvas, false);
+                    player3Weapon2_1 = Heat7_1.GetComponent<Image>();
+                    player3Weapon2_1.transform.SetParent(UICanvas, false);
                     GameObject Heat7_2 = Instantiate(P3SecWeapon_icon);
-                    player3Weapon_2 = Heat7_2.GetComponent<Image>();
-                    player3Weapon_2.transform.SetParent(UICanvas, false);
+                    player3Weapon2_2 = Heat7_2.GetComponent<Image>();
+                    player3Weapon2_2.transform.SetParent(UICanvas, false);
                     GameObject Heat7_3 = Instantiate(P3SecWeaponHeat);
-                    player3Heat = Heat7_3.GetComponent<Image>();
-                    player3Heat.transform.SetParent(UICanvas, false);
+                    player3Heat2 = Heat7_3.GetComponent<Image>();
+                    player3Heat2.transform.SetParent(UICanvas, false);
                     GameObject Heat7_4 = Instantiate(P3SecWeapon_border);
-                    player3Weapon_3 = Heat7_4.GetComponent<Image>();
-                    player3Weapon_3.transform.SetParent(UICanvas, false);
+                    player3Weapon2_3 = Heat7_4.GetComponent<Image>();
+                    player3Weapon2_3.transform.SetParent(UICanvas, false);
 
-                    for (int i = 6; i < 9; i++)
+                    //for (int i = 6; i < 9; i++)
+                    //{
+                    //    GameObject Energy = Instantiate(EnergyBars[i]);
+                    //    AbilityBars[i] = Energy.GetComponent<Image>();
+                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
+                    //}
+
+                    for (int i = 32; i < 48; i++)
                     {
-                        GameObject Energy = Instantiate(EnergyBars[i]);
-                        AbilityBars[i] = Energy.GetComponent<Image>();
-                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                        GameObject Ability = Instantiate(AbilityObjs[i]);
+                        AbilityFill[i] = Ability.GetComponent<Image>();
+                        AbilityFill[i].transform.SetParent(UICanvas, false);
                     }
                 }
                 break;
@@ -754,11 +896,18 @@ public class UIScript : MonoBehaviour
                     player4Weapon2_3 = Heat8_4.GetComponent<Image>();
                     player4Weapon2_3.transform.SetParent(UICanvas, false);
 
-                    for (int i = 9; i < 12; i++)
+                    //for (int i = 9; i < 12; i++)
+                    //{
+                    //    GameObject Energy = Instantiate(EnergyBars[i]);
+                    //    AbilityBars[i] = Energy.GetComponent<Image>();
+                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
+                    //}
+
+                    for (int i = 48; i < 64; i++)
                     {
-                        GameObject Energy = Instantiate(EnergyBars[i]);
-                        AbilityBars[i] = Energy.GetComponent<Image>();
-                        AbilityBars[i].transform.SetParent(UICanvas, false);
+                        GameObject Ability = Instantiate(AbilityObjs[i]);
+                        AbilityFill[i] = Ability.GetComponent<Image>();
+                        AbilityFill[i].transform.SetParent(UICanvas, false);
                     }
                 }
                 break;
