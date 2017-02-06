@@ -279,6 +279,8 @@ public class UIScript : MonoBehaviour
                     if (P2iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.Two);
+                        SetWeaponIcon(player, PlayerIndex.Two);
+                        //SetAbilityIcon(player, PlayerIndex.Two);
                         P2iconsSet = true;
                     }
                     Indicate2.transform.SetParent(playerScript.transform, false);
@@ -303,6 +305,8 @@ public class UIScript : MonoBehaviour
                     if (P3iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.Three);
+                        SetWeaponIcon(player, PlayerIndex.Three);
+                        //SetAbilityIcon(player, PlayerIndex.Three);
                         P3iconsSet = true;
                     }
                     Indicate3.transform.SetParent(playerScript.transform, false);
@@ -327,6 +331,8 @@ public class UIScript : MonoBehaviour
                     if (P4iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.Four);
+                        SetWeaponIcon(player, PlayerIndex.Four);
+                        //SetAbilityIcon(player, PlayerIndex.Four);
                         P4iconsSet = true;
                     }
                     Indicate4.transform.SetParent(playerScript.transform, false);
@@ -496,7 +502,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2Heat2.gameObject);
                     Destroy(player2Weapon_1.gameObject);
                     Destroy(player2Weapon_2.gameObject);
-                    Destroy(player2Weapon_3.gameObject);
+                    //Destroy(player2Weapon_3.gameObject); image doesnt get created.
                     Destroy(player2Weapon2_1.gameObject);
                     Destroy(player2Weapon2_2.gameObject);
                     Destroy(player2Weapon2_3.gameObject);
@@ -518,7 +524,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Heat2.gameObject);
                     Destroy(player3Weapon_1.gameObject);
                     Destroy(player3Weapon_2.gameObject);
-                    Destroy(player3Weapon_3.gameObject);
+                    //Destroy(player3Weapon_3.gameObject);
                     Destroy(player3Weapon2_1.gameObject);
                     Destroy(player3Weapon2_2.gameObject);
                     Destroy(player3Weapon2_3.gameObject);
@@ -540,7 +546,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4Heat2.gameObject);
                     Destroy(player4Weapon_1.gameObject);
                     Destroy(player4Weapon_2.gameObject);
-                    Destroy(player4Weapon_3.gameObject);
+                    //Destroy(player4Weapon_3.gameObject);
                     Destroy(player4Weapon2_1.gameObject);
                     Destroy(player4Weapon2_2.gameObject);
                     Destroy(player4Weapon2_3.gameObject);
