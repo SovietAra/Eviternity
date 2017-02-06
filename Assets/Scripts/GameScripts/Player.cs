@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private Vector3 finalVelocity;
 
-    private float elapsedDashRegenerationTime = 0f;
+   private float elapsedDashRegenerationTime = 0f;
     private float elapsedReviveDelay = 0f;
     private float elapsedImmortal;
     private float attackInProgressTimer = 0f;
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 
     private float stepTimer;
 
-    private bool[] PlayMusicTheme = new bool[50];
+   // private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
     #region InspectorFields
@@ -153,7 +153,8 @@ public class Player : MonoBehaviour
 
         //define names for sounds
         var Spawn_Sound = audioSources[0];
-        var Despawn_Sound = audioSources[1];
+
+        //var Despawn_Sound = audioSources[1];
         //var Walk_Ice_1_Sound = audioSources[3];   3-7 Ice_Walk
         //var Walk_Ice_2_Sound = audioSources[4];   8-12 Metal_Walk
         //var Walk_Ice_3_Sound = audioSources[5];   13-17 Oil_Walk
@@ -161,10 +162,10 @@ public class Player : MonoBehaviour
         //var Walk_Ice_5_Sound = audioSources[7]; 
         //var Hit1_Sound = audioSources[7];         23-26 Hit
         
-        for(int i = 3; i < 23; i++)
-        {
-            audioSources[i].volume = StepVolume;
-        }
+        //for(int i = 3; i < 23; i++)
+        //{
+        //    audioSources[i].volume = StepVolume;
+        //}
         
 
         //TODO call sounds in correct places/functions
@@ -311,14 +312,14 @@ public class Player : MonoBehaviour
             InputOnIce();
         }
 
-        for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
-        {       
-            if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
-                audioSources[i].Play(); 
+        //for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
+        //{       
+        //    if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
+        //        audioSources[i].Play(); 
 
-            if (audioSources[i].isPlaying && !PlayMusicTheme[i])
-                audioSources[i].Stop();
-        }
+        //    if (audioSources[i].isPlaying && !PlayMusicTheme[i])
+        //        audioSources[i].Stop();
+        //}
        
         CheckOverlappingObjects();
     }
@@ -519,6 +520,14 @@ public class Player : MonoBehaviour
         if (prevRenderer != null)
         {
             prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
+            if(alpha < 1)
+            {
+                gameObject.layer = 11;
+            }
+            else
+            {
+                gameObject.layer = 8;
+            }
             return true;
         }
 
@@ -630,6 +639,8 @@ public class Player : MonoBehaviour
             {
                 SetDashParticles(true);
                 animator.SetTrigger("Dash");
+                if (!audioSources[2].isPlaying)
+                    audioSources[2].Play();
                 return true;
             }
         }
@@ -915,10 +926,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayMusicThemePicker(int tmp, bool state)
-    {
-        PlayMusicTheme[tmp] = state;
-    }
+    //public void PlayMusicThemePicker(int tmp, bool state)
+    //{
+    //    PlayMusicTheme[tmp] = state;
+    //}
 
     private void SetDashParticles(bool active)
     {

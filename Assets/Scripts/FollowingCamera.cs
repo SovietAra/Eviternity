@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-
 
 public class FollowingCamera : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class FollowingCamera : MonoBehaviour
     private List<Transform> followedObjects;
 
     [SerializeField]
-    public float minZoom = 8f, maxZoom = 15f;
+    private float minZoom = 8f, maxZoom = 15f;
 
     [SerializeField]
     private ZoomState state;
@@ -53,14 +53,16 @@ public class FollowingCamera : MonoBehaviour
         float correctedZoomInBorders = zoomInBorders / 2f;
         float correctedZoomOutBorders = zoomOutBorders / 2f;
         for (int i = 0; i < followedObjects.Count; i++)
-        {if(followedObjects[i] != null) { 
-            Vector3 viewPoint = camera.WorldToViewportPoint(followedObjects[i].position);
+        {
+            if (followedObjects[i] != null)
+            {
+                Vector3 viewPoint = camera.WorldToViewportPoint(followedObjects[i].position);
 
-            Rect innerRect = new Rect(correctedZoomInBorders, correctedZoomInBorders, 1 - zoomInBorders, 1 - zoomInBorders);
-            Rect outerRect = new Rect(correctedZoomOutBorders, correctedZoomOutBorders, 1 - zoomOutBorders, 1 - zoomOutBorders);
+                Rect innerRect = new Rect(correctedZoomInBorders, correctedZoomInBorders, 1 - zoomInBorders, 1 - zoomInBorders);
+                Rect outerRect = new Rect(correctedZoomOutBorders, correctedZoomOutBorders, 1 - zoomOutBorders, 1 - zoomOutBorders);
 
-            if (!innerRect.Contains(viewPoint))
-                state = ZoomState.Stay;
+                if (!innerRect.Contains(viewPoint))
+                    state = ZoomState.Stay;
 
                 if (!outerRect.Contains(viewPoint))
                 {
@@ -73,15 +75,20 @@ public class FollowingCamera : MonoBehaviour
         return state;
     }
 
-    private void Start()
+    private void Awake()
     {
         if (camera == null)
             camera = GetComponentInChildren<Camera>();
     }
 
+    private void Start()
+    {
+        camera.orthographicSize = minZoom;
+    }
+
     private Vector3 FindCenterPoint()
     {
-        if (followedObjects.Count == 0 || followedObjects[0] == null) 
+        if (followedObjects.Count == 0 || followedObjects[0] == null)
             return camera.transform.forward;
 
         Vector3 bottommost = followedObjects[0].position, leftmost = followedObjects[0].position, upmost = followedObjects[0].position, rightmost = followedObjects[0].position;
@@ -116,8 +123,8 @@ public class FollowingCamera : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 0.3f);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawSphere(transform.position, 0.3f);
     }
 
     private void OnGUI()
@@ -167,26 +174,32 @@ public class FollowingCamera : MonoBehaviour
 
     private void Zoom()
     {
-        Vector3 position = camera.transform.localPosition;
+        //   Vector3 position = camera.transform.localPosition;
 
         state = CalculateZoomState();
 
         switch (state)
         {
             case ZoomState.ZoomIn:
-                camera.transform.localPosition = position + Vector3.forward * zoomSpeed;
+                camera.orthographicSize -= zoomSpeed;
                 break;
 
             case ZoomState.ZoomOut:
-                camera.transform.localPosition = position + Vector3.back * zoomSpeed;
+                camera.orthographicSize += zoomSpeed;
                 break;
+
+            case ZoomState.Stay:
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
-        if (camera.transform.localPosition.z > -minZoom)
-            camera.transform.localPosition = new Vector3(position.x, position.y, -minZoom);
+        if (camera.orthographicSize < minZoom)
+            camera.orthographicSize = minZoom;
 
-        if (camera.transform.localPosition.z < -maxZoom)
-            camera.transform.localPosition = new Vector3(position.x, position.y, -maxZoom);
+        if (camera.orthographicSize > maxZoom)
+            camera.orthographicSize = maxZoom;
     }
 
     #endregion Private Methods
