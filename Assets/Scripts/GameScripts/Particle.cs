@@ -11,7 +11,10 @@ public class Particle : MonoBehaviour {
         ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
         particles = GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem particle in particles)
+        {
+            particle.Play();
             particleSystems.Add(particle);
+        }
 	}
 	
 	// Update is called once per frame
