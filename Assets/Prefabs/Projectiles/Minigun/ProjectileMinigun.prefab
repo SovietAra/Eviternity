@@ -226,8 +226,10 @@ MonoBehaviour:
   DoAOETeamDamage: 0
   SpawnExplosion: 0
   OverwriteExplosionValues: 0
+  AllowVelocityIncreasing: 1
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
+  ImpactSound: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0
 --- !u!135 &135289528192169384
