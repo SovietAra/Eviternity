@@ -78,7 +78,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Ability
     m_StateMachine: {fileID: 1107379748042026412}
-    m_Mask: {fileID: 101100000, guid: 1dd6747ca40ae334f86e118130061f03, type: 2}
+    m_Mask: {fileID: 101100000, guid: 7fe6662ebec630b48845bb1869cba7e0, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0

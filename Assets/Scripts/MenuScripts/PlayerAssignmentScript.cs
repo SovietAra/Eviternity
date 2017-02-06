@@ -19,6 +19,8 @@ public class PlayerAssignmentScript : MonoBehaviour
     private bool gameStarted;
     public Canvas playerAssignmentScreen;
 
+    public int[] playerChoice;
+
     public Text playerOneJoin;
 
     public Text playerTwoJoin;
@@ -202,6 +204,8 @@ public class PlayerAssignmentScript : MonoBehaviour
         weaponSelectionPlayerFour = weaponSelectionPlayerFour.GetComponent<Canvas>();
         weaponSelectionPlayerFour.enabled = true;
         #endregion
+
+        playerChoice = new int[4];
 
         playerJoined = new bool[4];
         playerJoined[0] = false;
@@ -649,6 +653,8 @@ public class PlayerAssignmentScript : MonoBehaviour
     {
         ImageList[playerIndex][index].enabled = true;
         ImageList[playerIndex][prevIndex].enabled = false;
+
+        playerChoice[playerIndex] = index;
     }
 
     public void ChangeLeftWeaponAegis(int playerIndex, int index, int prevIndex)
