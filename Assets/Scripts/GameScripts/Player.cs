@@ -42,12 +42,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject dashTrail;
     private ParticleSystem[] dashParticles;
+    private GameObject transparentObject = null;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax;
     private Rigidbody physics;
-    private GameObject transparentObject;
-
+    
     private GamePadState prevState;
 
     private GameObject mainGameObject;
@@ -488,29 +488,17 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.gameObject.CompareTag("Untagged"))
             {
-                if (ChangeColor(hit.transform.gameObject, 0.1f))
-                {
-                    if (transparentObject != null && transparentObject != hit.transform.gameObject)
-                        ChangeColor(transparentObject, 1);
-
+                if(ChangeColor(hit.transform.gameObject, 0.1f))
                     transparentObject = hit.transform.gameObject;
-                }
-                else
-                {
-                    if (transparentObject != null)
-                        ChangeColor(transparentObject, 1f);
-                }
             }
             else
             {
-                if (transparentObject != null)
-                    ChangeColor(transparentObject, 1f);
+                ChangeColor(transparentObject, 1f);
             }
         }
         else
         {
-            if (transparentObject != null)
-                ChangeColor(transparentObject, 1f);
+            ChangeColor(transparentObject, 1f);
         }
     }
 
@@ -520,14 +508,6 @@ public class Player : MonoBehaviour
         if (prevRenderer != null)
         {
             prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
-            if(alpha < 1)
-            {
-                gameObject.layer = 11;
-            }
-            else
-            {
-                gameObject.layer = 8;
-            }
             return true;
         }
 
