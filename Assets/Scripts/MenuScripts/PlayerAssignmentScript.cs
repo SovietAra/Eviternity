@@ -310,7 +310,7 @@ public class PlayerAssignmentScript : MonoBehaviour
     {
             gameStarted = true;
             changeMenu = true;
-            SceneManager.LoadScene("Prototyp");
+            SceneManager.LoadScene("LevelZero");
     }
     #region player Funktionen
     private void CheckPlayerJoins()
