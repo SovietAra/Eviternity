@@ -574,11 +574,15 @@ MonoBehaviour:
     type: 2}
   Player1HealthUI_outline: {fileID: 1080071821691062, guid: f68926afdfbf9004caa6dd1c24a89df0,
     type: 2}
+  Player1Icon: {fileID: 1037427217207164, guid: eca21bd3c4832a54e8b07c6e49ab8ddd,
+    type: 2}
   Player2HealthUI_background: {fileID: 1639795693969468, guid: dc7844a6464d1cb44aff06e6209ed131,
     type: 2}
   Player2HealthUI_fill: {fileID: 1620131760359492, guid: 481f3412d80d3fb4b9f1b600d35f4bfa,
     type: 2}
   Player2HealthUI_outline: {fileID: 1682553469380310, guid: e6ade1c1731b0a94080c9e293ffae8f7,
+    type: 2}
+  Player2Icon: {fileID: 1166511113042202, guid: 726fac22dfb2dbf41b057ae25def2aa3,
     type: 2}
   Player3HealthUI_background: {fileID: 1812027146096240, guid: 1fdda810d50a4994cad19bfab6218463,
     type: 2}
@@ -586,16 +590,29 @@ MonoBehaviour:
     type: 2}
   Player3HealthUI_outline: {fileID: 1097784883698690, guid: 2f3ca651397cadd40b487c49a7aa324a,
     type: 2}
+  Player3Icon: {fileID: 1722401275274682, guid: 9ab61b38746f12e468d5037351efadb5,
+    type: 2}
   Player4HealthUI_background: {fileID: 1325526174054338, guid: 88e48badc2e6a5d4e8c900083ff616f1,
     type: 2}
   Player4HealthUI_fill: {fileID: 1249875902681176, guid: 72ac4d00273fca84898a8955371be260,
     type: 2}
   Player4HealthUI_outline: {fileID: 1069659291913358, guid: 045be2bcb0ed09b4e84536b951ba3fb7,
     type: 2}
+  Player4Icon: {fileID: 1424498713575558, guid: 5428b2ac4f048e04d81033defe5d2eb3,
+    type: 2}
   TeamHealthBar: {fileID: 114997412315837756}
   TeamHealthBar_Border: {fileID: 114392379955333076}
   TeamHealthActive: {fileID: 21300000, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
   TeamHealthInactive: {fileID: 21300002, guid: 037eb8ae19fcdf74695238cdd28e2ebd, type: 3}
+  PlayerIcons:
+  - {fileID: 21300004, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300002, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300012, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300010, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300016, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300014, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300008, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
+  - {fileID: 21300006, guid: fc3680ce53a0e364abd964ae972d5dc1, type: 3}
   P1Weapon_background: {fileID: 1102794828692938, guid: 5cc624ce65083d349be779ae556e5e7c,
     type: 2}
   P1Weapon_border: {fileID: 1772067579695382, guid: 7dafe66bae9dbc6499e327c1399c2984,
@@ -603,6 +620,14 @@ MonoBehaviour:
   P1Weapon_icon: {fileID: 1327549225928584, guid: 5975c868b63d2714eb5b9c94e8e743c9,
     type: 2}
   P1WeaponHeat: {fileID: 1513010077647886, guid: 8f1f032051e15224ab4c2c1e6b87cab1,
+    type: 2}
+  P1SecWeapon_background: {fileID: 1466138098105654, guid: 429e13025fc79624fa1a229b9d6d4323,
+    type: 2}
+  P1SecWeapon_border: {fileID: 1338151044271406, guid: 2cbb44c21b7c89647a9d16a4c9d344c0,
+    type: 2}
+  P1SecWeapon_icon: {fileID: 1118655902424638, guid: 5e83e0822fe4e2a4b9adeb01a52d79c6,
+    type: 2}
+  P1SecWeaponHeat: {fileID: 1159094933667276, guid: 6e7a7d3055fa41f43ac72b6ea7d13cbb,
     type: 2}
   P2Weapon_background: {fileID: 1524469443604078, guid: 9298903e346167a4a8947507f595deb5,
     type: 2}
@@ -612,6 +637,14 @@ MonoBehaviour:
     type: 2}
   P2WeaponHeat: {fileID: 1920149957827664, guid: 4c9fca6c8dbaba042b2c377d62b74576,
     type: 2}
+  P2SecWeapon_background: {fileID: 1392096749768238, guid: 7abf1ced8e089b541b0ee42c3edb102f,
+    type: 2}
+  P2SecWeapon_border: {fileID: 1623042684394838, guid: d6d2aae9b9ad2a841b215e74bc0acb84,
+    type: 2}
+  P2SecWeapon_icon: {fileID: 1390833617063294, guid: ad3be9a686380114cb663cbd3a6432b6,
+    type: 2}
+  P2SecWeaponHeat: {fileID: 1351611449030416, guid: 98c9b594db8ea6140bccfe4427ed376d,
+    type: 2}
   P3Weapon_background: {fileID: 1222665550164992, guid: ca2a9f428762cd84b9ead044ba53e88a,
     type: 2}
   P3Weapon_border: {fileID: 1464853413072174, guid: 4fd7db1173d54c64fb9a835eddb9e0b8,
@@ -620,6 +653,14 @@ MonoBehaviour:
     type: 2}
   P3WeaponHeat: {fileID: 1247012471964974, guid: 578e4cecf9228d342b38f48b4c05a9d0,
     type: 2}
+  P3SecWeapon_background: {fileID: 1148017205350380, guid: fa41fb889e3d176469cd4ea15637721e,
+    type: 2}
+  P3SecWeapon_border: {fileID: 1286291678910144, guid: b31738163ce002d4a81059a7d2340935,
+    type: 2}
+  P3SecWeapon_icon: {fileID: 1782457145961922, guid: c881d37b429973f4aa7de82e84c6a240,
+    type: 2}
+  P3SecWeaponHeat: {fileID: 1488749851764252, guid: fb203724fb9bfd042bba2cd4284b5329,
+    type: 2}
   P4Weapon_background: {fileID: 1201448263450726, guid: 10c35cfccfbc62a4ba370dd3c7c62d5b,
     type: 2}
   P4Weapon_border: {fileID: 1245894841947760, guid: 2caf40d90a638824bb7fddafe70b7f29,
@@ -627,6 +668,14 @@ MonoBehaviour:
   P4Weapon_icon: {fileID: 1227675098332254, guid: 433a4c8ffcf46f542ad6234cc352e885,
     type: 2}
   P4WeaponHeat: {fileID: 1345165958357112, guid: 2499b7205d57aa24ab8bbd2ea04c83a1,
+    type: 2}
+  P4SecWeapon_background: {fileID: 1494224796731166, guid: c4bce93a415fbcd4cafb88ade39dd5db,
+    type: 2}
+  P4SecWeapon_border: {fileID: 1642170229065598, guid: edea4692a646b8f418843a4738d20622,
+    type: 2}
+  P4SecWeapon_icon: {fileID: 1089520493388092, guid: b1fc1048269dfcf4d8a0f3bf9272765c,
+    type: 2}
+  P4SecWeaponHeat: {fileID: 1291717141207138, guid: 0cd5b7ec0b22c204b9f5e9a742f2cdc0,
     type: 2}
   EnergyBars:
   - {fileID: 1464132735741188, guid: fa576b0bed8527d43b8e225ac1a134bd, type: 2}
@@ -892,7 +941,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 1209385188523736, guid: 298de2387580600478f43b4d36ba5aa6,
     type: 2}
   PauseMenuCanvas: {fileID: 1679681612470828}
-  maxTeamHealth: 2000
+  maxTeamHealth: 200
   healthRegenerationMultiplicator: 1
   healthRegenerationMulitplicatorOnDeath: 2
 --- !u!114 &114497260242667718
