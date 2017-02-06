@@ -927,6 +927,5 @@ public class Player : MonoBehaviour
                 particles.Play();
             else
                 particles.Stop();
-        print(dashParticles.Length);
     }
 }
