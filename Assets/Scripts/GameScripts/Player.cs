@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private Vector3 finalVelocity;
 
-    private float elapsedDashRegenerationTime = 0f;
+   private float elapsedDashRegenerationTime = 0f;
     private float elapsedReviveDelay = 0f;
     private float elapsedImmortal;
     private float attackInProgressTimer = 0f;
@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     private Ability dashAbility;
     private DamageAbleObject healthContainer;
     private MoveScript moveScript;
+    [SerializeField]
+    private GameObject dashTrail;
+    private ParticleSystem[] dashParticles;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax;
@@ -57,7 +60,7 @@ public class Player : MonoBehaviour
 
     private float stepTimer;
 
-    private bool[] PlayMusicTheme = new bool[50];
+   // private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
     #region InspectorFields
@@ -150,7 +153,8 @@ public class Player : MonoBehaviour
 
         //define names for sounds
         var Spawn_Sound = audioSources[0];
-        var Despawn_Sound = audioSources[1];
+
+        //var Despawn_Sound = audioSources[1];
         //var Walk_Ice_1_Sound = audioSources[3];   3-7 Ice_Walk
         //var Walk_Ice_2_Sound = audioSources[4];   8-12 Metal_Walk
         //var Walk_Ice_3_Sound = audioSources[5];   13-17 Oil_Walk
@@ -158,10 +162,10 @@ public class Player : MonoBehaviour
         //var Walk_Ice_5_Sound = audioSources[7]; 
         //var Hit1_Sound = audioSources[7];         23-26 Hit
         
-        for(int i = 3; i < 23; i++)
-        {
-            audioSources[i].volume = StepVolume;
-        }
+        //for(int i = 3; i < 23; i++)
+        //{
+        //    audioSources[i].volume = StepVolume;
+        //}
         
 
         //TODO call sounds in correct places/functions
@@ -250,6 +254,8 @@ public class Player : MonoBehaviour
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
+        dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
+        SetDashParticles(false);
         e.Cancel = OnIce;
         if(!OnIce && e.Velocity != Physics.gravity)
         {
@@ -306,14 +312,14 @@ public class Player : MonoBehaviour
             InputOnIce();
         }
 
-        for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
-        {       
-            if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
-                audioSources[i].Play(); 
+        //for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
+        //{       
+        //    if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
+        //        audioSources[i].Play(); 
 
-            if (audioSources[i].isPlaying && !PlayMusicTheme[i])
-                audioSources[i].Stop();
-        }
+        //    if (audioSources[i].isPlaying && !PlayMusicTheme[i])
+        //        audioSources[i].Stop();
+        //}
        
         CheckOverlappingObjects();
     }
@@ -353,8 +359,9 @@ public class Player : MonoBehaviour
         if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
-            healingAnim.SetTrigger("healIAnimationIsActivated");
         }
+        else
+            healingAnim.SetBool("heal", false);
 
         if (state.Buttons.Y == ButtonState.Released)
         {
@@ -377,7 +384,7 @@ public class Player : MonoBehaviour
             executed = TryDash();
         }
 
-        #region AttackAnimationHandler
+        #region AnimationHandler
 
         if (!(state.Triggers.Right > 0 && !executed) || attackInProgressTimer > 0)
         {
@@ -398,6 +405,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("LeftAttack2", false);
         }
+
+        if (dashAbility.Energy <= 0)
+            SetDashParticles(false);
 
         #endregion
 
@@ -510,6 +520,14 @@ public class Player : MonoBehaviour
         if (prevRenderer != null)
         {
             prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
+            if(alpha < 1)
+            {
+                gameObject.layer = 11;
+            }
+            else
+            {
+                gameObject.layer = 8;
+            }
             return true;
         }
 
@@ -598,13 +616,17 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
-            
+
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                if(!audioSources[23].isPlaying)
+                if(!isDead)
+                    healingAnim.SetBool("heal", true);
+                if (!audioSources[23].isPlaying)
                     audioSources[23].Play();
                 return true;
             }
+            else
+                healingAnim.SetBool("heal", false);
         }
         return false;
     }
@@ -615,7 +637,10 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
+                SetDashParticles(true);
                 animator.SetTrigger("Dash");
+                if (!audioSources[2].isPlaying)
+                    audioSources[2].Play();
                 return true;
             }
         }
@@ -767,6 +792,8 @@ public class Player : MonoBehaviour
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
         isDead = true;
+        healingAnim.SetBool("heal", false);
+        SetDashParticles(false);
         if (!animator.GetBool("IsDead"))
         {
             animator.SetBool("IsDead", true);
@@ -922,8 +949,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayMusicThemePicker(int tmp, bool state)
+    //public void PlayMusicThemePicker(int tmp, bool state)
+    //{
+    //    PlayMusicTheme[tmp] = state;
+    //}
+
+    private void SetDashParticles(bool active)
     {
-        PlayMusicTheme[tmp] = state;
+        foreach (ParticleSystem particles in dashParticles)
+            if (active)
+                particles.Play();
+            else
+                particles.Stop();
     }
 }

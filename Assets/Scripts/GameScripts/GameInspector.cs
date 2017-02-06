@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameInspector : MonoBehaviour
 {
+    public GameObject PlayerPrefabAegis;
+    public GameObject PlayerPrefabStalker;
     public GameObject PlayerPrefab;
     public GameObject PauseMenuCanvas;
+
+    private PlayerChoice playerChoice;
+    private int[] choice;
 
     private List<Player> spawnedPlayers;
     private UIScript uiScript;
@@ -32,6 +37,17 @@ public class GameInspector : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
+
+        if (playerChoice != null)
+        {
+            List<int> temp = new List<int>();
+            temp.AddRange(playerChoice.choices);
+
+            choice = temp.ToArray();
+
+            Destroy(playerChoice.gameObject);
+        }
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
         SpawnPlayers();
@@ -114,6 +130,23 @@ public class GameInspector : MonoBehaviour
         
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
+            if (choice != null)
+            {
+                if (choice[i] == 1)
+                {
+                    PlayerPrefab = PlayerPrefabAegis;
+                }
+                else if (choice[i] == 0)
+                {
+                    PlayerPrefab = PlayerPrefabStalker;
+                }
+            }
+            else
+            {
+                PlayerPrefab = PlayerPrefabAegis;
+            }
+            
+
             SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
         }
     }
@@ -153,12 +186,14 @@ public class GameInspector : MonoBehaviour
 
     private bool IndexInUse(PlayerIndex index)
     {
-        for (int i = 0; i < spawnedPlayers.Count; i++)
+        if (spawnedPlayers != null)
         {
-            if (spawnedPlayers[i].Index == index)
-                return true;
+            for (int i = 0; i < spawnedPlayers.Count; i++)
+            {
+                if (spawnedPlayers[i].Index == index)
+                    return true;
+            }
         }
-
         return false;
     }
 
