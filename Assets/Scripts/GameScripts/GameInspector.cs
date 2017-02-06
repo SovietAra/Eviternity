@@ -45,10 +45,9 @@ public class GameInspector : MonoBehaviour
             temp.AddRange(playerChoice.choices);
 
             choice = temp.ToArray();
+
+            Destroy(playerChoice.gameObject);
         }
-
-        Destroy(playerChoice.gameObject);
-
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
         SpawnPlayers();
@@ -179,12 +178,14 @@ public class GameInspector : MonoBehaviour
 
     private bool IndexInUse(PlayerIndex index)
     {
-        for (int i = 0; i < spawnedPlayers.Count; i++)
+        if (spawnedPlayers != null)
         {
-            if (spawnedPlayers[i].Index == index)
-                return true;
+            for (int i = 0; i < spawnedPlayers.Count; i++)
+            {
+                if (spawnedPlayers[i].Index == index)
+                    return true;
+            }
         }
-
         return false;
     }
 
