@@ -224,6 +224,8 @@ MonoBehaviour:
   health: 350
   maxHealth: 350
   isImmortal: 0
+  DamageSound: {fileID: 8300000, guid: 2d7111e17b242a347b69107783644020, type: 3}
+  DeathSound: {fileID: 0}
 --- !u!114 &114584673856983150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healingAnim: {fileID: 0}
+  animator: {fileID: 0}
   speed: 9
   regenerationPerSecond: 17
   reviveDelay: 2
@@ -279,7 +283,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 8300000, guid: 6eece261429ba4a4e917bb162ec5cf27, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -302,8 +306,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37ca1a0d636068b4681c3e6a624e1275, type: 3}
   - {fileID: 8300000, guid: 7f2ef5e6bd715de4eb8b22fb7435a415, type: 3}
   - {fileID: 8300000, guid: 3b2c96a64192cea43b561ebe9f466f76, type: 3}
-  ShotVolume: 0.2
-  StepVolume: 0.4
+  StepVolume: 0.2
   stepCooldown: 0.5
 --- !u!136 &136804792390595418
 CapsuleCollider:
