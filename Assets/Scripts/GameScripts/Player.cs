@@ -519,6 +519,14 @@ public class Player : MonoBehaviour
         if (prevRenderer != null)
         {
             prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
+            if(alpha < 1)
+            {
+                gameObject.layer = 11;
+            }
+            else
+            {
+                gameObject.layer = 8;
+            }
             return true;
         }
 
