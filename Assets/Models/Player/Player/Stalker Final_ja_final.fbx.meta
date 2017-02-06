@@ -1119,7 +1119,7 @@ ModelImporter:
     - serializedVersion: 16
       name: metarig|Sniper Normal
       takeName: metarig|Sniper Normal
-      firstFrame: 0
+      firstFrame: 29
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
