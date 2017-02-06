@@ -7,13 +7,18 @@ public class KeepButtonsScript : MonoBehaviour {
 
     public EventSystem ES;
     private GameObject StoreSelected;
+    public AudioClip SwitchClip;
+    private AudioSource Switch;
     public AudioClip ClickClip;
     private AudioSource Click;
 
     // Use this for initialization
     void Start () {
-        Click= gameObject.AddComponent<AudioSource>();
+        Switch = gameObject.AddComponent<AudioSource>();
         StoreSelected = ES.firstSelectedGameObject;
+        Switch.clip = SwitchClip;
+
+        Click = gameObject.AddComponent<AudioSource>();
         Click.clip = ClickClip;
     }
 	
@@ -28,8 +33,12 @@ public class KeepButtonsScript : MonoBehaviour {
 	    else
 	    {
 	        StoreSelected = ES.currentSelectedGameObject;
-
-	        Click.Play();
-	    }
+            Switch.Play();
+        }
 	}
+
+    public void pressButton()
+    {
+        Click.Play();
+    }
 }
