@@ -130,14 +130,22 @@ public class GameInspector : MonoBehaviour
         
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
-            if (choice[i] == 1)
+            if (choice != null)
+            {
+                if (choice[i] == 1)
+                {
+                    PlayerPrefab = PlayerPrefabAegis;
+                }
+                else if (choice[i] == 0)
+                {
+                    PlayerPrefab = PlayerPrefabStalker;
+                }
+            }
+            else
             {
                 PlayerPrefab = PlayerPrefabAegis;
             }
-            else if (choice[i] == 0)
-            {
-                PlayerPrefab = PlayerPrefabStalker;
-            }
+            
 
             SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
         }
