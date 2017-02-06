@@ -844,12 +844,35 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float SecondaryHeat
+    {
+
+        get
+        {
+            if (secondaryWeapon != null)
+                return secondaryWeapon.Heat;
+
+            return 0;
+        }
+    }
+
     public float PrimaryMaxHeat
     {
         get
         {
             if (primaryWeapon != null)
                 return primaryWeapon.MaxHeat;
+
+            return 0;
+        }
+    }
+
+    public float SecMaxHeat
+    {
+        get
+        {
+            if (secondaryWeapon != null)
+                return secondaryWeapon.MaxHeat;
 
             return 0;
         }
@@ -862,15 +885,15 @@ public class Player : MonoBehaviour
         {
             case 1:
                 {
-                    if (dashAbility != null)
-                        energyLevel = dashAbility.Energy;
+                    if (ability != null)
+                        energyLevel = ability.Energy;
                     else energyLevel = 0;
                 }
                 break;
             case 2:
                 {
-                    if (ability != null)
-                        energyLevel = ability.Energy;
+                    if (dashAbility != null)
+                        energyLevel = dashAbility.Energy;
                     else energyLevel = 0;
                 }
                 break;
