@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationDuration: 0
+  ActivationSound: {fileID: 8300000, guid: 6a80492776e77cb4180f9d11536925eb, type: 3}
+  DeactivationSound: {fileID: 0}
+  ReachedMaxEnergySound: {fileID: 0}
   activeOnKeyPressed: 0
   abortAble: 1
   maxEnergy: 100
