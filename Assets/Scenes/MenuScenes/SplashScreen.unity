@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicPlayer: {fileID: 1680691987}
+  ThemeClip: {fileID: 1680691989}
 --- !u!4 &1099824281
 Transform:
   m_ObjectHideFlags: 0
@@ -588,7 +589,7 @@ GameObject:
   - component: {fileID: 1680691988}
   - component: {fileID: 1680691989}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: MainTheme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,7 +617,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ad666838a881b754ca0a3cad078e38ff, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e8560235273dcf94d84ac4c60e1f7ba7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
