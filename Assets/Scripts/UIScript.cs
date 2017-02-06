@@ -31,7 +31,7 @@ public class UIScript : MonoBehaviour
     public GameObject Player4HealthUI_outline;
     public GameObject Player4Icon;
     public Image TeamHealthBar;
-    public Image TeamHealthBar_Border;
+    public Image TeamHealthBar_Bg;
     public Sprite TeamHealthActive;
     public Sprite TeamHealthInactive;
     public Sprite[] PlayerIcons;
@@ -196,7 +196,7 @@ public class UIScript : MonoBehaviour
             {
                 if (TeamHealthBar != null && TeamHealthActive != null)
                 {
-                    Image image = TeamHealthBar_Border.GetComponent<Image>();
+                    Image image = TeamHealthBar_Bg.GetComponent<Image>();
                     image.sprite = TeamHealthActive;
                 }
             }
@@ -204,7 +204,7 @@ public class UIScript : MonoBehaviour
             {
                 if (TeamHealthBar != null && TeamHealthInactive != null)
                 {
-                    Image image = TeamHealthBar_Border.GetComponent<Image>();
+                    Image image = TeamHealthBar_Bg.GetComponent<Image>();
                     image.sprite = TeamHealthInactive;
                 }
             }

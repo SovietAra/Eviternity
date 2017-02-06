@@ -7258,11 +7258,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: AbilityIcons.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 224343106477204238, guid: 2b1696b364f857a4aa3787214324fc59,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -7353,36 +7348,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: AbilityIcons.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300028, guid: 0c46f3d539161d44aa8df8f69a222738,
-        type: 3}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: AbilityIcons.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300012, guid: 0c46f3d539161d44aa8df8f69a222738,
-        type: 3}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: AbilityIcons.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300010, guid: 0c46f3d539161d44aa8df8f69a222738,
-        type: 3}
-    - target: {fileID: 114009926319969472, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: AbilityIcons.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300032, guid: 0c46f3d539161d44aa8df8f69a222738,
-        type: 3}
-    - target: {fileID: 114450434089391508, guid: 2b1696b364f857a4aa3787214324fc59,
-        type: 2}
-      propertyPath: PlayerPrefab
-      value: 
-      objectReference: {fileID: 1209385188523736, guid: 298de2387580600478f43b4d36ba5aa6,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
   m_IsPrefabParent: 0
