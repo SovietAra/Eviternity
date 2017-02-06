@@ -9,7 +9,7 @@ public class SplashScript : MonoBehaviour {
 
     public Text Text1;
     public Text Text2;
-    public float targetTime = 3.0f;
+    public float targetTime = 6.0f;
     public float partTime = 1.0f;
     public float timerTime = 1.0f;
     // Use this for initialization

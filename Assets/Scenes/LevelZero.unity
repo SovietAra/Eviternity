@@ -5078,8 +5078,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 8
+  orthographic: 1
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -23832,11 +23832,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 260136676}
   followedObjects: []
-  minZoom: 7
-  maxZoom: 8
+  minZoom: 50
+  maxZoom: 50
   state: 0
   visualizeArea: 0
-  zoomInBorders: 0.507
+  zoomInBorders: 0.561
   zoomOutBorders: 0.437
   zoomSpeed: 0.08
 --- !u!1001 &1296411477
@@ -29566,6 +29566,11 @@ Prefab:
       propertyPath: m_Name
       value: Shooter (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 114434200474214886, guid: f4afc2070bf6761409dc13f5326c22e0,
+        type: 2}
+      propertyPath: squadID
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
   m_IsPrefabParent: 0
@@ -29936,9 +29941,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1642344979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3f5a4c6b795f0174cb83fd6d9a84b704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ES: {fileID: 2091562562}
+  SwitchClip: {fileID: 8300000, guid: 40d23d1ce3b8e2a45981990b1de91c3e, type: 3}
+  ClickClip: {fileID: 8300000, guid: 51d84c6342775a64699d1296fe7a5244, type: 3}
 --- !u!114 &1642344981
 MonoBehaviour:
   m_ObjectHideFlags: 0

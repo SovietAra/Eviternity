@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     private Ability dashAbility;
     private DamageAbleObject healthContainer;
     private MoveScript moveScript;
+    [SerializeField]
+    private GameObject dashTrail;
+    private ParticleSystem[] dashParticles;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax;
@@ -134,8 +137,7 @@ public class Player : MonoBehaviour
 
     // Use this for initialization
     private void Start()
-    {
-        
+    {       
         //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
@@ -152,7 +154,6 @@ public class Player : MonoBehaviour
         //define names for sounds
         var Spawn_Sound = audioSources[0];
         var Despawn_Sound = audioSources[1];
-        var Dash_Sound = audioSources[2];
         //var Walk_Ice_1_Sound = audioSources[3];   3-7 Ice_Walk
         //var Walk_Ice_2_Sound = audioSources[4];   8-12 Metal_Walk
         //var Walk_Ice_3_Sound = audioSources[5];   13-17 Oil_Walk
@@ -252,13 +253,14 @@ public class Player : MonoBehaviour
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
+        dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
+        SetDashParticles(false);
         e.Cancel = OnIce;
         if(!OnIce && e.Velocity != Physics.gravity)
         {
             if(stepTimer >= stepCooldown)
             {
-                System.Random rand = new System.Random();
-                audioSources[rand.Next(3,23)].Play();
+                audioSources[UnityEngine.Random.Range(3,22)].Play();
                 stepTimer = 0;
             }
         }
@@ -287,7 +289,6 @@ public class Player : MonoBehaviour
                     if (!Freeze)
                     {
                         Input(state);
-                        // UpdateVelocity();
                         UpdateRotation();
                     }
                 }
@@ -311,18 +312,12 @@ public class Player : MonoBehaviour
         }
 
         for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
-        {
-         
+        {       
             if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
-
                 audioSources[i].Play(); 
 
             if (audioSources[i].isPlaying && !PlayMusicTheme[i])
-
                 audioSources[i].Stop();
-
-
-
         }
        
         CheckOverlappingObjects();
@@ -340,7 +335,6 @@ public class Player : MonoBehaviour
 
         if (attackInProgressTimer > 0)
             attackInProgressTimer -= Time.deltaTime;
-
     }
 
     private void Input(GamePadState state)
@@ -350,7 +344,6 @@ public class Player : MonoBehaviour
         TryMove(leftStick, rightStick);
 
         bool executed = false;
-
         if (state.Buttons.Start == ButtonState.Pressed && prevState.Buttons.Start == ButtonState.Released)
         {
             GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
@@ -365,8 +358,9 @@ public class Player : MonoBehaviour
         if (state.Buttons.Y == ButtonState.Pressed)
         {
             executed = TryHeal();
-            healingAnim.SetTrigger("healIAnimationIsActivated");
         }
+        else
+            healingAnim.SetBool("heal", false);
 
         if (state.Buttons.Y == ButtonState.Released)
         {
@@ -389,7 +383,7 @@ public class Player : MonoBehaviour
             executed = TryDash();
         }
 
-        #region AttackAnimationHandler
+        #region AnimationHandler
 
         if (!(state.Triggers.Right > 0 && !executed) || attackInProgressTimer > 0)
         {
@@ -410,6 +404,9 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("LeftAttack2", false);
         }
+
+        if (dashAbility.Energy <= 0)
+            SetDashParticles(false);
 
         #endregion
 
@@ -610,13 +607,17 @@ public class Player : MonoBehaviour
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
-            
+
             if (TakeTeamHealth(regenerationPerSecond * Time.deltaTime, HealthRegenerationMultiplicator))
             {
-                if(!audioSources[23].isPlaying)
+                if(!isDead)
+                    healingAnim.SetBool("heal", true);
+                if (!audioSources[23].isPlaying)
                     audioSources[23].Play();
                 return true;
             }
+            else
+                healingAnim.SetBool("heal", false);
         }
         return false;
     }
@@ -627,9 +628,8 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
+                SetDashParticles(true);
                 animator.SetTrigger("Dash");
-                /*if (!audioSources[2].isPlaying)
-                    audioSources[2].Play();*/
                 return true;
             }
         }
@@ -695,7 +695,12 @@ public class Player : MonoBehaviour
         animator.SetBool("LeftAttack2", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
@@ -703,25 +708,41 @@ public class Player : MonoBehaviour
         animator.SetBool("LeftAttack", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
-    {
+    { 
         animator.SetBool("RightAttack2", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         animator.SetBool("RightAttack", true);
-        System.Random rand = new System.Random();
-        //audioSources[rand.Next(32,35)].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+        
+
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0) 
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x)) 
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void ProjectileScript_OnHit(object sender, HitEventArgs e)
@@ -760,6 +781,8 @@ public class Player : MonoBehaviour
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
         isDead = true;
+        healingAnim.SetBool("heal", false);
+        SetDashParticles(false);
         if (!animator.GetBool("IsDead"))
         {
             animator.SetBool("IsDead", true);
@@ -892,9 +915,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void   PlayMusicThemePicker(int tmp, bool state)
-
+    public void PlayMusicThemePicker(int tmp, bool state)
     {
         PlayMusicTheme[tmp] = state;
+    }
+
+    private void SetDashParticles(bool active)
+    {
+        foreach (ParticleSystem particles in dashParticles)
+            if (active)
+                particles.Play();
+            else
+                particles.Stop();
     }
 }

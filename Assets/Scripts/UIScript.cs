@@ -69,6 +69,7 @@ public class UIScript : MonoBehaviour
     public GameObject P4SecWeapon_border;
     public GameObject P4SecWeapon_icon;
     public GameObject P4SecWeaponHeat;
+    public Sprite[] WeaponIcons;
 
     // Abilities
     public GameObject[] EnergyBars;
@@ -98,6 +99,8 @@ public class UIScript : MonoBehaviour
     private Image player1Heat;
     private Image player1Heat2;
     private Image p1icon;
+    //private Image p1weaponIcon;
+    //private Image p1secWeaponIcon;
     private Image player1Weapon_1;
     private Image player1Weapon_2;
     private Image player1Weapon_3;
@@ -110,6 +113,8 @@ public class UIScript : MonoBehaviour
     private Image player2Heat;
     private Image player2Heat2;
     private Image p2icon;
+    //private Image p2weaponIcon;
+    //private Image p2secWeaponIcon;
     private Image player2Weapon_1;
     private Image player2Weapon_2;
     private Image player2Weapon_3;
@@ -122,6 +127,8 @@ public class UIScript : MonoBehaviour
     private Image player3Heat;
     private Image player3Heat2;
     private Image p3icon;
+    //private Image p3weaponIcon;
+    //private Image p3secWeaponIcon;
     private Image player3Weapon_1;
     private Image player3Weapon_2;
     private Image player3Weapon_3;
@@ -134,6 +141,8 @@ public class UIScript : MonoBehaviour
     private Image player4Heat;
     private Image player4Heat2;
     private Image p4icon;
+    //private Image p4weaponIcon;
+    //private Image p4secWeaponIcon;
     private Image player4Weapon_1;
     private Image player4Weapon_2;
     private Image player4Weapon_3;
@@ -141,10 +150,10 @@ public class UIScript : MonoBehaviour
     private Image player4Weapon2_2;
     private Image player4Weapon2_3;
     private bool isHealing = false;
-    private bool P1iconSet = false;
-    private bool P2iconSet = false;
-    private bool P3iconSet = false;
-    private bool P4iconSet = false;
+    private bool P1iconsSet = false;
+    private bool P2iconsSet = false;
+    private bool P3iconsSet = false;
+    private bool P4iconsSet = false;
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityBars = new Image[12];
     #endregion
@@ -240,10 +249,12 @@ public class UIScript : MonoBehaviour
                         Indicate = Instantiate(P1IndicatorPlane);
                     }
                     
-                    if (P1iconSet == false)
+                    if (P1iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.One);
-                        P1iconSet = true;
+                        SetWeaponIcon(player, PlayerIndex.One);
+                        //SetAbilityIcon(player, PlayerIndex.One);
+                        P1iconsSet = true;
                     }
 
                     Indicate.transform.SetParent(playerScript.transform, false);
@@ -265,10 +276,12 @@ public class UIScript : MonoBehaviour
                         Indicate2 = Instantiate(P2IndicatorPlane);
                     }
 
-                    if (P2iconSet == false)
+                    if (P2iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.Two);
-                        P2iconSet = true;
+                        SetWeaponIcon(player, PlayerIndex.Two);
+                        //SetAbilityIcon(player, PlayerIndex.Two);
+                        P2iconsSet = true;
                     }
                     Indicate2.transform.SetParent(playerScript.transform, false);
                 }
@@ -289,10 +302,12 @@ public class UIScript : MonoBehaviour
                         Indicate3 = Instantiate(P3IndicatorPlane);
                     }
 
-                    if (P3iconSet == false)
+                    if (P3iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.Three);
-                        P3iconSet = true;
+                        SetWeaponIcon(player, PlayerIndex.Three);
+                        //SetAbilityIcon(player, PlayerIndex.Three);
+                        P3iconsSet = true;
                     }
                     Indicate3.transform.SetParent(playerScript.transform, false);
                 }
@@ -313,10 +328,12 @@ public class UIScript : MonoBehaviour
                         Indicate4 = Instantiate(P4IndicatorPlane);
                     }
 
-                    if (P4iconSet == false)
+                    if (P4iconsSet == false)
                     {
                         SetIcon(player, PlayerIndex.Four);
-                        P4iconSet = true;
+                        SetWeaponIcon(player, PlayerIndex.Four);
+                        //SetAbilityIcon(player, PlayerIndex.Four);
+                        P4iconsSet = true;
                     }
                     Indicate4.transform.SetParent(playerScript.transform, false);
                 }
@@ -327,9 +344,74 @@ public class UIScript : MonoBehaviour
         }
     }
 
+    private void SetWeaponIcon(GameObject player, PlayerIndex index)
+    {
+        switch (index)
+        {
+            case PlayerIndex.One:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        player1Weapon_2.sprite = WeaponIcons[0];
+                        player1Weapon2_2.sprite = WeaponIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        player1Weapon_2.sprite = WeaponIcons[2];
+                        player1Weapon2_2.sprite = WeaponIcons[3];
+                    }
+                }
+                break;
+            case PlayerIndex.Two:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        player2Weapon_2.sprite = WeaponIcons[0];
+                        player2Weapon2_2.sprite = WeaponIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        player2Weapon_2.sprite = WeaponIcons[2];
+                        player2Weapon2_2.sprite = WeaponIcons[3];
+                    }
+                }
+                break;
+            case PlayerIndex.Three:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        player3Weapon_2.sprite = WeaponIcons[0];
+                        player3Weapon2_2.sprite = WeaponIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        player3Weapon_2.sprite = WeaponIcons[2];
+                        player3Weapon2_2.sprite = WeaponIcons[3];
+                    }
+                }
+                break;
+            case PlayerIndex.Four:
+                {
+                    if (player.name == ("PlayerClassAegis(Clone)"))
+                    {
+                        player4Weapon_2.sprite = WeaponIcons[0];
+                        player4Weapon2_2.sprite = WeaponIcons[1];
+                    }
+                    else if (player.name == ("PlayerClassStalker(Clone)"))
+                    {
+                        player4Weapon_2.sprite = WeaponIcons[2];
+                        player4Weapon2_2.sprite = WeaponIcons[3];
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     private void SetIcon(GameObject player, PlayerIndex index)
     {
-        print("setting icon");
+        //print("setting icon");
         switch (index)
         {
             case PlayerIndex.One:
@@ -403,7 +485,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1Weapon2_2.gameObject);
                     Destroy(player1Weapon2_3.gameObject);
                     Destroy(p1icon.gameObject);
-                    P1iconSet = false;
+                    P1iconsSet = false;
 
                     for (int k = 0; k < 3; k++)
                     {
@@ -420,12 +502,12 @@ public class UIScript : MonoBehaviour
                     Destroy(player2Heat2.gameObject);
                     Destroy(player2Weapon_1.gameObject);
                     Destroy(player2Weapon_2.gameObject);
-                    Destroy(player2Weapon_3.gameObject);
+                    //Destroy(player2Weapon_3.gameObject); image doesnt get created.
                     Destroy(player2Weapon2_1.gameObject);
                     Destroy(player2Weapon2_2.gameObject);
                     Destroy(player2Weapon2_3.gameObject);
                     Destroy(p2icon.gameObject);
-                    P2iconSet = false;
+                    P2iconsSet = false;
 
                     for (int k = 3; k < 6; k++)
                     {
@@ -442,12 +524,12 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Heat2.gameObject);
                     Destroy(player3Weapon_1.gameObject);
                     Destroy(player3Weapon_2.gameObject);
-                    Destroy(player3Weapon_3.gameObject);
+                    //Destroy(player3Weapon_3.gameObject);
                     Destroy(player3Weapon2_1.gameObject);
                     Destroy(player3Weapon2_2.gameObject);
                     Destroy(player3Weapon2_3.gameObject);
                     Destroy(p3icon.gameObject);
-                    P3iconSet = false;
+                    P3iconsSet = false;
 
                     for (int k = 6; k < 9; k++)
                     {
@@ -464,12 +546,12 @@ public class UIScript : MonoBehaviour
                     Destroy(player4Heat2.gameObject);
                     Destroy(player4Weapon_1.gameObject);
                     Destroy(player4Weapon_2.gameObject);
-                    Destroy(player4Weapon_3.gameObject);
+                    //Destroy(player4Weapon_3.gameObject);
                     Destroy(player4Weapon2_1.gameObject);
                     Destroy(player4Weapon2_2.gameObject);
                     Destroy(player4Weapon2_3.gameObject);
                     Destroy(p4icon.gameObject);
-                    P4iconSet = false;
+                    P4iconsSet = false;
 
                     for (int k = 9; k < 12; k++)
                     {

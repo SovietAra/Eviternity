@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -202,9 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c8d5d01bd6d014387949d60bb32b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefabAegis: {fileID: 1209385188523736, guid: 298de2387580600478f43b4d36ba5aa6,
-    type: 2}
-  PlayerPrefabStalker: {fileID: 1209385188523736, guid: 0fd93242d51970b47895ab566b8a11d1,
+  PlayerPrefab: {fileID: 1209385188523736, guid: 298de2387580600478f43b4d36ba5aa6,
     type: 2}
   PauseMenuCanvas: {fileID: 1561763879}
   maxTeamHealth: 200
@@ -332,6 +330,11 @@ MonoBehaviour:
     type: 2}
   P4SecWeaponHeat: {fileID: 1291717141207138, guid: 0cd5b7ec0b22c204b9f5e9a742f2cdc0,
     type: 2}
+  WeaponIcons:
+  - {fileID: 21300014, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
+  - {fileID: 21300016, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
+  - {fileID: 21300018, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
+  - {fileID: 21300020, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
   EnergyBars:
   - {fileID: 1464132735741188, guid: fa576b0bed8527d43b8e225ac1a134bd, type: 2}
   - {fileID: 1304345167909060, guid: b1ff2438cc51a864586f01cc0adada76, type: 2}
