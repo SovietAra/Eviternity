@@ -11,6 +11,7 @@ public class VideoPlayer : MonoBehaviour {
     public float pauseTime;
     public float movieTime;
     public float elapsedTime;
+    public RawImage Movie;
 
     public static bool StartGamePressed;
     public static bool AnimationPlayed;
@@ -54,7 +55,6 @@ public class VideoPlayer : MonoBehaviour {
             if (elapsedTime >= 4.0)
             {
                 AnimationPlayed = true;
-                
             }
             
 
