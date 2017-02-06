@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Assets.Scripts;
+using System.Collections.Generic;
 
 public class DamageAbleObject : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class DamageAbleObject : MonoBehaviour
     [Range(0.1f, 100000f)]
     private float maxHealth = 10;
 
+    [SerializeField]
+    [Range(0.1f, 1)]
+    private double groupDamage = 0.7f;
+
     public bool isImmortal = false;
 
     public event EventHandler OnDeath;
@@ -22,6 +27,7 @@ public class DamageAbleObject : MonoBehaviour
     public AudioClip DamageSound;
     public AudioClip DeathSound;
     private AudioSource audioSource;
+    private GameInspector Gameinspector;
 
     public float Health
     {
@@ -46,6 +52,7 @@ public class DamageAbleObject : MonoBehaviour
 
     public virtual void DoDamage(GameObject attacker, float damage, GameObject statusEffect)
     {
+        
         if (!isImmortal)
         {
             OnHealthChangedArgs args = new OnHealthChangedArgs(attacker, damage);
@@ -72,11 +79,13 @@ public class DamageAbleObject : MonoBehaviour
                     }
                 }
 
-                if(gameObject.tag == "Enemy")
-                    health -= args.ChangeValue;  //TODO: Abhängig von Spieleranzahl
+                List<GameObject> AvailablePlayer = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+
+                if (gameObject.tag == "Enemy")
+                    health -= args.ChangeValue * (float) Math.Pow(groupDamage, (double)AvailablePlayer.Count);  //TODO: Abhängig von Spieleranzahl
                 else
                     health -= args.ChangeValue;
-
+                
                 if (health <= 0)
                 {
                     health = 0;

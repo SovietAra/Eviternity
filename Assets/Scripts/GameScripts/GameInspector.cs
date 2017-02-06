@@ -45,10 +45,9 @@ public class GameInspector : MonoBehaviour
             temp.AddRange(playerChoice.choices);
 
             choice = temp.ToArray();
+
+            Destroy(playerChoice.gameObject);
         }
-
-        Destroy(playerChoice.gameObject);
-
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
         SpawnPlayers();
@@ -131,14 +130,22 @@ public class GameInspector : MonoBehaviour
         
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
-            if (choice[i] == 1)
+            if (choice != null)
+            {
+                if (choice[i] == 1)
+                {
+                    PlayerPrefab = PlayerPrefabAegis;
+                }
+                else if (choice[i] == 0)
+                {
+                    PlayerPrefab = PlayerPrefabStalker;
+                }
+            }
+            else
             {
                 PlayerPrefab = PlayerPrefabAegis;
             }
-            else if (choice[i] == 0)
-            {
-                PlayerPrefab = PlayerPrefabStalker;
-            }
+            
 
             SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
         }
@@ -179,12 +186,14 @@ public class GameInspector : MonoBehaviour
 
     private bool IndexInUse(PlayerIndex index)
     {
-        for (int i = 0; i < spawnedPlayers.Count; i++)
+        if (spawnedPlayers != null)
         {
-            if (spawnedPlayers[i].Index == index)
-                return true;
+            for (int i = 0; i < spawnedPlayers.Count; i++)
+            {
+                if (spawnedPlayers[i].Index == index)
+                    return true;
+            }
         }
-
         return false;
     }
 
