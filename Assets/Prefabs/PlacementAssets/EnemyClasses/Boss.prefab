@@ -5986,7 +5986,7 @@ Animator:
   m_GameObject: {fileID: 1635384850439620}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 88da4aee3fdb0944bb67e3c661eb2acd, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: edadfc351fe042745b6aefe884786f45, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6010,11 +6010,14 @@ MonoBehaviour:
     type: 2}
   IcicleAbility: {fileID: 1552349041503300, guid: 07edc64c01261f649bc98d1aadfd0f17,
     type: 2}
+  MoveSound: {fileID: 0}
+  animator: {fileID: 95691985557882298}
   Freeze: 0
   viewRange: 20
   aggroMultiplicator: 2
   minimumDistance: 5
   resetTime: 10
+  deathDelay: 0
 --- !u!114 &114218876342771258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6029,6 +6032,8 @@ MonoBehaviour:
   health: 3000
   maxHealth: 3000
   isImmortal: 0
+  DamageSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!136 &136626827083051362
 CapsuleCollider:
   m_ObjectHideFlags: 1

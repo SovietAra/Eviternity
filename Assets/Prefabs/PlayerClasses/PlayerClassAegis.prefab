@@ -1643,7 +1643,7 @@ MonoBehaviour:
   health: 500
   maxHealth: 500
   isImmortal: 0
-  DamageSound: {fileID: 0}
+  DamageSound: {fileID: 8300000, guid: 2d7111e17b242a347b69107783644020, type: 3}
   DeathSound: {fileID: 0}
 --- !u!114 &114584673856983150
 MonoBehaviour:
@@ -1698,11 +1698,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 34457a3a09d0fe84eb68b5ee88a5e861, type: 3}
   - {fileID: 8300000, guid: fdb419c1cc76fc5498295b4cec65ed11, type: 3}
   - {fileID: 8300000, guid: 2e82dbfe48f46aa4da258a5b75d323ca, type: 3}
+  - {fileID: 8300000, guid: 11b7f93497e6f1f42b82244425983b74, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 8300000, guid: 6eece261429ba4a4e917bb162ec5cf27, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1725,7 +1725,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37ca1a0d636068b4681c3e6a624e1275, type: 3}
   - {fileID: 8300000, guid: 7f2ef5e6bd715de4eb8b22fb7435a415, type: 3}
   - {fileID: 8300000, guid: 3b2c96a64192cea43b561ebe9f466f76, type: 3}
-  StepVolume: 0.4
+  StepVolume: 0.2
   stepCooldown: 0.5
 --- !u!136 &136804792390595418
 CapsuleCollider:
