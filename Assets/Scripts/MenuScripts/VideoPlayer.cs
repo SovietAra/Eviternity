@@ -39,28 +39,29 @@ public class VideoPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        pauseTime -= Time.deltaTime;
-
-        if (stoppable)
+        if (movie != null)
         {
-            if(pauseTime <= 0)
-            {
-                movie.Pause();
-            }
+            pauseTime -= Time.deltaTime;
 
-            if (StartGamePressed)
+            if (stoppable)
             {
-                movie.Play();
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime >= 2.5f)
+                if (pauseTime <= 0)
+                {
                     movie.Pause();
-            }
-            if (elapsedTime >= 4.0)
-            {
-                AnimationPlayed = true;
-            }
-            
+                }
 
+                if (StartGamePressed)
+                {
+                    movie.Play();
+                    elapsedTime += Time.deltaTime;
+                    if (elapsedTime >= 2.5f)
+                        movie.Pause();
+                }
+                if (elapsedTime >= 4.0)
+                {
+                    AnimationPlayed = true;
+                }
+            }
         }
 	}
 }
