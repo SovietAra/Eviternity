@@ -137,8 +137,7 @@ public class Player : MonoBehaviour
 
     // Use this for initialization
     private void Start()
-    {
-        
+    {       
         //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
@@ -155,7 +154,6 @@ public class Player : MonoBehaviour
         //define names for sounds
         var Spawn_Sound = audioSources[0];
         var Despawn_Sound = audioSources[1];
-        var Dash_Sound = audioSources[2];
         //var Walk_Ice_1_Sound = audioSources[3];   3-7 Ice_Walk
         //var Walk_Ice_2_Sound = audioSources[4];   8-12 Metal_Walk
         //var Walk_Ice_3_Sound = audioSources[5];   13-17 Oil_Walk
@@ -262,8 +260,7 @@ public class Player : MonoBehaviour
         {
             if(stepTimer >= stepCooldown)
             {
-                System.Random rand = new System.Random();
-                audioSources[rand.Next(3,23)].Play();
+                audioSources[UnityEngine.Random.Range(3,22)].Play();
                 stepTimer = 0;
             }
         }
@@ -292,7 +289,6 @@ public class Player : MonoBehaviour
                     if (!Freeze)
                     {
                         Input(state);
-                        // UpdateVelocity();
                         UpdateRotation();
                     }
                 }
@@ -316,18 +312,12 @@ public class Player : MonoBehaviour
         }
 
         for (var i = 45; i < 50; i++)//tracks from 45 to 49 are music themes, always.
-        {
-         
+        {       
             if (!audioSources[i].isPlaying && PlayMusicTheme[i]) 
-
                 audioSources[i].Play(); 
 
             if (audioSources[i].isPlaying && !PlayMusicTheme[i])
-
                 audioSources[i].Stop();
-
-
-
         }
        
         CheckOverlappingObjects();
@@ -345,7 +335,6 @@ public class Player : MonoBehaviour
 
         if (attackInProgressTimer > 0)
             attackInProgressTimer -= Time.deltaTime;
-
     }
 
     private void Input(GamePadState state)
@@ -355,7 +344,6 @@ public class Player : MonoBehaviour
         TryMove(leftStick, rightStick);
 
         bool executed = false;
-
         if (state.Buttons.Start == ButtonState.Pressed && prevState.Buttons.Start == ButtonState.Released)
         {
             GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
@@ -642,8 +630,6 @@ public class Player : MonoBehaviour
             {
                 SetDashParticles(true);
                 animator.SetTrigger("Dash");
-                /*if (!audioSources[2].isPlaying)
-                    audioSources[2].Play();*/
                 return true;
             }
         }
@@ -709,7 +695,12 @@ public class Player : MonoBehaviour
         animator.SetBool("LeftAttack2", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
@@ -717,25 +708,41 @@ public class Player : MonoBehaviour
         animator.SetBool("LeftAttack", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
-    {
+    { 
         animator.SetBool("RightAttack2", true);
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         animator.SetBool("RightAttack", true);
-        System.Random rand = new System.Random();
-        //audioSources[rand.Next(32,35)].Play();
         attackInProgressTimer += e.AnimationDuration;
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
-        e.ProjectileScript.IncreaseVelocity(finalVelocity);
+        
+
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0) 
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x)) 
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
     }
 
     private void ProjectileScript_OnHit(object sender, HitEventArgs e)
@@ -908,8 +915,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void   PlayMusicThemePicker(int tmp, bool state)
-
+    public void PlayMusicThemePicker(int tmp, bool state)
     {
         PlayMusicTheme[tmp] = state;
     }

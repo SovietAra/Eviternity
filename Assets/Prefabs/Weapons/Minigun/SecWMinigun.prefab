@@ -52,7 +52,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   ProduceHeat: 0
   HeatCooldown: 0
   OverwriteSound: 1
-  FireSound: {fileID: 0}
+  FireSound: {fileID: 8300000, guid: 81f3a3d8569edc54da35728745291bd6, type: 3}
   ReloadSound: {fileID: 0}
   SecondaryWeapon: {fileID: 0}
   Projectile: {fileID: 1184549161438930, guid: 90c834b3bfbfdd5448f150cf491ef362, type: 2}

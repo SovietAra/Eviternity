@@ -144,7 +144,11 @@ MonoBehaviour:
   CollideWithOtherProjectiles: 1
   DoTeamDamage: 1
   DoAOETeamDamage: 1
+  SpawnExplosion: 0
+  OverwriteExplosionValues: 0
+  AllowVelocityIncreasing: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
+  ImpactSound: {fileID: 8300000, guid: e1fd04e6f7738e34b9647a68a15e33cb, type: 3}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0

@@ -95,7 +95,7 @@ public class GameInspector : MonoBehaviour
     public void Restart()
     {
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        SceneManager.LoadScene("Prototyp");
+        SceneManager.LoadScene("LevelZero");
         UnfreezeAllPlayers();
     }
 
