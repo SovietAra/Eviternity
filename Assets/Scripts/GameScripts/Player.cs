@@ -256,6 +256,7 @@ public class Player : MonoBehaviour
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
         dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
+        SetDashParticles(false);
         e.Cancel = OnIce;
         if(!OnIce && e.Velocity != Physics.gravity)
         {
