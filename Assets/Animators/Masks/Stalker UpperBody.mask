@@ -7,4 +7,94 @@ AvatarMask:
   m_PrefabInternal: {fileID: 0}
   m_Name: Stalker UpperBody
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-  m_Elements: []
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Camera
+    m_Weight: 0
+  - m_Path: Lamp
+    m_Weight: 0
+  - m_Path: Lamp.001
+    m_Weight: 0
+  - m_Path: Lamp.002
+    m_Weight: 0
+  - m_Path: metarig
+    m_Weight: 0
+  - m_Path: metarig/ArmHandler.L
+    m_Weight: 1
+  - m_Path: metarig/ArmHandler.L/ArmHandler.L_end
+    m_Weight: 1
+  - m_Path: metarig/ArmHandler.R
+    m_Weight: 1
+  - m_Path: metarig/ArmHandler.R/ArmHandler.R_end
+    m_Weight: 1
+  - m_Path: metarig/hips
+    m_Weight: 0
+  - m_Path: metarig/hips/spine
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/Head
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/Head/Head_end
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.L
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.L/upper_arm.L
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/Weapon.L
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.L/upper_arm.L/Weapon.L/Weapon.L_end
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.R
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.R/upper_arm.R
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/Weapon.R
+    m_Weight: 1
+  - m_Path: metarig/hips/spine/chest/shoulder.R/upper_arm.R/Weapon.R/Weapon.R_end
+    m_Weight: 1
+  - m_Path: metarig/hips/thigh.L
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.L/shin.L
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.L/shin.L/foot.L
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.L/shin.L/foot.L/foot.L_end
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.R
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.R/shin.R
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.R/shin.R/foot.R
+    m_Weight: 0
+  - m_Path: metarig/hips/thigh.R/shin.R/foot.R/foot.R_end
+    m_Weight: 0
+  - m_Path: metarig/Knee.L
+    m_Weight: 0
+  - m_Path: metarig/Knee.L/Knee.L_end
+    m_Weight: 0
+  - m_Path: metarig/Knee.R
+    m_Weight: 0
+  - m_Path: metarig/Knee.R/Knee.R_end
+    m_Weight: 0
+  - m_Path: metarig/LegHandler.L
+    m_Weight: 0
+  - m_Path: metarig/LegHandler.L/LegHandler.L_end
+    m_Weight: 0
+  - m_Path: metarig/LegHandler.R
+    m_Weight: 0
+  - m_Path: metarig/LegHandler.R/LegHandler.R_end
+    m_Weight: 0
+  - m_Path: mIRRORAXIS
+    m_Weight: 0
+  - m_Path: Object
+    m_Weight: 0
+  - m_Path: Particle View 001
+    m_Weight: 0
+  - m_Path: Shotgun
+    m_Weight: 1
+  - m_Path: Stalker
+    m_Weight: 0
+  - m_Path: Stalker Sniper
+    m_Weight: 1
