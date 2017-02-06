@@ -765,7 +765,7 @@ ModelImporter:
     - serializedVersion: 16
       name: metarig|Shotgun FullBarrel.001
       takeName: metarig|Shotgun FullBarrel.001
-      firstFrame: 0
+      firstFrame: 15
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
@@ -883,7 +883,7 @@ ModelImporter:
     - serializedVersion: 16
       name: metarig|Shotgun Normal.001
       takeName: metarig|Shotgun Normal.001
-      firstFrame: 0
+      firstFrame: 19
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
@@ -1001,7 +1001,7 @@ ModelImporter:
     - serializedVersion: 16
       name: metarig|Sniper BodyPierce.001
       takeName: metarig|Sniper BodyPierce.001
-      firstFrame: 0
+      firstFrame: 19
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0

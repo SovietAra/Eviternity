@@ -72,7 +72,11 @@ public class DamageAbleObject : MonoBehaviour
                     }
                 }
 
-                health -= args.ChangeValue;
+                if(gameObject.tag == "Enemy")
+                    health -= args.ChangeValue;  //TODO: Abhängig von Spieleranzahl
+                else
+                    health -= args.ChangeValue;
+
                 if (health <= 0)
                 {
                     health = 0;
