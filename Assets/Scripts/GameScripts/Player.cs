@@ -504,11 +504,14 @@ public class Player : MonoBehaviour
 
     private bool ChangeColor(GameObject gameObject, float alpha)
     {
-        Renderer prevRenderer = gameObject.GetComponent<Renderer>();
-        if (prevRenderer != null)
+        if (gameObject != null)
         {
-            prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
-            return true;
+            Renderer prevRenderer = gameObject.GetComponent<Renderer>();
+            if (prevRenderer != null)
+            {
+                prevRenderer.material.color = new Color(prevRenderer.material.color.r, prevRenderer.material.color.g, prevRenderer.material.color.b, alpha);
+                return true;
+            }
         }
 
         return false;
