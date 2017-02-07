@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 475304927}
   - component: {fileID: 475304926}
   m_Layer: 5
-  m_Name: PlayerTwo_Stalker
+  m_Name: PlayerFour_Stalker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,16 +617,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 475304924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1122501091}
+  m_Father: {fileID: 1191998326}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: 207}
+  m_AnchoredPosition: {x: 121, y: -219}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &475304926
@@ -1294,7 +1294,7 @@ GameObject:
   - component: {fileID: 650516696}
   - component: {fileID: 650516695}
   m_Layer: 5
-  m_Name: PlayerTwo_Aegis
+  m_Name: PlayerFour_Aegis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1306,16 +1306,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 650516693}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1122501091}
+  m_Father: {fileID: 1191998326}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: 207}
+  m_AnchoredPosition: {x: 121, y: -219}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &650516695
@@ -1899,8 +1899,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2029225769}
-  - {fileID: 1475193012}
+  - {fileID: 2084090976}
+  - {fileID: 1154094442}
   - {fileID: 310100220}
   m_Father: {fileID: 1817813408}
   m_RootOrder: 14
@@ -1977,7 +1977,7 @@ GameObject:
   - component: {fileID: 991069301}
   - component: {fileID: 991069300}
   m_Layer: 5
-  m_Name: PlayerFour_Stalker
+  m_Name: PlayerOne_Stalker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1989,16 +1989,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 991069298}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1191998326}
+  m_Father: {fileID: 1789795262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 114, y: -223}
+  m_AnchoredPosition: {x: -614, y: 203}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &991069300
@@ -2366,8 +2366,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 650516694}
-  - {fileID: 475304925}
+  - {fileID: 2029225769}
+  - {fileID: 1475193012}
   - {fileID: 926014579}
   m_Father: {fileID: 1817813408}
   m_RootOrder: 13
@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 1154094444}
   - component: {fileID: 1154094443}
   m_Layer: 5
-  m_Name: PlayerOne_Stalker
+  m_Name: PlayerThree_Stalker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2589,16 +2589,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154094441}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1789795262}
+  m_Father: {fileID: 954714223}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -616, y: 207}
+  m_AnchoredPosition: {x: -614, y: -219}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154094443
@@ -2730,8 +2730,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1467151565}
-  - {fileID: 991069299}
+  - {fileID: 650516694}
+  - {fileID: 475304925}
   - {fileID: 1002345298}
   m_Father: {fileID: 1817813408}
   m_RootOrder: 15
@@ -3551,7 +3551,7 @@ GameObject:
   - component: {fileID: 1467151567}
   - component: {fileID: 1467151566}
   m_Layer: 5
-  m_Name: PlayerFour_Aegis
+  m_Name: PlayerOne_Aegis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3563,16 +3563,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467151564}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1191998326}
+  m_Father: {fileID: 1789795262}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 114, y: -223}
+  m_AnchoredPosition: {x: -614, y: 203}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467151566
@@ -3619,7 +3619,7 @@ GameObject:
   - component: {fileID: 1475193014}
   - component: {fileID: 1475193013}
   m_Layer: 5
-  m_Name: PlayerThree_Stalker
+  m_Name: PlayerTwo_Stalker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3631,16 +3631,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475193011}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 954714223}
+  m_Father: {fileID: 1122501091}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -621, y: -223}
+  m_AnchoredPosition: {x: 121, y: 203}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1475193013
@@ -4209,8 +4209,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2084090976}
-  - {fileID: 1154094442}
+  - {fileID: 1467151565}
+  - {fileID: 991069299}
   - {fileID: 1449361832}
   m_Father: {fileID: 1817813408}
   m_RootOrder: 12
@@ -4419,17 +4419,17 @@ MonoBehaviour:
   playerThreeJoin: {fileID: 1731825523}
   playerFourJoin: {fileID: 625714862}
   charSelectPlayerOne: {fileID: 1789795265}
-  playerOneAegis: {fileID: 2084090977}
-  playerOneStalker: {fileID: 1154094443}
+  playerOneAegis: {fileID: 1467151566}
+  playerOneStalker: {fileID: 991069300}
   charSelectPlayerTwo: {fileID: 1122501094}
-  playerTwoAegis: {fileID: 650516695}
-  playerTwoStalker: {fileID: 475304926}
+  playerTwoAegis: {fileID: 2029225770}
+  playerTwoStalker: {fileID: 1475193013}
   charSelectPlayerThree: {fileID: 954714226}
-  playerThreeAegis: {fileID: 2029225770}
-  playerThreeStalker: {fileID: 1475193013}
+  playerThreeAegis: {fileID: 2084090977}
+  playerThreeStalker: {fileID: 1154094443}
   charSelectPlayerFour: {fileID: 1191998329}
-  playerFourAegis: {fileID: 1467151566}
-  playerFourStalker: {fileID: 991069300}
+  playerFourAegis: {fileID: 650516695}
+  playerFourStalker: {fileID: 475304926}
   weaponSelectionPlayerOne: {fileID: 1449361835}
   weaponSelectionPlayerTwo: {fileID: 926014582}
   weaponSelectionPlayerThree: {fileID: 310100223}
@@ -4613,7 +4613,7 @@ GameObject:
   - component: {fileID: 2029225771}
   - component: {fileID: 2029225770}
   m_Layer: 5
-  m_Name: PlayerThree_Aegis
+  m_Name: PlayerTwo_Aegis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4625,16 +4625,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2029225768}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 954714223}
+  m_Father: {fileID: 1122501091}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -621, y: -223}
+  m_AnchoredPosition: {x: 121, y: 203}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2029225770
@@ -4885,7 +4885,7 @@ GameObject:
   - component: {fileID: 2084090978}
   - component: {fileID: 2084090977}
   m_Layer: 5
-  m_Name: PlayerOne_Aegis
+  m_Name: PlayerThree_Aegis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4897,16 +4897,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2084090975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1789795262}
+  m_Father: {fileID: 954714223}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -616, y: 207}
+  m_AnchoredPosition: {x: -614, y: -219}
   m_SizeDelta: {x: 369, y: 245}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084090977

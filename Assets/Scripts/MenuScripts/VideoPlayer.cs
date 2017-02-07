@@ -56,8 +56,6 @@ public class VideoPlayer : MonoBehaviour {
             {
                 AnimationPlayed = true;
             }
-            
-
         }
 	}
 }
