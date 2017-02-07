@@ -160,7 +160,7 @@ public class GameInspector : MonoBehaviour
         Win = false;
         Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        //INSERT SPAWNING
+        SpawnPlayers();
         UnfreezeAllPlayers();
     }
 
