@@ -411,22 +411,22 @@ public class Player : MonoBehaviour
 
         #region AnimationHandler
 
-        if (!(state.Triggers.Right > 0 && !executed) || attackInProgressTimer > 0)
+        if (!(state.Triggers.Left > 0 && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("RightAttack", false);
         }
 
-        if (!(state.Triggers.Left > 0 && !executed) || attackInProgressTimer > 0)
+        if (!(state.Triggers.Right > 0 && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("LeftAttack", false);
         }
 
-        if (!(state.Buttons.RightShoulder == ButtonState.Pressed && !executed) || attackInProgressTimer > 0)
+        if (!(state.Buttons.LeftShoulder == ButtonState.Pressed && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("RightAttack2", false);
         }
 
-        if (!(state.Buttons.LeftShoulder == ButtonState.Pressed && !executed) || attackInProgressTimer > 0)
+        if (!(state.Buttons.RightShoulder == ButtonState.Pressed && !executed) || attackInProgressTimer > 0)
         {
             animator.SetBool("LeftAttack2", false);
         }
@@ -438,25 +438,25 @@ public class Player : MonoBehaviour
 
         if (attackInProgressTimer <= 0)
         {
-            if (state.Triggers.Right > 0 && !executed)
+            if (state.Triggers.Left > 0 && !executed)
             {
                 if (primaryWeapon != null)
                     executed = primaryWeapon.PrimaryAttack(leftSpawn.transform.position, transform.forward, angle);
             }
 
-            if (state.Triggers.Left > 0 && !executed)
+            if (state.Triggers.Right > 0 && !executed)
             {
                 if (secondaryWeapon != null)
                     executed = secondaryWeapon.PrimaryAttack(rightSpawn.transform.position, transform.forward, angle);
             }
 
-            if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
+            if (state.Buttons.LeftShoulder == ButtonState.Pressed && !executed)
             {
                 if (primaryWeapon != null)
                     executed = primaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
             }
 
-            if (state.Buttons.LeftShoulder == ButtonState.Pressed && !executed)
+            if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)
             {
                 if (secondaryWeapon != null)
                     executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
