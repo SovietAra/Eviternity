@@ -407,65 +407,6 @@ public class PlayerAssignmentScript : MonoBehaviour
                 }
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
-            #region Ausnamebedingungen Waffen
-            if (playerOneAegis.enabled == true)
-            {
-                player1_Stalker_EMP_Gun.enabled = false;
-                player1_Stalker_Schwert.enabled = false;
-                player1_Stalker_Shotgun.enabled = false;
-                player1_Stalker_Sniper.enabled = false;
-            }
-            if (playerTwoAegis.enabled == true)
-            {
-                player2_Stalker_EMP_Gun.enabled = false;
-                player2_Stalker_Schwert.enabled = false;
-                player2_Stalker_Shotgun.enabled = false;
-                player2_Stalker_Sniper.enabled = false;
-            }
-            if (playerThreeAegis.enabled == true)
-            {
-                player3_Stalker_EMP_Gun.enabled = false;
-                player3_Stalker_Schwert.enabled = false;
-                player3_Stalker_Shotgun.enabled = false;
-                player3_Stalker_Sniper.enabled = false;
-            }
-            if (playerFourAegis.enabled == true)
-            {
-                player4_Stalker_EMP_Gun.enabled = false;
-                player4_Stalker_Schwert.enabled = false;
-                player4_Stalker_Shotgun.enabled = false;
-                player4_Stalker_Sniper.enabled = false;
-            }
-
-            if (playerOneStalker.enabled == true)
-            {
-                player1_Aegis_Bohrer.enabled = false;
-                player1_Aegis_Flammenwerfer.enabled = false;
-                player1_Aegis_GGun.enabled = false;
-                player1_Aegis_Granatenwerfer.enabled = false;
-            }
-            if (playerTwoStalker.enabled == true)
-            {
-                player2_Aegis_Bohrer.enabled = false;
-                player2_Aegis_Flammenwerfer.enabled = false;
-                player2_Aegis_GGun.enabled = false;
-                player2_Aegis_Granatenwerfer.enabled = false;
-            }
-            if (playerThreeStalker.enabled == true)
-            {
-                player3_Aegis_Bohrer.enabled = false;
-                player3_Aegis_Flammenwerfer.enabled = false;
-                player3_Aegis_GGun.enabled = false;
-                player3_Aegis_Granatenwerfer.enabled = false;
-            }
-            if (playerFourStalker.enabled == true)
-            {
-                player4_Aegis_Bohrer.enabled = false;
-                player4_Aegis_Flammenwerfer.enabled = false;
-                player4_Aegis_GGun.enabled = false;
-                player4_Aegis_Granatenwerfer.enabled = false;
-            }
-            #endregion
             if (state.Buttons.LeftShoulder == ButtonState.Pressed && prevState[playerIndex].Buttons.LeftShoulder == ButtonState.Released)
             {
                 if (playerOneAegis.enabled == true || playerTwoAegis.enabled == true || playerThreeAegis.enabled == true || playerFourAegis.enabled == true)
