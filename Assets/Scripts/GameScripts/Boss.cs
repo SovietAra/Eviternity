@@ -90,6 +90,7 @@ public class Boss : MonoBehaviour
             {
                 aoeWeapon = gobj.GetComponent<Weapon>();
                 aoeWeapon.OnPrimaryAttack += OnPrimaryAttack;
+                aoeWeapon.OnDelayedPrimaryAttack += OnPrimaryAttack;
             }
         }
 
@@ -100,6 +101,7 @@ public class Boss : MonoBehaviour
             {
                 iceWaveWeapon = gobj.GetComponent<Weapon>();
                 iceWaveWeapon.OnPrimaryAttack += OnPrimaryAttack;
+                iceWaveWeapon.OnDelayedPrimaryAttack += OnPrimaryAttack;
             }
         }
 
@@ -128,7 +130,7 @@ public class Boss : MonoBehaviour
         GetPlayers();
         GamePadManager.OnPlayerCountChanged += GamePadManager_OnPlayerCountChanged;
     }
-
+    
     private void HealthContainer_OnDeath(object sender, EventArgs e)
     {
         //TODO: Umbauen, dass Boss erst nach Delay/Animationsende stirbt
