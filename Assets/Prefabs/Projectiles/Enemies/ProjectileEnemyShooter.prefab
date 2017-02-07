@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54726533458369810}
   - component: {fileID: 114820282105720252}
   - component: {fileID: 96912481816556556}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ProjectileEnemyShooter
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -220,14 +220,16 @@ MonoBehaviour:
   invertGravityFactor: 0.01
   lifeTime: 3
   startDetonationTimer: 0
-  DestroyOnCollision: 0
+  DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
   SpawnExplosion: 0
   OverwriteExplosionValues: 0
+  AllowVelocityIncreasing: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
+  ImpactSound: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0
 --- !u!135 &135289528192169384

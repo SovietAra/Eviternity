@@ -1986,9 +1986,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df710688110eb542b5863c72f89928f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashTrail: {fileID: 1966069055324844}
   healingAnim: {fileID: 95140240846345446}
   animator: {fileID: 95995750137292412}
+  dashTrail: {fileID: 1966069055324844}
   speed: 8
   regenerationPerSecond: 17
   reviveDelay: 2
