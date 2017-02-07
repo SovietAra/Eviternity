@@ -142,9 +142,10 @@ MonoBehaviour:
   heatPerShot: 0
   heatReductionPerSecond: 0
   heatReductionDelay: 0
-  AnimationDuration: 2
+  AnimationDuration: 5
   smoothSpray: 0
   sprayValueSpeed: 0
+  spawnDelay: 3.5
   AllowShellRelaod: 1
   UseAmmo: 1
   AutoReload: 1
