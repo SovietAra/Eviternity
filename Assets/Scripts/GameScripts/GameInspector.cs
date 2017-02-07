@@ -41,9 +41,7 @@ public class GameInspector : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        WinAndDefeat();
-
-        playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
+      playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
 
         if (playerChoice != null)
         {
@@ -86,9 +84,9 @@ public class GameInspector : MonoBehaviour
     private void Update()
     {
         Pause();
-
         CheckForNewPlayers();
-        
+        WinAndDefeat();
+
         List<GameObject> AvailablePlayer = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         if (AvailablePlayer != null)
         {
