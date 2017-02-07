@@ -49,6 +49,10 @@ public class Ability : MonoBehaviour
     private bool spawnOncePerActivation = true;
 
     [SerializeField]
+    [Range(0, 30)]
+    private float spawnDelay = 0f;
+
+    [SerializeField]
     private bool destroyOnAbort = true;
 
     [SerializeField]
@@ -84,6 +88,8 @@ public class Ability : MonoBehaviour
     private bool allowSpawning;
     private AudioSource audioSource;
     private float elapsedRegenerationDelay;
+    private float elapsedSpawnDelay = 0f;
+    private bool delaySpawn = false;
 
     public event EventHandler OnActivated;
     public event EventHandler OnAbort;
@@ -168,14 +174,21 @@ public class Ability : MonoBehaviour
                 }
             }
         }
+
+        if(delaySpawn)
+        {
+            elapsedSpawnDelay += Time.deltaTime;
+            if(elapsedSpawnDelay >= spawnDelay)
+            {
+                SpawnObjects();
+                delaySpawn = false;
+                elapsedSpawnDelay = 0f;
+            }
+        }
     }
 
-    private void Activate()
+    private void SpawnObjects()
     {
-        active = true;
-        keyPressed = true;
-        AbortRegeneration();
-
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
             if (spawnedObjects[i] == null)
@@ -187,18 +200,30 @@ public class Ability : MonoBehaviour
 
         if (spawnObjectOnActivation && spawnObject != null)
         {
-            if(spawnOncePerActivation)
+            if (spawnOncePerActivation)
             {
                 if (allowSpawning)
                 {
                     allowSpawning = !Spawn();
                 }
-            }          
+            }
             else
             {
                 Spawn();
             }
         }
+    }
+
+    private void Activate()
+    {
+        active = true;
+        keyPressed = true;
+        AbortRegeneration();
+
+        if (spawnDelay <= 0)
+            SpawnObjects();
+        else
+            delaySpawn = true;
 
         if(audioSource != null && ActivationSound != null)
         {
