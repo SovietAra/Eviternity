@@ -8,12 +8,14 @@ namespace Assets.Scripts
         public GameObject ProjectileObject;
         public Projectile ProjectileScript;
         public float AnimationDuration;
+        public bool Delayed;
 
-        public WeaponEventArgs(GameObject projectileObject, Projectile projectileScript, float animationDuration)
+        public WeaponEventArgs(GameObject projectileObject, Projectile projectileScript, float animationDuration, bool delayed)
         {
             ProjectileObject = projectileObject;
             ProjectileScript = projectileScript;
             AnimationDuration = animationDuration;
+            Delayed = delayed;
         }
     }
 }

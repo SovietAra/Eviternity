@@ -81,9 +81,12 @@ public class UIScript : MonoBehaviour
     public GameObject IndicatorPlaneTwo;
     public GameObject IndicatorPlaneThree;
     public GameObject IndicatorPlaneFour;
+    public GameObject BossHealthbar_bg;
+    public GameObject BossHealthbar;
 
     #region private variables
     private GameObject game;
+    private GameObject boss;
     private GameObject P1IndicatorPlane;
     private GameObject P2IndicatorPlane;
     private GameObject P3IndicatorPlane;
@@ -92,9 +95,13 @@ public class UIScript : MonoBehaviour
     private GameObject Indicate2;
     private GameObject Indicate3;
     private GameObject Indicate4;
+    private DamageAbleObject bossDamageable;
     private float teamhealthAmount;
     private float maxTeamHealth;
     private float maxPlayerHealth;
+    private float bosshealthAmount;
+    private float maxBossHealth;
+    private Image bossHealthFill;
     private Image player1HealthBar_1;
     private Image player1HealthBar_2;
     private Image player1HealthBar_3;
@@ -152,6 +159,7 @@ public class UIScript : MonoBehaviour
     private Image player4Weapon2_2;
     private Image player4Weapon2_3;
     private bool isHealing = false;
+    private bool bossAggro = false;
     private bool P1iconsSet = false;
     private bool P2iconsSet = false;
     private bool P3iconsSet = false;
@@ -170,6 +178,10 @@ public class UIScript : MonoBehaviour
         GameObject playerPrefab = GameObject.Find("Player");
         DamageAbleObject playerDamageable = gameInspector.PlayerPrefab.GetComponent<DamageAbleObject>();
         maxPlayerHealth = playerDamageable.MaxHealth;
+        boss = GameObject.Find("Boss");
+        bossDamageable = boss.GetComponent<DamageAbleObject>();
+        maxBossHealth = bossDamageable.MaxHealth;
+        bossHealthFill = BossHealthbar.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -209,6 +221,20 @@ public class UIScript : MonoBehaviour
                 }
             }
             isHealing = false;
+            // TODO Only change bossbar visibility if it is not in the desired state
+            if (bossAggro)
+            {
+                BossHealthbar_bg.SetActive(true);
+                BossHealthbar.SetActive(true);
+            }
+            else
+            {
+                BossHealthbar_bg.SetActive(false);
+                BossHealthbar.SetActive(false);
+            }
+
+            bosshealthAmount = bossDamageable.Health / bossDamageable.MaxHealth;
+            bossHealthFill.fillAmount = bosshealthAmount;
         }
         else
         {
@@ -231,6 +257,16 @@ public class UIScript : MonoBehaviour
     public void ActivateTeamBar()
     {
         isHealing = true;
+    }
+
+    public void ShowBossHealth()
+    {
+        bossAggro = true;
+    }
+
+    public void HideBossHealth()
+    {
+        bossAggro = false;
     }
 
     private void UpdateHealth(Player playerScript, DamageAbleObject damageAbleObject, GameObject player)
@@ -693,13 +729,6 @@ public class UIScript : MonoBehaviour
                     player1Weapon2_3 = Heat5_4.GetComponent<Image>();
                     player1Weapon2_3.transform.SetParent(UICanvas, false);
 
-                    //for (int i = 0; i < 3; i++)
-                    //{
-                    //    GameObject Energy = Instantiate(EnergyBars[i]);
-                    //    AbilityBars[i] = Energy.GetComponent<Image>();
-                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
-                    //}
-
                     for (int i = 0; i < 16; i++)
                     {
                         GameObject Ability = Instantiate(AbilityObjs[i]);
@@ -747,13 +776,6 @@ public class UIScript : MonoBehaviour
                     GameObject Heat6_4 = Instantiate(P2SecWeapon_border);
                     player2Weapon2_3 = Heat6_4.GetComponent<Image>();
                     player2Weapon2_3.transform.SetParent(UICanvas, false);
-
-                    //for (int i = 3; i < 6; i++)
-                    //{
-                    //    GameObject Energy = Instantiate(EnergyBars[i]);
-                    //    AbilityBars[i] = Energy.GetComponent<Image>();
-                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
-                    //}
 
                     for (int i = 16; i < 32; i++)
                     {
@@ -803,13 +825,6 @@ public class UIScript : MonoBehaviour
                     player3Weapon2_3 = Heat7_4.GetComponent<Image>();
                     player3Weapon2_3.transform.SetParent(UICanvas, false);
 
-                    //for (int i = 6; i < 9; i++)
-                    //{
-                    //    GameObject Energy = Instantiate(EnergyBars[i]);
-                    //    AbilityBars[i] = Energy.GetComponent<Image>();
-                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
-                    //}
-
                     for (int i = 32; i < 48; i++)
                     {
                         GameObject Ability = Instantiate(AbilityObjs[i]);
@@ -857,14 +872,7 @@ public class UIScript : MonoBehaviour
                     GameObject Heat8_4 = Instantiate(P4SecWeapon_border);
                     player4Weapon2_3 = Heat8_4.GetComponent<Image>();
                     player4Weapon2_3.transform.SetParent(UICanvas, false);
-
-                    //for (int i = 9; i < 12; i++)
-                    //{
-                    //    GameObject Energy = Instantiate(EnergyBars[i]);
-                    //    AbilityBars[i] = Energy.GetComponent<Image>();
-                    //    AbilityBars[i].transform.SetParent(UICanvas, false);
-                    //}
-
+                    
                     for (int i = 48; i < 64; i++)
                     {
                         GameObject Ability = Instantiate(AbilityObjs[i]);
