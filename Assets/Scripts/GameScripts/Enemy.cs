@@ -54,6 +54,9 @@ public class Enemy : MonoBehaviour
     #region Privates
     private NavMeshAgent navAgent;
 
+    private Animator anim;
+    private bool attack;
+
     private GameObject currentTarget;
     private GameObject possibleTarget;
     private GameObject targetPlayer;
@@ -82,6 +85,8 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        anim = transform.FindChild("Crawler_Animation").GetComponent<Animator>();
+
         dmgobjct = GetComponent<DamageAbleObject>();
         if (dmgobjct != null)
         {
@@ -186,6 +191,9 @@ public class Enemy : MonoBehaviour
             //Follow Target
             if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
             {
+                bool walking = distanceToPlayer < viewRange;
+                anim.SetBool("IsWalking", walking);
+
                 if (currentTarget != null && navAgent != null)
                 {
                     for (int i = 0; i < squadList.Count; i++)
@@ -217,6 +225,9 @@ public class Enemy : MonoBehaviour
             }
 
             triggeredBySquad = false;
+            bool attackTmp = distanceToPlayer < attackRange;
+            anim.SetBool("IsMeleeAttack", attackTmp);
+
 
             if (distanceToPlayer <= navAgent.stoppingDistance)
             {
