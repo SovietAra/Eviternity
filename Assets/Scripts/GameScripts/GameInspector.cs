@@ -42,7 +42,7 @@ public class GameInspector : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-      playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
+        playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
 
         if (playerChoice != null)
         {
@@ -55,6 +55,11 @@ public class GameInspector : MonoBehaviour
         }
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
+
+        Player.TeamHealth = maxTeamHealth;
+        Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
+        Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
+
         SpawnPlayers();
     }
 
@@ -98,6 +103,7 @@ public class GameInspector : MonoBehaviour
                 if (player != null)
                     AllPlayerDead = false;
             }
+
             if (AllPlayerDead)
                 SpawnPlayers();
         }
@@ -183,30 +189,52 @@ public class GameInspector : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        Player.TeamHealth = maxTeamHealth;
-        Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
-        Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
-        
-        for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
+        if (Player.TeamHealth > 0)
         {
-            if (choice != null)
+            float shareHealth = Player.TeamHealth / GlobalReferences.PlayerStates.Count;
+            for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
             {
-                if (choice[i] == 0)
+                if (choice != null)
+                {
+                    if (choice[i] == 0)
+                    {
+                        PlayerPrefab = PlayerPrefabAegis;
+                    }
+                    else if (choice[i] == 1)
+                    {
+                        PlayerPrefab = PlayerPrefabStalker;
+                    }
+                }
+                else
                 {
                     PlayerPrefab = PlayerPrefabAegis;
                 }
-                else if (choice[i] == 1)
-                {
-                    PlayerPrefab = PlayerPrefabStalker;
-                }
-            }
-            else
-            {
-                PlayerPrefab = PlayerPrefabAegis;
-            }
-            
 
-            SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
+
+                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
+                if (gobj != null)
+                {
+                    DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
+                    if (healthContainer != null)
+                    {
+                        if (Player.TeamHealth > GlobalReferences.PlayerStates.Count * healthContainer.MaxHealth)
+                        {
+                            healthContainer.Health = healthContainer.MaxHealth;
+                            Player.TeamHealth -= healthContainer.MaxHealth;
+                        }
+                        else
+                        {
+                            healthContainer.Health = shareHealth;
+                            Player.TeamHealth -= shareHealth;
+                        }
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            Defeat = true;
         }
     }
 
@@ -259,7 +287,7 @@ public class GameInspector : MonoBehaviour
         return false;
     }
 
-    private void SpawnPlayer(PlayerState playerState, Vector3 position)
+    private GameObject SpawnPlayer(PlayerState playerState, Vector3 position)
     {
         GameObject newPlayer = Instantiate(PlayerPrefab, position, Quaternion.Euler(0, 0, 0));
         Player playerScript = newPlayer.GetComponent<Player>();
@@ -267,6 +295,7 @@ public class GameInspector : MonoBehaviour
         playerScript.OnPlayerExit += PlayerScript_OnPlayerExit;
         spawnedPlayers.Add(playerScript);
         uiScript.OnSpawn(playerState.Index);
+        return newPlayer;
     }
 
     private void RemovePlayerState(PlayerIndex index)

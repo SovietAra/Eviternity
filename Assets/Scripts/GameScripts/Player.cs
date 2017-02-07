@@ -845,7 +845,7 @@ public class Player : MonoBehaviour
             animator.SetBool("IsDead", true);
             animator.SetTrigger("OnDeath");
         }
-        if (TeamHealth == 0)
+        if (TeamHealth == 0 || GlobalReferences.PlayerStates.Count <= 1)
         {
             if (!audioSources[1].isPlaying)
                 audioSources[1].Play();
