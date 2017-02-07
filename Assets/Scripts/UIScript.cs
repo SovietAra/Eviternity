@@ -72,7 +72,6 @@ public class UIScript : MonoBehaviour
     public Sprite[] WeaponIcons;
 
     // Abilities
-    //public GameObject[] EnergyBars;
     public Sprite[] AbilityIcons;
     public GameObject[] AbilityObjs;
 
@@ -108,8 +107,6 @@ public class UIScript : MonoBehaviour
     private Image player1Heat;
     private Image player1Heat2;
     private Image p1icon;
-    //private Image p1weaponIcon;
-    //private Image p1secWeaponIcon;
     private Image player1Weapon_1;
     private Image player1Weapon_2;
     private Image player1Weapon_3;
@@ -122,8 +119,6 @@ public class UIScript : MonoBehaviour
     private Image player2Heat;
     private Image player2Heat2;
     private Image p2icon;
-    //private Image p2weaponIcon;
-    //private Image p2secWeaponIcon;
     private Image player2Weapon_1;
     private Image player2Weapon_2;
     private Image player2Weapon_3;
@@ -136,8 +131,6 @@ public class UIScript : MonoBehaviour
     private Image player3Heat;
     private Image player3Heat2;
     private Image p3icon;
-    //private Image p3weaponIcon;
-    //private Image p3secWeaponIcon;
     private Image player3Weapon_1;
     private Image player3Weapon_2;
     private Image player3Weapon_3;
@@ -150,8 +143,6 @@ public class UIScript : MonoBehaviour
     private Image player4Heat;
     private Image player4Heat2;
     private Image p4icon;
-    //private Image p4weaponIcon;
-    //private Image p4secWeaponIcon;
     private Image player4Weapon_1;
     private Image player4Weapon_2;
     private Image player4Weapon_3;
@@ -166,7 +157,6 @@ public class UIScript : MonoBehaviour
     private bool P4iconsSet = false;
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityFill = new Image[64];
-    //private Image[] AbilityBars = new Image[12];
     #endregion
 
     // Use this for initialization
@@ -177,7 +167,7 @@ public class UIScript : MonoBehaviour
         maxTeamHealth = gameInspector.MaxTeamHealth;
         GameObject playerPrefab = GameObject.Find("Player");
         DamageAbleObject playerDamageable = gameInspector.PlayerPrefab.GetComponent<DamageAbleObject>();
-        maxPlayerHealth = playerDamageable.MaxHealth;
+        //maxPlayerHealth = playerDamageable.MaxHealth;
         boss = GameObject.Find("Boss");
         bossDamageable = boss.GetComponent<DamageAbleObject>();
         maxBossHealth = bossDamageable.MaxHealth;
@@ -284,7 +274,7 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player1HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player1Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
@@ -312,7 +302,7 @@ public class UIScript : MonoBehaviour
 
             case PlayerIndex.Two:
                 {
-                    player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player2HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player2Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
@@ -339,7 +329,7 @@ public class UIScript : MonoBehaviour
 
             case PlayerIndex.Three:
                 {
-                    player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player3HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player3Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
@@ -366,7 +356,7 @@ public class UIScript : MonoBehaviour
 
             case PlayerIndex.Four:
                 {
-                    player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player4HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player4Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 

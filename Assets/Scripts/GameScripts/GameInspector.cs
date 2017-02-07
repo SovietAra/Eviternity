@@ -90,6 +90,8 @@ public class GameInspector : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+
         Pause();
         CheckForNewPlayers();
         WinAndDefeat();
@@ -107,6 +109,14 @@ public class GameInspector : MonoBehaviour
 
             if (AllPlayerDead)
                 SpawnPlayers();
+        }
+        if (GamePad.GetState(PlayerIndex.Two).DPad.Right == ButtonState.Pressed)
+        {
+            Debug.Log(choice[1]);
+        }
+        if (GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed)
+        {
+            Debug.Log(choice[0]);
         }
     }
 
@@ -148,46 +158,13 @@ public class GameInspector : MonoBehaviour
     public void Restart()
     {
 
-        Time.timeScale = 0;
-        if (AskCanvas.activeInHierarchy == false)
-        {
-           AskCanvas.SetActive(true);
-            if (PauseMenuCanvas.activeInHierarchy || DefeatCanvas.activeInHierarchy || WinCanvas.activeInHierarchy)
-            {
-                GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-                PauseMenuCanvas.SetActive(false);
-                DefeatCanvas.SetActive(false);
-                WinCanvas.SetActive(false);
-            }
-        }
-        FreezeAllPlayers();
-    }
-
-    public void Yes()
-    {
-        Win = false;
-        Defeat = false;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players != null)
-        {
-            for (int i = 0; i < players.Length; i++)
-            {
-                Destroy(players[i]);
-            }
-        }
-        SpawnPlayers(false);
-        UnfreezeAllPlayers();
-    }
-
-    public void No()
-    {
         Win = false;
         Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("LevelZero");
         UnfreezeAllPlayers();
     }
+
     public void MainMenu()
     {
         Win = false;
@@ -219,7 +196,7 @@ public class GameInspector : MonoBehaviour
                 {
                     PlayerPrefab = PlayerPrefabAegis;
                 }
-
+                
 
                 GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
                 if (gobj != null && useTeamHealth)

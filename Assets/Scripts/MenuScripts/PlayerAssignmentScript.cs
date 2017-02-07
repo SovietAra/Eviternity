@@ -214,7 +214,7 @@ public class PlayerAssignmentScript : MonoBehaviour
 
             }
 
-            if (state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
+            if ((state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released) || state.ThumbSticks.Left.X <= -0.1 && prevState[playerIndex].ThumbSticks.Left.X >= -0.1)
             {
                     prevIndex[playerIndex] = index[playerIndex];
                     index[playerIndex] -= 1;
@@ -228,7 +228,7 @@ public class PlayerAssignmentScript : MonoBehaviour
                     ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
-            if (state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released)
+            if ((state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released) || state.ThumbSticks.Left.X >= 0.1 && prevState[playerIndex].ThumbSticks.Left.X <= 0.1)
             {
                
                     prevIndex[playerIndex] = index[playerIndex];
@@ -271,7 +271,8 @@ public class PlayerAssignmentScript : MonoBehaviour
                 }
                 GamePadManager.Disconnect(GlobalReferences.PlayerStates[i].Index);
                 GlobalReferences.PlayerStates.RemoveAt(i);
-                Debug.Log(GlobalReferences.PlayerStates.Count);
+                i--;
+                continue;
             }
             //TODO: Change classes here
             if (GlobalReferences.PlayerStates[i].Ready)
