@@ -12,6 +12,7 @@ public class GameInspector : MonoBehaviour
     public GameObject PauseMenuCanvas;
     public GameObject DefeatCanvas;
     public GameObject WinCanvas;
+    public GameObject AskCanvas;
 
     public static bool Defeat, Win;
 
@@ -41,9 +42,7 @@ public class GameInspector : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        WinAndDefeat();
-
-        playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
+      playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
 
         if (playerChoice != null)
         {
@@ -86,9 +85,9 @@ public class GameInspector : MonoBehaviour
     private void Update()
     {
         Pause();
-
         CheckForNewPlayers();
-        
+        WinAndDefeat();
+
         List<GameObject> AvailablePlayer = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         if (AvailablePlayer != null)
         {
@@ -141,13 +140,38 @@ public class GameInspector : MonoBehaviour
 
     public void Restart()
     {
+
+        Time.timeScale = 0;
+        if (AskCanvas.activeInHierarchy == false)
+        {
+           AskCanvas.SetActive(true);
+            if (PauseMenuCanvas.activeInHierarchy || DefeatCanvas.activeInHierarchy || WinCanvas.activeInHierarchy)
+            {
+                PauseMenuCanvas.SetActive(false);
+                DefeatCanvas.SetActive(false);
+                WinCanvas.SetActive(false);
+            }
+        }
+        FreezeAllPlayers();
+    }
+
+    public void Yes()
+    {
+        Win = false;
+        Defeat = false;
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        //INSERT SPAWNING
+        UnfreezeAllPlayers();
+    }
+
+    public void No()
+    {
         Win = false;
         Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("LevelZero");
         UnfreezeAllPlayers();
     }
-
     public void MainMenu()
     {
         Win = false;

@@ -51,18 +51,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e433b3e64c77734469234be49f6da008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
-  sprayAngle: 0
+  fireRate: 0.01
+  maxSprayAngle: 20
   maxAmmoPerClip: 100
   reloadTimePerShell: 0.75
   reloadTimePerClip: 2
-  maxHeat: 50
-  heatPerShot: 1
-  heatReductionPerSecond: 0.5
-  heatReductionDelay: 2
+  maxHeat: 100
+  heat: 0
+  heatPerShot: 100
+  heatReductionPerSecond: 100
+  heatReductionDelay: 0
+  AnimationDuration: 0
+  smoothSpray: 0
+  sprayValueSpeed: 2
+  spawnDelay: 0
   AllowShellRelaod: 1
   UseAmmo: 1
   AutoReload: 1
   ProduceHeat: 0
+  HeatCooldown: 0
+  OverwriteSound: 1
+  FireSound: {fileID: 0}
+  ReloadSound: {fileID: 0}
   SecondaryWeapon: {fileID: 0}
   Projectile: {fileID: 1016596340005750, guid: fe64f63cb72f5f64485b1bfcc72af58f, type: 2}
