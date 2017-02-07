@@ -79,8 +79,6 @@ public class Boss : MonoBehaviour
         mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
         uiScript = mainGameObject.GetComponent<UIScript>();
 
-        print(animator.GetBool("Walking"));
-
         damageDone = new float[4];
         if (AOEWeapon != null)
         {
