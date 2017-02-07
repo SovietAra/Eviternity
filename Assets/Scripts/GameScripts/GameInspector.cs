@@ -81,8 +81,6 @@ public class GameInspector : MonoBehaviour
         {
             Time.timeScale = 1;
             PauseMenuCanvas.SetActive(false);
-            
-
         }
         else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
         {
@@ -153,13 +151,16 @@ public class GameInspector : MonoBehaviour
 
     private void PlayerScript_OnPlayerExit(object sender, PlayerEventArgs e)
     {
-        e.PlayerScript.OnPlayerExit -= PlayerScript_OnPlayerExit;
-        spawnedPlayers.Remove(e.PlayerScript);
-        RemovePlayerState(e.PlayerScript.Index);
-        GamePadManager.Disconnect(e.PlayerScript.Index);
+        if (spawnedPlayers.Count > 1)
+        {
+            e.PlayerScript.OnPlayerExit -= PlayerScript_OnPlayerExit;
+            spawnedPlayers.Remove(e.PlayerScript);
+            RemovePlayerState(e.PlayerScript.Index);
+            GamePadManager.Disconnect(e.PlayerScript.Index);
 
-        Destroy(e.PlayerObject);
-        uiScript.OnExit(e.PlayerScript.Index);
+            Destroy(e.PlayerObject);
+            uiScript.OnExit(e.PlayerScript.Index);
+        }
     }
 
     private void CheckForNewPlayers()
