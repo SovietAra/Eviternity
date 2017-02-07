@@ -222,19 +222,23 @@ public class UIScript : MonoBehaviour
             }
             isHealing = false;
             // TODO Only change bossbar visibility if it is not in the desired state
-            if (bossAggro)
+            if (BossHealthbar != null)
             {
-                BossHealthbar_bg.SetActive(true);
-                BossHealthbar.SetActive(true);
-            }
-            else
-            {
-                BossHealthbar_bg.SetActive(false);
-                BossHealthbar.SetActive(false);
+                if (bossAggro)
+                {
+                    BossHealthbar_bg.SetActive(true);
+                    BossHealthbar.SetActive(true);
+                }
+                else
+                {
+                    BossHealthbar_bg.SetActive(false);
+                    BossHealthbar.SetActive(false);
+                }
+
+                bosshealthAmount = bossDamageable.Health / bossDamageable.MaxHealth;
+                bossHealthFill.fillAmount = bosshealthAmount;
             }
 
-            bosshealthAmount = bossDamageable.Health / bossDamageable.MaxHealth;
-            bossHealthFill.fillAmount = bosshealthAmount;
         }
         else
         {
@@ -264,8 +268,13 @@ public class UIScript : MonoBehaviour
         bossAggro = true;
     }
 
-    public void HideBossHealth()
+    public void HideBossHealth(bool isDead)
     {
+        if (isDead)
+        {
+            Destroy(BossHealthbar);
+            Destroy(BossHealthbar_bg);
+        }
         bossAggro = false;
     }
 
@@ -276,8 +285,10 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.One:
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player1Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
-                    
+                    player1Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
+                    player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+
+                    AbilityFill[2].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[6].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[10].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
                     AbilityFill[14].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
@@ -302,8 +313,10 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player2Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;                   
+                    player2Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
+                    player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
+                    AbilityFill[18].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[22].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[26].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
                     AbilityFill[30].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
@@ -327,8 +340,10 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Three:
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player3Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
+                    player3Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
+                    player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
+                    AbilityFill[34].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[38].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[42].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
                     AbilityFill[46].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
@@ -352,8 +367,10 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Four:
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player4Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
+                    player4Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
+                    player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
+                    AbilityFill[50].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[54].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[58].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
                     AbilityFill[62].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;

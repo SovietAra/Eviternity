@@ -10,15 +10,13 @@ public class Boss : MonoBehaviour
     public GameObject AOEWeapon;
     public GameObject IceWaveWeapon;
     public GameObject IcicleAbility;
-
-    public AudioClip MoveSound;
     public Animator animator;
+    public bool Freeze = false;
 
-    private AudioSource audioSource;
+    private AudioSource[] BossAudioSources;
     private Weapon aoeWeapon;
     private Weapon iceWaveWeapon;
     private Ability icicleAbility;
-
     private MoveScript moveScript;
     private DamageAbleObject healthContainer;
     private Player currentTarget = null;
@@ -33,9 +31,6 @@ public class Boss : MonoBehaviour
     private NavMeshAgent agent;
     private UIScript uiScript;
     private GameObject mainGameObject;
-
-    public bool Freeze = false;
-    
     private float receivedDamagePerSecond = 0f;
     private float elapsedDamageTime = 0f;
     private float elapsedHitTime = 0f;
@@ -59,12 +54,28 @@ public class Boss : MonoBehaviour
     private float resetTime = 10f;
 
     [SerializeField]
-    [Range(0,10)]
+    [Range(0, 10)]
     private float deathDelay = 0;
-    
+
+    public AudioClip[] BossAudioClips = new AudioClip[10];
+
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want, same as in player
+        //for example walk and hit sound, or walk and some type of attack
+        for (var tmp = 0; tmp < BossAudioClips.Length; tmp++)
+        {
+            gameObject.AddComponent<AudioSource>();
+        }
+
+        BossAudioSources = GetComponents<AudioSource>();
+
+        for (var tmp = 0; tmp < BossAudioClips.Length; tmp++)
+        {
+            BossAudioSources[tmp].clip = BossAudioClips[tmp];
+        }
+        //
+
         mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
         uiScript = mainGameObject.GetComponent<UIScript>();
 
@@ -121,9 +132,10 @@ public class Boss : MonoBehaviour
     {
         //TODO: Umbauen, dass Boss erst nach Delay/Animationsende stirbt
         //Destroy(gameObject);
-        if(!isDead)
-        animator.SetTrigger("OnDeath");
+        if (!isDead)
+            animator.SetTrigger("OnDeath");
         isDead = true;
+        uiScript.HideBossHealth(true);
     }
 
     private void GamePadManager_OnPlayerCountChanged(object sender, EventArgs e)
@@ -187,11 +199,7 @@ public class Boss : MonoBehaviour
                         if (agent.velocity != Vector3.zero)
                         {
                             animator.SetBool("Walking", true);
-                            if (audioSource != null && MoveSound != null && !audioSource.isPlaying)
-                            {
-                                audioSource.clip = MoveSound;
-                                audioSource.Play();
-                            }
+                            if (BossAudioSources[5] != null && !BossAudioSources[5].isPlaying) BossAudioSources[5].Play();//play walk sound, walk is index 5
                         }
                         else
                             animator.SetBool("Walking", false);
@@ -213,7 +221,6 @@ public class Boss : MonoBehaviour
         {
             UpdateDeath();
         }
-            
     }
 
     private void UpdateDeath()
@@ -271,7 +278,7 @@ public class Boss : MonoBehaviour
     {
         if (currentTarget == null)
         {
-            uiScript.HideBossHealth();
+            uiScript.HideBossHealth(false);
             return;
         }
 
@@ -361,6 +368,7 @@ public class Boss : MonoBehaviour
         {
             animator.SetTrigger("MultiHit");
             done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
+            if (BossAudioSources[7] != null && !BossAudioSources[7].isPlaying) BossAudioSources[7].Play(); //hammer hit
         }
 
         if (iceWaveWeapon != null && !done && distance < 7f
@@ -368,17 +376,18 @@ public class Boss : MonoBehaviour
         {
             animator.SetTrigger("IceWave");
             done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
+            if (BossAudioSources[5] != null && !BossAudioSources[3].isPlaying) BossAudioSources[3].Play(); //ice wave sound, index 3
         }
 
         if (icicleAbility != null && !done && distance >= 7f)
         {
-            
             Vector3 translation = targetPosition - transform.position;
             icicleAbility.SpawnTranslation = translation;
-            if(icicleAbility.Use())
+            if (icicleAbility.Use())
             {
                 animator.SetTrigger("SingleHit");
                 done = icicleAbility.Use();
+                if (BossAudioSources[0] != null && !BossAudioSources[0].isPlaying) BossAudioSources[0].Play();
             }
         }
     }

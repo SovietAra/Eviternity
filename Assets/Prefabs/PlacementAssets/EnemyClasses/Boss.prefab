@@ -4778,14 +4778,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1371446977708944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -138.96, y: -0.21, z: -68.322}
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: -156.1, y: -13.665685, z: -223.6}
   m_LocalScale: {x: 1.3065686, y: 1.3065687, z: 1.3065687}
   m_Children:
   - {fileID: 4365944198798864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
 --- !u!4 &4602074157169138
 Transform:
   m_ObjectHideFlags: 1
@@ -6010,7 +6010,6 @@ MonoBehaviour:
     type: 2}
   IcicleAbility: {fileID: 1552349041503300, guid: 07edc64c01261f649bc98d1aadfd0f17,
     type: 2}
-  MoveSound: {fileID: 0}
   animator: {fileID: 95691985557882298}
   Freeze: 0
   viewRange: 20
@@ -6018,6 +6017,17 @@ MonoBehaviour:
   minimumDistance: 5
   resetTime: 10
   deathDelay: 0
+  BossAudioClips:
+  - {fileID: 8300000, guid: 67a52ee84574bbf43ad8255ba823c9c3, type: 3}
+  - {fileID: 8300000, guid: 27fe3ed6bedfb164488376746cc90f8a, type: 3}
+  - {fileID: 8300000, guid: eed16776e25b74e43878db03e72926e0, type: 3}
+  - {fileID: 8300000, guid: 7b2305b96d97f114fa712b5aa17c8a96, type: 3}
+  - {fileID: 8300000, guid: c8bc3d1029b760e40b7846bdba58804f, type: 3}
+  - {fileID: 8300000, guid: c2bbd38c5ad071e4c9b881dbfbfdf78d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114218876342771258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6031,6 +6041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3000
   maxHealth: 3000
+  groupDamage: 0.699999988079071
   isImmortal: 0
   DamageSound: {fileID: 0}
   DeathSound: {fileID: 0}
