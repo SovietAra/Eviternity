@@ -214,7 +214,7 @@ public class UIScript : MonoBehaviour
             // TODO Only change bossbar visibility if it is not in the desired state
             if (BossHealthbar != null)
             {
-                if (bossAggro)
+                if (bossAggro && bossDamageable != null)
                 {
                     BossHealthbar_bg.SetActive(true);
                     BossHealthbar.SetActive(true);
@@ -225,8 +225,11 @@ public class UIScript : MonoBehaviour
                     BossHealthbar.SetActive(false);
                 }
 
-                bosshealthAmount = bossDamageable.Health / bossDamageable.MaxHealth;
-                bossHealthFill.fillAmount = bosshealthAmount;
+                if (bossDamageable != null)
+                {
+                    bosshealthAmount = bossDamageable.Health / bossDamageable.MaxHealth;
+                    bossHealthFill.fillAmount = bosshealthAmount;
+                }
             }
 
         }
