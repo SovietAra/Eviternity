@@ -155,10 +155,6 @@ public class GameInspector : MonoBehaviour
 
     public void Restart()
     {
-
-        //Win = false;
-        //Defeat = false;
-       // GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         PlayerAssignmentScript.gameStarted = false;
         foreach (PlayerState item in GlobalReferences.PlayerStates)
         {
@@ -166,16 +162,13 @@ public class GameInspector : MonoBehaviour
         }
         GlobalReferences.PlayerStates.Clear();
         SceneManager.LoadScene("PlayerAssignment");
-        // UnfreezeAllPlayers();
     }
 
     public void MainMenu()
     {
-        Win = false;
-        Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        PlayerAssignmentScript.gameStarted = false;
         SceneManager.LoadScene("MainMenu");
-        UnfreezeAllPlayers();
     }
 
     private void SpawnPlayers(bool useTeamHealth = true)
