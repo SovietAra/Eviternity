@@ -31,6 +31,8 @@ public class Boss : MonoBehaviour
     private bool isDead = false;
     private Vector3 spawnPosition;
     private NavMeshAgent agent;
+    private UIScript uiScript;
+    private GameObject mainGameObject;
 
     public bool Freeze = false;
     
@@ -63,7 +65,8 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        animator.SetBool("Walking", false);
+        mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
+        uiScript = mainGameObject.GetComponent<UIScript>();
 
         print(animator.GetBool("Walking"));
 
@@ -267,7 +270,10 @@ public class Boss : MonoBehaviour
     private void CheckCurrentTarget()
     {
         if (currentTarget == null)
+        {
+            uiScript.HideBossHealth();
             return;
+        }
 
         if (Vector3.Distance(currentTarget.transform.position, transform.position) > viewRange)
         {
@@ -275,6 +281,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
+            uiScript.ShowBossHealth();
             CheckAggro();
         }
     }
