@@ -57,6 +57,14 @@ public class Weapon : MonoBehaviour
     [Range(0, 30)]
     private float spawnDelay = 0f;
 
+    [SerializeField]
+    private HeatDelayType heatDelayType = HeatDelayType.Always;
+
+    public enum HeatDelayType
+    {
+        Always,
+        OnOverheat
+    }
 
     private float sprayAngle = 0f;
     
@@ -87,6 +95,7 @@ public class Weapon : MonoBehaviour
     public event EventHandler<WeaponEventArgs> OnSecondaryAttack;
     public event EventHandler<WeaponEventArgs> OnDelayedPrimaryAttack;
     public event EventHandler<WeaponEventArgs> OnDelayedSecondaryAttack;
+    public event EventHandler<SpawnEventArgs> OnSpawning;
     public event EventHandler OnReloadBegin;
     public event EventHandler OnReloadEnd;
     public event EventHandler OnReloadAbort;
@@ -97,7 +106,7 @@ public class Weapon : MonoBehaviour
     private float delayedSpawnAngle;
     private Vector3 delayedSpawnForward;
     private bool delayedSpawn;
-
+    private bool attacked = false;
 
     public float MaxHeat
     {
@@ -118,9 +127,16 @@ public class Weapon : MonoBehaviour
             secondaryWeapon = Instantiate(SecondaryWeapon, transform.parent).GetComponent<Weapon>();
             secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
             secondaryWeapon.OnDelayedPrimaryAttack += SecondaryWeapon_OnDelayedPrimaryAttack;
+            secondaryWeapon.OnSpawning += SecondaryWeapon_OnSpawning;
         }
 
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void SecondaryWeapon_OnSpawning(object sender, SpawnEventArgs e)
+    {
+        if (OnSpawning != null)
+            OnSpawning(this, e);
     }
 
     private void Update()
@@ -139,7 +155,14 @@ public class Weapon : MonoBehaviour
         }
 
         UpdateReload();
-        UpdateHeat();
+        if (!attacked && elapsedAttackDelay >= fireRate)
+        {
+            UpdateHeat();
+        }
+        else
+        {
+            attacked = false;
+        }
     }
 
     private void UpdateReload()
@@ -182,7 +205,7 @@ public class Weapon : MonoBehaviour
     {
         if (ProduceHeat)
         {
-            if (elapsedHeatReductionDelay >= heatReductionDelay)
+            if (elapsedHeatReductionDelay >= heatReductionDelay || (heatDelayType == HeatDelayType.OnOverheat && !overheat))
             {
                 sprayAngle = 0f;
                 heat -= heatReductionPerSecond * Time.deltaTime;
@@ -226,6 +249,7 @@ public class Weapon : MonoBehaviour
                 sprayAngle = UnityEngine.Random.Range(-(maxSprayAngle / 2f), (maxSprayAngle / 2f));
             }
 
+            attacked = true;
             if (spawnDelay <= 0)
             {
                 SpawnObject(spawnPosition, forward, angle);
@@ -252,8 +276,12 @@ public class Weapon : MonoBehaviour
     }
 
     private void SpawnObject(Vector3 spawnPosition, Vector3 forward, float angle)
-    { 
-        GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + sprayAngle), 0));
+    {
+        SpawnEventArgs spawnArgs = new SpawnEventArgs(spawnPosition, forward, angle);
+        if (OnSpawning != null)
+            OnSpawning(this, spawnArgs);
+
+        GameObject gobj = Instantiate(Projectile, spawnArgs.SpawnPosition + spawnArgs.Forward, Quaternion.Euler(0.0f, (spawnArgs.Angle + sprayAngle), 0));
         Projectile projectile = gobj.GetComponent<Projectile>();
         if (transform.parent != null)
             projectile.Attacker = transform.parent.gameObject;
