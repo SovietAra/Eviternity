@@ -108,14 +108,6 @@ public class GameInspector : MonoBehaviour
             if (AllPlayerDead)
                 SpawnPlayers();
         }
-        if (GamePad.GetState(PlayerIndex.Two).DPad.Right == ButtonState.Pressed)
-        {
-            Debug.Log(choice[1]);
-        }
-        if (GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed)
-        {
-            Debug.Log(choice[0]);
-        }
     }
 
     private void Pause()
@@ -180,11 +172,11 @@ public class GameInspector : MonoBehaviour
             {
                 if (choice != null)
                 {
-                    if (choice[i] == 0)
+                    if (choice[(int)GlobalReferences.PlayerStates[i].Index] == 0)
                     {
                         PlayerPrefab = PlayerPrefabAegis;
                     }
-                    else if (choice[i] == 1)
+                    else if (choice[(int)GlobalReferences.PlayerStates[i].Index] == 1)
                     {
                         PlayerPrefab = PlayerPrefabStalker;
                     }
