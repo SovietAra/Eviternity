@@ -394,7 +394,7 @@ public class Boss : MonoBehaviour
             if (BossAudioSources[7] != null && !BossAudioSources[7].isPlaying) BossAudioSources[7].Play(); //hammer hit
         }
 
-        if (iceWaveWeapon != null && !done && distance < 7f
+        else if (iceWaveWeapon != null && !done && distance < 7f
             && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
         {
             animator.SetTrigger("IceWave");
@@ -402,7 +402,7 @@ public class Boss : MonoBehaviour
             if (BossAudioSources[5] != null && !BossAudioSources[3].isPlaying) BossAudioSources[3].Play(); //ice wave sound, index 3
         }
 
-        if (icicleAbility != null && !done && distance >= 7f)
+        else if (icicleAbility != null && !done && distance >= 7f && distance <= viewRange)
         {
             Vector3 translation = targetPosition - transform.position;
             icicleAbility.SpawnTranslation = translation;
