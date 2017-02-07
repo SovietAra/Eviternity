@@ -6,11 +6,13 @@ public class ColorSwitchCheck : MonoBehaviour
 
     //private Color currentColor;
     //private Material materialColored;
+    public Material Checkpoint;
+    public Material Checkpoint1;
 
     private void Start()
     {
         MeshRenderer renderer = GetComponent<MeshRenderer>();
-        renderer.enabled = false;
+        renderer.enabled = true;
     }
 
     private void Update()
@@ -34,5 +36,6 @@ public class ColorSwitchCheck : MonoBehaviour
     {
         //objectColor = Color.green;
         //objectColor.a = 0.3f;
+        GetComponent<Renderer>().material = Checkpoint1;
     }
 }

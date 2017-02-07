@@ -43,13 +43,14 @@ public class GameInspector : MonoBehaviour
     private void Start()
     {
         playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
-  
+
         if (playerChoice != null)
         {
             List<int> temp = new List<int>();
             temp.AddRange(playerChoice.choices);
 
             choice = temp.ToArray();
+
             Destroy(playerChoice.gameObject);
         }
         spawnedPlayers = new List<Player>();
@@ -154,10 +155,6 @@ public class GameInspector : MonoBehaviour
 
     public void Restart()
     {
-
-        //Win = false;
-        //Defeat = false;
-       // GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         PlayerAssignmentScript.gameStarted = false;
         foreach (PlayerState item in GlobalReferences.PlayerStates)
         {
@@ -165,16 +162,13 @@ public class GameInspector : MonoBehaviour
         }
         GlobalReferences.PlayerStates.Clear();
         SceneManager.LoadScene("PlayerAssignment");
-        // UnfreezeAllPlayers();
     }
 
     public void MainMenu()
     {
-        Win = false;
-        Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        PlayerAssignmentScript.gameStarted = false;
         SceneManager.LoadScene("MainMenu");
-        UnfreezeAllPlayers();
     }
 
     private void SpawnPlayers(bool useTeamHealth = true)
@@ -200,8 +194,7 @@ public class GameInspector : MonoBehaviour
                     PlayerPrefab = PlayerPrefabAegis;
                 }
 
-
-                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 1, 1, i * 1));
+                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
                 if (gobj != null && useTeamHealth)
                 {
                     DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
@@ -263,9 +256,9 @@ public class GameInspector : MonoBehaviour
                             if (cam != null)
                             {
                                 if(GlobalReferences.PlayerStates.Count >= 3)
-                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0.5f, 2, 0.5f));
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 1, 0));
                                 else
-                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0.5f, 2, 0.5f));
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 1, 1));
                             }
                             else
                                 SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 1, 0));
