@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerChoice : MonoBehaviour {
 
@@ -23,6 +24,14 @@ public class PlayerChoice : MonoBehaviour {
             for (int i = 0; i < choices.Length; i++)
             {
                 choices[i] = playerAssignment.playerChoice[i];
+                if (GamePad.GetState(PlayerIndex.Two).DPad.Up == ButtonState.Pressed)
+                {
+                    Debug.Log(choices[1]);
+                }
+                if (GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed)
+                {
+                    Debug.Log(choices[0]);
+                }
             }
         }
     }

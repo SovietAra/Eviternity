@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
@@ -21,6 +22,11 @@ public class MenuScript : MonoBehaviour
 
     public void PressPlay()
     {
+        foreach (PlayerState item in GlobalReferences.PlayerStates)
+        {
+            GamePadManager.Disconnect(item.Index);
+        }
+        GlobalReferences.PlayerStates.Clear();
         SceneManager.LoadScene("PlayerAssignment");
     }
 

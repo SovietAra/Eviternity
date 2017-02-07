@@ -107,6 +107,14 @@ public class GameInspector : MonoBehaviour
             if (AllPlayerDead)
                 SpawnPlayers();
         }
+        if (GamePad.GetState(PlayerIndex.Two).DPad.Right == ButtonState.Pressed)
+        {
+            Debug.Log(choice[1]);
+        }
+        if (GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed)
+        {
+            Debug.Log(choice[0]);
+        }
     }
 
     private void Pause()
@@ -147,11 +155,17 @@ public class GameInspector : MonoBehaviour
     public void Restart()
     {
 
-        Win = false;
-        Defeat = false;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        SceneManager.LoadScene("LevelZero");
-        UnfreezeAllPlayers();
+        //Win = false;
+        //Defeat = false;
+       // GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        PlayerAssignmentScript.gameStarted = false;
+        foreach (PlayerState item in GlobalReferences.PlayerStates)
+        {
+            GamePadManager.Disconnect(item.Index);
+        }
+        GlobalReferences.PlayerStates.Clear();
+        SceneManager.LoadScene("PlayerAssignment");
+        // UnfreezeAllPlayers();
     }
 
     public void MainMenu()
@@ -205,7 +219,6 @@ public class GameInspector : MonoBehaviour
                         }
                     }
                 }
-
             }
         }
         else
