@@ -42,7 +42,7 @@ public class GameInspector : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-      playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
+        playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
 
         if (playerChoice != null)
         {
@@ -55,7 +55,13 @@ public class GameInspector : MonoBehaviour
         }
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
-        SpawnPlayers();
+
+        Player.LastCheckpointPosition = Vector3.zero;
+        Player.TeamHealth = maxTeamHealth;
+        Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
+        Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
+
+        SpawnPlayers(false);
     }
 
     private void WinAndDefeat()
@@ -98,6 +104,7 @@ public class GameInspector : MonoBehaviour
                 if (player != null)
                     AllPlayerDead = false;
             }
+
             if (AllPlayerDead)
                 SpawnPlayers();
         }
@@ -141,37 +148,13 @@ public class GameInspector : MonoBehaviour
     public void Restart()
     {
 
-        Time.timeScale = 0;
-        if (AskCanvas.activeInHierarchy == false)
-        {
-           AskCanvas.SetActive(true);
-            if (PauseMenuCanvas.activeInHierarchy || DefeatCanvas.activeInHierarchy || WinCanvas.activeInHierarchy)
-            {
-                PauseMenuCanvas.SetActive(false);
-                DefeatCanvas.SetActive(false);
-                WinCanvas.SetActive(false);
-            }
-        }
-        FreezeAllPlayers();
-    }
-
-    public void Yes()
-    {
-        Win = false;
-        Defeat = false;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        SpawnPlayers();
-        UnfreezeAllPlayers();
-    }
-
-    public void No()
-    {
         Win = false;
         Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("LevelZero");
         UnfreezeAllPlayers();
     }
+
     public void MainMenu()
     {
         Win = false;
@@ -181,32 +164,55 @@ public class GameInspector : MonoBehaviour
         UnfreezeAllPlayers();
     }
 
-    private void SpawnPlayers()
+    private void SpawnPlayers(bool useTeamHealth = true)
     {
-        Player.TeamHealth = maxTeamHealth;
-        Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
-        Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
-        
-        for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
+        if (Player.TeamHealth > 0 || !useTeamHealth)
         {
-            if (choice != null)
+            float shareHealth = Player.TeamHealth / GlobalReferences.PlayerStates.Count;
+            for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
             {
-                if (choice[i] == 0)
+                if (choice != null)
+                {
+                    if (choice[i] == 0)
+                    {
+                        PlayerPrefab = PlayerPrefabAegis;
+                    }
+                    else if (choice[i] == 1)
+                    {
+                        PlayerPrefab = PlayerPrefabStalker;
+                    }
+                }
+                else
                 {
                     PlayerPrefab = PlayerPrefabAegis;
                 }
-                else if (choice[i] == 1)
-                {
-                    PlayerPrefab = PlayerPrefabStalker;
-                }
-            }
-            else
-            {
-                PlayerPrefab = PlayerPrefabAegis;
-            }
-            
 
-            SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
+
+                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
+                if (gobj != null && useTeamHealth)
+                {
+                    DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
+                    if (healthContainer != null)
+                    {
+                        if (Player.TeamHealth > GlobalReferences.PlayerStates.Count * healthContainer.MaxHealth)
+                        {
+                            healthContainer.Health = healthContainer.MaxHealth;
+                            Player.TeamHealth -= healthContainer.MaxHealth;
+                        }
+                        else
+                        {
+                            healthContainer.Health = shareHealth;
+                            Player.TeamHealth -= shareHealth;
+                        }
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            Player.LastCheckpointPosition = Vector3.zero;
+            Defeat = true;
         }
     }
 
@@ -239,7 +245,21 @@ public class GameInspector : MonoBehaviour
                         PlayerState newPlayerState = new PlayerState(freePads[i], state, true, 0);
                         GlobalReferences.PlayerStates.Add(newPlayerState);
                         GamePadManager.Connect((int)freePads[i]);
-                        SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
+                        if (GlobalReferences.PlayerStates.Count > 1)
+                        {
+                            FollowingCamera cam = GameObject.FindObjectOfType<FollowingCamera>();
+                            if (cam != null)
+                            {
+                                if(GlobalReferences.PlayerStates.Count >= 3)
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 1, 0));
+                                else
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 1, 1));
+                            }
+                            else
+                                SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 1, 0));
+                        }
+                        else
+                            SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
                     }
                 }
             }
@@ -259,7 +279,7 @@ public class GameInspector : MonoBehaviour
         return false;
     }
 
-    private void SpawnPlayer(PlayerState playerState, Vector3 position)
+    private GameObject SpawnPlayer(PlayerState playerState, Vector3 position)
     {
         GameObject newPlayer = Instantiate(PlayerPrefab, position, Quaternion.Euler(0, 0, 0));
         Player playerScript = newPlayer.GetComponent<Player>();
@@ -267,6 +287,7 @@ public class GameInspector : MonoBehaviour
         playerScript.OnPlayerExit += PlayerScript_OnPlayerExit;
         spawnedPlayers.Add(playerScript);
         uiScript.OnSpawn(playerState.Index);
+        return newPlayer;
     }
 
     private void RemovePlayerState(PlayerIndex index)

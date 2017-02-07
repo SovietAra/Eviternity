@@ -14,6 +14,7 @@ public class KeepButtonsScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
         Switch = gameObject.AddComponent<AudioSource>();
         StoreSelected = ES.firstSelectedGameObject;
         Switch.clip = SwitchClip;
@@ -25,10 +26,15 @@ public class KeepButtonsScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (ES.currentSelectedGameObject == StoreSelected) return;
+	    ES.GetComponent<StandaloneInputModule>().Process();
+        // ES.GetComponent<BaseInputModule>().ActivateModule();
+
+        if (ES.currentSelectedGameObject == StoreSelected) return;
 	    if (ES.currentSelectedGameObject == null)
+
 	    {
-	        ES.SetSelectedGameObject(StoreSelected);
+	    
+            ES.SetSelectedGameObject(StoreSelected);
 	    }
 	    else
 	    {
