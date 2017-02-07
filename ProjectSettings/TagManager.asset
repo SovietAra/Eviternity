@@ -9,6 +9,7 @@ TagManager:
   - HUD
   - GameObject
   - MusicSystem
+  - ProjectileSpawn
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enemy
   - PlayerProjectile
   - EnemyProjectile
-  - 
+  - ProjectileSpawn
   - 
   - 
   - 
