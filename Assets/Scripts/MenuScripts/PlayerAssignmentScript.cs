@@ -214,7 +214,7 @@ public class PlayerAssignmentScript : MonoBehaviour
 
             }
 
-            if ((state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released) || state.ThumbSticks.Left.X <= -0.1 && prevState[playerIndex].ThumbSticks.Left.X >= -0.1)
+            if ((state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released) || (state.ThumbSticks.Left.X <= -0.1 && prevState[playerIndex].ThumbSticks.Left.X >= -0.1))
             {
                     prevIndex[playerIndex] = index[playerIndex];
                     index[playerIndex] -= 1;
@@ -228,7 +228,7 @@ public class PlayerAssignmentScript : MonoBehaviour
                     ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
-            if ((state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released) || state.ThumbSticks.Left.X >= 0.1 && prevState[playerIndex].ThumbSticks.Left.X <= 0.1)
+            if ((state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released) || (state.ThumbSticks.Left.X >= 0.1 && prevState[playerIndex].ThumbSticks.Left.X <= 0.1))
             {
                
                     prevIndex[playerIndex] = index[playerIndex];
