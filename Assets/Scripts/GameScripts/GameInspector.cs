@@ -61,7 +61,7 @@ public class GameInspector : MonoBehaviour
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
 
-        SpawnPlayers();
+        SpawnPlayers(false);
     }
 
     private void WinAndDefeat()
@@ -168,7 +168,15 @@ public class GameInspector : MonoBehaviour
         Win = false;
         Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        SpawnPlayers();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players != null)
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                Destroy(players[i]);
+            }
+        }
+        SpawnPlayers(false);
         UnfreezeAllPlayers();
     }
 
@@ -189,9 +197,9 @@ public class GameInspector : MonoBehaviour
         UnfreezeAllPlayers();
     }
 
-    private void SpawnPlayers()
+    private void SpawnPlayers(bool useTeamHealth = true)
     {
-        if (Player.TeamHealth > 0)
+        if (Player.TeamHealth > 0 || !useTeamHealth)
         {
             float shareHealth = Player.TeamHealth / GlobalReferences.PlayerStates.Count;
             for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
@@ -214,7 +222,7 @@ public class GameInspector : MonoBehaviour
 
 
                 GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
-                if (gobj != null)
+                if (gobj != null && useTeamHealth)
                 {
                     DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
                     if (healthContainer != null)
