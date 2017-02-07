@@ -241,12 +241,7 @@ public class UIScript : MonoBehaviour
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player1Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
-
-                    //for (int j = 0; j < 3; j++)
-                    //{
-                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j + 1) / playerScript.MaxEnergy;
-                    //}
-                    // WRNG
+                    
                     AbilityFill[6].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[10].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
                     AbilityFill[14].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
@@ -271,13 +266,7 @@ public class UIScript : MonoBehaviour
             case PlayerIndex.Two:
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
-                    player2Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
-
-                    //for (int j = 3; j < 6; j++)
-                    //{
-                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 2) / playerScript.MaxEnergy;
-                    //}
-                    //WRNG
+                    player2Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;                   
 
                     AbilityFill[22].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[26].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
@@ -303,11 +292,6 @@ public class UIScript : MonoBehaviour
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player3Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
-                    //WRNG
-                    //for (int j = 6; j < 9; j++)
-                    //{
-                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 5) / playerScript.MaxEnergy;
-                    //}
 
                     AbilityFill[38].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[42].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
@@ -333,11 +317,6 @@ public class UIScript : MonoBehaviour
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
                     player4Heat.fillAmount = playerScript.PrimaryHeat / playerScript.PrimaryMaxHeat;
-                    //WRNG
-                    //for (int j = 9; j < 12; j++)
-                    //{
-                    //    AbilityBars[j].fillAmount = playerScript.AbilityEnergy(j - 8) / playerScript.MaxEnergy;
-                    //}
 
                     AbilityFill[54].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
                     AbilityFill[58].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
@@ -587,13 +566,8 @@ public class UIScript : MonoBehaviour
                     Destroy(player1Weapon2_3.gameObject);
                     Destroy(p1icon.gameObject);
                     P1iconsSet = false;
-
-                    //for (int k = 0; k < 3; k++)
-                    //{
-                    //    Destroy(AbilityBars[k].gameObject);
-                    //}
-
-                    for (int k = 0; k < 4; k++)
+                    
+                    for (int k = 0; k < 16; k++)
                     {
                         Destroy(AbilityFill[k].gameObject);
                     }
@@ -608,21 +582,19 @@ public class UIScript : MonoBehaviour
                     Destroy(player2Heat2.gameObject);
                     Destroy(player2Weapon_1.gameObject);
                     Destroy(player2Weapon_2.gameObject);
-                    //Destroy(player2Weapon_3.gameObject); image doesnt get created.
+                    Destroy(player2Weapon_3.gameObject);
                     Destroy(player2Weapon2_1.gameObject);
                     Destroy(player2Weapon2_2.gameObject);
                     Destroy(player2Weapon2_3.gameObject);
                     Destroy(p2icon.gameObject);
                     P2iconsSet = false;
 
-                    //for (int k = 3; k < 6; k++)
-                    //{
-                    //    Destroy(AbilityBars[k].gameObject);
-                    //}
-
-                    for (int k = 4; k < 8; k++)
+                    for (int k = 16; k < 32; k++)
                     {
-                        Destroy(AbilityFill[k].gameObject);
+                        if ((AbilityFill[k]) != null)
+                        {
+                            Destroy(AbilityFill[k].gameObject);
+                        }
                     }
                 }
                 break;
@@ -635,19 +607,14 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Heat2.gameObject);
                     Destroy(player3Weapon_1.gameObject);
                     Destroy(player3Weapon_2.gameObject);
-                    //Destroy(player3Weapon_3.gameObject);
+                    Destroy(player3Weapon_3.gameObject);
                     Destroy(player3Weapon2_1.gameObject);
                     Destroy(player3Weapon2_2.gameObject);
                     Destroy(player3Weapon2_3.gameObject);
                     Destroy(p3icon.gameObject);
                     P3iconsSet = false;
 
-                    //for (int k = 6; k < 9; k++)
-                    //{
-                    //    Destroy(AbilityBars[k].gameObject);
-                    //}
-
-                    for (int k = 8; k < 12; k++)
+                    for (int k = 32; k < 48; k++)
                     {
                         Destroy(AbilityFill[k].gameObject);
                     }
@@ -662,19 +629,14 @@ public class UIScript : MonoBehaviour
                     Destroy(player4Heat2.gameObject);
                     Destroy(player4Weapon_1.gameObject);
                     Destroy(player4Weapon_2.gameObject);
-                    //Destroy(player4Weapon_3.gameObject);
+                    Destroy(player4Weapon_3.gameObject);
                     Destroy(player4Weapon2_1.gameObject);
                     Destroy(player4Weapon2_2.gameObject);
                     Destroy(player4Weapon2_3.gameObject);
                     Destroy(p4icon.gameObject);
                     P4iconsSet = false;
 
-                    //for (int k = 9; k < 12; k++)
-                    //{
-                    //    Destroy(AbilityBars[k].gameObject);
-                    //}
-
-                    for (int k = 12; k < 16; k++)
+                    for (int k = 48; k < 64; k++)
                     {
                         Destroy(AbilityFill[k].gameObject);
                     }
@@ -771,8 +733,8 @@ public class UIScript : MonoBehaviour
                     player2Heat = Heat2_3.GetComponent<Image>();
                     player2Heat.transform.SetParent(UICanvas, false);
                     GameObject Heat2_4 = Instantiate(P2Weapon_border);
-                    player2Weapon2_3 = Heat2_4.GetComponent<Image>();
-                    player2Weapon2_3.transform.SetParent(UICanvas, false);
+                    player2Weapon_3 = Heat2_4.GetComponent<Image>();
+                    player2Weapon_3.transform.SetParent(UICanvas, false);
                     GameObject Heat6_1 = Instantiate(P2SecWeapon_background);
                     player2Weapon2_1 = Heat6_1.GetComponent<Image>();
                     player2Weapon2_1.transform.SetParent(UICanvas, false);
