@@ -696,13 +696,17 @@ public class Player : MonoBehaviour
 
     private void DashAbility_OnActivated(object sender, EventArgs e)
     {
-        if (moveVector != Vector3.zero)
+        Ability abil = sender as Ability;
+        if (abil != null)
         {
-            velocity = (moveVector * 2) * dashAbility.AbilityValue;
-        }
-        else
-        {
-            velocity = transform.forward * dashAbility.AbilityValue;
+            if (moveVector != Vector3.zero)
+            {
+                velocity = (moveVector * 2) * abil.AbilityValue;
+            }
+            else
+            {
+                velocity = transform.forward * abil.AbilityValue;
+            }
         }
     }
 
