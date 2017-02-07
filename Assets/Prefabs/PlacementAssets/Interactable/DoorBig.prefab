@@ -121,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1832846806453362}
   m_LocalRotation: {x: -0, y: 0.7116354, z: -0, w: 0.702549}
-  m_LocalPosition: {x: -160.3, y: -13.66243, z: -224.9}
+  m_LocalPosition: {x: -195.77274, y: -13.662428, z: -259.3146}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 4244403772585330}
@@ -346,8 +346,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.858325, y: 0.7707352, z: 8.088048}
-  m_Center: {x: -1.7403865, y: -0.10562853, z: 4.044024}
+  m_Size: {x: 5.858325, y: 1.7579896, z: 8.088048}
+  m_Center: {x: -1.7406918, y: -0.16131592, z: 4.04402}
 --- !u!65 &65421750904532996
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -370,8 +370,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.899817, y: 0.7639952, z: 8.088048}
-  m_Center: {x: 2.0325515, y: -0.102258526, z: 4.044024}
+  m_Size: {x: 5.8998165, y: 1.6950965, z: 8.088048}
+  m_Center: {x: 2.0323434, y: -0.1366849, z: 4.04402}
 --- !u!82 &82864386228343522
 AudioSource:
   m_ObjectHideFlags: 1
@@ -480,4 +480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fc34ba6f09c004fbae785ec7254236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies: []
+  Enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

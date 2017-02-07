@@ -1114,7 +1114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830940599666644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -221.23291, y: -12.883055, z: -167.33582}
+  m_LocalPosition: {x: -202.22755, y: -12.883045, z: -250.48302}
   m_LocalScale: {x: 1.5471276, y: 1.5471275, z: 1.5471274}
   m_Children:
   - {fileID: 224455381073300414}
@@ -1674,7 +1674,7 @@ MonoBehaviour:
   viewRange: 13
   enemyType: 1
   switchDelay: 32.3
-  squadID: 7
+  squadID: 4
   HealthSlider: {fileID: 114212006709566350}
   freeze: 0
   PrimaryWeapon: {fileID: 1302081713190986, guid: cab8c03062427734482b2f7578a96ccb,
@@ -1717,7 +1717,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
