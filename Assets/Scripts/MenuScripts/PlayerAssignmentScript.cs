@@ -50,8 +50,8 @@ public class PlayerAssignmentScript : MonoBehaviour
 
     GamePadState[] prevState = new GamePadState[4];
 
-    int[] index = new int[2] { 0, 0 };
-    int[] prevIndex = new int[2] { 0, 0 };
+    int[] index = new int[4] { 0, 0, 0, 0 };
+    int[] prevIndex = new int[4] { 0, 0, 0, 0 };
     #endregion
 
     private bool[] playerJoined;
@@ -216,29 +216,30 @@ public class PlayerAssignmentScript : MonoBehaviour
 
             if (state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released)
             {
-                prevIndex[playerIndex] = index[playerIndex];
-                index[playerIndex] -= 1;
-                Debug.Log("index:" + index[playerIndex]);
-                if (index[playerIndex] < 0)
-                {
-                    Debug.Log("Sprung auf Ende der List");
-                    index[playerIndex] = 1;
-                }
+                    prevIndex[playerIndex] = index[playerIndex];
+                    index[playerIndex] -= 1;
+                    Debug.Log("index:" + index[playerIndex]);
+                    if (index[playerIndex] < 0)
+                    {
+                        Debug.Log("Sprung auf Ende der List");
+                        index[playerIndex] = 1;
+                    }
 
-                ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
+                    ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
             if (state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released)
             {
-                prevIndex[playerIndex] = index[playerIndex];
-                index[playerIndex] += 1;
-                Debug.Log("index:" + index[playerIndex]);
-                if (index[playerIndex] > 1)
-                {
-                    Debug.Log("Sprung auf Anfang der Liste");
-                    index[playerIndex] = 0;
-                }
-                ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
+               
+                    prevIndex[playerIndex] = index[playerIndex];
+                    index[playerIndex] += 1;
+                    Debug.Log("index:" + index[playerIndex]);
+                    if (index[playerIndex] > 1)
+                    {
+                        Debug.Log("Sprung auf Anfang der Liste");
+                        index[playerIndex] = 0;
+                    }
+                    ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
             if (state.Buttons.B == ButtonState.Pressed)
