@@ -53,6 +53,11 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private float sprayValueSpeed = 2f;
 
+    [SerializeField]
+    [Range(0, 30)]
+    private float spawnDelay = 0f;
+
+
     private float sprayAngle = 0f;
     
     public bool AllowShellRelaod = false;
@@ -73,17 +78,26 @@ public class Weapon : MonoBehaviour
     
     private float elapsedAttackDelay;
     private float elapsedReloadTime;
+    private float elapsedSpawnDelay;
     private float elapsedHeatReductionDelay;
     private bool reloading;
     private bool overheat = false;
 
     public event EventHandler<WeaponEventArgs> OnPrimaryAttack;
     public event EventHandler<WeaponEventArgs> OnSecondaryAttack;
+    public event EventHandler<WeaponEventArgs> OnDelayedPrimaryAttack;
+    public event EventHandler<WeaponEventArgs> OnDelayedSecondaryAttack;
     public event EventHandler OnReloadBegin;
     public event EventHandler OnReloadEnd;
     public event EventHandler OnReloadAbort;
 
     private AudioSource audioSource;
+
+    private Vector3 delayedSpawnPosition;
+    private float delayedSpawnAngle;
+    private Vector3 delayedSpawnForward;
+    private bool delayedSpawn;
+
 
     public float MaxHeat
     {
@@ -103,6 +117,7 @@ public class Weapon : MonoBehaviour
         {
             secondaryWeapon = Instantiate(SecondaryWeapon, transform.parent).GetComponent<Weapon>();
             secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
+            secondaryWeapon.OnDelayedPrimaryAttack += SecondaryWeapon_OnDelayedPrimaryAttack;
         }
 
         audioSource = GetComponent<AudioSource>();
@@ -112,7 +127,17 @@ public class Weapon : MonoBehaviour
     {
         elapsedAttackDelay += Time.deltaTime;
         elapsedHeatReductionDelay += Time.deltaTime;
-        
+
+        if (delayedSpawn)
+        {
+            elapsedSpawnDelay += Time.deltaTime;
+
+            if (elapsedSpawnDelay > spawnDelay)
+            {
+                SpawnObject(delayedSpawnPosition, delayedSpawnForward, delayedSpawnAngle);
+            }
+        }
+
         UpdateReload();
         UpdateHeat();
     }
@@ -201,48 +226,19 @@ public class Weapon : MonoBehaviour
                 sprayAngle = UnityEngine.Random.Range(-(maxSprayAngle / 2f), (maxSprayAngle / 2f));
             }
 
-            GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + sprayAngle), 0));
-            Projectile projectile = gobj.GetComponent<Projectile>();
-            if(transform.parent != null)
-                projectile.Attacker = transform.parent.gameObject;
-
-            if(OnPrimaryAttack != null)
-                OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile, AnimationDuration));
-
-            if(audioSource != null && FireSound != null)
+            if (spawnDelay <= 0)
             {
-                if (!audioSource.isPlaying || OverwriteSound)
-                {
-                    audioSource.clip = FireSound;
-                    audioSource.Play();
-                }
+                SpawnObject(spawnPosition, forward, angle);
             }
-
-            elapsedAttackDelay = 0f;
-
-            if (UseAmmo)
+            else
             {
-                currentClipAmmo--;
+                delayedSpawn = true;
+                delayedSpawnForward = forward;
+                delayedSpawnAngle = angle;
+                delayedSpawnPosition = spawnPosition;
+                if (OnDelayedPrimaryAttack != null)
+                    OnDelayedPrimaryAttack(this, new WeaponEventArgs(null, null, AnimationDuration, true));
             }
-            else if (ProduceHeat)
-            {
-                elapsedHeatReductionDelay = 0f;
-                heat += heatPerShot;
-                overheat = heat >= maxHeat;
-
-                if(overheat)
-                {
-                    if (audioSource != null && ReloadSound != null)
-                    {
-                        if (!audioSource.isPlaying)
-                        {
-                            audioSource.clip = ReloadSound;
-                            audioSource.Play();
-                        }
-                    }
-                }
-            }
-
             return true;
         }
         else if (currentClipAmmo <= 0 && !reloading)
@@ -253,6 +249,56 @@ public class Weapon : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void SpawnObject(Vector3 spawnPosition, Vector3 forward, float angle)
+    { 
+        GameObject gobj = Instantiate(Projectile, spawnPosition + forward, Quaternion.Euler(0.0f, (angle + sprayAngle), 0));
+        Projectile projectile = gobj.GetComponent<Projectile>();
+        if (transform.parent != null)
+            projectile.Attacker = transform.parent.gameObject;
+
+        if (OnPrimaryAttack != null)
+            OnPrimaryAttack(this, new WeaponEventArgs(gobj, projectile, AnimationDuration, delayedSpawn));
+
+        if (audioSource != null && FireSound != null)
+        {
+            if (!audioSource.isPlaying || OverwriteSound)
+            {
+                audioSource.clip = FireSound;
+                audioSource.Play();
+            }
+        }
+
+        elapsedAttackDelay = 0f;
+        elapsedSpawnDelay = 0f;
+        delayedSpawn = false;
+        delayedSpawnAngle = 0f;
+        delayedSpawnForward = Vector3.zero;
+        delayedSpawnPosition = Vector3.zero;
+
+        if (UseAmmo)
+        {
+            currentClipAmmo--;
+        }
+        else if (ProduceHeat)
+        {
+            elapsedHeatReductionDelay = 0f;
+            heat += heatPerShot;
+            overheat = heat >= maxHeat;
+
+            if (overheat)
+            {
+                if (audioSource != null && ReloadSound != null)
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.clip = ReloadSound;
+                        audioSource.Play();
+                    }
+                }
+            }
+        }
     }
 
     public virtual bool SecondaryAttack(Vector3 spawnPosition, Vector3 forward, float angle)
@@ -268,6 +314,12 @@ public class Weapon : MonoBehaviour
     {
         if (OnSecondaryAttack != null)
             OnSecondaryAttack(sender, e);
+    }
+
+    private void SecondaryWeapon_OnDelayedPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        if (OnDelayedSecondaryAttack != null)
+            OnDelayedSecondaryAttack(this, e);
     }
 
     public void Reload()

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts;
 using System;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using XInputDotNetPure;
 
 public class Player : MonoBehaviour
@@ -23,8 +22,8 @@ public class Player : MonoBehaviour
     private Vector3 moveVector;
     private Vector3 velocity;
     private Vector3 finalVelocity;
-
-   private float elapsedDashRegenerationTime = 0f;
+    
+    private float elapsedDashRegenerationTime = 0f;
     private float elapsedReviveDelay = 0f;
     private float elapsedImmortal;
     private float attackInProgressTimer = 0f;
@@ -197,12 +196,16 @@ public class Player : MonoBehaviour
             primaryWeapon = Instantiate(PrimaryWeapon, transform).GetComponent<Weapon>();
             primaryWeapon.OnPrimaryAttack += PrimaryWeapon_OnPrimaryAttack;
             primaryWeapon.OnSecondaryAttack += PrimaryWeapon_OnSecondaryAttack;
+            primaryWeapon.OnDelayedPrimaryAttack += PrimaryWeapon_OnDelayedPrimaryAttack;
+            primaryWeapon.OnDelayedSecondaryAttack += PrimaryWeapon_OnDelayedSecondaryAttack;
         }
         if (SecondaryWeapon != null)
         {
             secondaryWeapon = Instantiate(SecondaryWeapon, transform).GetComponent<Weapon>();
             secondaryWeapon.OnPrimaryAttack += SecondaryWeapon_OnPrimaryAttack;
             secondaryWeapon.OnSecondaryAttack += SecondaryWeapon_OnSecondaryAttack;
+            secondaryWeapon.OnDelayedPrimaryAttack += SecondaryWeapon_OnDelayedPrimaryAttack;
+            secondaryWeapon.OnDelayedSecondaryAttack += SecondaryWeapon_OnDelayedSecondaryAttack;
         }
 
         if (Ability != null)
@@ -251,7 +254,7 @@ public class Player : MonoBehaviour
         //Set Immortality Time Value
         elapsedImmortal = maxImmortality;
     }
-
+   
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
         dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
@@ -437,7 +440,6 @@ public class Player : MonoBehaviour
                     executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
             }
         }
-
 
         finalVelocity = (moveVector * 100) + velocity;
         if (moveScript != null && !OnIce)
@@ -686,8 +688,11 @@ public class Player : MonoBehaviour
 
     private void SecondaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
     {
-        animator.SetBool("LeftAttack2", true);
-        attackInProgressTimer += e.AnimationDuration;
+        if (!e.Delayed)
+        {
+            animator.SetBool("LeftAttack2", true);
+            attackInProgressTimer += e.AnimationDuration;
+        }
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         if ((finalVelocity.x != 0 || finalVelocity.z != 0)
             && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
@@ -699,8 +704,11 @@ public class Player : MonoBehaviour
 
     private void SecondaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
-        animator.SetBool("LeftAttack", true);
-        attackInProgressTimer += e.AnimationDuration;
+        if (!e.Delayed)
+        {
+            animator.SetBool("LeftAttack", true);
+            attackInProgressTimer += e.AnimationDuration;
+        }
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         if ((finalVelocity.x != 0 || finalVelocity.z != 0)
             && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
@@ -711,9 +719,12 @@ public class Player : MonoBehaviour
     }
 
     private void PrimaryWeapon_OnSecondaryAttack(object sender, WeaponEventArgs e)
-    { 
-        animator.SetBool("RightAttack2", true);
-        attackInProgressTimer += e.AnimationDuration;
+    {
+        if (!e.Delayed)
+        {
+            animator.SetBool("RightAttack2", true);
+            attackInProgressTimer += e.AnimationDuration;
+        }
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
 
         if ((finalVelocity.x != 0 || finalVelocity.z != 0)
@@ -726,8 +737,11 @@ public class Player : MonoBehaviour
 
     private void PrimaryWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
-        animator.SetBool("RightAttack", true);
-        attackInProgressTimer += e.AnimationDuration;
+        if (!e.Delayed)
+        {
+            animator.SetBool("RightAttack", true);
+            attackInProgressTimer += e.AnimationDuration;
+        }
         e.ProjectileScript.OnHit += ProjectileScript_OnHit;
         
 
@@ -737,6 +751,30 @@ public class Player : MonoBehaviour
         {
             e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
         }
+    }
+
+    private void SecondaryWeapon_OnDelayedSecondaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        animator.SetBool("LeftAttack2", true);
+    }
+
+    private void SecondaryWeapon_OnDelayedPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        animator.SetBool("LeftAttack", true);
+    }
+
+    private void PrimaryWeapon_OnDelayedSecondaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        animator.SetBool("RightAttack2", true);
+    }
+
+    private void PrimaryWeapon_OnDelayedPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        attackInProgressTimer += e.AnimationDuration;
+        animator.SetBool("RightAttack", true);
     }
 
     private void ProjectileScript_OnHit(object sender, HitEventArgs e)
