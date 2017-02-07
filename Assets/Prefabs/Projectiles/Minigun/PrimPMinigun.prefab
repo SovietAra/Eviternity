@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114820282105720252}
   - component: {fileID: 96912481816556556}
   m_Layer: 10
-  m_Name: PriPSniper
+  m_Name: PrimPMinigun
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1078364581439068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.98, y: 0.050000478, z: -18.88}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -213,12 +213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
-  damage: 250
+  speed: 10
+  damage: 20
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
-  lifeTime: 10
+  lifeTime: 7
   startDetonationTimer: 0
   DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   DoAOETeamDamage: 0
   SpawnExplosion: 0
   OverwriteExplosionValues: 0
-  AllowVelocityIncreasing: 0
+  AllowVelocityIncreasing: 1
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
   ImpactSound: {fileID: 0}
