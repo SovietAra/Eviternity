@@ -281,18 +281,21 @@ public class Boss : MonoBehaviour
 
     private void CheckAggro()
     {
-        float damage = damageDone[(int)currentTarget.Index];
-        for (int i = 0; i < damageDone.Length; i++)
+        if (currentTarget != null)
         {
-            if (damageDone[i] > damage * aggroMultiplicator)
+            float damage = damageDone[(int)currentTarget.Index];
+            for (int i = 0; i < damageDone.Length; i++)
             {
-                damage = damageDone[i];
-                currentTarget = GetPlayerByIndex((PlayerIndex)i);
+                if (damageDone[i] > damage * aggroMultiplicator)
+                {
+                    damage = damageDone[i];
+                    currentTarget = GetPlayerByIndex((PlayerIndex)i);
 
-                if (i + 1 < damageDone.Length)
-                    CheckAggro();
+                    if (i + 1 < damageDone.Length)
+                        CheckAggro();
 
-                return;
+                    return;
+                }
             }
         }
     }

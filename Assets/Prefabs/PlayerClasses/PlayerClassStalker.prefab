@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1144702330595566
 GameObject:
   m_ObjectHideFlags: 1
@@ -952,7 +952,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1209385188523736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.8959236, y: -0.94039106, z: -15.705359}
+  m_LocalPosition: {x: 1.9832916, y: 1.142, z: -1.1598148}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4743182337708110}
@@ -1017,7 +1017,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887751288234542}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.9800023, y: -0.121, z: 0.716}
+  m_LocalPosition: {x: 0.9800023, y: -0.121, z: 0.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4843711000973654}
@@ -1208,7 +1208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906290636788590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05873108, y: -0.58612484, z: 0.068}
+  m_LocalPosition: {x: 0.125, y: -1.402, z: -0.45}
   m_LocalScale: {x: 0.645161, y: 0.645161, z: 0.645161}
   m_Children:
   - {fileID: 4686492305602032}
@@ -1407,7 +1407,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335750894329966}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.27187347, y: 1.5638751, z: 1.278}
+  m_LocalPosition: {x: -0.27187347, y: 0.05, z: -0.62}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4542477216600682}
@@ -1493,7 +1493,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1114255094792224}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000035762784}
-  m_LocalPosition: {x: -0.03345394, y: -0.3699981, z: 0.40621758}
+  m_LocalPosition: {x: 0.15, y: -1.18, z: 0.06}
   m_LocalScale: {x: 0.22909623, y: 0.22909628, z: 0.22909628}
   m_Children: []
   m_Father: {fileID: 4115836211552662}
@@ -1822,6 +1822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 350
   maxHealth: 350
+  groupDamage: 0.699999988079071
   isImmortal: 0
   DamageSound: {fileID: 0}
   DeathSound: {fileID: 0}
@@ -1918,8 +1919,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.7
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137109089745499818

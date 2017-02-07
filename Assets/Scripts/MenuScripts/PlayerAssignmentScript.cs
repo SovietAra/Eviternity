@@ -586,10 +586,10 @@ public class PlayerAssignmentScript : MonoBehaviour
 
     public void PressStartGame()
     {
-        if (playerJoined[0] == true || playerJoined[1] == true || playerJoined[2] == true || playerJoined[3] == true)
+        if (playerJoined[0] || playerJoined[1] || playerJoined[2] || playerJoined[3])
         {
             VideoPlayer.StartGamePressed = true;
-
+            StartNewGame();
         }
     }
     #endregion

@@ -17,18 +17,21 @@ public class VideoPlayer : MonoBehaviour {
     public static bool AnimationPlayed;
 
 	// Use this for initialization
-	void Start () {
-        movieTime = movie.duration;
+	void Start ()
+    {
+        if (movie != null)
+        {
+            movieTime = movie.duration;
 
-        GetComponent<RawImage>().texture = movie as MovieTexture;
-        movie.Play();
+            GetComponent<RawImage>().texture = movie as MovieTexture;
+            movie.Play();
 
-        if(loop == false)
-        movie.loop = false;
+            if (!loop)
+                movie.loop = false;
 
-        if (loop == true)
-            movie.loop = true;
-
+            if (loop)
+                movie.loop = true;
+        }
         pauseTime = 3.0f;
         elapsedTime = 0.0f;
     }
@@ -36,25 +39,28 @@ public class VideoPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        pauseTime -= Time.deltaTime;
-
-        if (stoppable == true)
+        if (movie != null)
         {
-            if(pauseTime <= 0)
-            {
-                movie.Pause();
-            }
+            pauseTime -= Time.deltaTime;
 
-            if (StartGamePressed == true)
+            if (stoppable)
             {
-                movie.Play();
-                elapsedTime += Time.deltaTime;
-                if (elapsedTime >= 2.5f)
+                if (pauseTime <= 0)
+                {
                     movie.Pause();
-            }
-            if (elapsedTime >= 4.0)
-            {
-                AnimationPlayed = true;
+                }
+
+                if (StartGamePressed)
+                {
+                    movie.Play();
+                    elapsedTime += Time.deltaTime;
+                    if (elapsedTime >= 2.5f)
+                        movie.Pause();
+                }
+                if (elapsedTime >= 4.0)
+                {
+                    AnimationPlayed = true;
+                }
             }
         }
 	}
