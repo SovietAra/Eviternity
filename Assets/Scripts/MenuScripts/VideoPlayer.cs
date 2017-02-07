@@ -12,13 +12,12 @@ public class VideoPlayer : MonoBehaviour {
     public float movieTime;
     public float elapsedTime;
     public RawImage Movie;
+
 	// Use this for initialization
 	void Start ()
     {
         if (movie != null)
         {
-            movieTime = movie.duration;
-
             GetComponent<RawImage>().texture = movie as MovieTexture;
             movie.Play();
 

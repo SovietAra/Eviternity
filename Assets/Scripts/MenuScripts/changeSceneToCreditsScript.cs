@@ -26,7 +26,15 @@ public class changeSceneToCreditsScript : MonoBehaviour
             ChangeSceneToCredits();
         }
 
-        if (Input.anyKey || GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed || GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed || GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed || GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed)
+        if (Input.anyKey || 
+            GamePad.GetState(PlayerIndex.One).DPad.Right == ButtonState.Pressed || GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed || GamePad.GetState(PlayerIndex.One).DPad.Up == ButtonState.Pressed || GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed ||
+            GamePad.GetState(PlayerIndex.Two).DPad.Right == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Two).DPad.Left == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Two).DPad.Up == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Two).DPad.Down == ButtonState.Pressed ||
+            GamePad.GetState(PlayerIndex.Three).DPad.Right == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Three).DPad.Left == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Three).DPad.Up == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Three).DPad.Down == ButtonState.Pressed ||
+            GamePad.GetState(PlayerIndex.Four).DPad.Right == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Four).DPad.Left == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Four).DPad.Up == ButtonState.Pressed || GamePad.GetState(PlayerIndex.Four).DPad.Down == ButtonState.Pressed ||
+            GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X >= 0.1 || GamePad.GetState(PlayerIndex.One).ThumbSticks.Left.X <= -0.1 ||
+            GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X >= 0.1 || GamePad.GetState(PlayerIndex.Two).ThumbSticks.Left.X <= -0.1 ||
+            GamePad.GetState(PlayerIndex.Three).ThumbSticks.Left.X >= 0.1 || GamePad.GetState(PlayerIndex.Three).ThumbSticks.Left.X <= -0.1 ||
+            GamePad.GetState(PlayerIndex.Four).ThumbSticks.Left.X >= 0.1 || GamePad.GetState(PlayerIndex.Four).ThumbSticks.Left.X <= -0.1)
         {
             inputTime = 0.0f;
         }
