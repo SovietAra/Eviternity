@@ -145,6 +145,7 @@ MonoBehaviour:
   AnimationDuration: 1.3
   smoothSpray: 0
   sprayValueSpeed: 2
+  spawnDelay: 1.3
   AllowShellRelaod: 0
   UseAmmo: 0
   AutoReload: 1

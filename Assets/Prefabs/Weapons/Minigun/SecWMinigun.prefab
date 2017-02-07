@@ -145,6 +145,7 @@ MonoBehaviour:
   AnimationDuration: 0.8
   smoothSpray: 0
   sprayValueSpeed: 2
+  spawnDelay: 0
   AllowShellRelaod: 0
   UseAmmo: 0
   AutoReload: 1
@@ -154,4 +155,4 @@ MonoBehaviour:
   FireSound: {fileID: 8300000, guid: 81f3a3d8569edc54da35728745291bd6, type: 3}
   ReloadSound: {fileID: 0}
   SecondaryWeapon: {fileID: 0}
-  Projectile: {fileID: 1184549161438930, guid: 90c834b3bfbfdd5448f150cf491ef362, type: 2}
+  Projectile: {fileID: 1184549161438930, guid: 32bd5ec468e386040a4fc3a61ecfd6db, type: 2}
