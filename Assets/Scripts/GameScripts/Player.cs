@@ -1036,10 +1036,15 @@ public class Player : MonoBehaviour
 
     private void SetDashParticles(bool active)
     {
-        foreach (ParticleSystem particles in dashParticles)
-            if (active)
-                particles.Play();
-            else
-                particles.Stop();
+        if (dashParticles != null)
+        {
+            foreach (ParticleSystem particles in dashParticles)
+            {
+                if (active)
+                    particles.Play();
+                else
+                    particles.Stop();
+            }
+        }
     }
 }
