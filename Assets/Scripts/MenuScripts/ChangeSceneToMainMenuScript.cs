@@ -1,17 +1,12 @@
-﻿using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using XInputDotNetPure;
 
 public class ChangeSceneToMainMenuScript : MonoBehaviour {
-    public float mainTime = 30.0f;
+    public float mainTime;
     // Use this for initialization
     void Start()
     {
-        
+        mainTime = 35.0f;
     }
 
     // Update is called once per frame

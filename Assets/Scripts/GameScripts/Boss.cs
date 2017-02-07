@@ -79,8 +79,6 @@ public class Boss : MonoBehaviour
         mainGameObject = GameObject.FindGameObjectWithTag("GameObject");
         uiScript = mainGameObject.GetComponent<UIScript>();
 
-        print(animator.GetBool("Walking"));
-
         damageDone = new float[4];
         if (AOEWeapon != null)
         {
@@ -135,6 +133,7 @@ public class Boss : MonoBehaviour
         if (!isDead)
             animator.SetTrigger("OnDeath");
         isDead = true;
+        uiScript.HideBossHealth(true);
     }
 
     private void GamePadManager_OnPlayerCountChanged(object sender, EventArgs e)
@@ -277,7 +276,7 @@ public class Boss : MonoBehaviour
     {
         if (currentTarget == null)
         {
-            uiScript.HideBossHealth();
+            uiScript.HideBossHealth(false);
             return;
         }
 

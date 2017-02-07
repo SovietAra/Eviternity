@@ -906,49 +906,68 @@ public class Player : MonoBehaviour
         moveScript.ResetMultiplicator();
     }
 
-    public float PrimaryHeat
+    public float GetHeat(int wpnNumber)
     {
-        get
+        float heat = 0;
+        switch (wpnNumber)
         {
-            if (primaryWeapon != null)
-                return primaryWeapon.Heat;
-
-            return 0;
+            case 1:
+                {
+                    if (primaryWeapon != null)
+                        heat = primaryWeapon.Heat;
+                    else heat = 0;
+                }
+                break;
+            case 2:
+                {
+                    if (secondaryWeapon != null)
+                        heat = secondaryWeapon.Heat;
+                    else heat = 0;
+                }
+                break;
+            case 3:
+                {
+                    if (grenadeWeapon != null)
+                        heat = grenadeWeapon.Heat;
+                    else heat = 0;
+                }
+                break;
+            default:
+                break;
         }
+        return heat;
     }
 
-    public float SecondaryHeat
+    public float GetMaxHeat(int wpnNumber)
     {
-
-        get
+        float heat = 0;
+        switch (wpnNumber)
         {
-            if (secondaryWeapon != null)
-                return secondaryWeapon.Heat;
-
-            return 0;
+            case 1:
+                {
+                    if (primaryWeapon != null)
+                        heat = primaryWeapon.MaxHeat;
+                    else heat = 0;
+                }
+                break;
+            case 2:
+                {
+                    if (secondaryWeapon != null)
+                        heat = secondaryWeapon.MaxHeat;
+                    else heat = 0;
+                }
+                break;
+            case 3:
+                {
+                    if (grenadeWeapon != null)
+                        heat = grenadeWeapon.MaxHeat;
+                    else heat = 0;
+                }
+                break;
+            default:
+                break;
         }
-    }
-
-    public float PrimaryMaxHeat
-    {
-        get
-        {
-            if (primaryWeapon != null)
-                return primaryWeapon.MaxHeat;
-
-            return 0;
-        }
-    }
-
-    public float SecMaxHeat
-    {
-        get
-        {
-            if (secondaryWeapon != null)
-                return secondaryWeapon.MaxHeat;
-
-            return 0;
-        }
+        return heat;
     }
 
     public float AbilityEnergy(int abilityNumber)
