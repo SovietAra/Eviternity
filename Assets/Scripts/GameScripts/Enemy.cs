@@ -32,7 +32,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 100.0f)]
     private float viewRange = 15.0f;
-    
+
+    [SerializeField]
+    [Range(0, 30f)]
+    private float deathDelay = 0f;
+
     private enum enemyTypes
     {
         Crawler = 1,
@@ -65,6 +69,8 @@ public class Enemy : MonoBehaviour
     private float enemyfront;
     private float distanceToPlayer;
     private float elapsedSwitchDelay = 0f;
+    private float elapsedDeathTime = 0f;
+    private bool delayDeath = false;
 
     public Slider HealthSlider;
 
@@ -152,90 +158,103 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        CheckAlivePlayers();
-        SetUI();
-
-        if (isValidTarget && !freeze) //On player found
+        if (delayDeath)
         {
-            //Calculate Distance between Enemyinstance and Player and switch target if delay allows
-            nearestTarget = FindClosestPlayer();
-            if (currentTarget == null)
+            elapsedDeathTime += Time.deltaTime;
+            if(elapsedDeathTime > deathDelay)
             {
-                currentTarget = nearestTarget;
+                Destroy(gameObject);
+                delayDeath = false;
+                OnEnemyDeath.Invoke();
             }
-            else if (currentTarget != nearestTarget && possibleTarget != nearestTarget)
+        }
+        else
+        {
+            CheckAlivePlayers();
+            SetUI();
+
+            if (isValidTarget && !freeze) //On player found
             {
-                possibleTarget = nearestTarget;
-                elapsedSwitchDelay = 0f;
-            }
-            else if(nearestTarget == possibleTarget)
-            {
-                elapsedSwitchDelay += Time.deltaTime;
-                if(elapsedSwitchDelay >= switchDelay)
+                //Calculate Distance between Enemyinstance and Player and switch target if delay allows
+                nearestTarget = FindClosestPlayer();
+                if (currentTarget == null)
                 {
-                    currentTarget = possibleTarget;
+                    currentTarget = nearestTarget;
                 }
-            }
+                else if (currentTarget != nearestTarget && possibleTarget != nearestTarget)
+                {
+                    possibleTarget = nearestTarget;
+                    elapsedSwitchDelay = 0f;
+                }
+                else if (nearestTarget == possibleTarget)
+                {
+                    elapsedSwitchDelay += Time.deltaTime;
+                    if (elapsedSwitchDelay >= switchDelay)
+                    {
+                        currentTarget = possibleTarget;
+                    }
+                }
 
-            //Calculate Distance to target
-            if(currentTarget != null)
-                distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
+                //Calculate Distance to target
+                if (currentTarget != null)
+                    distanceToPlayer = Vector3.Distance(currentTarget.transform.position, transform.position);
 
-            UpdateRotation();
+                UpdateRotation();
 
-            if (triggeredBySquad && distanceToPlayer < viewRange)
-            {
+                if (triggeredBySquad && distanceToPlayer < viewRange)
+                {
+                    triggeredBySquad = false;
+                }
+
+                //Follow Target
+                if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
+                {
+                    bool walking = distanceToPlayer < viewRange;
+                    anim.SetBool("IsWalking", walking);
+
+                    if (currentTarget != null && navAgent != null)
+                    {
+                        for (int i = 0; i < squadList.Count; i++)
+                        {
+                            squadList[i].triggeredBySquad = true;
+                        }
+
+                        if (navAgent.isOnNavMesh)
+                        {
+                            navAgent.SetDestination(currentTarget.transform.position);
+                        }
+                    }
+                }
+                else if (distanceToPlayer > viewRange)
+                {
+                    targetPlayer = null;
+                    isValidTarget = false;
+                }
+
+                if (triggeredBySquad)
+                {
+                    if (currentTarget != null && navAgent != null)
+                    {
+                        if (navAgent.isOnNavMesh)
+                        {
+                            navAgent.SetDestination(currentTarget.transform.position);
+                        }
+                    }
+                }
+
                 triggeredBySquad = false;
-            }
+                bool attackTmp = distanceToPlayer < attackRange;
+                anim.SetBool("IsMeleeAttack", attackTmp);
 
-            //Follow Target
-            if (attackRange < distanceToPlayer && distanceToPlayer < viewRange)
-            {
-                bool walking = distanceToPlayer < viewRange;
-                anim.SetBool("IsWalking", walking);
 
-                if (currentTarget != null && navAgent != null)
+                if (distanceToPlayer <= navAgent.stoppingDistance)
                 {
-                    for (int i = 0; i < squadList.Count; i++)
-                    {
-                        squadList[i].triggeredBySquad = true;
-                    }
-
-                    if (navAgent.isOnNavMesh)
-                    {
-                        navAgent.SetDestination(currentTarget.transform.position);
-                    }
+                    if (primaryWeapon != null)
+                        primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
                 }
+
+                enemyfront = transform.eulerAngles.y;
             }
-            else if (distanceToPlayer > viewRange)
-            {
-                targetPlayer = null;
-                isValidTarget = false;
-            }
-
-            if (triggeredBySquad)
-            {
-                if (currentTarget != null && navAgent != null)
-                {
-                    if (navAgent.isOnNavMesh)
-                    {
-                        navAgent.SetDestination(currentTarget.transform.position);
-                    }
-                }
-            }
-
-            triggeredBySquad = false;
-            bool attackTmp = distanceToPlayer < attackRange;
-            anim.SetBool("IsMeleeAttack", attackTmp);
-
-
-            if (distanceToPlayer <= navAgent.stoppingDistance)
-            {
-                if(primaryWeapon != null)
-                    primaryWeapon.PrimaryAttack(transform.position, transform.forward, enemyfront);
-            }
-
-            enemyfront = transform.eulerAngles.y;
         }
     }
 
@@ -257,8 +276,17 @@ public class Enemy : MonoBehaviour
     /// <param name="e"></param>
     private void Dmgobjct_OnDeath(object sender, System.EventArgs e)
     {
-        Destroy(gameObject);
+        if (deathDelay <= 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            delayDeath = true;
+            elapsedDeathTime = 0f;
+        }
         OnEnemyDeath.Invoke();
+
     }
 
     private void SetUI()
