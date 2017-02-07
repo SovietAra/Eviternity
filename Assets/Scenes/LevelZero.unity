@@ -918,7 +918,7 @@ Prefab:
     - target: {fileID: 114218876342771258, guid: dee1dd7f7fe958643b255ddff3fb06fd,
         type: 2}
       propertyPath: health
-      value: 5
+      value: 11400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dee1dd7f7fe958643b255ddff3fb06fd, type: 2}
@@ -5861,6 +5861,12 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 346
       objectReference: {fileID: 0}
+    - target: {fileID: 114450434089391508, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: PlayerPrefab
+      value: 
+      objectReference: {fileID: 1209385188523736, guid: 0fd93242d51970b47895ab566b8a11d1,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
   m_IsPrefabParent: 0
