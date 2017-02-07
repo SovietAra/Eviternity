@@ -73,7 +73,6 @@ public class Projectile : MonoBehaviour
                 {
                     gameObject.layer = 10;
                     Physics.IgnoreLayerCollision(gameObject.layer, 8);
-                    Physics.IgnoreLayerCollision(gameObject.layer, 12);
                 }
                 else if (attacker.CompareTag("Enemy"))
                 {
