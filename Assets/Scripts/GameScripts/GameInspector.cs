@@ -156,11 +156,17 @@ public class GameInspector : MonoBehaviour
     public void Restart()
     {
 
-        Win = false;
-        Defeat = false;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        SceneManager.LoadScene("LevelZero");
-        UnfreezeAllPlayers();
+        //Win = false;
+        //Defeat = false;
+       // GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+        PlayerAssignmentScript.gameStarted = false;
+        foreach (PlayerState item in GlobalReferences.PlayerStates)
+        {
+            GamePadManager.Disconnect(item.Index);
+        }
+        GlobalReferences.PlayerStates.Clear();
+        SceneManager.LoadScene("PlayerAssignment");
+        // UnfreezeAllPlayers();
     }
 
     public void MainMenu()
