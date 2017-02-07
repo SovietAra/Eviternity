@@ -12,10 +12,6 @@ public class VideoPlayer : MonoBehaviour {
     public float movieTime;
     public float elapsedTime;
     public RawImage Movie;
-
-    public static bool StartGamePressed;
-    public static bool AnimationPlayed;
-
 	// Use this for initialization
 	void Start ()
     {
@@ -48,18 +44,6 @@ public class VideoPlayer : MonoBehaviour {
                 if (pauseTime <= 0)
                 {
                     movie.Pause();
-                }
-
-                if (StartGamePressed)
-                {
-                    movie.Play();
-                    elapsedTime += Time.deltaTime;
-                    if (elapsedTime >= 2.5f)
-                        movie.Pause();
-                }
-                if (elapsedTime >= 4.0)
-                {
-                    AnimationPlayed = true;
                 }
             }
         }

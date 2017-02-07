@@ -6,8 +6,6 @@ public class MenuScript : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        VideoPlayer.AnimationPlayed = false;
-        VideoPlayer.StartGamePressed = false;
     }
 	
 	// Update is called once per frame
@@ -24,16 +22,6 @@ public class MenuScript : MonoBehaviour
     public void PressPlay()
     {
         SceneManager.LoadScene("PlayerAssignment");
-    }
-
-    public void PressRestart()
-    {
-        SceneManager.LoadScene("RestartMenu");
-    }
-
-    public void PressOptions()
-    {
-        SceneManager.LoadScene("OptionsMenu");
     }
 
     public void PressCredits()
