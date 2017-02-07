@@ -216,6 +216,7 @@ public class Player : MonoBehaviour
             primaryWeapon.OnSecondaryAttack += PrimaryWeapon_OnSecondaryAttack;
             primaryWeapon.OnDelayedPrimaryAttack += PrimaryWeapon_OnDelayedPrimaryAttack;
             primaryWeapon.OnDelayedSecondaryAttack += PrimaryWeapon_OnDelayedSecondaryAttack;
+            primaryWeapon.OnSpawning += PrimaryWeapon_OnSpawning;
         }
         if (SecondaryWeapon != null)
         {
@@ -224,6 +225,7 @@ public class Player : MonoBehaviour
             secondaryWeapon.OnSecondaryAttack += SecondaryWeapon_OnSecondaryAttack;
             secondaryWeapon.OnDelayedPrimaryAttack += SecondaryWeapon_OnDelayedPrimaryAttack;
             secondaryWeapon.OnDelayedSecondaryAttack += SecondaryWeapon_OnDelayedSecondaryAttack;
+            secondaryWeapon.OnSpawning += SecondaryWeapon_OnSpawning;
         }
         if(GrenadeWeapon != null)
         {
@@ -281,6 +283,20 @@ public class Player : MonoBehaviour
             dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
             SetDashParticles(false);
         }
+    }
+
+    private void SecondaryWeapon_OnSpawning(object sender, SpawnEventArgs e)
+    {
+        e.Angle = angle;
+        e.SpawnPosition = rightSpawn.transform.position;
+        e.Forward = transform.forward;
+    }
+
+    private void PrimaryWeapon_OnSpawning(object sender, SpawnEventArgs e)
+    {
+        e.Angle = angle;
+        e.SpawnPosition = leftSpawn.transform.position;
+        e.Forward = transform.forward;
     }
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
@@ -591,8 +607,6 @@ public class Player : MonoBehaviour
 
     private void FindWalkAnimation(Vector2 leftStick, Vector2 rightStick)
     {
-        if (leftStick.y > leftStick.x) ;
-
         float ang = Vector2.Angle(leftStick, rightStick);
         Vector3 cross = Vector3.Cross(leftStick, rightStick);
 
