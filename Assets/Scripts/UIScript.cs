@@ -622,7 +622,10 @@ public class UIScript : MonoBehaviour
 
                     for (int k = 4; k < 8; k++)
                     {
-                        Destroy(AbilityFill[k].gameObject);
+                        if ((AbilityFill[k]) != null)
+                        {
+                            Destroy(AbilityFill[k].gameObject);
+                        }
                     }
                 }
                 break;
