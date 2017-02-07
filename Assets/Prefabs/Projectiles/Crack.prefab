@@ -123,6 +123,7 @@ MonoBehaviour:
   damage: 1
   StatusEffect: {fileID: 1086101472029054, guid: 5609bee2f64a4c64a96fdc09965ee37d,
     type: 2}
+  ExplosionSound: {fileID: 0}
 --- !u!135 &135505789710441206
 SphereCollider:
   m_ObjectHideFlags: 1
