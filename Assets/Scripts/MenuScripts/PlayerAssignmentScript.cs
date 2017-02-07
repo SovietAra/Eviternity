@@ -14,7 +14,6 @@ using XInputDotNetPure;
 
 public class PlayerAssignmentScript : MonoBehaviour
 {
-
     #region GameObjects
     private bool gameStarted;
     public Canvas playerAssignmentScreen;
@@ -252,22 +251,26 @@ public class PlayerAssignmentScript : MonoBehaviour
                 {
                     playerOneJoin.enabled = true;
                     charSelectPlayerOne.enabled = false;
+                    playerJoined[0] = false;
                 }
 
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.Two)
                 {
                     playerTwoJoin.enabled = true;
                     charSelectPlayerTwo.enabled = false;
+                    playerJoined[1] = false;
                 }
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.Three)
                 {
                     playerThreeJoin.enabled = true;
                     charSelectPlayerThree.enabled = false;
+                    playerJoined[2] = false;
                 }
                 if (GlobalReferences.PlayerStates[i].Index == PlayerIndex.Four)
                 {
                     playerFourJoin.enabled = true;
                     charSelectPlayerFour.enabled = false;
+                    playerJoined[3] = false;
                 }
                 GamePadManager.Disconnect(GlobalReferences.PlayerStates[i].Index);
                 GlobalReferences.PlayerStates.RemoveAt(i);
@@ -317,7 +320,7 @@ public class PlayerAssignmentScript : MonoBehaviour
     }
     #endregion
 
-    #region -change Funktionen
+    #region -change Funktion
     public void ChangeImage(int playerIndex, int index, int prevIndex)
     {
         ImageList[playerIndex][index].enabled = true;
