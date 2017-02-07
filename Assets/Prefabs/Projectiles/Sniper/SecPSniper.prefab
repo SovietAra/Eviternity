@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 6
+  damage: 100
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
@@ -226,8 +226,10 @@ MonoBehaviour:
   DoAOETeamDamage: 0
   SpawnExplosion: 0
   OverwriteExplosionValues: 0
+  AllowVelocityIncreasing: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 0}
+  ImpactSound: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0
 --- !u!135 &135289528192169384

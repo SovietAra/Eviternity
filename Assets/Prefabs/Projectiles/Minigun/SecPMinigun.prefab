@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114955743094048068}
   - component: {fileID: 135770454892661728}
   m_Layer: 0
-  m_Name: SecPDrill
+  m_Name: SecPMinigun
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  damage: 200
+  damage: 100
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
