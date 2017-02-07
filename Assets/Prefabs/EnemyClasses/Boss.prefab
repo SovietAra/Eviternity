@@ -5970,11 +5970,24 @@ MonoBehaviour:
     type: 2}
   IcicleAbility: {fileID: 1552349041503300, guid: 07edc64c01261f649bc98d1aadfd0f17,
     type: 2}
+  animator: {fileID: 0}
   Freeze: 0
   viewRange: 20
   aggroMultiplicator: 2
   minimumDistance: 5
   resetTime: 10
+  deathDelay: 0
+  BossAudioClips:
+  - {fileID: 8300000, guid: 67a52ee84574bbf43ad8255ba823c9c3, type: 3}
+  - {fileID: 8300000, guid: 27fe3ed6bedfb164488376746cc90f8a, type: 3}
+  - {fileID: 8300000, guid: eed16776e25b74e43878db03e72926e0, type: 3}
+  - {fileID: 8300000, guid: 7b2305b96d97f114fa712b5aa17c8a96, type: 3}
+  - {fileID: 8300000, guid: c8bc3d1029b760e40b7846bdba58804f, type: 3}
+  - {fileID: 8300000, guid: 9b8b2a35eb8b2e94da5c9aafbc7a82b7, type: 3}
+  - {fileID: 8300000, guid: fb12527abe82c144e9b398dcb686a217, type: 3}
+  - {fileID: 8300000, guid: c8bc3d1029b760e40b7846bdba58804f, type: 3}
+  - {fileID: 8300000, guid: c8bc3d1029b760e40b7846bdba58804f, type: 3}
+  - {fileID: 8300000, guid: c8bc3d1029b760e40b7846bdba58804f, type: 3}
 --- !u!114 &114786545862965922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5988,7 +6001,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3000
   maxHealth: 3000
+  groupDamage: 0.699999988079071
   isImmortal: 0
+  DamageSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!136 &136353593300072784
 CapsuleCollider:
   m_ObjectHideFlags: 1

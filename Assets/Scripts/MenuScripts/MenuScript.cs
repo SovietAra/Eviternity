@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
 public class MenuScript : MonoBehaviour
 {
