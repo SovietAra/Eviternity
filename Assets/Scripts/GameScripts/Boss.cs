@@ -240,7 +240,10 @@ public class Boss : MonoBehaviour
     {
         elapsedDeathTime += Time.deltaTime;
         if (elapsedDeathTime >= deathDelay)
+        {
             Destroy(gameObject);
+            GameInspector.Win = true;
+        }
     }
 
     private void UpdateTimers()
@@ -389,16 +392,18 @@ public class Boss : MonoBehaviour
         bool done = false;
         if (aoeWeapon != null && distance < 7f && !done)
         {
-            animator.SetTrigger("MultiHit");
             done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
+            if(done)
+                animator.SetTrigger("MultiHit");
             if (BossAudioSources[7] != null && !BossAudioSources[7].isPlaying) BossAudioSources[7].Play(); //hammer hit
         }
 
         else if (iceWaveWeapon != null && !done && distance < 7f
             && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
         {
-            animator.SetTrigger("IceWave");
             done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
+            if(done)
+                animator.SetTrigger("IceWave");
             if (BossAudioSources[5] != null && !BossAudioSources[3].isPlaying) BossAudioSources[3].Play(); //ice wave sound, index 3
         }
 
@@ -418,7 +423,7 @@ public class Boss : MonoBehaviour
     private void OnPrimaryAttack(object sender, WeaponEventArgs e)
     {
         agent.Stop();
-        animationDuration = ((Weapon)sender).AnimationDuration;
+        animationDuration = e.AnimationDuration;
     }
 
     private void IcicleAbility_OnActivated(object sender, EventArgs e)

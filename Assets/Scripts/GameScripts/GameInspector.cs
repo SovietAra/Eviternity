@@ -60,7 +60,8 @@ public class GameInspector : MonoBehaviour
         Player.TeamHealth = maxTeamHealth;
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
-
+        Defeat = false;
+        Win = false;
         SpawnPlayers(false);
     }
 
