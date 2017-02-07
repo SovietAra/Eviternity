@@ -167,7 +167,7 @@ public class UIScript : MonoBehaviour
         maxTeamHealth = gameInspector.MaxTeamHealth;
         GameObject playerPrefab = GameObject.Find("Player");
         DamageAbleObject playerDamageable = gameInspector.PlayerPrefab.GetComponent<DamageAbleObject>();
-        maxPlayerHealth = playerDamageable.MaxHealth;
+        //maxPlayerHealth = playerDamageable.MaxHealth;
         boss = GameObject.Find("Boss");
         bossDamageable = boss.GetComponent<DamageAbleObject>();
         maxBossHealth = bossDamageable.MaxHealth;
@@ -274,7 +274,7 @@ public class UIScript : MonoBehaviour
         {
             case PlayerIndex.One:
                 {
-                    player1HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player1HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player1Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
@@ -302,7 +302,7 @@ public class UIScript : MonoBehaviour
 
             case PlayerIndex.Two:
                 {
-                    player2HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player2HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player2Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
@@ -329,7 +329,7 @@ public class UIScript : MonoBehaviour
 
             case PlayerIndex.Three:
                 {
-                    player3HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player3HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player3Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
@@ -356,7 +356,7 @@ public class UIScript : MonoBehaviour
 
             case PlayerIndex.Four:
                 {
-                    player4HealthBar_2.fillAmount = damageAbleObject.Health / maxPlayerHealth;
+                    player4HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player4Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
                     player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
 
