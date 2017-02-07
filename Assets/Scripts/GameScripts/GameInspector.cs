@@ -56,6 +56,7 @@ public class GameInspector : MonoBehaviour
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
 
+        Player.LastCheckpointPosition = Vector3.zero;
         Player.TeamHealth = maxTeamHealth;
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
@@ -234,6 +235,7 @@ public class GameInspector : MonoBehaviour
         }
         else
         {
+            Player.LastCheckpointPosition = Vector3.zero;
             Defeat = true;
         }
     }
@@ -267,7 +269,21 @@ public class GameInspector : MonoBehaviour
                         PlayerState newPlayerState = new PlayerState(freePads[i], state, true, 0);
                         GlobalReferences.PlayerStates.Add(newPlayerState);
                         GamePadManager.Connect((int)freePads[i]);
-                        SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
+                        if (GlobalReferences.PlayerStates.Count > 1)
+                        {
+                            FollowingCamera cam = GameObject.FindObjectOfType<FollowingCamera>();
+                            if (cam != null)
+                            {
+                                if(GlobalReferences.PlayerStates.Count >= 3)
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 1, 0));
+                                else
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 1, 1));
+                            }
+                            else
+                                SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 1, 0));
+                        }
+                        else
+                            SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
                     }
                 }
             }
