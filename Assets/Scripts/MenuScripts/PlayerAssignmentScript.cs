@@ -15,7 +15,7 @@ using XInputDotNetPure;
 public class PlayerAssignmentScript : MonoBehaviour
 {
     #region GameObjects
-    private bool gameStarted;
+    public static bool gameStarted;
     public Canvas playerAssignmentScreen;
 
     public int[] playerChoice;

@@ -150,9 +150,15 @@ public class Boss : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {
-            Player playerScript = player.GetComponent<Player>();
-            if (!playerScript.IsDead)
-                playerScripts.Add(playerScript);
+            if (player != null)
+            {
+                Player playerScript = player.GetComponent<Player>();
+                if (playerScript != null)
+                {
+                    if (!playerScript.IsDead)
+                        playerScripts.Add(playerScript);
+                }
+            }
         }
 
         updatePlayers = playerScripts.Count == 0;

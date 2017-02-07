@@ -7220,12 +7220,12 @@ Prefab:
     - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4340625546103528, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
       propertyPath: m_LocalPosition.x
@@ -8226,6 +8226,11 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 920717c9989967647a90f5f97bae9f34, type: 3}
+--- !u!1 &476134086 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1830940599666644, guid: f4afc2070bf6761409dc13f5326c22e0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1254923129}
 --- !u!1001 &491640909
 Prefab:
   m_ObjectHideFlags: 0
@@ -9556,12 +9561,12 @@ Prefab:
     - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4340625546103528, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
       propertyPath: m_LocalPosition.x
@@ -13903,6 +13908,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1656085235}
     m_Modifications:
+    - target: {fileID: 114678325461047964, guid: 4d6dd06b5e03103418283c64e785f66d,
+        type: 2}
+      propertyPath: Enemies.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4256367881675254, guid: 4d6dd06b5e03103418283c64e785f66d, type: 2}
       propertyPath: m_LocalPosition.x
       value: -195.77274
@@ -13939,31 +13949,36 @@ Prefab:
         type: 2}
       propertyPath: Enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 276560592}
+      objectReference: {fileID: 476134086}
     - target: {fileID: 114678325461047964, guid: 4d6dd06b5e03103418283c64e785f66d,
         type: 2}
       propertyPath: Enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 1885565518}
+      objectReference: {fileID: 317051424}
     - target: {fileID: 114678325461047964, guid: 4d6dd06b5e03103418283c64e785f66d,
         type: 2}
       propertyPath: Enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 317051424}
+      objectReference: {fileID: 1275505181}
     - target: {fileID: 114678325461047964, guid: 4d6dd06b5e03103418283c64e785f66d,
         type: 2}
       propertyPath: Enemies.Array.data[3]
       value: 
-      objectReference: {fileID: 1275505181}
+      objectReference: {fileID: 1907978468}
     - target: {fileID: 114678325461047964, guid: 4d6dd06b5e03103418283c64e785f66d,
         type: 2}
       propertyPath: Enemies.Array.data[4]
       value: 
-      objectReference: {fileID: 1907978468}
+      objectReference: {fileID: 1885565518}
     - target: {fileID: 1832846806453362, guid: 4d6dd06b5e03103418283c64e785f66d, type: 2}
       propertyPath: m_Name
       value: Eingang
       objectReference: {fileID: 0}
+    - target: {fileID: 114678325461047964, guid: 4d6dd06b5e03103418283c64e785f66d,
+        type: 2}
+      propertyPath: Enemies.Array.data[5]
+      value: 
+      objectReference: {fileID: 276560592}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d6dd06b5e03103418283c64e785f66d, type: 2}
   m_IsPrefabParent: 0
@@ -28090,12 +28105,12 @@ Prefab:
     - target: {fileID: 224119760588777826, guid: f9a0365990765d849b19f4b3b09f2845,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224119760588777826, guid: f9a0365990765d849b19f4b3b09f2845,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114206361289056408, guid: f9a0365990765d849b19f4b3b09f2845,
         type: 2}
