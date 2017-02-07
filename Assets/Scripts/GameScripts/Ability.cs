@@ -189,6 +189,9 @@ public class Ability : MonoBehaviour
 
     private void SpawnObjects()
     {
+        if (spawnedObjects == null)
+            spawnedObjects = new List<GameObject>();
+
         for (int i = 0; i < spawnedObjects.Count; i++)
         {
             if (spawnedObjects[i] == null)

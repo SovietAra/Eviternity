@@ -39,8 +39,6 @@ public class Player : MonoBehaviour
     private Ability dashAbility;
     private DamageAbleObject healthContainer;
     private MoveScript moveScript;
-    [SerializeField]
-    private GameObject dashTrail;
     private ParticleSystem[] dashParticles;
     private GameObject transparentObject = null;
     private GameObject leftSpawn, rightSpawn;
@@ -61,10 +59,13 @@ public class Player : MonoBehaviour
 
     private float stepTimer;
 
-   // private bool[] PlayMusicTheme = new bool[50];
+    // private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
     #region InspectorFields
+
+    [SerializeField]
+    private GameObject dashTrail = null;
 
     [SerializeField]
     [Range(1f, 100f)]
@@ -275,12 +276,15 @@ public class Player : MonoBehaviour
 
         //Set Immortality Time Value
         elapsedImmortal = maxImmortality;
+        if (dashTrail != null)
+        {
+            dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
+            SetDashParticles(false);
+        }
     }
 
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
-    {
-        dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
-        SetDashParticles(false);
+    { 
         e.Cancel = OnIce;
         if(!OnIce && e.Velocity != Physics.gravity)
         {
@@ -430,10 +434,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("LeftAttack2", false);
         }
-
-        if (dashAbility.Energy <= 0)
-            SetDashParticles(false);
-
+        
         #endregion
 
         if (attackInProgressTimer <= 0)
@@ -462,7 +463,7 @@ public class Player : MonoBehaviour
                     executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
             }
 
-            if(state.Buttons.RightStick == ButtonState.Pressed)
+            if(state.Buttons.RightStick == ButtonState.Pressed && !executed)
             {
                 if (grenadeWeapon != null)
                     executed = grenadeWeapon.PrimaryAttack(transform.position, transform.forward, angle);
@@ -650,10 +651,6 @@ public class Player : MonoBehaviour
         {
             if(dashAbility.Use())
             {
-                SetDashParticles(true);
-                animator.SetTrigger("Dash");
-                if (!audioSources[2].isPlaying)
-                    audioSources[2].Play();
                 return true;
             }
         }
@@ -692,10 +689,16 @@ public class Player : MonoBehaviour
     private void DashAbility_OnAbort(object sender, EventArgs e)
     {
         velocity = Vector3.zero;
+        SetDashParticles(false);
     }
 
     private void DashAbility_OnActivated(object sender, EventArgs e)
     {
+        animator.SetTrigger("Dash");
+        if (!audioSources[2].isPlaying)
+            audioSources[2].Play();
+
+        SetDashParticles(true);
         Ability abil = sender as Ability;
         if (abil != null)
         {
