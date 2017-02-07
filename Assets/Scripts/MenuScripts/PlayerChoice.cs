@@ -19,7 +19,6 @@ public class PlayerChoice : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        
         if (playerAssignment != null)
         {
             for (int i = 0; i < choices.Length; i++)
