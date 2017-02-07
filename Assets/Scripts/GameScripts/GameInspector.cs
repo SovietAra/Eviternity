@@ -167,11 +167,11 @@ public class GameInspector : MonoBehaviour
         {
             if (choice != null)
             {
-                if (choice[i] == 1)
+                if (choice[i] == 0)
                 {
                     PlayerPrefab = PlayerPrefabAegis;
                 }
-                else if (choice[i] == 0)
+                else if (choice[i] == 1)
                 {
                     PlayerPrefab = PlayerPrefabStalker;
                 }
