@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using XInputDotNetPure;
 
 public class ChangeSceneToMainMenuScript : MonoBehaviour {
-    public float mainTime = 30.0f;
+    public float mainTime = 37.0f;
     // Use this for initialization
     void Start()
     {
