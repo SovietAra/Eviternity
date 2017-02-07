@@ -90,8 +90,6 @@ public class GameInspector : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
-
         Pause();
         CheckForNewPlayers();
         WinAndDefeat();
@@ -196,7 +194,6 @@ public class GameInspector : MonoBehaviour
                 {
                     PlayerPrefab = PlayerPrefabAegis;
                 }
-                
 
                 GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
                 if (gobj != null && useTeamHealth)
@@ -216,7 +213,6 @@ public class GameInspector : MonoBehaviour
                         }
                     }
                 }
-
             }
         }
         else

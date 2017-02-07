@@ -27,6 +27,7 @@ public class Boss : MonoBehaviour
     private Quaternion targetRotation;
     private bool updatePlayers = true;
     private bool isDead = false;
+    private bool triggeredByProjectile = false;
     private Vector3 spawnPosition;
     private NavMeshAgent agent;
     private UIScript uiScript;
@@ -36,6 +37,8 @@ public class Boss : MonoBehaviour
     private float elapsedHitTime = 0f;
     private float damageReceived = 0f;
     private float elapsedDeathTime = 0f;
+    private float elapsedAggroTime = 0f;
+    private float aggroTimeByProjectile = 3f;
 
     [SerializeField]
     [Range(0, 1000)]
@@ -169,6 +172,12 @@ public class Boss : MonoBehaviour
             if (playerScript != null)
             {
                 damageDone[(int)playerScript.Index] += e.ChangeValue;
+                if(currentTarget == null)
+                {
+                    currentTarget = playerScript;
+                    triggeredByProjectile = true;
+                    elapsedAggroTime = 0f;
+                }
             }
         }
     }
@@ -242,6 +251,16 @@ public class Boss : MonoBehaviour
         if (currentTarget != null)
             elapsedHitTime = 0f;
 
+        if(triggeredByProjectile)
+        {
+            elapsedAggroTime += Time.deltaTime;
+            if(elapsedAggroTime > aggroTimeByProjectile)
+            {
+                elapsedAggroTime = 0f;
+                triggeredByProjectile = false;
+            }
+        }
+
         elapsedHitTime += Time.deltaTime;
         if (elapsedHitTime > resetTime)
         {
@@ -280,7 +299,7 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        if (Vector3.Distance(currentTarget.transform.position, transform.position) > viewRange)
+        if (Vector3.Distance(currentTarget.transform.position, transform.position) > viewRange && !triggeredByProjectile)
         {
             currentTarget = null;
         }
