@@ -43,14 +43,13 @@ public class GameInspector : MonoBehaviour
     private void Start()
     {
         playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
-
+  
         if (playerChoice != null)
         {
             List<int> temp = new List<int>();
             temp.AddRange(playerChoice.choices);
 
             choice = temp.ToArray();
-
             Destroy(playerChoice.gameObject);
         }
         spawnedPlayers = new List<Player>();
@@ -188,7 +187,7 @@ public class GameInspector : MonoBehaviour
                 }
 
 
-                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
+                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 1, 1, i * 1));
                 if (gobj != null && useTeamHealth)
                 {
                     DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
@@ -251,9 +250,9 @@ public class GameInspector : MonoBehaviour
                             if (cam != null)
                             {
                                 if(GlobalReferences.PlayerStates.Count >= 3)
-                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 1, 0));
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0.5f, 2, 0.5f));
                                 else
-                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 1, 1));
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0.5f, 2, 0.5f));
                             }
                             else
                                 SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 1, 0));
