@@ -147,6 +147,7 @@ public class GameInspector : MonoBehaviour
            AskCanvas.SetActive(true);
             if (PauseMenuCanvas.activeInHierarchy || DefeatCanvas.activeInHierarchy || WinCanvas.activeInHierarchy)
             {
+                GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
                 PauseMenuCanvas.SetActive(false);
                 DefeatCanvas.SetActive(false);
                 WinCanvas.SetActive(false);
