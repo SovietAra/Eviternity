@@ -65,10 +65,10 @@ MonoBehaviour:
   smoothSpray: 0
   sprayValueSpeed: 2
   spawnDelay: 0
-  AllowShellRelaod: 1
-  UseAmmo: 1
+  AllowShellRelaod: 0
+  UseAmmo: 0
   AutoReload: 1
-  ProduceHeat: 0
+  ProduceHeat: 1
   HeatCooldown: 0
   OverwriteSound: 1
   FireSound: {fileID: 0}
