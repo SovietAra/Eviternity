@@ -55,4 +55,4 @@ MonoBehaviour:
   DestroyOnDeactivation: 1
   ResetSameStatus: 1
   StackAble: 0
-  damagePerSecond: 50
+  damagePerSecond: 10
