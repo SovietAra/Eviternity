@@ -57,9 +57,9 @@ MonoBehaviour:
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
-  lifeTime: 0.3
+  lifeTime: 0.1
   startDetonationTimer: 0
-  DestroyOnCollision: 1
+  DestroyOnCollision: 0
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
@@ -81,5 +81,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}

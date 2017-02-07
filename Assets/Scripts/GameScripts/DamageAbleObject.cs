@@ -32,6 +32,11 @@ public class DamageAbleObject : MonoBehaviour
     public float Health
     {
         get { return health; }
+        set
+        {
+            if(value <= MaxHealth)
+                health = value;
+        }
     }
 
     public float MaxHealth
@@ -51,8 +56,7 @@ public class DamageAbleObject : MonoBehaviour
 	}
 
     public virtual void DoDamage(GameObject attacker, float damage, GameObject statusEffect)
-    {
-        
+    {     
         if (!isImmortal)
         {
             OnHealthChangedArgs args = new OnHealthChangedArgs(attacker, damage);
