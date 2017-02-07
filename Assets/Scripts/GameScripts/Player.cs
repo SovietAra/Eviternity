@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
     private Weapon primaryWeapon;
     private Weapon secondaryWeapon;
+    private Weapon grenadeWeapon;
     private Ability ability;
     private Ability secondaryAbility;
     private Ability dashAbility;
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
     public GameObject SecondaryWeapon;
+    public GameObject GrenadeWeapon;
     public GameObject Ability;
     public GameObject SecondaryAbility;
     public GameObject DashAbility;
@@ -207,6 +209,11 @@ public class Player : MonoBehaviour
             secondaryWeapon.OnDelayedPrimaryAttack += SecondaryWeapon_OnDelayedPrimaryAttack;
             secondaryWeapon.OnDelayedSecondaryAttack += SecondaryWeapon_OnDelayedSecondaryAttack;
         }
+        if(GrenadeWeapon != null)
+        {
+            grenadeWeapon = Instantiate(GrenadeWeapon, transform).GetComponent<Weapon>();
+            grenadeWeapon.OnPrimaryAttack += GrenadeWeapon_OnPrimaryAttack;
+        }
 
         if (Ability != null)
         {
@@ -254,7 +261,7 @@ public class Player : MonoBehaviour
         //Set Immortality Time Value
         elapsedImmortal = maxImmortality;
     }
-   
+
     private void MoveScript_OnMoving(object sender, OnMovingArgs e)
     {
         dashParticles = dashTrail.GetComponentsInChildren<ParticleSystem>();
@@ -438,6 +445,12 @@ public class Player : MonoBehaviour
             {
                 if (secondaryWeapon != null)
                     executed = secondaryWeapon.SecondaryAttack(transform.position, transform.forward, angle);
+            }
+
+            if(state.Buttons.RightStick == ButtonState.Pressed)
+            {
+                if (grenadeWeapon != null)
+                    executed = grenadeWeapon.PrimaryAttack(transform.position, transform.forward, angle);
             }
         }
 
@@ -747,6 +760,18 @@ public class Player : MonoBehaviour
 
         if ((finalVelocity.x != 0 || finalVelocity.z != 0) 
             && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x)) 
+            && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
+        {
+            e.ProjectileScript.IncreaseVelocity(transform.forward * speed);
+        }
+    }
+
+    private void GrenadeWeapon_OnPrimaryAttack(object sender, WeaponEventArgs e)
+    {
+        e.ProjectileScript.OnHit += ProjectileScript_OnHit;
+
+        if ((finalVelocity.x != 0 || finalVelocity.z != 0)
+            && ((finalVelocity.x <= 0 && transform.forward.x <= 0) || (finalVelocity.x >= 0 && transform.forward.x >= 0) || (transform.forward.x == finalVelocity.x))
             && ((finalVelocity.z <= 0 && transform.forward.z <= 0) || (finalVelocity.z >= 0 && transform.forward.z >= 0) || (finalVelocity.z == transform.forward.z)))
         {
             e.ProjectileScript.IncreaseVelocity(transform.forward * speed);

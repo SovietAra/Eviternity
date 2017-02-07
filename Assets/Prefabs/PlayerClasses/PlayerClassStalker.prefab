@@ -1850,6 +1850,8 @@ MonoBehaviour:
     type: 2}
   SecondaryWeapon: {fileID: 1302081713190986, guid: b7bd7b82850075e4dbb5275e26922603,
     type: 2}
+  GrenadeWeapon: {fileID: 1261955535423228, guid: 3e76b6635f2527148ba3b9f467834339,
+    type: 2}
   Ability: {fileID: 1397790803564228, guid: 535a326f31036874c8e7d412c2cf0af7, type: 2}
   SecondaryAbility: {fileID: 1348673264951972, guid: 431efddbb977c4644b05574a826f27c0,
     type: 2}
