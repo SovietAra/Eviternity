@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184549161438930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: -6.8151836, y: 1.22, z: -2.0973969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,9 +57,9 @@ MonoBehaviour:
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
-  lifeTime: 0.3
+  lifeTime: 0.1
   startDetonationTimer: 0
-  DestroyOnCollision: 1
+  DestroyOnCollision: 0
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
@@ -81,5 +81,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}

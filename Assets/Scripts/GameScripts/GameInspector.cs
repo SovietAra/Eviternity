@@ -56,11 +56,12 @@ public class GameInspector : MonoBehaviour
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
 
+        Player.LastCheckpointPosition = Vector3.zero;
         Player.TeamHealth = maxTeamHealth;
         Player.HealthRegenerationMultiplicator = healthRegenerationMultiplicator;
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
 
-        SpawnPlayers();
+        SpawnPlayers(false);
     }
 
     private void WinAndDefeat()
@@ -157,37 +158,13 @@ public class GameInspector : MonoBehaviour
     public void Restart()
     {
 
-        Time.timeScale = 0;
-        if (AskCanvas.activeInHierarchy == false)
-        {
-           AskCanvas.SetActive(true);
-            if (PauseMenuCanvas.activeInHierarchy || DefeatCanvas.activeInHierarchy || WinCanvas.activeInHierarchy)
-            {
-                PauseMenuCanvas.SetActive(false);
-                DefeatCanvas.SetActive(false);
-                WinCanvas.SetActive(false);
-            }
-        }
-        FreezeAllPlayers();
-    }
-
-    public void Yes()
-    {
-        Win = false;
-        Defeat = false;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        SpawnPlayers();
-        UnfreezeAllPlayers();
-    }
-
-    public void No()
-    {
         Win = false;
         Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("LevelZero");
         UnfreezeAllPlayers();
     }
+
     public void MainMenu()
     {
         Win = false;
@@ -197,9 +174,9 @@ public class GameInspector : MonoBehaviour
         UnfreezeAllPlayers();
     }
 
-    private void SpawnPlayers()
+    private void SpawnPlayers(bool useTeamHealth = true)
     {
-        if (Player.TeamHealth > 0)
+        if (Player.TeamHealth > 0 || !useTeamHealth)
         {
             float shareHealth = Player.TeamHealth / GlobalReferences.PlayerStates.Count;
             for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
@@ -222,7 +199,7 @@ public class GameInspector : MonoBehaviour
                 
 
                 GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
-                if (gobj != null)
+                if (gobj != null && useTeamHealth)
                 {
                     DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
                     if (healthContainer != null)
@@ -244,6 +221,7 @@ public class GameInspector : MonoBehaviour
         }
         else
         {
+            Player.LastCheckpointPosition = Vector3.zero;
             Defeat = true;
         }
     }
@@ -277,7 +255,21 @@ public class GameInspector : MonoBehaviour
                         PlayerState newPlayerState = new PlayerState(freePads[i], state, true, 0);
                         GlobalReferences.PlayerStates.Add(newPlayerState);
                         GamePadManager.Connect((int)freePads[i]);
-                        SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
+                        if (GlobalReferences.PlayerStates.Count > 1)
+                        {
+                            FollowingCamera cam = GameObject.FindObjectOfType<FollowingCamera>();
+                            if (cam != null)
+                            {
+                                if(GlobalReferences.PlayerStates.Count >= 3)
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 1, 0));
+                                else
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 1, 1));
+                            }
+                            else
+                                SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 1, 0));
+                        }
+                        else
+                            SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
                     }
                 }
             }

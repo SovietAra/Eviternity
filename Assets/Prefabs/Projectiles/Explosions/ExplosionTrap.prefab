@@ -295,7 +295,8 @@ MonoBehaviour:
   UseDamageReduction: 1
   teamDamageMultiplicator: 1
   damage: 10
-  StatusEffect: {fileID: 0}
+  StatusEffect: {fileID: 1678993688747060, guid: 51dca84659034c046a5c27789ddf14ae,
+    type: 2}
   ExplosionSound: {fileID: 8300000, guid: 47e1af30b238726418f5e1bc18f2f22b, type: 3}
 --- !u!135 &135978038496077504
 SphereCollider:

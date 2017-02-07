@@ -72,7 +72,6 @@ public class UIScript : MonoBehaviour
     public Sprite[] WeaponIcons;
 
     // Abilities
-    //public GameObject[] EnergyBars;
     public Sprite[] AbilityIcons;
     public GameObject[] AbilityObjs;
 
@@ -108,8 +107,6 @@ public class UIScript : MonoBehaviour
     private Image player1Heat;
     private Image player1Heat2;
     private Image p1icon;
-    //private Image p1weaponIcon;
-    //private Image p1secWeaponIcon;
     private Image player1Weapon_1;
     private Image player1Weapon_2;
     private Image player1Weapon_3;
@@ -122,8 +119,6 @@ public class UIScript : MonoBehaviour
     private Image player2Heat;
     private Image player2Heat2;
     private Image p2icon;
-    //private Image p2weaponIcon;
-    //private Image p2secWeaponIcon;
     private Image player2Weapon_1;
     private Image player2Weapon_2;
     private Image player2Weapon_3;
@@ -136,8 +131,6 @@ public class UIScript : MonoBehaviour
     private Image player3Heat;
     private Image player3Heat2;
     private Image p3icon;
-    //private Image p3weaponIcon;
-    //private Image p3secWeaponIcon;
     private Image player3Weapon_1;
     private Image player3Weapon_2;
     private Image player3Weapon_3;
@@ -150,8 +143,6 @@ public class UIScript : MonoBehaviour
     private Image player4Heat;
     private Image player4Heat2;
     private Image p4icon;
-    //private Image p4weaponIcon;
-    //private Image p4secWeaponIcon;
     private Image player4Weapon_1;
     private Image player4Weapon_2;
     private Image player4Weapon_3;
@@ -166,7 +157,6 @@ public class UIScript : MonoBehaviour
     private bool P4iconsSet = false;
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityFill = new Image[64];
-    //private Image[] AbilityBars = new Image[12];
     #endregion
 
     // Use this for initialization

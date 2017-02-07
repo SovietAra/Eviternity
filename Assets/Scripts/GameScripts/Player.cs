@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private GameObject dashTrail;
     private ParticleSystem[] dashParticles;
     private GameObject transparentObject = null;
+    private GameObject leftSpawn, rightSpawn;
 
     private Camera mainCamera;
     private float xMin, xMax, zMin, zMax;
@@ -138,7 +139,21 @@ public class Player : MonoBehaviour
 
     // Use this for initialization
     private void Start()
-    {       
+    {
+        foreach (Transform item in transform)
+        {
+            if(item.CompareTag("ProjectileSpawn"))
+            {
+                if(item.name == "Left")
+                {
+                    leftSpawn = item.gameObject;
+                }
+                else if(item.name == "Right")
+                {
+                    rightSpawn = item.gameObject;
+                }
+            }       
+        }
         //create as many audiosources as we want  = needed for playing as many sounds simultaniously as we want
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
@@ -426,13 +441,13 @@ public class Player : MonoBehaviour
             if (state.Triggers.Right > 0 && !executed)
             {
                 if (primaryWeapon != null)
-                    executed = primaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+                    executed = primaryWeapon.PrimaryAttack(leftSpawn.transform.position, transform.forward, angle);
             }
 
             if (state.Triggers.Left > 0 && !executed)
             {
                 if (secondaryWeapon != null)
-                    executed = secondaryWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+                    executed = secondaryWeapon.PrimaryAttack(rightSpawn.transform.position, transform.forward, angle);
             }
 
             if (state.Buttons.RightShoulder == ButtonState.Pressed && !executed)

@@ -271,7 +271,8 @@ public class PlayerAssignmentScript : MonoBehaviour
                 }
                 GamePadManager.Disconnect(GlobalReferences.PlayerStates[i].Index);
                 GlobalReferences.PlayerStates.RemoveAt(i);
-                Debug.Log(GlobalReferences.PlayerStates.Count);
+                i--;
+                continue;
             }
             //TODO: Change classes here
             if (GlobalReferences.PlayerStates[i].Ready)
