@@ -155,4 +155,4 @@ MonoBehaviour:
   ReloadSound: {fileID: 0}
   SecondaryWeapon: {fileID: 1761816047511776, guid: b35df9cda91f30b479b6c30d9c5a5ce6,
     type: 2}
-  Projectile: {fileID: 1078364581439068, guid: e4c8b456957720942b614ab1b7fbcfb5, type: 2}
+  Projectile: {fileID: 1078364581439068, guid: 8b1c86ca1568bb64bb96f5532065b6c3, type: 2}

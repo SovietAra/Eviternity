@@ -10,6 +10,10 @@ public class GameInspector : MonoBehaviour
     public GameObject PlayerPrefabStalker;
     public GameObject PlayerPrefab;
     public GameObject PauseMenuCanvas;
+    public GameObject DefeatCanvas;
+    public GameObject WinCanvas;
+
+    public static bool Defeat, Win;
 
     private PlayerChoice playerChoice;
     private int[] choice;
@@ -37,6 +41,8 @@ public class GameInspector : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        WinAndDefeat();
+
         playerChoice = GameObject.FindObjectOfType<PlayerChoice>();
 
         if (playerChoice != null)
@@ -51,6 +57,29 @@ public class GameInspector : MonoBehaviour
         spawnedPlayers = new List<Player>();
         uiScript = GetComponent<UIScript>();
         SpawnPlayers();
+    }
+
+    private void WinAndDefeat()
+    {
+        if (Win)
+        {
+            Time.timeScale = 0;
+            if (WinCanvas.activeInHierarchy == false)
+            {
+                WinCanvas.SetActive(true);
+            }
+            FreezeAllPlayers();
+        }
+
+        if (Defeat)
+        {
+            Time.timeScale = 0;
+            if (DefeatCanvas.activeInHierarchy == false)
+            {
+                DefeatCanvas.SetActive(true);
+            }
+            FreezeAllPlayers();
+        }
     }
 
     // Update is called once per frame
@@ -95,12 +124,16 @@ public class GameInspector : MonoBehaviour
 
     public void ResumeGame()
     {
+        Win = false;
+        Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         UnfreezeAllPlayers();
     }
 
     public void CreditsScreen()
     {
+        Win = false;
+        Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("Credits");
         UnfreezeAllPlayers();
@@ -108,6 +141,8 @@ public class GameInspector : MonoBehaviour
 
     public void Restart()
     {
+        Win = false;
+        Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("LevelZero");
         UnfreezeAllPlayers();
@@ -115,6 +150,8 @@ public class GameInspector : MonoBehaviour
 
     public void MainMenu()
     {
+        Win = false;
+        Defeat = false;
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("MainMenu");
         UnfreezeAllPlayers();
