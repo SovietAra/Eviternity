@@ -44,7 +44,6 @@ public class MenuMusicScript : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "LevelZero")
         {
-            Debug.Log("Scene gewechselt in LevelZero");
             Destroy(this.gameObject);
         }
     }

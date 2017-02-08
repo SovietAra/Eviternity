@@ -151,7 +151,8 @@ public class PlayerAssignmentScript : MonoBehaviour
     {
         gameStarted = true;
         changeMenu = true;
-        SceneManager.LoadScene("LevelZero");
+        SceneManager.LoadScene("Loading");
+        //SceneManager.LoadScene("LevelZero");
     }
     #region player Funktionen
     private void CheckPlayerJoins()
