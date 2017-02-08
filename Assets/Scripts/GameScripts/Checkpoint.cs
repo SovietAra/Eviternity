@@ -4,14 +4,18 @@ public class Checkpoint : MonoBehaviour
 {
     // public Material Checkpoint1;
     public Material CheckpointNewMaterial;
+    public AudioClip ActivationSound;
 
     private GameInspector gameInspector;
     private bool Triggered = false;
     private BoxCollider boxCollider;
+    private AudioSource source;
 
     [SerializeField]
     [Range(0, 10000)]
     private float TeamHealthRestore = 100;
+
+    
 
     private void Start()
     {
@@ -42,7 +46,12 @@ public class Checkpoint : MonoBehaviour
 
     public void ChangeColor()
     {
-     var   intMaterials = new Material[2];
+        if(source != null && ActivationSound != null)
+        {
+            source.clip = ActivationSound;
+            source.Play();
+        }
+        var   intMaterials = new Material[2];
         for (int i = 0; i < intMaterials.Length; i++)
         {
             intMaterials[i] = CheckpointNewMaterial;
