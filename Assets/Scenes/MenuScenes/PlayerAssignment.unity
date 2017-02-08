@@ -2322,6 +2322,7 @@ MonoBehaviour:
   charSelectPlayerFour: {fileID: 1191998329}
   playerFourAegis: {fileID: 650516695}
   playerFourStalker: {fileID: 475304926}
+  ChangeClip: {fileID: 8300000, guid: 809e4b7f8a19ab345aab464b4e86853a, type: 3}
 --- !u!1 &1853065299
 GameObject:
   m_ObjectHideFlags: 0
