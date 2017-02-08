@@ -326,6 +326,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+         GamePad.GetState(index);
         if (!hasPlayerIndex)
         {
             PlayerIndex[] freeControllers = GamePadManager.GetFreeControllers();
@@ -394,6 +395,11 @@ public class Player : MonoBehaviour
                 GamePadManager.Disconnect(Index);
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
+            prevState = state;
+        }
+        else
+        {
+            prevState = GamePad.GetState(Index);
         }
         
         stepTimer += Time.deltaTime;
