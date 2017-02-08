@@ -1636,7 +1636,7 @@ MonoBehaviour:
   radius: 5
   damageReduction: 1
   UseDamageReduction: 0
-  teamDamageMultiplicator: 1
+  teamDamageMultiplicator: 0
   damage: 50
   StatusEffect: {fileID: 0}
   ExplosionSound: {fileID: 0}

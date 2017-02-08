@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationDuration: 5
+  ActivationSound: {fileID: 0}
+  DeactivationSound: {fileID: 0}
+  ReachedMaxEnergySound: {fileID: 0}
   activeOnKeyPressed: 0
   abortAble: 1
   maxEnergy: 150
@@ -63,6 +66,7 @@ MonoBehaviour:
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 1
   spawnOncePerActivation: 1
+  spawnDelay: 2
   destroyOnAbort: 0
   spawnObject: {fileID: 1267847025698696, guid: dc7f6ec82f8f5ba44b567390591011d1,
     type: 2}

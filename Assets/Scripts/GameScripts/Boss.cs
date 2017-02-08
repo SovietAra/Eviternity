@@ -7,6 +7,7 @@ using XInputDotNetPure;
 
 public class Boss : MonoBehaviour
 {
+    private static System.Random rand = new System.Random();
     public GameObject AOEWeapon;
     public GameObject IceWaveWeapon;
     public GameObject IcicleAbility;
@@ -392,32 +393,50 @@ public class Boss : MonoBehaviour
     private void WeaponDecider(Vector3 targetPosition, float distance)
     {
         bool done = false;
-        if (aoeWeapon != null && distance < 7f && !done)
+        if (distance < 7f && aoeWeapon.IsReady() && iceWaveWeapon.IsReady())
         {
-            done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
-            if(done)
-                animator.SetTrigger("MultiHit");
-            if (BossAudioSources[7] != null && !BossAudioSources[7].isPlaying) BossAudioSources[7].Play(); //hammer hit
-        }
-
-        else if (iceWaveWeapon != null && !done && distance < 7f
-            && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
-        {
-            done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
-            if(done)
-                animator.SetTrigger("IceWave");
-            if (BossAudioSources[5] != null && !BossAudioSources[3].isPlaying) BossAudioSources[3].Play(); //ice wave sound, index 3
-        }
-
-        else if (icicleAbility != null && !done && distance >= 7f && distance <= viewRange)
-        {
-            Vector3 translation = targetPosition - transform.position;
-            icicleAbility.SpawnTranslation = translation;
-            if (icicleAbility.Use())
+            if (rand.Next(0, 101) < 50)
             {
-                animator.SetTrigger("SingleHit");
-                done = icicleAbility.Use();
-                if (BossAudioSources[0] != null && !BossAudioSources[0].isPlaying) BossAudioSources[0].Play();
+                done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
+                if (done)
+                    animator.SetTrigger("MultiHit");
+                if (BossAudioSources[7] != null && !BossAudioSources[7].isPlaying) BossAudioSources[7].Play(); //hammer hit
+            }
+            else
+            {
+                done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
+                if (done)
+                    animator.SetTrigger("IceWave");
+                if (BossAudioSources[5] != null && !BossAudioSources[3].isPlaying) BossAudioSources[3].Play(); //ice wave sound, index 3
+            }
+        }
+        else
+        {
+            if (aoeWeapon != null && distance < 7f && !done)
+            {
+                done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
+                if (done)
+                    animator.SetTrigger("MultiHit");
+                if (BossAudioSources[7] != null && !BossAudioSources[7].isPlaying) BossAudioSources[7].Play(); //hammer hit
+            }
+            else if (iceWaveWeapon != null && !done && distance < 7f
+                && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
+            {
+                done = iceWaveWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, angle);
+                if (done)
+                    animator.SetTrigger("IceWave");
+                if (BossAudioSources[5] != null && !BossAudioSources[3].isPlaying) BossAudioSources[3].Play(); //ice wave sound, index 3
+            }
+            else if (icicleAbility != null && !done && distance >= 7f && distance <= viewRange)
+            {
+                Vector3 translation = targetPosition - transform.position;
+                icicleAbility.SpawnTranslation = translation;
+                if (icicleAbility.Use())
+                {
+                    animator.SetTrigger("SingleHit");
+                    done = icicleAbility.Use();
+                    if (BossAudioSources[0] != null && !BossAudioSources[0].isPlaying) BossAudioSources[0].Play();
+                }
             }
         }
     }

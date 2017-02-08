@@ -275,6 +275,11 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
+    public bool IsReady()
+    {
+        return (elapsedAttackDelay >= fireRate && ((UseAmmo && currentClipAmmo > 0) || (ProduceHeat && ((HeatCooldown && !overheat) || !HeatCooldown) && heat < maxHeat) || (!UseAmmo && !ProduceHeat)) && (!reloading || AllowShellRelaod));
+    }
+
     private void SpawnObject(Vector3 spawnPosition, Vector3 forward, float angle)
     {
         SpawnEventArgs spawnArgs = new SpawnEventArgs(spawnPosition, forward, angle);
@@ -308,6 +313,8 @@ public class Weapon : MonoBehaviour
         if (UseAmmo)
         {
             currentClipAmmo--;
+            if (currentClipAmmo <= 0 && AutoReload)
+                Reload();
         }
         else if (ProduceHeat)
         {

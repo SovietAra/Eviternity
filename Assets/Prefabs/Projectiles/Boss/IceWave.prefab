@@ -501,7 +501,7 @@ MonoBehaviour:
   radius: 1
   damageReduction: 5
   UseDamageReduction: 0
-  teamDamageMultiplicator: 1
+  teamDamageMultiplicator: 0
   damage: 70
   StatusEffect: {fileID: 1454155052766750, guid: a1f1863dfb2532e4685330ae615d2c7b,
     type: 2}
