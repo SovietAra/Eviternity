@@ -326,6 +326,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+         GamePad.GetState(index);
         if (!hasPlayerIndex)
         {
             PlayerIndex[] freeControllers = GamePadManager.GetFreeControllers();
@@ -394,6 +395,11 @@ public class Player : MonoBehaviour
                 GamePadManager.Disconnect(Index);
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
+            prevState = state;
+        }
+        else
+        {
+            prevState = GamePad.GetState(Index);
         }
         
         stepTimer += Time.deltaTime;
@@ -531,7 +537,7 @@ public class Player : MonoBehaviour
             if(state.Buttons.RightStick == ButtonState.Pressed && !executed)
             {
                 if (grenadeWeapon != null)
-                    executed = grenadeWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+                    executed = grenadeWeapon.PrimaryAttack(transform.position - (transform.forward / 1.25f), transform.forward, angle);
             }
         }
 
@@ -1002,8 +1008,12 @@ public class Player : MonoBehaviour
 
     public bool GetAmmo()
     {
-        isReloading = secondaryWeapon.Reloading;
-        return isReloading;
+        if (SecondaryWeapon != null)
+        {
+            isReloading = secondaryWeapon.Reloading;
+            return isReloading;
+        }
+        return false;
     }
 
     public float GetHeat(int wpnNumber)

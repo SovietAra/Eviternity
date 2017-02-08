@@ -21,7 +21,8 @@ public class IntroSkript : MonoBehaviour
     void Start()
     {
         elapsedTime = 0;
-        duration = intro.duration;
+        if(intro != null)
+            duration = intro.duration;
     }
 
     // Update is called once per frame
