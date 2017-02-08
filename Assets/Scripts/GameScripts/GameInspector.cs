@@ -62,6 +62,8 @@ public class GameInspector : MonoBehaviour
         Player.HealthRegenerationMulitplicatorOnDeath = healthRegenerationMulitplicatorOnDeath;
         Defeat = false;
         Win = false;
+        Time.timeScale = 1;
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SpawnPlayers(false);
     }
 
@@ -141,6 +143,12 @@ public class GameInspector : MonoBehaviour
     {
         Win = false;
         Defeat = false;
+        PlayerAssignmentScript.gameStarted = false;
+        foreach (PlayerState item in GlobalReferences.PlayerStates)
+        {
+            GamePadManager.Disconnect(item.Index);
+        }
+        GlobalReferences.PlayerStates.Clear();
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         SceneManager.LoadScene("Credits");
         UnfreezeAllPlayers();
@@ -159,6 +167,12 @@ public class GameInspector : MonoBehaviour
 
     public void MainMenu()
     {
+        PlayerAssignmentScript.gameStarted = false;
+        foreach (PlayerState item in GlobalReferences.PlayerStates)
+        {
+            GamePadManager.Disconnect(item.Index);
+        }
+        GlobalReferences.PlayerStates.Clear();
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         PlayerAssignmentScript.gameStarted = false;
         SceneManager.LoadScene("MainMenu");
