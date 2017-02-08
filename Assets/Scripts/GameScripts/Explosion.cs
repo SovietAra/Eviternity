@@ -99,7 +99,8 @@ public class Explosion : MonoBehaviour
 
             if (!playOnce)
             {
-                effect.Play();
+                if(effect != null)
+                    effect.Play();
                 playOnce = true;
 
                 if (audioSource != null && ExplosionSound != null)
@@ -113,7 +114,7 @@ public class Explosion : MonoBehaviour
             }
             else
             {
-                if(!effect.isPlaying)
+                if(effect != null && !effect.isPlaying)
                 {
                     Destroy(gameObject);
                 }
