@@ -574,9 +574,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text1: {fileID: 1204453822}
   Text2: {fileID: 1819128564}
-  targetTime: 3
-  partTime: 1
-  timerTime: 1
+  targetTime: 10
+  partTime: 3
+  timerTime: 3
 --- !u!222 &1530187083
 CanvasRenderer:
   m_ObjectHideFlags: 0
