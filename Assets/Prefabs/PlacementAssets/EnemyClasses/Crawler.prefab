@@ -1106,8 +1106,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865923694238466}
-  m_LocalRotation: {x: -0, y: -0.44311517, z: -0, w: 0.8964647}
-  m_LocalPosition: {x: -158.44315, y: -13.159821, z: -241.17462}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -184.58, y: -13.02, z: -264.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224500381575896340}
@@ -1590,7 +1590,7 @@ MonoBehaviour:
     type: 2}
   enemyType: 1
   switchDelay: 32.3
-  squadID: 1
+  squadID: 3
   HealthSlider: {fileID: 114205726039098528}
   freeze: 0
   PrimaryWeapon: {fileID: 1761816047511776, guid: d89e6c8e65e3e16468489aa8729263e1,
@@ -1689,8 +1689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
-  maxHealth: 120
+  health: 60
+  maxHealth: 60
   groupDamage: 0.699999988079071
   isImmortal: 0
   DamageSound: {fileID: 0}
