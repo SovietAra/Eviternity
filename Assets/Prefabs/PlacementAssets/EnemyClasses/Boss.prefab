@@ -6039,8 +6039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4750
-  maxHealth: 4750
+  health: 2500
+  maxHealth: 2500
   groupDamage: 0.699999988079071
   isImmortal: 0
   DamageSound: {fileID: 0}
