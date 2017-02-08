@@ -82,6 +82,11 @@ public class UIScript : MonoBehaviour
     public GameObject IndicatorPlaneFour;
     public GameObject BossHealthbar_bg;
     public GameObject BossHealthbar;
+    public GameObject P1Buttons;
+    public GameObject P2Buttons;
+    public GameObject P3Buttons;
+    public GameObject P4Buttons;
+
 
     #region private variables
     private GameObject game;
@@ -149,12 +154,25 @@ public class UIScript : MonoBehaviour
     private Image player4Weapon2_1;
     private Image player4Weapon2_2;
     private Image player4Weapon2_3;
+    private Image player1buttons;
+    private Image player2buttons;
+    private Image player3buttons;
+    private Image player4buttons;
     private bool isHealing = false;
     private bool bossAggro = false;
     private bool P1iconsSet = false;
     private bool P2iconsSet = false;
     private bool P3iconsSet = false;
     private bool P4iconsSet = false;
+    private bool P1UseAmmo = false;
+    private bool P2UseAmmo = false;
+    private bool P3UseAmmo = false;
+    private bool P4UseAmmo = false;
+    private bool P1Reloading = false;
+    private bool P2Reloading = false;
+    private bool P3Reloading = false;
+    private bool P4Reloading = false;
+
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityFill = new Image[64];
     #endregion
@@ -284,12 +302,24 @@ public class UIScript : MonoBehaviour
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player1Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P1UseAmmo)
+                    {
+                        P1Reloading = playerScript.GetAmmo();
+                        if (P1Reloading == true)
+                        {
+                            player1Heat2.fillAmount = 1;
+                        }
+                        else player1Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[2].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[6].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[10].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[14].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[6].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[10].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[14].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate == null)
                     {
@@ -312,12 +342,25 @@ public class UIScript : MonoBehaviour
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player2Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    //player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P2UseAmmo)
+                    {
+                        P2Reloading = playerScript.GetAmmo();
+                        if (P2Reloading == true)
+                        {
+                            player2Heat2.fillAmount = 1;
+                        }
+                        else player2Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[18].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[22].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[26].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[30].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[22].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[26].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[30].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate2 == null)
                     {
@@ -339,12 +382,25 @@ public class UIScript : MonoBehaviour
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player3Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    //player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P3UseAmmo)
+                    {
+                        P3Reloading = playerScript.GetAmmo();
+                        if (P3Reloading == true)
+                        {
+                            player3Heat2.fillAmount = 1;
+                        }
+                        else player3Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[34].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[38].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[42].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[46].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[38].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[42].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[46].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate3 == null)
                     {
@@ -366,12 +422,25 @@ public class UIScript : MonoBehaviour
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player4Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    //player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P4UseAmmo)
+                    {
+                        P4Reloading = playerScript.GetAmmo();
+                        if (P4Reloading == true)
+                        {
+                            player4Heat2.fillAmount = 1;
+                        }
+                        else player4Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[50].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[54].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[58].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[62].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[54].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[58].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[62].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate4 == null)
                     {
@@ -485,11 +554,13 @@ public class UIScript : MonoBehaviour
                     {
                         player1Weapon_2.sprite = WeaponIcons[0];
                         player1Weapon2_2.sprite = WeaponIcons[1];
+                        P1UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player1Weapon_2.sprite = WeaponIcons[2];
                         player1Weapon2_2.sprite = WeaponIcons[3];
+                        P1UseAmmo = true;
                     }
                 }
                 break;
@@ -499,11 +570,13 @@ public class UIScript : MonoBehaviour
                     {
                         player2Weapon_2.sprite = WeaponIcons[0];
                         player2Weapon2_2.sprite = WeaponIcons[1];
+                        P2UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player2Weapon_2.sprite = WeaponIcons[2];
                         player2Weapon2_2.sprite = WeaponIcons[3];
+                        P2UseAmmo = true;
                     }
                 }
                 break;
@@ -513,11 +586,13 @@ public class UIScript : MonoBehaviour
                     {
                         player3Weapon_2.sprite = WeaponIcons[0];
                         player3Weapon2_2.sprite = WeaponIcons[1];
+                        P3UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player3Weapon_2.sprite = WeaponIcons[2];
                         player3Weapon2_2.sprite = WeaponIcons[3];
+                        P3UseAmmo = true;
                     }
                 }
                 break;
@@ -527,11 +602,13 @@ public class UIScript : MonoBehaviour
                     {
                         player4Weapon_2.sprite = WeaponIcons[0];
                         player4Weapon2_2.sprite = WeaponIcons[1];
+                        P4UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player4Weapon_2.sprite = WeaponIcons[2];
                         player4Weapon2_2.sprite = WeaponIcons[3];
+                        P4UseAmmo = true;
                     }
                 }
                 break;
@@ -616,6 +693,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player1Weapon2_2.gameObject);
                     Destroy(player1Weapon2_3.gameObject);
                     Destroy(p1icon.gameObject);
+                    Destroy(player1buttons.gameObject);
                     P1iconsSet = false;
                     
                     for (int k = 0; k < 16; k++)
@@ -638,6 +716,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player2Weapon2_2.gameObject);
                     Destroy(player2Weapon2_3.gameObject);
                     Destroy(p2icon.gameObject);
+                    Destroy(player2buttons.gameObject);
                     P2iconsSet = false;
 
                     for (int k = 16; k < 32; k++)
@@ -663,6 +742,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Weapon2_2.gameObject);
                     Destroy(player3Weapon2_3.gameObject);
                     Destroy(p3icon.gameObject);
+                    Destroy(P3Buttons.gameObject);
                     P3iconsSet = false;
 
                     for (int k = 32; k < 48; k++)
@@ -685,6 +765,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player4Weapon2_2.gameObject);
                     Destroy(player4Weapon2_3.gameObject);
                     Destroy(p4icon.gameObject);
+                    Destroy(player4buttons.gameObject);
                     P4iconsSet = false;
 
                     for (int k = 48; k < 64; k++)
@@ -718,6 +799,9 @@ public class UIScript : MonoBehaviour
                     player1HealthBar_3 = P1_4.GetComponent<Image>();
                     player1HealthBar_3.transform.SetParent(UICanvas, false);
                     P1IndicatorPlane = IndicatorPlaneOne;
+                    GameObject P1_5 = Instantiate(P1Buttons);
+                    player1buttons = P1_5.GetComponent<Image>();
+                    player1buttons.transform.SetParent(UICanvas, false);
                     GameObject Heat1_1 = Instantiate(P1Weapon_background);
                     player1Weapon_1 = Heat1_1.GetComponent<Image>();
                     player1Weapon_1.transform.SetParent(UICanvas, false);
@@ -766,6 +850,9 @@ public class UIScript : MonoBehaviour
                     player2HealthBar_3 = P2_4.GetComponent<Image>();
                     player2HealthBar_3.transform.SetParent(UICanvas, false);
                     P2IndicatorPlane = IndicatorPlaneTwo;
+                    GameObject P2_5 = Instantiate(P2Buttons);
+                    player2buttons = P2_5.GetComponent<Image>();
+                    player2buttons.transform.SetParent(UICanvas, false);
                     GameObject Heat2_1 = Instantiate(P2Weapon_background);
                     player2Weapon_1 = Heat2_1.GetComponent<Image>();
                     player2Weapon_1.transform.SetParent(UICanvas, false);
@@ -814,6 +901,9 @@ public class UIScript : MonoBehaviour
                     player3HealthBar_3 = P3_4.GetComponent<Image>();
                     player3HealthBar_3.transform.SetParent(UICanvas, false);
                     P3IndicatorPlane = IndicatorPlaneThree;
+                    GameObject P3_5 = Instantiate(P3Buttons);
+                    player3buttons = P3_5.GetComponent<Image>();
+                    player3buttons.transform.SetParent(UICanvas, false);
                     GameObject Heat3_1 = Instantiate(P3Weapon_background);
                     player3Weapon_1 = Heat3_1.GetComponent<Image>();
                     player3Weapon_1.transform.SetParent(UICanvas, false);
@@ -862,6 +952,9 @@ public class UIScript : MonoBehaviour
                     player4HealthBar_3 = P4_4.GetComponent<Image>();
                     player4HealthBar_3.transform.SetParent(UICanvas, false);
                     P4IndicatorPlane = IndicatorPlaneFour;
+                    GameObject P4_5 = Instantiate(P4Buttons);
+                    player4buttons = P4_5.GetComponent<Image>();
+                    player4buttons.transform.SetParent(UICanvas, false);
                     GameObject Heat4_1 = Instantiate(P4Weapon_background);
                     player4Weapon_1 = Heat4_1.GetComponent<Image>();
                     player4Weapon_1.transform.SetParent(UICanvas, false);

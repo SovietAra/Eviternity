@@ -2,11 +2,11 @@
 using UnityEngine.SceneManagement;
 
 public class ChangeSceneToMainMenuScript : MonoBehaviour {
-    public float mainTime;
+    public float mainTime = 36.0f;
     // Use this for initialization
     void Start()
     {
-        mainTime = 35.0f;
+        
     }
 
     // Update is called once per frame

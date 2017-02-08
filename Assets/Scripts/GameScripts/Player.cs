@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
     private float stepTimer;
     private AudioSource deniedSource;
     
+
+    private bool isReloading;
+
     // private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
@@ -997,6 +1000,12 @@ public class Player : MonoBehaviour
         moveScript.ResetMultiplicator();
     }
 
+    public bool GetAmmo()
+    {
+        isReloading = secondaryWeapon.Reloading;
+        return isReloading;
+    }
+
     public float GetHeat(int wpnNumber)
     {
         float heat = 0;
@@ -1094,15 +1103,37 @@ public class Player : MonoBehaviour
         return energyLevel;
     }
 
-    public float MaxEnergy
+    public float MaxEnergy(int abilityNumber)
     {
-        get
+        float maxEnergyLevel;
+        switch (abilityNumber)
         {
-            if (ability != null)
-                return ability.MaxEnergy;
-
-            return 0;
+            case 1:
+                {
+                    if (ability != null)
+                        maxEnergyLevel = ability.MaxEnergy;
+                    else maxEnergyLevel = 0;
+                }
+                break;
+            case 2:
+                {
+                    if (dashAbility != null)
+                        maxEnergyLevel = dashAbility.MaxEnergy;
+                    else maxEnergyLevel = 0;
+                }
+                break;
+            case 3:
+                {
+                    if (secondaryAbility != null)
+                        maxEnergyLevel = secondaryAbility.Energy;
+                    else maxEnergyLevel = 0;
+                }
+                break;
+            default:
+                maxEnergyLevel = 0;
+                break;
         }
+        return maxEnergyLevel;
     }
 
     //public void PlayMusicThemePicker(int tmp, bool state)

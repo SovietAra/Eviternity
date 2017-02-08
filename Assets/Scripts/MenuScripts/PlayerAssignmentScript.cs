@@ -17,7 +17,7 @@ public class PlayerAssignmentScript : MonoBehaviour
     #region GameObjects
     public static bool gameStarted;
     public Canvas playerAssignmentScreen;
-
+    
     public int[] playerChoice;
 
     public Text playerOneJoin;
@@ -43,6 +43,9 @@ public class PlayerAssignmentScript : MonoBehaviour
     public Canvas charSelectPlayerFour;
     public Image playerFourAegis;
     public Image playerFourStalker;
+
+    public AudioClip ChangeClip;
+    private AudioSource Change;
     #endregion
 
     #region Listen und ihre ints
@@ -105,6 +108,9 @@ public class PlayerAssignmentScript : MonoBehaviour
         playerFourAegis = playerFourAegis.GetComponent<Image>();
         playerFourStalker = playerFourStalker.GetComponent<Image>();
         charSelectPlayerFour.enabled = false;
+
+        Change = gameObject.AddComponent<AudioSource>();
+        Change.clip = ChangeClip;
         #endregion
 
         #region Characterlisten
@@ -224,30 +230,31 @@ public class PlayerAssignmentScript : MonoBehaviour
 
             if ((state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released) || (state.ThumbSticks.Left.X <= -0.1 && prevState[playerIndex].ThumbSticks.Left.X >= -0.1))
             {
-                    prevIndex[playerIndex] = index[playerIndex];
-                    index[playerIndex] -= 1;
-                    Debug.Log("index:" + index[playerIndex]);
-                    if (index[playerIndex] < 0)
-                    {
-                        Debug.Log("Sprung auf Ende der List");
-                        index[playerIndex] = 1;
-                    }
+                Change.Play();
+                prevIndex[playerIndex] = index[playerIndex];
+                index[playerIndex] -= 1;
+                Debug.Log("index:" + index[playerIndex]);
+                if (index[playerIndex] < 0)
+                {
+                    Debug.Log("Sprung auf Ende der List");
+                    index[playerIndex] = 1;
+                }
 
-                    ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
+                ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
             if ((state.DPad.Right == ButtonState.Pressed && prevState[playerIndex].DPad.Right == ButtonState.Released) || (state.ThumbSticks.Left.X >= 0.1 && prevState[playerIndex].ThumbSticks.Left.X <= 0.1))
             {
-               
-                    prevIndex[playerIndex] = index[playerIndex];
-                    index[playerIndex] += 1;
-                    Debug.Log("index:" + index[playerIndex]);
-                    if (index[playerIndex] > 1)
-                    {
-                        Debug.Log("Sprung auf Anfang der Liste");
-                        index[playerIndex] = 0;
-                    }
-                    ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
+                Change.Play();
+                prevIndex[playerIndex] = index[playerIndex];
+                index[playerIndex] += 1;
+                Debug.Log("index:" + index[playerIndex]);
+                if (index[playerIndex] > 1)
+                {
+                    Debug.Log("Sprung auf Anfang der Liste");
+                    index[playerIndex] = 0;
+                }
+                ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
             if (state.Buttons.B == ButtonState.Pressed)
