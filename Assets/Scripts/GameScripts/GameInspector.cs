@@ -152,7 +152,7 @@ public class GameInspector : MonoBehaviour
             {
                 if (item.name == "ConnectionLost")
                 {
-                    item.gameObject.SetActive(true);
+                    item.gameObject.SetActive(false);
                 }
             }
             UnfreezeAllPlayers();
