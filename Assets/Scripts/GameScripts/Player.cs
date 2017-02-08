@@ -531,7 +531,7 @@ public class Player : MonoBehaviour
             if(state.Buttons.RightStick == ButtonState.Pressed && !executed)
             {
                 if (grenadeWeapon != null)
-                    executed = grenadeWeapon.PrimaryAttack(transform.position, transform.forward, angle);
+                    executed = grenadeWeapon.PrimaryAttack(transform.position - (transform.forward / 1.25f), transform.forward, angle);
             }
         }
 
