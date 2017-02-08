@@ -24,6 +24,7 @@ public class Checkpoint : MonoBehaviour
 
         gameInspector = GameObject.FindObjectOfType<GameInspector>();
         boxCollider = GetComponent<BoxCollider>();
+        source = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
