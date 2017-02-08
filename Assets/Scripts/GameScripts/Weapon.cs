@@ -118,6 +118,11 @@ public class Weapon : MonoBehaviour
         get { return heat;  }
     }
 
+    public bool Reloading
+    {
+        get { return reloading; }
+    }
+
     private void Start()
     {
         elapsedAttackDelay = fireRate;
