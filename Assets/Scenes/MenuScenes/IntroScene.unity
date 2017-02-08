@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0
   intro: {fileID: 15200000, guid: 9ccc29454ab59b148ab79ba96d02cb6d, type: 3}
-  Intro: {fileID: 975054560}
+  Intro: {fileID: 0}
   elapsedTime: 0
 --- !u!1 &1580773626
 GameObject:
