@@ -131,6 +131,8 @@ public class PlayerAssignmentScript : MonoBehaviour
         playerJoined[1] = false;
         playerJoined[2] = false;
         playerJoined[3] = false;
+        Time.timeScale = 1;
+        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
     }
 
     // Update is called once per frame
