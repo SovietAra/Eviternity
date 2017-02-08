@@ -155,6 +155,15 @@ public class UIScript : MonoBehaviour
     private bool P2iconsSet = false;
     private bool P3iconsSet = false;
     private bool P4iconsSet = false;
+    private bool P1UseAmmo = false;
+    private bool P2UseAmmo = false;
+    private bool P3UseAmmo = false;
+    private bool P4UseAmmo = false;
+    private bool P1Reloading = false;
+    private bool P2Reloading = false;
+    private bool P3Reloading = false;
+    private bool P4Reloading = false;
+
     private List<GameObject> CurrentPlayers;
     private Image[] AbilityFill = new Image[64];
     #endregion
@@ -281,7 +290,19 @@ public class UIScript : MonoBehaviour
                 {
                     player1HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player1Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P1UseAmmo)
+                    {
+                        P1Reloading = playerScript.GetAmmo();
+                        if (P1Reloading == true)
+                        {
+                            player1Heat2.fillAmount = 1;
+                        }
+                        else player1Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player1Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[2].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[6].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
@@ -309,7 +330,20 @@ public class UIScript : MonoBehaviour
                 {
                     player2HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player2Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    //player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P2UseAmmo)
+                    {
+                        P2Reloading = playerScript.GetAmmo();
+                        if (P2Reloading == true)
+                        {
+                            player2Heat2.fillAmount = 1;
+                        }
+                        else player2Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player2Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[18].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[22].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
@@ -336,7 +370,20 @@ public class UIScript : MonoBehaviour
                 {
                     player3HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player3Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    //player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P3UseAmmo)
+                    {
+                        P3Reloading = playerScript.GetAmmo();
+                        if (P3Reloading == true)
+                        {
+                            player3Heat2.fillAmount = 1;
+                        }
+                        else player3Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player3Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[34].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[38].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
@@ -363,7 +410,20 @@ public class UIScript : MonoBehaviour
                 {
                     player4HealthBar_2.fillAmount = damageAbleObject.Health / damageAbleObject.MaxHealth;
                     player4Heat.fillAmount = playerScript.GetHeat(1) / playerScript.GetMaxHeat(1);
-                    player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    //player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    if (P4UseAmmo)
+                    {
+                        P4Reloading = playerScript.GetAmmo();
+                        if (P4Reloading == true)
+                        {
+                            player4Heat2.fillAmount = 1;
+                        }
+                        else player4Heat2.fillAmount = 0;
+                    }
+                    else
+                    {
+                        player4Heat2.fillAmount = playerScript.GetHeat(2) / playerScript.GetMaxHeat(2);
+                    }
 
                     AbilityFill[50].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
                     AbilityFill[54].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
@@ -482,11 +542,13 @@ public class UIScript : MonoBehaviour
                     {
                         player1Weapon_2.sprite = WeaponIcons[0];
                         player1Weapon2_2.sprite = WeaponIcons[1];
+                        P1UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player1Weapon_2.sprite = WeaponIcons[2];
                         player1Weapon2_2.sprite = WeaponIcons[3];
+                        P1UseAmmo = true;
                     }
                 }
                 break;
@@ -496,11 +558,13 @@ public class UIScript : MonoBehaviour
                     {
                         player2Weapon_2.sprite = WeaponIcons[0];
                         player2Weapon2_2.sprite = WeaponIcons[1];
+                        P2UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player2Weapon_2.sprite = WeaponIcons[2];
                         player2Weapon2_2.sprite = WeaponIcons[3];
+                        P2UseAmmo = true;
                     }
                 }
                 break;
@@ -510,11 +574,13 @@ public class UIScript : MonoBehaviour
                     {
                         player3Weapon_2.sprite = WeaponIcons[0];
                         player3Weapon2_2.sprite = WeaponIcons[1];
+                        P3UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player3Weapon_2.sprite = WeaponIcons[2];
                         player3Weapon2_2.sprite = WeaponIcons[3];
+                        P3UseAmmo = true;
                     }
                 }
                 break;
@@ -524,11 +590,13 @@ public class UIScript : MonoBehaviour
                     {
                         player4Weapon_2.sprite = WeaponIcons[0];
                         player4Weapon2_2.sprite = WeaponIcons[1];
+                        P4UseAmmo = false;
                     }
                     else if (player.name == ("PlayerClassStalker(Clone)"))
                     {
                         player4Weapon_2.sprite = WeaponIcons[2];
                         player4Weapon2_2.sprite = WeaponIcons[3];
+                        P4UseAmmo = true;
                     }
                 }
                 break;

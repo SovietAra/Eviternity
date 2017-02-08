@@ -60,6 +60,9 @@ public class Player : MonoBehaviour
     private float stepTimer;
     private AudioSource deniedSource;
     
+
+    private bool isReloading;
+
     // private bool[] PlayMusicTheme = new bool[50];
     #endregion
 
@@ -951,6 +954,12 @@ public class Player : MonoBehaviour
     {
         OnIce = false;
         moveScript.ResetMultiplicator();
+    }
+
+    public bool GetAmmo()
+    {
+        isReloading = secondaryWeapon.Reloading;
+        return isReloading;
     }
 
     public float GetHeat(int wpnNumber)

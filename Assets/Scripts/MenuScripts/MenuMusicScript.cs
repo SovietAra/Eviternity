@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuMusicScript : MonoBehaviour
 {
     public GameObject musicPlayer;
-
+    
     void Awake()
     {
         //When the scene loads it checks if there is an object called "MUSIC".
