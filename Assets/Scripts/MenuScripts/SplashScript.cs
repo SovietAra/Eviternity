@@ -9,9 +9,9 @@ public class SplashScript : MonoBehaviour {
 
     public Text Text1;
     public Text Text2;
-    public float targetTime = 6.0f;
-    public float partTime = 1.0f;
-    public float timerTime = 1.0f;
+    public float targetTime = 10.0f;
+    public float partTime = 3.0f;
+    public float timerTime = 3.0f;
     // Use this for initialization
     void Start ()
     {
@@ -33,7 +33,7 @@ public class SplashScript : MonoBehaviour {
         {
             changeTextToBlack();
             if(timerTime <= 0.0f)
-            changeTextToRed();
+            changeTextToTurqoise();
         }
 	}
 
@@ -49,7 +49,7 @@ public class SplashScript : MonoBehaviour {
         timerTime -= Time.deltaTime;
     }
 
-    public void changeTextToRed()
+    public void changeTextToTurqoise()
     {
         Text1.enabled = true;
         Text2.enabled = false;

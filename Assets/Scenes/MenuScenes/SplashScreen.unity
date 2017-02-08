@@ -421,7 +421,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -202}
+  m_AnchoredPosition: {x: 2, y: -398}
   m_SizeDelta: {x: 717, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204453822
@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 1530187077}
   - component: {fileID: 1530187081}
   - component: {fileID: 1530187083}
-  - component: {fileID: 1530187084}
   m_Layer: 5
   m_Name: SplashScreen
   m_TagString: Untagged
@@ -574,27 +573,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text1: {fileID: 1204453822}
   Text2: {fileID: 1819128564}
-  targetTime: 3
-  partTime: 1
-  timerTime: 1
+  targetTime: 10
+  partTime: 3.5
+  timerTime: 3.5
 --- !u!222 &1530187083
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530187076}
---- !u!114 &1530187084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530187076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1156492e7b083c2439c0cccd3f769643, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainTime: 30
 --- !u!1 &1819128563
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +653,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -202}
+  m_AnchoredPosition: {x: 2, y: -398}
   m_SizeDelta: {x: 717, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
