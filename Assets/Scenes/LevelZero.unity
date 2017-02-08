@@ -5736,6 +5736,31 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114277356578532200, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: AudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: cbfe29ff29e13684a928b6006d3be2bc, type: 3}
+    - target: {fileID: 114277356578532200, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: AudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e52127459d466384aad2a98eb3bbe986, type: 3}
+    - target: {fileID: 114277356578532200, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: AudioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5646da212ce7feb44bf8ddf58934a7e8, type: 3}
+    - target: {fileID: 114277356578532200, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: AudioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: addd50dc8b5a5584e992153d66ffd888, type: 3}
+    - target: {fileID: 114277356578532200, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: AudioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: c800a96717529654d874a4637ebaa208, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
   m_IsPrefabParent: 0
@@ -28635,12 +28660,12 @@ Prefab:
     - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224308762652934682, guid: f4afc2070bf6761409dc13f5326c22e0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4340625546103528, guid: f4afc2070bf6761409dc13f5326c22e0, type: 2}
       propertyPath: m_LocalPosition.x
