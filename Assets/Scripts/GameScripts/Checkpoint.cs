@@ -2,7 +2,9 @@
 
 public class Checkpoint : MonoBehaviour
 {
-    private ColorSwitchCheck colorSwitch;
+    // public Material Checkpoint1;
+    public Material CheckpointNewMaterial;
+
     private GameInspector gameInspector;
     private bool Triggered = false;
     private BoxCollider boxCollider;
@@ -13,7 +15,9 @@ public class Checkpoint : MonoBehaviour
 
     private void Start()
     {
-        colorSwitch = GetComponent<ColorSwitchCheck>();
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        renderer.enabled = true;
+
         gameInspector = GameObject.FindObjectOfType<GameInspector>();
         boxCollider = GetComponent<BoxCollider>();
     }
@@ -23,10 +27,10 @@ public class Checkpoint : MonoBehaviour
         if (!Triggered && other.gameObject.CompareTag("Player"))
         {
             Triggered = true;
-            
+
             Player.LastCheckpointPosition = transform.position + boxCollider.center;
 
-            colorSwitch.ChangeColor();
+            ChangeColor();
 
             Player.TeamHealth += TeamHealthRestore;
             if (Player.TeamHealth > gameInspector.MaxTeamHealth)
@@ -34,5 +38,15 @@ public class Checkpoint : MonoBehaviour
                 Player.TeamHealth = gameInspector.MaxTeamHealth;
             }
         }
+    }
+
+    public void ChangeColor()
+    {
+     var   intMaterials = new Material[2];
+        for (int i = 0; i < intMaterials.Length; i++)
+        {
+            intMaterials[i] = CheckpointNewMaterial;
+        }
+        GetComponent<Renderer>().materials = intMaterials;
     }
 }
