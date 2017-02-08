@@ -1125,7 +1125,7 @@ public class Player : MonoBehaviour
             case 3:
                 {
                     if (secondaryAbility != null)
-                        maxEnergyLevel = secondaryAbility.Energy;
+                        maxEnergyLevel = secondaryAbility.MaxEnergy;
                     else maxEnergyLevel = 0;
                 }
                 break;
