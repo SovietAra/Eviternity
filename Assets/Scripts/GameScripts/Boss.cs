@@ -403,7 +403,8 @@ public class Boss : MonoBehaviour
     private void WeaponDecider(Vector3 targetPosition, float distance)
     {
         bool done = false;
-        if (distance < 7f && aoeWeapon.IsReady() && iceWaveWeapon.IsReady())
+        if (distance < 7f && aoeWeapon.IsReady() && iceWaveWeapon.IsReady()
+                && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
         {
             if (rand.Next(0, 101) < 50)
             {
@@ -422,7 +423,8 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            if (aoeWeapon != null && distance < 7f && !done)
+            if (aoeWeapon != null && distance < 7f && !done
+                && MathUtil.Between(targetRotation.eulerAngles.y, transform.rotation.eulerAngles.y - 5f, transform.rotation.eulerAngles.y + 5f))
             {
                 done = aoeWeapon.PrimaryAttack(transform.position + (transform.forward * 2), transform.forward, 0);
                 if (done)
