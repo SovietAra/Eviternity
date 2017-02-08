@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class VideoPlayer : MonoBehaviour {
-
+public class VideoPlayer : MonoBehaviour
+{
     public MovieTexture movie;
     public bool loop;
     public bool stoppable;
@@ -11,38 +11,39 @@ public class VideoPlayer : MonoBehaviour {
     public float elapsedTime;
     public RawImage Movie;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-        if (movie != null)
-        {
-            GetComponent<RawImage>().texture = movie as MovieTexture;
-            movie.Play();
-
-            if (!loop)
-                movie.loop = false;
-
-            if (loop)
-                movie.loop = true;
-        }
+        
         pauseTime = 3.0f;
         elapsedTime = 0.0f;
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (movie != null)
-        {
-            pauseTime -= Time.deltaTime;
 
-            if (stoppable)
+    // Update is called once per frame
+    void Update()
+    {
+            if (movie != null)
             {
-                if (pauseTime <= 0)
+                GetComponent<RawImage>().texture = movie as MovieTexture;
+                movie.Play();
+
+                if (!loop)
+                    movie.loop = false;
+
+                if (loop)
+                    movie.loop = true;
+            }
+            if (movie != null)
+            {
+                pauseTime -= Time.deltaTime;
+
+                if (stoppable)
                 {
-                    movie.Pause();
+                    if (pauseTime <= 0)
+                    {
+                        movie.Pause();
+                    }
                 }
             }
-        }
-	}
+    }
 }

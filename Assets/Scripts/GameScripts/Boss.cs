@@ -212,13 +212,7 @@ public class Boss : MonoBehaviour
                     if (animationDuration <= 0)
                     {
                         SetTargetPosition(currentTarget.transform.position, minimumDistance);
-                        if (agent.velocity != Vector3.zero)
-                        {
-                            animator.SetBool("Walking", true);
-                            if (BossAudioSources[5] != null && !BossAudioSources[5].isPlaying) BossAudioSources[5].Play();//play walk sound, walk is index 5
-                        }
-                        else
-                            animator.SetBool("Walking", false);
+                        
                         DoRotation();
                         AttackPlayer();
                     }
@@ -226,15 +220,28 @@ public class Boss : MonoBehaviour
 
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14);
                 angle = transform.eulerAngles.y;
+
+
+                if (agent.velocity != Vector3.zero && agent.velocity.magnitude > 0.5f)
+                {
+                    animator.SetBool("Walking", true);
+                    if (BossAudioSources[5] != null && !BossAudioSources[5].isPlaying) BossAudioSources[5].Play();//play walk sound, walk is index 5
+                }
+                else
+                    animator.SetBool("Walking", false);
             }
             else
             {
                 if (agent != null)
+                {
+                    animator.SetBool("Walking", false);
                     agent.Stop();
+                }
             }
         }
         else
         {
+            animator.SetBool("Walking", false);
             UpdateDeath();
         }
     }

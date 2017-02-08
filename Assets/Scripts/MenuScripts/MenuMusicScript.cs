@@ -1,5 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/// <summary>
+/// Fremdleistung
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
