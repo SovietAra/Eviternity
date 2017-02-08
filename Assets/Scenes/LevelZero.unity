@@ -5747,6 +5747,32 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1137707523628896, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
+      propertyPath: m_Name
+      value: MenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 224360199422697180, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 72.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244677202410098, guid: 2b1696b364f857a4aa3787214324fc59,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 242.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1402660296024768, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1679681612470828, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101632577999792, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
+      propertyPath: m_Name
+      value: MenuButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b1696b364f857a4aa3787214324fc59, type: 2}
   m_IsPrefabParent: 0
