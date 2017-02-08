@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/* 
+ * Purpose: Händelt die Character- und Waffenzuweisung
+ * Author: Gregor von Frankenberg
+ * Date: 8.2.2017
+ */
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using XInputDotNetPure;
 
 public class changeSceneToCreditsScript : MonoBehaviour
@@ -43,5 +46,4 @@ public class changeSceneToCreditsScript : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
-
 }

@@ -1,9 +1,8 @@
 ﻿/* 
  * Purpose: Händelt die Character- und Waffenzuweisung
  * Author: Gregor von Frankenberg / Marcel Croonenbroeck
- * Date: 2.2.2017
+ * Date: 8.2.2017
  */
-
 
 using Assets.Scripts;
 using System.Collections.Generic;
@@ -164,7 +163,7 @@ public class PlayerAssignmentScript : MonoBehaviour
     {
         gameStarted = true;
         changeMenu = true;
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene("IntroScene");
         //SceneManager.LoadScene("LevelZero");
     }
     #region player Funktionen
@@ -180,8 +179,7 @@ public class PlayerAssignmentScript : MonoBehaviour
             {
                 GamePadManager.Connect((int)index);
                 GlobalReferences.PlayerStates.Add(new PlayerState(index, state));
-
-                //TODO: Change menu
+                
                 if (index == PlayerIndex.One)
                 {
                     playerOneJoin.enabled = false;
@@ -224,8 +222,6 @@ public class PlayerAssignmentScript : MonoBehaviour
             {
                 if (playerAssignmentScreen.enabled == true)
                     GlobalReferences.PlayerStates[i] = new PlayerState(GlobalReferences.PlayerStates[i], state, !GlobalReferences.PlayerStates[i].Ready, GlobalReferences.PlayerStates[i].ClassId);
-                //TODO: Change menu
-
             }
 
             if ((state.DPad.Left == ButtonState.Pressed && prevState[playerIndex].DPad.Left == ButtonState.Released) || (state.ThumbSticks.Left.X <= -0.1 && prevState[playerIndex].ThumbSticks.Left.X >= -0.1))
@@ -239,7 +235,6 @@ public class PlayerAssignmentScript : MonoBehaviour
                     Debug.Log("Sprung auf Ende der List");
                     index[playerIndex] = 1;
                 }
-
                 ChangeImage(playerIndex, index[playerIndex], prevIndex[playerIndex]);
             }
 
