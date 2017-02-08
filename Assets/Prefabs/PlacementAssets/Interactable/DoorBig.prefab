@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 95145633540992992}
   - component: {fileID: 65421750904532996}
   - component: {fileID: 82864386228343522}
+  - component: {fileID: 65589802493760822}
+  - component: {fileID: 65106669500867820}
   m_Layer: 0
   m_Name: DoorBig
   m_TagString: Untagged
@@ -336,6 +338,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: 6a2973e53e292824db3ea764f6b17f53, type: 3}
+--- !u!65 &65106669500867820
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832846806453362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.183035, y: 3.7224555, z: 2.4434986}
+  m_Center: {x: 4.740683, y: 1.3612194, z: 0.14982745}
 --- !u!65 &65138194603494930
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -372,6 +386,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.8998165, y: 1.6950965, z: 8.088048}
   m_Center: {x: 2.0323434, y: -0.1366849, z: 4.04402}
+--- !u!65 &65589802493760822
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1832846806453362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7618393, y: 3.7224555, z: 2.4434986}
+  m_Center: {x: -4.7252064, y: 1.3612194, z: 0.14917848}
 --- !u!82 &82864386228343522
 AudioSource:
   m_ObjectHideFlags: 1

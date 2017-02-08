@@ -1113,8 +1113,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830940599666644}
-  m_LocalRotation: {x: -0, y: 0.43609315, z: -0, w: 0.89990157}
-  m_LocalPosition: {x: -166.07632, y: -12.883045, z: -250.33578}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -189.5, y: -12.883044, z: -252.9}
   m_LocalScale: {x: 1.5471276, y: 1.5471275, z: 1.5471274}
   m_Children:
   - {fileID: 224455381073300414}
@@ -1596,8 +1596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 180
-  maxHealth: 180
+  health: 90
+  maxHealth: 90
   groupDamage: 0.699999988079071
   isImmortal: 0
   DamageSound: {fileID: 0}
