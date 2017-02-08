@@ -1080,8 +1080,8 @@ MonoBehaviour:
   WeaponIcons:
   - {fileID: 21300014, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
   - {fileID: 21300016, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
-  - {fileID: 21300018, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
   - {fileID: 21300020, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
+  - {fileID: 21300018, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
   AbilityIcons:
   - {fileID: 21300028, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
   - {fileID: 21300012, guid: 0c46f3d539161d44aa8df8f69a222738, type: 3}
