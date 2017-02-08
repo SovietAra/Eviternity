@@ -172,8 +172,6 @@ public class UIScript : MonoBehaviour
         bossDamageable = boss.GetComponent<DamageAbleObject>();
         maxBossHealth = bossDamageable.MaxHealth;
         bossHealthFill = BossHealthbar.GetComponent<Image>();
-        Time.timeScale = 1;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
     }
 
     // Update is called once per frame
