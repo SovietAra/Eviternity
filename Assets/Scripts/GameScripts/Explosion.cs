@@ -88,6 +88,8 @@ public class Explosion : MonoBehaviour
                 sphereExplosion.radius = radius;
         }
         effect = GetComponent<ParticleSystem>();
+        if (effect == null)
+            effect = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -114,10 +116,12 @@ public class Explosion : MonoBehaviour
             }
             else
             {
-                if(effect != null && !effect.isPlaying)
+                if (effect != null && !effect.isPlaying)
                 {
                     Destroy(gameObject);
                 }
+                else if (effect == null)
+                    Destroy(gameObject);
             }
         }
         else
