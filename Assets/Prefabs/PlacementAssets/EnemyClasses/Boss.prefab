@@ -6041,7 +6041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2500
   maxHealth: 2500
-  groupDamage: 0.699999988079071
+  groupDamage: 0.800000011920929
   isImmortal: 0
   DamageSound: {fileID: 0}
   DeathSound: {fileID: 0}
@@ -6635,7 +6635,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1371446977708944}
   m_Enabled: 1
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 7
   m_Acceleration: 500
   avoidancePriority: 50
   m_AngularSpeed: 5

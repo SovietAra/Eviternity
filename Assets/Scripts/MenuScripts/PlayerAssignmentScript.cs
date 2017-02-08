@@ -62,6 +62,11 @@ public class PlayerAssignmentScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if(GlobalReferences.PlayerStates != null)
+            GlobalReferences.PlayerStates.Clear();
+
+        GamePadManager.DisconnectAll();
+
         #region GameObjects getter
         playerAssignmentScreen = playerAssignmentScreen.GetComponent<Canvas>();
 

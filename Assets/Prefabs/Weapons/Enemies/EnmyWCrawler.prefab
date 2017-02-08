@@ -61,13 +61,18 @@ MonoBehaviour:
   heatPerShot: 0.1
   heatReductionPerSecond: 0.1
   heatReductionDelay: 0
-  AnimationDuration: 3
+  AnimationDuration: 1
   smoothSpray: 0
   sprayValueSpeed: 2
+  spawnDelay: 0
+  heatDelayType: 0
   AllowShellRelaod: 0
   UseAmmo: 0
   AutoReload: 1
   ProduceHeat: 0
   HeatCooldown: 0
+  OverwriteSound: 1
+  FireSound: {fileID: 0}
+  ReloadSound: {fileID: 0}
   SecondaryWeapon: {fileID: 0}
   Projectile: {fileID: 1184549161438930, guid: 3fd2858bb9f57bc4aa56806ab492c5d9, type: 2}

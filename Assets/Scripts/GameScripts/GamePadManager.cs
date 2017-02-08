@@ -41,8 +41,9 @@ namespace Assets.Scripts
             }
         }
 
-        public static PlayerIndex GetPlayerIndex()
+        public static bool GetPlayerIndex(out PlayerIndex playerIndex)
         {
+            playerIndex = PlayerIndex.One;
             for (int i = 0; i < 4; i++)
             {
                 if (!IsInUse(i))
@@ -52,12 +53,13 @@ namespace Assets.Scripts
                     if (testState.IsConnected)
                     {
                         Connect(i);
-                        return testPlayerIndex;
+                        usedIndices[i] = true;
+                        playerIndex = testPlayerIndex;
+                        return true;
                     }
                 }
             }
-
-            throw new Exception("Free GamePad not found!");
+            return false;
         }
 
         public static PlayerIndex[] GetFreeControllers()
@@ -77,6 +79,14 @@ namespace Assets.Scripts
             }
 
             return availibleControllers.ToArray();
+        }
+
+        public static void DisconnectAll()
+        {
+            Disconnect(PlayerIndex.One);
+            Disconnect(PlayerIndex.Two);
+            Disconnect(PlayerIndex.Three);
+            Disconnect(PlayerIndex.Four);
         }
     }
 }

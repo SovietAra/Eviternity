@@ -170,7 +170,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
+  groupDamage: 0.699999988079071
   isImmortal: 0
+  DamageSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!114 &114668700217433446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,7 +188,7 @@ MonoBehaviour:
   triggerByCollision: 1
   triggerByRange: 1
   range: 2.5
-  damage: 18
+  damage: 120
   damageRange: 5
   plane: {fileID: 0}
   explosion: {fileID: 1318014844589646, guid: 8edc72a6ca1b73843b955bc2b5a5e307, type: 2}
