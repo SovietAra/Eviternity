@@ -30,4 +30,12 @@ public struct PlayerState
         Ready = ready;
         ClassId = classId;
     }
+
+    public PlayerState(PlayerIndex index, PlayerState state)
+    {
+        Index = index;
+        PrevState = state.PrevState;
+        Ready = state.Ready;
+        ClassId = state.ClassId;
+    }
 }

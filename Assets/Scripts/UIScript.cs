@@ -182,10 +182,13 @@ public class UIScript : MonoBehaviour
 
         if (CurrentPlayers != null)
         {
-            foreach (GameObject player in CurrentPlayers)
+            if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Play)
             {
-                if (player != null)
-                    UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>(), player);
+                foreach (GameObject player in CurrentPlayers)
+                {
+                    if (player != null)
+                        UpdateHealth(player.GetComponent<Player>(), player.GetComponent<DamageAbleObject>(), player);
+                }
             }
 
             if (UICanvas.activeInHierarchy == false)
@@ -595,7 +598,7 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    private void RemoveUI(PlayerIndex index)
+    public void RemoveUI(PlayerIndex index)
     {
         switch (index)
         {
@@ -696,9 +699,8 @@ public class UIScript : MonoBehaviour
         };
     }
 
-    private void CreateUI(PlayerIndex index, Transform UICanvas)
+    public void CreateUI(PlayerIndex index, Transform UICanvas)
     {
-
         switch (index)
         {
             case PlayerIndex.One:

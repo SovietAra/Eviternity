@@ -120,12 +120,22 @@ public class GameInspector : MonoBehaviour
             Time.timeScale = 1;
             PauseMenuCanvas.SetActive(false);
         }
-        else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause)
+        else if (GlobalReferences.CurrentGameState == GlobalReferences.GameState.Pause || GlobalReferences.CurrentGameState == GlobalReferences.GameState.ConnectionLost)
         {
             Time.timeScale = 0;
             if (PauseMenuCanvas.activeInHierarchy == false)
             {
                 PauseMenuCanvas.SetActive(true);
+                if(GlobalReferences.CurrentGameState == GlobalReferences.GameState.ConnectionLost)
+                {
+                    foreach (Transform item in PauseMenuCanvas.transform)
+                    {
+                        if(item.name == "ConnectionLost")
+                        {
+                            item.gameObject.SetActive(true);
+                        }
+                    }
+                }
             }
             FreezeAllPlayers();
         }
@@ -133,10 +143,20 @@ public class GameInspector : MonoBehaviour
 
     public void ResumeGame()
     {
-        Win = false;
-        Defeat = false;
-        GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
-        UnfreezeAllPlayers();
+        if (CheckConnectionState())
+        {
+            Win = false;
+            Defeat = false;
+            GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
+            foreach (Transform item in PauseMenuCanvas.transform)
+            {
+                if (item.name == "ConnectionLost")
+                {
+                    item.gameObject.SetActive(true);
+                }
+            }
+            UnfreezeAllPlayers();
+        }
     }
 
     public void CreditsScreen()
@@ -176,6 +196,20 @@ public class GameInspector : MonoBehaviour
         GlobalReferences.CurrentGameState = GlobalReferences.GameState.Play;
         PlayerAssignmentScript.gameStarted = false;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private bool CheckConnectionState()
+    {
+        for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
+        {
+            GamePadState state = GamePad.GetState(GlobalReferences.PlayerStates[i].Index);
+            if (!state.IsConnected)
+            {
+                GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;
+                return false;
+            }
+        }
+        return true;
     }
 
     private void SpawnPlayers(bool useTeamHealth = true)

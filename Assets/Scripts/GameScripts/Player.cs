@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     private float speed = 1f;
     
     [SerializeField]
-    [Range(1, 100)]
+    [Range(1, 500)]
     private float regenerationPerSecond = 5f;
 
     [SerializeField]
@@ -134,7 +134,13 @@ public class Player : MonoBehaviour
         get { return isDead; }
     }
 
-
+    public bool HasPlayerIndex
+    {
+        get
+        {
+            return hasPlayerIndex;
+        }
+    }
     #endregion
 
     #region UnityMethodes
@@ -317,6 +323,42 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!hasPlayerIndex)
+        {
+            PlayerIndex[] freeControllers = GamePadManager.GetFreeControllers();
+            for (int i = 0; i < freeControllers.Length; i++)
+            {
+                if (freeControllers[i] != index)
+                {
+                    for (int j = 0; j < GlobalReferences.PlayerStates.Count; j++)
+                    {
+                        if (GlobalReferences.PlayerStates[i].Index == freeControllers[i])
+                            return;
+                    }
+
+                    for (int l = 0; l < GlobalReferences.PlayerStates.Count; l++)
+                    {
+                        if(GlobalReferences.PlayerStates[l].Index == index)
+                        {
+                            index = freeControllers[i];
+                            GlobalReferences.PlayerStates[l] = new PlayerState(index, GlobalReferences.PlayerStates[i]);
+                            hasPlayerIndex = true;
+                            GamePadManager.Connect((int)index);
+                            uiScript.CreateUI(index, uiScript.UICanvas.transform);
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    hasPlayerIndex = true;
+                    GamePadManager.Connect((int)index);
+                    uiScript.CreateUI(index, uiScript.UICanvas.transform);
+
+                }
+            }
+        }
+
         if (hasPlayerIndex)
         {
             GamePadState state = GamePad.GetState(Index);
@@ -343,12 +385,14 @@ public class Player : MonoBehaviour
                 prevState = state;
             }
             else
-            {
+            { 
+                uiScript.RemoveUI(index);
+                hasPlayerIndex = false;
                 GamePadManager.Disconnect(Index);
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.ConnectionLost;
             }
         }
-
+        
         stepTimer += Time.deltaTime;
     }
 
@@ -426,7 +470,7 @@ public class Player : MonoBehaviour
             executed = TryAbillity();
         }
 
-        if ((state.Buttons.LeftStick == ButtonState.Pressed || state.Buttons.A == ButtonState.Pressed) && !executed)
+        if (((state.Buttons.LeftStick == ButtonState.Pressed || (state.Buttons.A == ButtonState.Pressed && prevState.Buttons.A == ButtonState.Released))) && !executed)
         {
             executed = TryDash();
         }
