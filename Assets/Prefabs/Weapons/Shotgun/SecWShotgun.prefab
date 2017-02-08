@@ -137,14 +137,16 @@ MonoBehaviour:
   maxAmmoPerClip: 1000
   reloadTimePerShell: 10
   reloadTimePerClip: 10
-  maxHeat: 80
+  maxHeat: 35
   heat: 0
-  heatPerShot: 5
-  heatReductionPerSecond: 10
+  heatPerShot: 1
+  heatReductionPerSecond: 7
   heatReductionDelay: 0.2
   AnimationDuration: 0
   smoothSpray: 0
   sprayValueSpeed: 2
+  spawnDelay: 0
+  heatDelayType: 0
   AllowShellRelaod: 0
   UseAmmo: 0
   AutoReload: 1

@@ -132,25 +132,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e433b3e64c77734469234be49f6da008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 3.5
   maxSprayAngle: 20
   maxAmmoPerClip: 100
   reloadTimePerShell: 0.75
   reloadTimePerClip: 2
-  maxHeat: 100
+  maxHeat: 350
   heat: 0
-  heatPerShot: 100
+  heatPerShot: 350
   heatReductionPerSecond: 100
   heatReductionDelay: 0
-  AnimationDuration: 0
+  AnimationDuration: 49.8
   smoothSpray: 0
   sprayValueSpeed: 2
   spawnDelay: 0
+  heatDelayType: 0
   AllowShellRelaod: 0
   UseAmmo: 0
-  AutoReload: 1
+  AutoReload: 0
   ProduceHeat: 1
-  HeatCooldown: 0
+  HeatCooldown: 1
   OverwriteSound: 1
   FireSound: {fileID: 8300000, guid: f6a60c47ac7bd354e9c674843409309d, type: 3}
   ReloadSound: {fileID: 0}

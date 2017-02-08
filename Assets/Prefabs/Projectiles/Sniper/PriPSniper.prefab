@@ -406,7 +406,7 @@ MonoBehaviour:
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
-  lifeTime: 10
+  lifeTime: 7
   startDetonationTimer: 0
   DestroyOnCollision: 1
   CollideWithOtherProjectiles: 0

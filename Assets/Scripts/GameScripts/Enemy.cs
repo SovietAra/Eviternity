@@ -1,6 +1,6 @@
 ﻿/* 
  * Purpose: Defining the Enemies
- * Author: Fabian Subat
+ * Author: Fabian Subat & Lukas Bosniak
  * Date: 10.01.2016 - TBA
  */
 using UnityEngine;

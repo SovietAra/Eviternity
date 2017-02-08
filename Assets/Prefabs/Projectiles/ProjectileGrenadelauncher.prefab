@@ -217,8 +217,8 @@ MonoBehaviour:
   speed: 10.7
   damage: 100
   damageRange: 5
-  detonationTimer: 0.6
-  invertGravityFactor: 2.46
+  detonationTimer: 3
+  invertGravityFactor: 2.5
   lifeTime: 10
   startDetonationTimer: 0
   DestroyOnCollision: 1

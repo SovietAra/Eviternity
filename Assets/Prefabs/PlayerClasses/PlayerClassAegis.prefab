@@ -1989,8 +1989,8 @@ MonoBehaviour:
   healingAnim: {fileID: 95140240846345446}
   animator: {fileID: 95995750137292412}
   dashTrail: {fileID: 1966069055324844}
-  speed: 8
-  regenerationPerSecond: 90
+  speed: 9
+  regenerationPerSecond: 100
   reviveDelay: 2
   maxImmortality: 2
   Freeze: 0
