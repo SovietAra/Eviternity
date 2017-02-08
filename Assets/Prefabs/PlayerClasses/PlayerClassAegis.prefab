@@ -1990,7 +1990,7 @@ MonoBehaviour:
   animator: {fileID: 95995750137292412}
   dashTrail: {fileID: 1966069055324844}
   speed: 8
-  regenerationPerSecond: 17
+  regenerationPerSecond: 90
   reviveDelay: 2
   maxImmortality: 2
   Freeze: 0

@@ -62,16 +62,17 @@ MonoBehaviour:
   energyRequiredPerSeconds: 10
   energyRegenerationPerSecond: 4
   energyRequiredOnce: 0
-  regnerationDelay: 0.1
+  regnerationDelay: 1
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 0
   spawnOncePerActivation: 0
+  spawnDelay: 0
   destroyOnAbort: 0
   spawnObject: {fileID: 0}
   spawnForwardDistance: 1
   SpawnTranslation: {x: 0, y: 0, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
-  AbilityValue: 2
+  AbilityValue: 0.1
   parentObject: 1
   MultiplyRotation: 0

@@ -66,6 +66,7 @@ MonoBehaviour:
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 1
   spawnOncePerActivation: 1
+  spawnDelay: 0
   destroyOnAbort: 0
   spawnObject: {fileID: 1117652589295750, guid: c2d89e8e1cc3c5e4bb0b17893b1d08bc,
     type: 2}

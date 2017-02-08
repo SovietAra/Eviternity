@@ -32,7 +32,7 @@ public class Checkpoint : MonoBehaviour
 
             ChangeColor();
 
-            Player.TeamHealth += TeamHealthRestore;
+            Player.TeamHealth += (gameInspector.MaxTeamHealth - Player.TeamHealth) * TeamHealthRestore;
             if (Player.TeamHealth > gameInspector.MaxTeamHealth)
             {
                 Player.TeamHealth = gameInspector.MaxTeamHealth;
