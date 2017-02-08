@@ -62,7 +62,7 @@ MonoBehaviour:
   energyRequiredPerSeconds: 10
   energyRegenerationPerSecond: 4
   energyRequiredOnce: 0
-  regnerationDelay: 1
+  regnerationDelay: 0.1
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 0
   spawnOncePerActivation: 0

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114374971844098084}
   - component: {fileID: 114422014259761280}
   - component: {fileID: 54992739523861658}
+  - component: {fileID: 108271436879762124}
   m_Layer: 0
   m_Name: ExplosiveTrap
   m_TagString: Untagged
@@ -145,6 +146,40 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &108271436879762124
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279671234857354}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 2
+  m_Color: {r: 0.5441177, g: 0.0060457513, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114374971844098084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,7 +194,7 @@ MonoBehaviour:
   triggerByCollision: 1
   triggerByRange: 0
   range: 2.5
-  damage: 10
+  damage: 2
   damageRange: 5
   plane: {fileID: 1157527102328806, guid: 6edcab201dfa45247bea9417c1d4abf4, type: 2}
   explosion: {fileID: 1318014844589646, guid: 8edc72a6ca1b73843b955bc2b5a5e307, type: 2}
@@ -174,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  maxHealth: 1
+  health: 2
+  maxHealth: 2
   groupDamage: 0.699999988079071
   isImmortal: 0
   DamageSound: {fileID: 0}
