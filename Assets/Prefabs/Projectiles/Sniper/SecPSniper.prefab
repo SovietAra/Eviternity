@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 100
+  damage: 95
   damageRange: 0
   detonationTimer: 0.1
   invertGravityFactor: 0.01
