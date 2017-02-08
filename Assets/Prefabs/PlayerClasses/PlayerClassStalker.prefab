@@ -2175,7 +2175,7 @@ MonoBehaviour:
     type: 2}
   DashAbility: {fileID: 1397790803564228, guid: d497b7f07f642344e9ef8a90c5ccb4f1,
     type: 2}
-  HealDeniedSound: {fileID: 0}
+  HealDeniedSound: {fileID: 8300000, guid: 05f4d29b7a5d83443913b7ade6b62a4b, type: 3}
   OnIce: 0
   AudioClips:
   - {fileID: 8300000, guid: ddd0c7d916af8f44b9f501b3159ca57e, type: 3}
