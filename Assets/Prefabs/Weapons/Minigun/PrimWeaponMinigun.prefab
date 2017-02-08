@@ -132,16 +132,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e433b3e64c77734469234be49f6da008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.1
+  fireRate: 0.05
   maxSprayAngle: 20
   maxAmmoPerClip: 100
   reloadTimePerShell: 0.75
   reloadTimePerClip: 2
-  maxHeat: 40
+  maxHeat: 20
   heat: 0
-  heatPerShot: 0.5
-  heatReductionPerSecond: 10
-  heatReductionDelay: 1
+  heatPerShot: 0.4
+  heatReductionPerSecond: 5
+  heatReductionDelay: 2
   AnimationDuration: 0
   smoothSpray: 0
   sprayValueSpeed: 2

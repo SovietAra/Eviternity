@@ -1561,9 +1561,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 120
+  m_MaxValue: 80
   m_WholeNumbers: 0
-  m_Value: 120
+  m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1689,8 +1689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
-  maxHealth: 120
+  health: 80
+  maxHealth: 80
   groupDamage: 0.800000011920929
   isImmortal: 0
   DamageSound: {fileID: 0}

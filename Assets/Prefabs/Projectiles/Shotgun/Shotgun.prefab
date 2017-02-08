@@ -3004,7 +3004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3034,7 +3034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3097,7 +3097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3138,8 +3138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 1
+  speed: 30
+  damage: 10
   damageRange: 0
   detonationTimer: 2
   invertGravityFactor: 0.5
@@ -3168,7 +3168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3198,7 +3198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3239,7 +3239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3280,7 +3280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3310,7 +3310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05953b4a59ecb764daff8e2c5f077caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 30
   damage: 10
   damageRange: 0
   detonationTimer: 0.1
@@ -3372,7 +3372,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135492716888236456
 SphereCollider:
@@ -3384,7 +3384,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135525678489932086
 SphereCollider:
@@ -3396,7 +3396,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135559711209439976
 SphereCollider:
@@ -3408,7 +3408,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135614301060353300
 SphereCollider:
@@ -3420,7 +3420,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135749000488464656
 SphereCollider:
@@ -3432,7 +3432,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135803235514695272
 SphereCollider:
@@ -3444,7 +3444,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135957001782495658
 SphereCollider:
@@ -3456,7 +3456,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198070696356140230
 ParticleSystem:

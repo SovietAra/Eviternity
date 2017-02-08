@@ -1637,7 +1637,7 @@ MonoBehaviour:
   damageReduction: 1
   UseDamageReduction: 0
   teamDamageMultiplicator: 0
-  damage: 50
+  damage: 100
   StatusEffect: {fileID: 0}
   ExplosionSound: {fileID: 0}
 --- !u!135 &135410784366319340

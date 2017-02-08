@@ -133,13 +133,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.1
-  maxSprayAngle: 5
+  maxSprayAngle: 1
   maxAmmoPerClip: 1000
   reloadTimePerShell: 10
   reloadTimePerClip: 10
-  maxHeat: 40
+  maxHeat: 20
   heat: 0
-  heatPerShot: 40
+  heatPerShot: 20
   heatReductionPerSecond: 10
   heatReductionDelay: 0
   AnimationDuration: 0

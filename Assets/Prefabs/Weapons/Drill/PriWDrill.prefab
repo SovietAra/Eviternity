@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e433b3e64c77734469234be49f6da008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 0.6
   maxSprayAngle: 15
   maxAmmoPerClip: 1
   reloadTimePerShell: 1

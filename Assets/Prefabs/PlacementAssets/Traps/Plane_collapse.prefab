@@ -2107,7 +2107,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 0.01, z: 10}
+  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114320804875513102
 MonoBehaviour:
@@ -2121,18 +2121,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  damage: 0.1
+  damage: 10
   damageRange: 0
   detonationTimer: 2
   invertGravityFactor: 0.5
-  lifeTime: 10
+  lifeTime: 8
+  startDetonationTimer: 0
   DestroyOnCollision: 0
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
+  SpawnExplosion: 0
+  OverwriteExplosionValues: 0
+  AllowVelocityIncreasing: 0
   Explosion: {fileID: 0}
   StatusEffect: {fileID: 1678993688747060, guid: 51dca84659034c046a5c27789ddf14ae,
     type: 2}
+  ImpactSound: {fileID: 0}
   TeamDamageMultiplicator: 0.75
   InvertGravity: 0
 --- !u!114 &114863321705256342

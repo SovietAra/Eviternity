@@ -57,11 +57,11 @@ MonoBehaviour:
   ReachedMaxEnergySound: {fileID: 0}
   activeOnKeyPressed: 0
   abortAble: 1
-  maxEnergy: 120
-  energy: 120
+  maxEnergy: 100
+  energy: 10
   energyRequiredPerSeconds: 40
-  energyRegenerationPerSecond: 10
-  energyRequiredOnce: 120
+  energyRegenerationPerSecond: 12
+  energyRequiredOnce: 100
   regnerationDelay: 0.1
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 1
