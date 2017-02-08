@@ -364,6 +364,9 @@ public class Boss : MonoBehaviour
     {
         int index = -1;
         float damage = -1;
+        if (playerScripts.Count <= 0)
+            GetPlayers();
+
         for (int i = 0; i < playerScripts.Count; i++)
         {
             if (playerScripts[i] == null)
