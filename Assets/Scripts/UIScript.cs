@@ -314,9 +314,9 @@ public class UIScript : MonoBehaviour
                     }
 
                     AbilityFill[2].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[6].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[10].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[14].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[6].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[10].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[14].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate == null)
                     {
@@ -355,9 +355,9 @@ public class UIScript : MonoBehaviour
                     }
 
                     AbilityFill[18].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[22].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[26].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[30].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[22].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[26].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[30].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate2 == null)
                     {
@@ -395,9 +395,9 @@ public class UIScript : MonoBehaviour
                     }
 
                     AbilityFill[34].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[38].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[42].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[46].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[38].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[42].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[46].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate3 == null)
                     {
@@ -435,9 +435,9 @@ public class UIScript : MonoBehaviour
                     }
 
                     AbilityFill[50].fillAmount = playerScript.GetHeat(3) / playerScript.GetMaxHeat(3);
-                    AbilityFill[54].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy;
-                    AbilityFill[58].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy;
-                    AbilityFill[62].fillAmount = (playerScript.MaxEnergy - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy;
+                    AbilityFill[54].fillAmount = (playerScript.MaxEnergy(1) - playerScript.AbilityEnergy(1)) / playerScript.MaxEnergy(1);
+                    AbilityFill[58].fillAmount = (playerScript.MaxEnergy(2) - playerScript.AbilityEnergy(2)) / playerScript.MaxEnergy(2);
+                    AbilityFill[62].fillAmount = (playerScript.MaxEnergy(3) - playerScript.AbilityEnergy(3)) / playerScript.MaxEnergy(3);
 
                     if (Indicate4 == null)
                     {
