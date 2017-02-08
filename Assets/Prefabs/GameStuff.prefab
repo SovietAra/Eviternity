@@ -1162,6 +1162,10 @@ MonoBehaviour:
     type: 2}
   BossHealthbar_bg: {fileID: 1704121384681586}
   BossHealthbar: {fileID: 1584720767032856}
+  P1Buttons: {fileID: 1079477234070148, guid: 4670b1025093f984286b2a8a70696f04, type: 2}
+  P2Buttons: {fileID: 1084139737678760, guid: 8e2718fdcdfeea340883eed4481489a4, type: 2}
+  P3Buttons: {fileID: 1912894174143600, guid: 34fb8056354694f478810d095063e453, type: 2}
+  P4Buttons: {fileID: 1879365833067436, guid: 67400a305c15d9142880908638e2909c, type: 2}
 --- !u!114 &114013116332577050
 MonoBehaviour:
   m_ObjectHideFlags: 1
