@@ -308,7 +308,7 @@ public class Player : MonoBehaviour
         {
             if(stepTimer >= stepCooldown)
             {
-                audioSources[UnityEngine.Random.Range(3,22)].Play();
+                audioSources[UnityEngine.Random.Range(3,17)].Play();
                 stepTimer = 0;
             }
         }
