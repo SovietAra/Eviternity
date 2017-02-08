@@ -59,13 +59,14 @@ MonoBehaviour:
   abortAble: 1
   maxEnergy: 100
   energy: 100
-  energyRequiredPerSeconds: 5
-  energyRegenerationPerSecond: 20
+  energyRequiredPerSeconds: 20
+  energyRegenerationPerSecond: 5
   energyRequiredOnce: 0
   regnerationDelay: 1.38
   allowActivationWithPartialEnergy: 0
   spawnObjectOnActivation: 1
   spawnOncePerActivation: 1
+  spawnDelay: 0
   destroyOnAbort: 1
   spawnObject: {fileID: 1747795901446828, guid: 0d20e7316dd2aef49a2df52a2cdd03b5,
     type: 2}

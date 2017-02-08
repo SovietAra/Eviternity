@@ -294,7 +294,7 @@ MonoBehaviour:
   damageReduction: 1
   UseDamageReduction: 1
   teamDamageMultiplicator: 1
-  damage: 20
+  damage: 100
   StatusEffect: {fileID: 0}
   ExplosionSound: {fileID: 8300000, guid: d1a065d53f8694c4496966d8aeffb1bd, type: 3}
 --- !u!135 &135978038496077504
