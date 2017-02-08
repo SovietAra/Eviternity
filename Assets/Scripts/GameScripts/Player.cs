@@ -1008,8 +1008,12 @@ public class Player : MonoBehaviour
 
     public bool GetAmmo()
     {
-        isReloading = secondaryWeapon.Reloading;
-        return isReloading;
+        if (SecondaryWeapon != null)
+        {
+            isReloading = secondaryWeapon.Reloading;
+            return isReloading;
+        }
+        return false;
     }
 
     public float GetHeat(int wpnNumber)
