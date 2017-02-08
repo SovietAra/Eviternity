@@ -37,6 +37,9 @@ public class Enemy : MonoBehaviour
     [Range(0, 30f)]
     private float deathDelay = 0f;
 
+    [SerializeField]
+    private GameObject deathExplosion;
+
     private enum enemyTypes
     {
         Crawler = 1,
@@ -163,6 +166,10 @@ public class Enemy : MonoBehaviour
             elapsedDeathTime += Time.deltaTime;
             if(elapsedDeathTime > deathDelay)
             {
+                if (deathExplosion != null)
+                {
+                    GameObject explosion = Instantiate(deathExplosion, transform.position, transform.rotation);
+                }
                 Destroy(gameObject);
                 delayDeath = false;
                 OnEnemyDeath.Invoke();
@@ -278,6 +285,10 @@ public class Enemy : MonoBehaviour
     {
         if (deathDelay <= 0)
         {
+            if (deathExplosion != null)
+            {
+                GameObject explosion = Instantiate(deathExplosion,transform.position,transform.rotation);
+            }
             Destroy(gameObject);
         }
         else

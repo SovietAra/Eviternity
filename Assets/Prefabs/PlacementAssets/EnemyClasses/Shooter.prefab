@@ -1113,8 +1113,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1830940599666644}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -202.22755, y: -12.883045, z: -250.48302}
+  m_LocalRotation: {x: -0, y: 0.43609315, z: -0, w: 0.89990157}
+  m_LocalPosition: {x: -166.07632, y: -12.883045, z: -250.33578}
   m_LocalScale: {x: 1.5471276, y: 1.5471275, z: 1.5471274}
   m_Children:
   - {fileID: 224455381073300414}
@@ -1672,6 +1672,9 @@ MonoBehaviour:
   defaultSpeed: 8
   attackRange: 9
   viewRange: 13
+  deathDelay: 0
+  deathExplosion: {fileID: 1000013063239222, guid: 843695ef5e6d39f458b99e399ccc09b1,
+    type: 2}
   enemyType: 1
   switchDelay: 32.3
   squadID: 4
