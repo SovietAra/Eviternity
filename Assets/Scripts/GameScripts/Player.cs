@@ -58,6 +58,8 @@ public class Player : MonoBehaviour
     private Vector3 meshBounds;
 
     private float stepTimer;
+    private AudioSource deniedSource;
+    
 
     private bool isReloading;
 
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
     public GameObject Ability;
     public GameObject SecondaryAbility;
     public GameObject DashAbility;
-
+    public AudioClip HealDeniedSound;
     [HideInInspector]
     public bool OnIce;
     
@@ -170,6 +172,7 @@ public class Player : MonoBehaviour
             audioSources[tmp].clip = AudioClips[tmp];
         }
 
+        deniedSource = gameObject.AddComponent<AudioSource>();
         //define names for sounds
         var Spawn_Sound = audioSources[0];
 
@@ -308,7 +311,7 @@ public class Player : MonoBehaviour
         {
             if(stepTimer >= stepCooldown)
             {
-                audioSources[UnityEngine.Random.Range(3,22)].Play();
+                audioSources[UnityEngine.Random.Range(3,17)].Play();
                 stepTimer = 0;
             }
         }
@@ -643,6 +646,15 @@ public class Player : MonoBehaviour
 
     private bool TryHeal()
     {
+        if(Player.TeamHealth <= 0)
+        {
+            if(deniedSource != null && HealDeniedSound != null)
+            {
+                deniedSource.clip = HealDeniedSound;
+                deniedSource.Play();
+            }
+        }
+
         if (healthContainer.Health < healthContainer.MaxHealth)
         {
             uiScript.ActivateTeamBar();
