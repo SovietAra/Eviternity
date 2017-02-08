@@ -17,7 +17,7 @@ public class PlayerAssignmentScript : MonoBehaviour
     #region GameObjects
     public static bool gameStarted;
     public Canvas playerAssignmentScreen;
-
+    
     public int[] playerChoice;
 
     public Text playerOneJoin;
