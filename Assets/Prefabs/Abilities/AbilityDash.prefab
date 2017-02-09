@@ -60,7 +60,7 @@ MonoBehaviour:
   maxEnergy: 100
   energy: 100
   energyRequiredPerSeconds: 300
-  energyRegenerationPerSecond: 20
+  energyRegenerationPerSecond: 25
   energyRequiredOnce: 0
   regnerationDelay: 0.1
   allowActivationWithPartialEnergy: 0
