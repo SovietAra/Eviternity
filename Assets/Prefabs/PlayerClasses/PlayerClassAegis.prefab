@@ -2040,33 +2040,32 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 8300000, guid: 11b7f93497e6f1f42b82244425983b74, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  StepVolume: 0.1
+  SoundVolumes:
+  - 1
+  - 1
+  - 1
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 0.6
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   stepCooldown: 0.5
 --- !u!114 &114677258121009112
 MonoBehaviour:
