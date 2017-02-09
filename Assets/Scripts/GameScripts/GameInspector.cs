@@ -235,7 +235,7 @@ public class GameInspector : MonoBehaviour
                     PlayerPrefab = PlayerPrefabAegis;
                 }
 
-                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 1, 0));
+                GameObject gobj = SpawnPlayer(GlobalReferences.PlayerStates[i], Player.LastCheckpointPosition + new Vector3(i * 2, 3, 0));
                 if (gobj != null && useTeamHealth)
                 {
                     DamageAbleObject healthContainer = gobj.GetComponent<DamageAbleObject>();
@@ -297,15 +297,15 @@ public class GameInspector : MonoBehaviour
                             if (cam != null)
                             {
                                 if(GlobalReferences.PlayerStates.Count >= 3)
-                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 1, 0));
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(0, 3, 0));
                                 else
-                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 1, 1));
+                                    SpawnPlayer(newPlayerState, cam.transform.position + new Vector3(1, 3, 1));
                             }
                             else
-                                SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 1, 0));
+                                SpawnPlayer(newPlayerState, Player.LastCheckpointPosition + new Vector3(0, 3, 0));
                         }
                         else
-                            SpawnPlayer(newPlayerState, new Vector3(0, 1, 0));
+                            SpawnPlayer(newPlayerState, new Vector3(0, 3, 0));
                     }
                 }
             }

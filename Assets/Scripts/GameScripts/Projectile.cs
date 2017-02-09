@@ -32,6 +32,7 @@ public class Projectile : MonoBehaviour
     private bool startDetonationTimer = false;
 
     public bool DestroyOnCollision = true;
+    public bool DestroyOnCollisionWithWall = false;
     public bool CollideWithOtherProjectiles = false;
 
     public bool DoTeamDamage = false;
@@ -131,6 +132,14 @@ public class Projectile : MonoBehaviour
             }
             else
             {
+                if (DestroyOnCollisionWithWall)
+                {
+                    if (other.CompareTag("Untagged"))
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+
                 if (!startDetonationTimer)
                 {
                     startDetonationTimer = true;
