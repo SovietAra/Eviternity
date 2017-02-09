@@ -121,8 +121,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4228880751935716}
-  - component: {fileID: 135410784366319340}
   - component: {fileID: 114928045296614912}
+  - component: {fileID: 136967461440960076}
   m_Layer: 0
   m_Name: BossExplosion
   m_TagString: Untagged
@@ -1056,7 +1056,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092858050321016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -82.99448, y: -0.8161659, z: -122.95784}
+  m_LocalPosition: {x: -7.487835, y: -0.81617546, z: -5.14859}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4884686043390582}
@@ -1640,8 +1640,8 @@ MonoBehaviour:
   damage: 100
   StatusEffect: {fileID: 0}
   ExplosionSound: {fileID: 0}
---- !u!135 &135410784366319340
-SphereCollider:
+--- !u!136 &136967461440960076
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -1649,8 +1649,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 10
+  m_Height: 0
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198035285964426326
 ParticleSystem:
