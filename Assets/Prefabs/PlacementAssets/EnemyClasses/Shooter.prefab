@@ -1596,8 +1596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a67603b865994183abdbd361282d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 65
-  maxHealth: 65
+  health: 45
+  maxHealth: 45
   groupDamage: 0.800000011920929
   isImmortal: 0
   DamageSound: {fileID: 0}
@@ -1677,7 +1677,7 @@ MonoBehaviour:
     type: 2}
   enemyType: 1
   switchDelay: 1
-  squadID: 4
+  squadID: 3
   HealthSlider: {fileID: 114212006709566350}
   freeze: 0
   PrimaryWeapon: {fileID: 1302081713190986, guid: cab8c03062427734482b2f7578a96ccb,
