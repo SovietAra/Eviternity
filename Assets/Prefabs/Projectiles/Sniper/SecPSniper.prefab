@@ -398,6 +398,7 @@ MonoBehaviour:
   lifeTime: 7
   startDetonationTimer: 0
   DestroyOnCollision: 0
+  DestroyOnCollisionWithWall: 1
   CollideWithOtherProjectiles: 0
   DoTeamDamage: 0
   DoAOETeamDamage: 0
