@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour
     private AudioSource source;
 
     [SerializeField]
-    [Range(0, 10000)]
+    [Range(0, 1)]
     private float TeamHealthRestore = 100;
 
     
