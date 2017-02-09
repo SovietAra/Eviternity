@@ -2060,7 +2060,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  StepVolume: 0.2
+  StepVolume: 0.1
   stepCooldown: 0.5
 --- !u!114 &114677258121009112
 MonoBehaviour:

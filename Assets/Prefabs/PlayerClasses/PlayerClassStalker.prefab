@@ -2142,7 +2142,7 @@ MonoBehaviour:
   maxHealth: 350
   groupDamage: 0.699999988079071
   isImmortal: 0
-  DamageSound: {fileID: 0}
+  DamageSound: {fileID: 8300000, guid: 2d7111e17b242a347b69107783644020, type: 3}
   DeathSound: {fileID: 0}
 --- !u!114 &114584673856983150
 MonoBehaviour:
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  StepVolume: 0.4
+  StepVolume: 0.1
   stepCooldown: 0.5
 --- !u!136 &136804792390595418
 CapsuleCollider:
