@@ -71,7 +71,7 @@ MonoBehaviour:
   spawnObject: {fileID: 1117652589295750, guid: c2d89e8e1cc3c5e4bb0b17893b1d08bc,
     type: 2}
   spawnForwardDistance: 0
-  SpawnTranslation: {x: 0, y: 0, z: 0}
+  SpawnTranslation: {x: 0, y: -1, z: 0}
   allowMultiplyObjects: 0
   objectsAtTheSameTime: 1
   AbilityValue: 0

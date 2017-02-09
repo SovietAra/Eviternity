@@ -142,10 +142,10 @@ MonoBehaviour:
   heatPerShot: 20
   heatReductionPerSecond: 8
   heatReductionDelay: 0
-  AnimationDuration: 2
+  AnimationDuration: 1
   smoothSpray: 0
   sprayValueSpeed: 2
-  spawnDelay: 0
+  spawnDelay: 0.2
   heatDelayType: 0
   AllowShellRelaod: 0
   UseAmmo: 0
