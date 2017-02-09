@@ -203,6 +203,7 @@ public class GameInspector : MonoBehaviour
         for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
             GamePadState state = GamePad.GetState(GlobalReferences.PlayerStates[i].Index);
+            GlobalReferences.PlayerStates[i] = new PlayerState(GlobalReferences.PlayerStates[i], state);
             if (!state.IsConnected)
             {
                 GlobalReferences.CurrentGameState = GlobalReferences.GameState.Pause;

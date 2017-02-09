@@ -23,6 +23,14 @@ public struct PlayerState
         ClassId = classId;
     }
 
+    public PlayerState(PlayerState playerState, GamePadState state)
+    {
+        Index = playerState.Index;
+        PrevState = state;
+        Ready = playerState.Ready;
+        ClassId = playerState.ClassId;
+    }
+
     public PlayerState(PlayerIndex index, GamePadState state, bool ready, int classId)
     {
         Index = index;
