@@ -1008,7 +1008,7 @@ public class Player : MonoBehaviour
 
     public bool GetAmmo()
     {
-        if (SecondaryWeapon != null)
+        if (secondaryWeapon != null)
         {
             isReloading = secondaryWeapon.Reloading;
             return isReloading;
