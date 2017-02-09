@@ -44,7 +44,7 @@ public class MenuMusicScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (SceneManager.GetActiveScene().name == "LevelZero")
+        if (SceneManager.GetActiveScene().name == "IntroScene")
         {
             Destroy(this.gameObject);
         }
