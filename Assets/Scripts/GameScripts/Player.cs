@@ -87,6 +87,12 @@ public class Player : MonoBehaviour
     [Range(0.1f, 5)]
     private float maxImmortality = 2f;
 
+    [SerializeField]
+    Material[] playerMaterials;
+
+    [SerializeField]
+    Material changeAbleMaterial;
+
     public bool Freeze = false;
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
@@ -151,6 +157,16 @@ public class Player : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++)
+            for (int m = 0; m < renderers[i].materials.Length; m++)
+                if (renderers[i].materials[m].mainTexture == changeAbleMaterial.mainTexture)
+                {
+                    Material[] materials = renderers[i].materials;
+                    materials[m] = playerMaterials[(int)index];
+                    GetComponentsInChildren<Renderer>()[i].materials = materials;
+                }
+
         foreach (Transform item in transform)
         {
             if(item.CompareTag("ProjectileSpawn"))
