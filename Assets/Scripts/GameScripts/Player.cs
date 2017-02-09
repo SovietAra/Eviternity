@@ -326,7 +326,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-         GamePad.GetState(index);
         if (!hasPlayerIndex)
         {
             PlayerIndex[] freeControllers = GamePadManager.GetFreeControllers();
