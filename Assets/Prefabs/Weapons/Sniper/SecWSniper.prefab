@@ -139,10 +139,10 @@ MonoBehaviour:
   reloadTimePerClip: 10
   maxHeat: 20
   heat: 0
-  heatPerShot: 4
+  heatPerShot: 20
   heatReductionPerSecond: 8
   heatReductionDelay: 0
-  AnimationDuration: 0
+  AnimationDuration: 2
   smoothSpray: 0
   sprayValueSpeed: 2
   spawnDelay: 0
