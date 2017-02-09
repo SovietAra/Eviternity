@@ -187,12 +187,13 @@ public class Player : MonoBehaviour
         {
             gameObject.AddComponent<AudioSource>();
         }
-            audioSources[tmp].volume = SoundVolumes[tmp];
-        audioSources = GetComponents<AudioSource>();
 
+        audioSources = GetComponents<AudioSource>();
+        Array.Resize(ref SoundVolumes, AudioClips.Length); 
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
             audioSources[tmp].clip = AudioClips[tmp];
+            audioSources[tmp].volume = SoundVolumes[tmp];
         }
 
         deniedSource = gameObject.AddComponent<AudioSource>();
