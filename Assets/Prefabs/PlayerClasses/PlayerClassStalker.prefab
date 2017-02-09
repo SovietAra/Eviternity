@@ -2162,6 +2162,12 @@ MonoBehaviour:
   regenerationPerSecond: 100
   reviveDelay: 2
   maxImmortality: 2
+  playerMaterials:
+  - {fileID: 2100000, guid: 4195b3f1e21d53f43aa96d61f4065335, type: 2}
+  - {fileID: 2100000, guid: 5c1d83b575054c34a9b98e1450620af4, type: 2}
+  - {fileID: 2100000, guid: 2e667e4491eee7940957b4a3f9717e20, type: 2}
+  - {fileID: 2100000, guid: 8afbb742a2e5caf4c9cb9375e893ecf0, type: 2}
+  changeAbleMaterial: {fileID: 2100000, guid: 2e667e4491eee7940957b4a3f9717e20, type: 2}
   Freeze: 0
   RotateOnMove: 1
   PrimaryWeapon: {fileID: 1302081713190986, guid: c5558f0b271959f4382b1dd35650e108,

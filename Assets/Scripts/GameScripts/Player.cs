@@ -87,6 +87,12 @@ public class Player : MonoBehaviour
     [Range(0.1f, 5)]
     private float maxImmortality = 2f;
 
+    [SerializeField]
+    Material[] playerMaterials;
+
+    [SerializeField]
+    Material changeAbleMaterial;
+
     public bool Freeze = false;
     public bool RotateOnMove = false;
     public GameObject PrimaryWeapon;
@@ -103,7 +109,8 @@ public class Player : MonoBehaviour
     public AudioClip[] AudioClips = new AudioClip[50];
 
     [SerializeField]
-    private float StepVolume = 0.4f;
+    [Range(0, 1)]
+    private float[] SoundVolumes = new float[50];
 
     [SerializeField]
     private float stepCooldown = 0.5f;
@@ -151,6 +158,16 @@ public class Player : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++)
+            for (int m = 0; m < renderers[i].materials.Length; m++)
+                if (renderers[i].materials[m].mainTexture == changeAbleMaterial.mainTexture)
+                {
+                    Material[] materials = renderers[i].materials;
+                    materials[m] = playerMaterials[(int)index];
+                    GetComponentsInChildren<Renderer>()[i].materials = materials;
+                }
+
         foreach (Transform item in transform)
         {
             if(item.CompareTag("ProjectileSpawn"))
@@ -172,10 +189,11 @@ public class Player : MonoBehaviour
         }
 
         audioSources = GetComponents<AudioSource>();
-
+        Array.Resize(ref SoundVolumes, AudioClips.Length); 
         for (var tmp = 0; tmp < AudioClips.Length; tmp++)
         {
             audioSources[tmp].clip = AudioClips[tmp];
+            audioSources[tmp].volume = SoundVolumes[tmp];
         }
 
         deniedSource = gameObject.AddComponent<AudioSource>();
@@ -189,12 +207,12 @@ public class Player : MonoBehaviour
         //var Walk_Ice_4_Sound = audioSources[6];   18-22 Snow_Walk
         //var Walk_Ice_5_Sound = audioSources[7]; 
         //var Hit1_Sound = audioSources[7];         23-26 Hit
-        
-        //for(int i = 3; i < 23; i++)
+
+        //for(int i = 3; i < 17; i++)
         //{
         //    audioSources[i].volume = StepVolume;
         //}
-        
+
 
         //TODO call sounds in correct places/functions
 
