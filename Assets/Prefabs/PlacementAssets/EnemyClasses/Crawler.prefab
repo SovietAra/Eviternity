@@ -1107,7 +1107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865923694238466}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -184.58, y: -13.02, z: -264.23}
+  m_LocalPosition: {x: -290.76385, y: -13.159832, z: -148.97943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224500381575896340}
@@ -1590,7 +1590,7 @@ MonoBehaviour:
     type: 2}
   enemyType: 1
   switchDelay: 1
-  squadID: 4
+  squadID: 10
   HealthSlider: {fileID: 114205726039098528}
   freeze: 0
   PrimaryWeapon: {fileID: 1761816047511776, guid: d89e6c8e65e3e16468489aa8729263e1,
