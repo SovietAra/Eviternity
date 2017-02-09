@@ -320,9 +320,14 @@ public class PlayerAssignmentScript : MonoBehaviour
 
     public void PressStartGame()
     {
-        if (playerJoined[0] || playerJoined[1] || playerJoined[2] || playerJoined[3])
+        for (int i = 0; i < GlobalReferences.PlayerStates.Count; i++)
         {
-            StartNewGame();
+            GamePadState state = GamePad.GetState(GlobalReferences.PlayerStates[i].Index);
+            if (state.Buttons.A == ButtonState.Pressed && playerJoined[(int)GlobalReferences.PlayerStates[i].Index])
+            {
+                StartNewGame();
+                return;
+            }
         }
     }
     #endregion
