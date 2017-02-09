@@ -742,7 +742,7 @@ public class UIScript : MonoBehaviour
                     Destroy(player3Weapon2_2.gameObject);
                     Destroy(player3Weapon2_3.gameObject);
                     Destroy(p3icon.gameObject);
-                    Destroy(P3Buttons.gameObject);
+                    Destroy(player3buttons.gameObject);
                     P3iconsSet = false;
 
                     for (int k = 32; k < 48; k++)
